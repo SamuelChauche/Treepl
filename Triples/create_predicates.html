@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Missing Predicates</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.0/ethers.umd.min.js"></script>
+  <style>
+    body { font-family: monospace; background: #111; color: #eee; padding: 2rem; }
+    button { font-size: 1.2rem; padding: 0.75rem 2rem; cursor: pointer; margin: 1rem 0; }
+    .log { white-space: pre-wrap; margin-top: 1rem; padding: 1rem; background: #222; border-radius: 8px; }
+    .success { color: #2acecc; }
+    .error { color: #ff6b6b; }
+  </style>
+</head>
+<body>
+  <h1>Create Missing Predicates on Intuition</h1>
+  <p>This will create the "are interested by" and "attending" predicate atoms.</p>
+  <button onclick="run()">Create Predicates</button>
+  <div class="log" id="log"></div>
+
+  <script>
+    const CHAIN_ID = 1155;
+    const CHAIN_HEX = "0x" + CHAIN_ID.toString(16);
+    const RPC = "https://rpc.intuition.systems/http";
+    const MULTIVAULT = "0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e";
+    const ABI = [
+      "function getAtomCost() view returns (uint256)",
+      "function createAtoms(bytes[] atomDatas, uint256[] assets) payable returns (bytes32[])",
+      "function calculateAtomId(bytes data) pure returns (bytes32)",
+      "function isTermCreated(bytes32 id) view returns (bool)",
+    ];
+
+    const PREDICATES = ["are interested by", "attending"];
+
+    function log(msg, cls) {
+      const el = document.getElementById("log");
+      const span = document.createElement("span");
+      span.className = cls || "";
+      span.textContent = msg + "\n";
+      el.appendChild(span);
+    }
+
+    async function run() {
+      try {
+        log("Connecting wallet...");
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+
+        // Add/switch chain
+        try {
+          await provider.send("wallet_addEthereumChain", [{
+            chainId: CHAIN_HEX,
+            chainName: "Intuition",
+            rpcUrls: [RPC],
+            nativeCurrency: { name: "TRUST", symbol: "TRUST", decimals: 18 },
+          }]);
+        } catch {
+          await provider.send("wallet_switchEthereumChain", [{ chainId: CHAIN_HEX }]);
+        }
+
+        const freshProvider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await freshProvider.getSigner();
+        const contract = new ethers.Contract(MULTIVAULT, ABI, signer);
+        const address = await signer.getAddress();
+        log("Connected: " + address);
+
+        // Check which predicates need to be created
+        const toCreate = [];
+        for (const pred of PREDICATES) {
+          const data = ethers.toUtf8Bytes(pred);
+          const hexData = ethers.hexlify(data);
+          const atomId = await contract.calculateAtomId(hexData);
+          const exists = await contract.isTermCreated(atomId);
+          log(`"${pred}" => ${atomId} (exists: ${exists})`);
+          if (!exists) {
+            toCreate.push({ name: pred, hexData, atomId });
+          }
+        }
+
+        if (toCreate.length === 0) {
+          log("All predicates already exist!", "success");
+          return;
+        }
+
+        log(`\nCreating ${toCreate.length} predicate atom(s)...`);
+        const atomCost = await contract.getAtomCost();
+        log("Atom cost: " + ethers.formatEther(atomCost) + " TRUST each");
+
+        const atomDatas = toCreate.map(t => t.hexData);
+        const assets = toCreate.map(() => atomCost);
+        const totalCost = atomCost * BigInt(toCreate.length);
+
+        log("Total cost: " + ethers.formatEther(totalCost) + " TRUST");
+        log("Sending transaction... Confirm in your wallet.");
+
+        const tx = await contract.createAtoms(atomDatas, assets, { value: totalCost });
+        log("TX sent: " + tx.hash);
+        const receipt = await tx.wait();
+        log("TX confirmed in block " + receipt.blockNumber, "success");
+
+        // Verify
+        log("\nVerifying...");
+        for (const t of toCreate) {
+          const exists = await contract.isTermCreated(t.atomId);
+          log(`"${t.name}" => ${t.atomId} (exists: ${exists})`, exists ? "success" : "error");
+        }
+
+        log("\n=== UPDATE intuition_graph.json predicates with these term_ids ===", "success");
+        for (const t of toCreate) {
+          log(`  "${t.name}": "${t.atomId}"`, "success");
+        }
+
+      } catch (e) {
+        log("ERROR: " + e.message, "error");
+      }
+    }
+  </script>
+</body>
+</html>

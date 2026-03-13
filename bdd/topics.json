@@ -1,0 +1,357 @@
+{
+  "totalTopics": 19,
+  "topics": [
+    {
+      "name": "DeFi & Prêts",
+      "sessionCount": 26,
+      "speakerCount": 28,
+      "speakers": [
+        "Alexander Müller",
+        "Alisia Painter",
+        "Ambre Soubiran",
+        "Ami Nagata",
+        "Andrew O'Neill",
+        "Bhaji Illuminati",
+        "Christina Frankopan",
+        "Christine Moy",
+        "Emilio Frangella",
+        "Eric Zhong",
+        "Eugene Joo",
+        "Jonathan Passerat-Palmbach",
+        "Juan David Mendieta",
+        "Julian Grigo",
+        "Julien Bouteloup",
+        "Kite Liu",
+        "Marcin Kazmierczak",
+        "Mariia Yatskovska",
+        "Marina Markezic",
+        "Max Lomu",
+        "Raza Zaidi",
+        "Sam MacPherson",
+        "Suki Yang",
+        "Sylvain Prigent",
+        "Will Papper",
+        "Xiangru Ma",
+        "Yeho Hwang",
+        "definikola"
+      ]
+    },
+    {
+      "name": "Expérience utilisateur & Adoption",
+      "sessionCount": 22,
+      "speakerCount": 26,
+      "speakers": [
+        "Alexander Müller",
+        "Ami Nagata",
+        "Andrii Bondar",
+        "Belma Gutlic",
+        "Bhaji Illuminati",
+        "Christina Frankopan",
+        "Christine Moy",
+        "Darius Moukhtarzade",
+        "Ed Felten",
+        "Erick  Zhang",
+        "Jan Setina",
+        "Jonathan Passerat-Palmbach",
+        "Juan David Mendieta",
+        "Julien Bouteloup",
+        "Kasra Khosravi",
+        "Kevin Jones",
+        "Krzysztof Paruch",
+        "Leo Fan",
+        "MB Richardson",
+        "Marcin Kazmierczak",
+        "Mark Ballandies",
+        "Paul Brody",
+        "Reno",
+        "Stéphane Tetsing",
+        "Yeho Hwang",
+        "jacobc.eth"
+      ]
+    },
+    {
+      "name": "Protocole Ethereum",
+      "sessionCount": 17,
+      "speakerCount": 14,
+      "speakers": [
+        "Alexander Müller",
+        "AliceAndBob",
+        "Amxx",
+        "Arthur Breitman",
+        "Han",
+        "Kaloyan Kosev",
+        "Leo Fan",
+        "Lioba Heimbach",
+        "Martin Hansen",
+        "Oisín Kyne",
+        "Richard Meissner",
+        "Stephan Duan",
+        "cheeky-gorilla",
+        "terence tsao"
+      ]
+    },
+    {
+      "name": "Vie privée & Données personnelles",
+      "sessionCount": 15,
+      "speakerCount": 16,
+      "speakers": [
+        "0xPenryn",
+        "AKAKI MAMAGEISHVILI",
+        "Adrian Brink",
+        "Ami Nagata",
+        "Andrii Bondar",
+        "Belma Gutlic",
+        "Christina Frankopan",
+        "Doo Wan Nam",
+        "Eugene Joo",
+        "Hong Kim",
+        "Joan  Alavedra",
+        "Kevin Jones",
+        "Marina Markezic",
+        "Reno",
+        "Xiangru Ma",
+        "jacobc.eth"
+      ]
+    },
+    {
+      "name": "Tokenisation & Actifs réels",
+      "sessionCount": 14,
+      "speakerCount": 16,
+      "speakers": [
+        "Ambre Soubiran",
+        "Ami Nagata",
+        "Andrew O'Neill",
+        "Bhaji Illuminati",
+        "Bianca Buzea",
+        "Christina Frankopan",
+        "Christine Moy",
+        "Emilio Frangella",
+        "Hong Kim",
+        "Marina Markezic",
+        "Michael  Wu",
+        "Oisín Kyne",
+        "Sam MacPherson",
+        "Wish Wu",
+        "Yeho Hwang",
+        "definikola"
+      ]
+    },
+    {
+      "name": "Preuves à divulgation nulle & Cryptographie",
+      "sessionCount": 13,
+      "speakerCount": 15,
+      "speakers": [
+        "0xPenryn",
+        "AKAKI MAMAGEISHVILI",
+        "Arthur Breitman",
+        "Eugene Joo",
+        "Jonathan Passerat-Palmbach",
+        "Justin Drake",
+        "Kevin Jones",
+        "Leo Fan",
+        "Mohsen Ahmadvand",
+        "Oisín Kyne",
+        "Praneeth Srikanti",
+        "Reno",
+        "Stephan Duan",
+        "Wolfgang Vitale",
+        "btchip"
+      ]
+    },
+    {
+      "name": "Investissement & Marché",
+      "sessionCount": 12,
+      "speakerCount": 14,
+      "speakers": [
+        "Ambre Soubiran",
+        "Bhaji Illuminati",
+        "Christina Frankopan",
+        "Christine Moy",
+        "Darius Moukhtarzade",
+        "Emilio Frangella",
+        "Erick  Zhang",
+        "Jan Setina",
+        "Julie Bader",
+        "Marina Markezic",
+        "Praneeth Srikanti",
+        "Sam MacPherson",
+        "Suki Yang",
+        "terence tsao"
+      ]
+    },
+    {
+      "name": "Couches 2 & Passage à l'échelle",
+      "sessionCount": 11,
+      "speakerCount": 10,
+      "speakers": [
+        "AKAKI MAMAGEISHVILI",
+        "Barnabé Monnot",
+        "Ed Felten",
+        "Friederike Ernst",
+        "Jan Setina",
+        "Lioba Heimbach",
+        "Mohsen Ahmadvand",
+        "Will Papper",
+        "Xiangru Ma",
+        "terence tsao"
+      ]
+    },
+    {
+      "name": "Sécurité & Audit",
+      "sessionCount": 10,
+      "speakerCount": 10,
+      "speakers": [
+        "AliceAndBob",
+        "Alisia Painter",
+        "Bianca Buzea",
+        "Ed Felten",
+        "Hong Kim",
+        "Julien Bouteloup",
+        "OxFlint_",
+        "Richard Meissner",
+        "Sarah Hicks",
+        "Vincent"
+      ]
+    },
+    {
+      "name": "IA & Agents autonomes",
+      "sessionCount": 10,
+      "speakerCount": 9,
+      "speakers": [
+        "Adrian Brink",
+        "Alexander Müller",
+        "Devon Martens",
+        "Gwen",
+        "Michael  Wu",
+        "Praneeth Srikanti",
+        "Stéphane Tetsing",
+        "Yaniv Tal",
+        "jacobc.eth"
+      ]
+    },
+    {
+      "name": "Identité & Portefeuilles",
+      "sessionCount": 8,
+      "speakerCount": 8,
+      "speakers": [
+        "0xPenryn",
+        "AliceAndBob",
+        "Jan Setina",
+        "Joan  Alavedra",
+        "Kaloyan Kosev",
+        "Kevin Jones",
+        "Mende",
+        "Reno"
+      ]
+    },
+    {
+      "name": "Trading & Valeur extractible (MEV)",
+      "sessionCount": 7,
+      "speakerCount": 8,
+      "speakers": [
+        "Ambre Soubiran",
+        "Eric Zhong",
+        "Jonathan Passerat-Palmbach",
+        "Kite Liu",
+        "Mariia Yatskovska",
+        "Suki Yang",
+        "Will Papper",
+        "terence tsao"
+      ]
+    },
+    {
+      "name": "Stablecoins & Paiements",
+      "sessionCount": 7,
+      "speakerCount": 8,
+      "speakers": [
+        "Devon Martens",
+        "Gwen",
+        "Julian Grigo",
+        "Julie Bader",
+        "Raza Zaidi",
+        "Sam MacPherson",
+        "Sylvain Prigent",
+        "definikola"
+      ]
+    },
+    {
+      "name": "Gouvernance & DAO",
+      "sessionCount": 7,
+      "speakerCount": 10,
+      "speakers": [
+        "Christina Frankopan",
+        "Darius Moukhtarzade",
+        "Doo Wan Nam",
+        "Erick  Zhang",
+        "Grace Rachmany",
+        "Griff",
+        "Krzysztof Paruch",
+        "MB Richardson",
+        "Marina Markezic",
+        "Mark Ballandies"
+      ]
+    },
+    {
+      "name": "Infrastructure & Outils développeurs",
+      "sessionCount": 7,
+      "speakerCount": 6,
+      "speakers": [
+        "Ed Felten",
+        "Gwen",
+        "Kasra Khosravi",
+        "OxFlint_",
+        "Stéphane Tetsing",
+        "Tomasz Stanczak"
+      ]
+    },
+    {
+      "name": "Staking & Validateurs",
+      "sessionCount": 5,
+      "speakerCount": 4,
+      "speakers": [
+        "Hong Kim",
+        "Julien Bouteloup",
+        "Oisín Kyne",
+        "terence tsao"
+      ]
+    },
+    {
+      "name": "Débats & Controverses",
+      "sessionCount": 5,
+      "speakerCount": 10,
+      "speakers": [
+        "Christina Frankopan",
+        "Grace Rachmany",
+        "Griff",
+        "Izzy",
+        "Jerome  de Tychey",
+        "Julie Bader",
+        "Justin Drake",
+        "Paul Brody",
+        "Reno",
+        "btchip"
+      ]
+    },
+    {
+      "name": "Histoire & Culture Ethereum",
+      "sessionCount": 4,
+      "speakerCount": 4,
+      "speakers": [
+        "Amxx",
+        "Bob Summerwill",
+        "Gwen",
+        "Tomasz Stanczak"
+      ]
+    },
+    {
+      "name": "Régulation & Conformité",
+      "sessionCount": 2,
+      "speakerCount": 3,
+      "speakers": [
+        "Christina Frankopan",
+        "Julie Bader",
+        "Marina Markezic"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+"""
+EthCC[9] GraphQL Schema
+Cannes, France - March 30 to April 2, 2026
+"""
+
+type Event {
+  name: String!
+  location: String!
+  dates: DateRange!
+  website: String
+  sessions: [Session!]!
+  speakers: [Speaker!]!
+  stages: [Stage!]!
+  tracks: [Track!]!
+  days: [Day!]!
+}
+
+type DateRange {
+  start: String!
+  end: String!
+}
+
+type Session {
+  id: ID!
+  title: String!
+  date: String!
+  startTime: String!
+  endTime: String!
+  stage: Stage!
+  track: Track
+  type: SessionType!
+  description: String
+  speakers: [Speaker!]!
+}
+
+enum SessionType {
+  Talk
+  Demo
+  Workshop
+  Panel
+}
+
+type Speaker {
+  slug: ID!
+  name: String!
+  organization: String
+  sectors: [String!]
+  tracks: [String!]
+  talkCount: Int!
+  talks: [Session!]!
+  twitter: String
+  bio: String
+  role: String
+  profilePictureUrl: String
+}
+
+type Stage {
+  id: ID!
+  name: String!
+  sessionCount: Int!
+  activeDates: [String!]!
+  tracks: [String!]!
+  sessions: [Session!]!
+}
+
+type Track {
+  name: String!
+  sector: String!
+  sessionCount: Int!
+  speakerCount: Int!
+  sessionTypes: [SessionType!]!
+  speakers: [Speaker!]!
+  sessions: [Session!]!
+}
+
+type Day {
+  date: String!
+  sessionCount: Int!
+  stages: [String!]!
+  tracks: [String!]!
+  firstSession: String!
+  lastSessionEnd: String!
+  sessions: [Session!]!
+}
+
+type Query {
+  event: Event!
+  sessions(date: String, stage: String, track: String, type: SessionType): [Session!]!
+  session(id: ID!): Session
+  speakers(organization: String, sector: String): [Speaker!]!
+  speaker(slug: ID!): Speaker
+  stages: [Stage!]!
+  stage(id: ID!): Stage
+  tracks: [Track!]!
+  track(name: String!): Track
+  days: [Day!]!
+  day(date: String!): Day
+  search(query: String!): SearchResults!
+}
+
+type SearchResults {
+  sessions: [Session!]!
+  speakers: [Speaker!]!
+}

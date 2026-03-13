@@ -1,0 +1,3298 @@
+{
+  "atoms": {
+    "0x680a635ad5c4e78b91c4dc3eb7428fed11d3c4127065817619759ecf6c9c3a81": "Julien Bouteloup",
+    "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5": "DeFi's hidden risk stack",
+    "0x1a4eaa6d21a2576f6cba6eeb66aaa0f2d0f8753f7999d8c3eb53aac6affc7f06": "Juan David Mendieta",
+    "0x1976fe35c10edd13ef4027096b55ef295f541f9f83831e0e230bd806d4e6e225": "DeFi From the Inside: What Power Users Reveal About the Next Wave of Adoption",
+    "0xfd7e2dd70242f6bec7d32bccaec861e6526513935aafa98920c127c0e72a125f": "definikola",
+    "0xb5c77634fc6b24c665111237ad167bb664dae2f83c02957617053f315b76ac6a": "The Expanding Spectrum of Stablecoin Yield Sources in DeFi and Its Risk Implications",
+    "0x88d723b2942528e13f416bf2f2124b729312ccf799ba056cb037ecb7306394d5": "Christine Moy",
+    "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb": "RWAs Done Right: Utility, Liquidity, and DeFi Values",
+    "0xfccff01e88ec93ec8d6729598ec5f8aa983142e0621217d807dbfdba5a2e92ef": "Alisia Painter",
+    "0xb63e06765f9ebb45e28d6bd085fc5c68b675fa6250f753fff83df9622bd995a9": "Bitcoin as Collateral: A $1 Trillion Opportunity for Ethereum DeFi",
+    "0x7ec5f55fcd690aa8d37cf8e264200160f2dd1d299a170807f8b4f03480768e08": "Julian Grigo",
+    "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+    "0xec23c62906698df0ffa4b22e3ee8294d5f0e9c45e451e137edfbacbfcd381d14": "Wish Wu",
+    "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e": "Building the Financial Layer 1 for Trillions Onchain",
+    "0x1b3d35b911b039320db5132580d7e084bc654aeac9494553de55c20e1f8f463c": "Ami Nagata",
+    "0x2b1a7ca41172348d1a435b76b99d3d48c2963428895b0400f5bf55457de32864": "From Protocols to Products: Turning Digital Asset Innovation Into Institutional Reality",
+    "0xc34abee5ff180bd1476a7d99404664e9c83fe28cebf14f190fc4486a239965b3": "Julie Bader",
+    "0xb567f758fcd9fd978eb86bc2c9c73da03d602501df81190281f4d18584352fec": "Stablecoins in Payments: Regulation, Qualification Debates & Market Opportunities MiCA, PSD3 &Beyond",
+    "0x45072b34d8f458731f390284bd4e747ac3184ad33adbaf68c289baa608033516": "Marcin Kazmierczak",
+    "0xe3f51c70d4c8826d052d8bc5d9d0b89c13faf6b1cddefa3856eefff0bce17618": "Risk Ratings: The Missing Piece for DeFi & Onchain Finance Mass Adoption",
+    "0x76b0c295fe6ebec4072bf126ee95bef8f3110be03098a85e3cd38afbe8590a96": "Bhaji Illuminati",
+    "0x725b4871f0d1e6f1c9f24675e5b4dc789e6fdd1a9ce40937c8fe05627b90f12a": "Alexander Müller",
+    "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+    "0xa89cfe5f03ce0eadf7ecaa160ba4335e853cf378d842fbf209866e0f8fa7ff49": "Yeho Hwang",
+    "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b": "What's Next for DeFi UX: Behavior-based Systems for the RWA Era",
+    "0x172b18472fee86050c540fa5e97673a01b464bb57189444bc47b4d835574668c": "Eric Zhong",
+    "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e": "Continuous Clearing Auctions: The new standard for bootstrapping liquidity",
+    "0xbcbb7bf9133d05368b4a51d14e48b2db0fb393639aba461f31268b4384824bd2": "Friederike Ernst",
+    "0xd608768a276c1fe59794873a70ddbbc883cd76df6dcf860eb22d0b03a115e2e1": "Rollups Broke Ethereum. Synchronous Composability Can Fix It.",
+    "0xb68efd67bd67e4ad3e8ec752d17dffd16aa2a9152de169dfb37a92f6ced4938d": "Xiangru Ma",
+    "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293": "Forget Private AMMs: Scaling DeFi Back Onchain with Parallel AMM",
+    "0x113514867483270ad45d2d6824c261d00beed45d8e1b232fe0cce061377e825f": "Ed Felten",
+    "0x649e6f8ff891baaec19065b46fb301cb72c5e81fad800973e71621b60c23a149": "How Ethereum Can Scale to Billions of Users",
+    "0x0a8bc142ebd6d425fbb4b91fecdaffff153d8f1c54c7779c78e32fba340872c0": "Suki Yang",
+    "0x1b1e47acc0d49f5a15cdc4a40554c9e3bad237ffa166e2082d543d19c79fa455": "High-frequency-trading in Crypto",
+    "0x06f62bac4bf8a58d89b3c83dc81a37139df00b1cb3ad4b41c5f8efd75dcf54ca": "Mariia Yatskovska",
+    "0xcf9c5f737857473ca109dbef91181e26d68d93ff309c50cbb51e4d9a548ed5b7": "When Theory Meets Mainnet: Intent-Based Trading at Scale",
+    "0xd85251b594f01662d037f1f686bb4ca73463e178194398f739324438d2f4e7e1": "Sam MacPherson",
+    "0xc4fce956e4e6e02ba18afd64f9344f3ac5f389985d18fb30c1d7b7fdfc7be741": "The Next $33 Billion: Stablecoin Lending and the Institutional Frontier",
+    "0x3ab34a41ec529d77d95ecd6bfe35d31d39dbcf1e66f40feacb17f73aea9e3e6a": "Andrii Bondar",
+    "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb": "Make Privacy Sexy: From Cypherpunk to Consumer",
+    "0xa829045e35c648537403147f630526459773260af1e0464a9c46cb2fd533d501": "Max Lomu",
+    "0x9a9f3a4d48261329b8b426b3bbebb1dd672e1b4fd7e774769a67feaaf7a22b7f": "Building Crypto Cities",
+    "0x449d70a3951ca06ccd2800112e1ff2fd31a5625c6d6f3e67d6e1803e57bcb2a2": "Jan Setina",
+    "0xe9a2c05e70ea9845cee3d27233a55eb2c6140c00b0635871d38e84e167ae3aaa": "Build on Trezor: Join Us in Scaling an Open-Source and Secure Future",
+    "0x5a2499d3f03e95532c68f108eeb3bbad8fb89f623f2c273814d6406f0c91ba46": "Erick  Zhang",
+    "0x28105e1813e7d8fae1acf9fea0a628ae5b5441e0d1a2c99d5e61cf88024fd5d0": "ICO 2.0:  how will ICOs evolve?",
+    "0x2021a1cc1305388b1c0ee7aed9feba371b0a560e99ca938a127e2e594a0b28d8": "Sylvain Prigent",
+    "0xbcaece8c8b5f2f38c60a7c576cab7d00abe3111ac0d91a2b148af49eb0e23eea": "Belma Gutlic",
+    "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239": "Keeping your users' private parts private",
+    "0x1bbb0c071d03aab7334510517144acb1702eaf7bbc2062bf0c387df339035636": "Darius Moukhtarzade",
+    "0xdc84e5e27bcbca3c2bd4343b8bf530fcb647d50a798d09a371cca6fd3603a549": "Why Token Launches Fail — and How to Get Them Right in 2026",
+    "0x94efa62191083a4587105bfa7e43bf0a44285fb12012189c01931fb40dd3a53f": "Doo Wan Nam",
+    "0x317d2ba4151aa1172cdaccfdda2308fb348a6d3cf2e9d4f3e34c9bbafce350a5": "End of Beginning of DAO",
+    "0x4abdfa6f7602879471fee13f2231edaa36392437135bdf95efdbd4464872cbd4": "Reno",
+    "0xffac32778ae305c8eed46022dd471ba42a2ff8e6b86133ba3bc807d904617c5e": "Hardware wallet integration of Privacy preserving protocols for the Kohaku wallet",
+    "0x7aaf6be11ebccffb81f6195013fe4dc3d52fbde76e1f34ce2c9df22c5f195b31": "jacobc.eth",
+    "0x3dcdde8756b1d26cd449560c67b4e795e39280ebea5fb3d9c892cba5d5e78d64": "AI Agents Will Replace Dapps",
+    "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837": "Quantum dilema",
+    "0x263ca13c69d57ce73edde7c6e2f8a5721ffd76ecd9b299b9aaf48bb1f683b950": "Devon Martens",
+    "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858": "Autonomous On-Chain Intelligence: How AI Agents Will Transform Web3 User Behavior & Payments",
+    "0x62173ee98394f7042e9d81852edad4388dc9a29afd51446fd4d88ceaab0d19a0": "Joan  Alavedra",
+    "0xa892532c6f3b99f7fb51fb54ba94bf41896086baf5869e018b1c08041118498b": "OpenSigner: Open-source non-custodial key management",
+    "0xeb7088eebcc99267f52de6c57378b52b29e27493b6ad2db8550f7cbcbf88a75f": "Hong Kim",
+    "0xa265e2848c26f4e724bb73c4b1f23db77f6fc9c089a3f2da49284f65d98e36bf": "Raising the Bar: A Deep Dive into Institutional Ethereum Staking Infrastructure",
+    "0xe5dd097e326f7d4e5cd6f36a91c07b2533bebdacc042a23181899bf75e9bd72e": "Mende",
+    "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7": "Web3 Is Alive: The Human Layer in Action (Live Demo)",
+    "0xd21e1c8caa37325ae6bc2fa45620c5e39a78f7922f33ba6d5ccf345e43d098f8": "Adrian Brink",
+    "0x69affd99159a7e77006e574190753026b0c37601ac31efdbe6a43150919ad5d7": "Privacy and self-sovereign infrastructure!",
+    "0x5348a3f8e7b026e9715370a70d5bf445e2cad678f42c0752eaa68a076f2070d7": "terence tsao",
+    "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec": "From MEV-Boost to ePBS: The Protocolization of Proposer-Builder Separation",
+    "0xf7819e297039663b1847c51c7f8bb4aafd0784c8f5feef6be7656385c6daec60": "Izzy",
+    "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42": "ETH issuance clash",
+    "0xf9a3e48585b09dd7ea1735ebdd2154c592c9453cac1b35aab4e838fdddd54d49": "Michael  Wu",
+    "0x1434da448088552a449de3d79ba7d726177594f2d94b2c6b48d0d7da9528e6b5": "Financial Services in the Agent Economy: From Platforms to Autonomous Operating Systems",
+    "0xf71481d8ce34fb766d3fda74b8a0334f35a283da17ffb29c56e8a83ba4e242aa": "Praneeth Srikanti",
+    "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218": "There is such a thing as a free lunch - the deep fake refund economy",
+    "0xac677ac31b4e39d4391613619055f444cb2fd89c1eb9a77658828900ec48c9c5": "Gwen",
+    "0xa60e8f3c2f7afc0b1f4b92a7782b80e7f9fb17b0964cc42be78c6e072ff9faf3": "Educating Developers, What can we Learn from Experimental Schools?",
+    "0x623a66029ecb2d3ca103dffeab4af6c19352c9b9cc4d4a08c85644d61b8addbb": "Bob Summerwill",
+    "0x60694cf0ece5a32e29e1db8a0e7539eb94066da7816fac35f02e5955a88b3cf4": "The Early Days of Ethereum",
+    "0xf5d21c807a3192c7dac56f227dc520e0719c95697068fb5ad0deeccebdcd4f3f": "Barnabé Monnot",
+    "0x100481e77dd456b2744e968a213142ae0f59049645f7012eb5d74bca4340938e": "Updates on Ethereum Interoperability",
+    "0xfcb28bafc0860e63ed88cf6f4122e1e6d7178b8e2c97242ad1390e062984d69c": "AKAKI MAMAGEISHVILI",
+    "0xa07180d055e4c90b849a6e5bad16c7466171a5b596ae8e87a37e4eb938ff9a4b": "Economic Censorship Games in Fraud Proofs",
+    "0x93348061b084dfa0798f42281e48bca6f7ecce21e2289fbffad0ef0487a9b4c6": "Amxx",
+    "0xe32d2695dd73bf85fc7625f0fad63cce321039fd8db9a5a53dc7c87195e608c9": "Getting your EIP included is harder than getting a Ph.D.",
+    "0x933656f65c3e143ffebfaafd7842dc3ba4fa22d4a3f082c2e4b767be307715ba": "Griff",
+    "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0": "DAOs: Fail or success",
+    "0x5bf0c238473bc3aaa54f237dc0951d81f2a79266983ea606d8ddf2c5bc8a436a": "Martin Hansen",
+    "0xd7f507324dfa925051372edded19a1851fab03c63d47c47497a140ea8b2a2950": "The Ethereum Kernel",
+    "0x46b8311d53146b42960e1984519891a194ee40c7a51c7fd8642c0704eca253b6": "Yaniv Tal",
+    "0xdc1d883940f8ccceaed853e545cc6769a7b997095e2722629e8c13988df51687": "How Web3 Can Rebuild Truth on the Internet",
+    "0xe4b3b6ef20bc8f31e47fa885dae73d01e511ea85f5e4793a90453f22c814994f": "Mark Ballandies",
+    "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5": "Token Engineering",
+    "0xb1058edd14e64cdfb10c3e493d4adffdbd503f69d79b58fb2936482d479c2b9a": "Lioba Heimbach",
+    "0x4d0f4b77632e5e8589f46864ea3e84186f176e7d98faf03729d43948ae125db7": "EVM Workloads in the Wild: Measuring Gas, State Growth, and State Sensitivity Across L1 and L2",
+    "0x47be929fba3b5d3a73c7947356473d660ed2f6890687995ee34905f3756c6248": "Stephan Duan",
+    "0xac836ad5e24bc08c0eeda1a4458cf8cfc405b74012ef3b707760d745cab03902": "Prove Geth with Ziren",
+    "0x2afb90965bb2ea8ab7321fc399bace102cab971014ce5d6f2492bed7498495aa": "cheeky-gorilla",
+    "0x938102699cb1ebcd224c15674d8d34ee475e2d06a22fba5abbbf5059a91bc773": "Maintaining Ethereum's Future",
+    "0x5ef7d7555d3dd7833b4059392a9d491f6cd06e6bab50bba5656e3e3e038a5645": "Oisín Kyne",
+    "0x8fc53c552ba351998bf87fa22c4662dbb44ef5b245c4803b2283319d91940331": "Ethereum's decentralisation; five years into proof of stake",
+    "0x900fa6c12a8bf1d47dd0138f76c2c87745f186e31e0510f52dd6bd28ea1d44b0": "Stéphane Tetsing",
+    "0x4085219f65a31ed0b9fd1d620ea57e6492191f70efecb6163337d9d126496974": "New AI Workflows in Remix - from Concept to DApp",
+    "0x3f933204b9041c926329e34b99a789b0121ae023826f47f0bab22409ae00723c": "MB Richardson",
+    "0x7f3db83051d2a74ea76aa7f2dc05786cdfa4a23610dd2b1cc8af114dc8f1a2b3": "Wolfgang Vitale",
+    "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda": "The road to post-quantum Ethereum",
+    "0xf40ac9a4cd3d134da35df50000c0fdf8814bf6c2e9c56d923e9e02644bd90571": "Eugene Joo",
+    "0x67597433b3fa101da1cac396bdd54b16e58a0a1852e0df8698c926e1d6d225de": "FHEthereum: FHE for Ethereum",
+    "0xed6c07940f085640492314de3534c35d34854f8d039ed66f4c859b00d19e3f19": "Grace Rachmany",
+    "0xe9861effc96100a69c7484ba2b97f507d1b9a43ac2fa313c228648affe143404": "Han",
+    "0xaaa36e82925f761d9d5abf5f4fb80d7f9277b1ec1c548da59e99128a4f55dd03": "Not All State is Equal",
+    "0xdc70d85811fada2e482b80ea95f13486c993f81940d6526f23289aaccdaa6e67": "0xPenryn",
+    "0xa68c3978edc35ada15194e44fa4285947f461bdc16454410219e12128f9528d9": "Inside the Orb: Privacy in World's Hardware",
+    "0xbc2fe68e638a53d5b77dd5e76b54b1a7468ffb024fc869776080f5104d15204b": "Vincent",
+    "0x0617e219d2370de11bfacaa7a860f3ceab5022f9c952434ffb9023c78960aa0a": "Improving Blockchain Security via the Open Source STABL Framework and Scalable Accountability",
+    "0xb2f7b44981358aa5ce8c123c85f3cd60d47c36f0fe2dfe5b5a2d4aa5c63f251b": "Andrea Canidio",
+    "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b": "Becoming Immutable: how Ethereum is made",
+    "0x408c46d5610146a3a5e931bb4e5eea8fd00dc681daa806086337fd05aec52787": "Richard Meissner",
+    "0x2766aa7c06b243d1eabefd52df421859392e438df0bf651badfd566871bb4f00": "Safenet: A transaction security protocol",
+    "0x51bd9c00768aeb23cdcbe64f21fc38aadf5c525c5b57a3bfcc8a0c9f0ce8d091": "Ambre Soubiran",
+    "0x3c3681e5cd6efa0de2ecb4dbf29b15b94d3cd0c926882499470863513b8792e5": "DeFi Revolutionizes TradFi with 24/7 Markets on Equities, Commodities & FX",
+    "0xb164ba02eee83720356954bf1218ffe67c04b6c5903c2cdd43619dfd4faceb4e": "OxFlint_",
+    "0x0f14dbd15d1937505bda86dd350e789fcf70f2804920cbe6c6431773df6e4b2a": "Assumptions: The Root of All Bugs",
+    "0xd70db6178000d4dc00e3e1c399e9a637db0b6272c5349ea8f51b1a321484657a": "Vabuk",
+    "0x93dcc7f37cc20a76c936f6917fdbd2df372093d77ca7ec1473d8e660be2f42a5": "Sarah Hicks",
+    "0xfa8ad1a380527fe2852a2286334b43eb30533bc6463ba7dc8a1eb6a73fd2793f": "The Next Billion in Web3 Will Get Hacked Unless We Rethink Security",
+    "0xb0351a20be9a91ac954fd2eea2b6c019f8849d8ebffdde16a139132083338e3f": "Bianca Buzea",
+    "0x3fb77dc40173b0b4b858040fe85734cbd944ee1de51c57b98df566b01c114ea5": "Strengthening Oracle Security in 2026: Key Principles for Builders",
+    "0x2ba5b87f2b29dd8c848583f493cb183bfa8c10624cbadb3aff6b820eaa428034": "AliceAndBob",
+    "0x545d906ece2500e4ec79555c8bfe19d5222ce428524dc152315189626453b93b": "New Security Challenges with EIP‑4337 & EIP‑7702",
+    "0xbb4046b5d498ce2e8e54a64651bed8259c0e64a2e5a34746565b68fba6f945b4": "Kaloyan Kosev",
+    "0xd60269c27c7ab6ff86a92acb594cd549843b368be73e15a5939b932217aa2e4d": "EIP-7702 meets hardware wallets: stories from the browser extension wallet frontlines",
+    "0xfe22c076be133c129b09e62bad115059a7fd9cee8ee5ea069578ecb44cc93668": "Kasra Khosravi",
+    "0xef4654089e9d788dea40f5929b1fcefd762a8d4aecbf07243c75af95ca060d7a": "Solving EVM RPC Reliability Issues",
+    "0x987ddfe48adecf3575b95f5c4d3f7cf54e6a8fed804c3378e3ad43e8bfdfb2d8": "Kite Liu",
+    "0xbc6ede1c524cc597fe94973e7522dd4eff89380df3f2e71477c16960b5027766": "Justin Drake",
+    "0x706d73d0a7d15fbe2574c93a9ac353aa7ff72b19df9070c880350b4a1544b731": "Beyond Rewards: Incentives as Core Infrastructure in Modern DeFi",
+    "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c": "DeFi",
+    "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb": "RWA Tokenisation",
+    "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019": "Cypherpunk & Privacy",
+    "0x3192914ddee59330c9b4f453efb940d407578859cb87feb585d4062ac10f89c7": "Stablecoins & Global Payments",
+    "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985": "Built on Ethereum",
+    "0x1a622b7045cb503f5de03f6c0377e7d12909e94ca273ff67293a4ace2817bb54": "The Anatomy of the Perfect Stablecoin: Trust, Liquidity, and Global Utility",
+    "0x82d8e626581a84e709b228fa286a28fa02e516e162b4d3adbff049b40b5bbd2c": "Bringing traditional risk analysis to DeFi",
+    "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a": "Layer 2s",
+    "0xd3b79740eb2ab4ba95dd6145aa303196ed89cca32a89f88361938de6f962c81f": "Product & Marketers",
+    "0xee2ea9faadae7a3554053b7620a14aa3ef81e317b11fee50f1bb5a59295d5b54": "Why Does Programmable Block Construction Matter for Custom Execution in L2s?",
+    "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae": "Legal & Compliance",
+    "0x47ba370df0bca8846e101c4ec5b7695921e1d3ecb31c0d3374a0845a8c172a2b": "Breakout sessions",
+    "0x39b9b18c3767afd2e2808829006e78a9a4c390baaebcee9954420a4f711071ab": "Aave V4 and Beyond: Bringing Capital Markets Onchain",
+    "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671": "AI Agents and Automation",
+    "0x5cdc50208dd188f546c76d72edf708c6c407845b8dc120df63f51ae20f902616": "Spritz — Building a Truly Decentralized, Censorship-Resistant and Permissionless Communication App",
+    "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf": "Core Protocol",
+    "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367": "The Unexpected",
+    "0x7bda101c57c4561ce1a3b32b03f399648982f86c331a31136827cda097c58b19": "VOPS / Partial Stateless nodes",
+    "0x60792f8e7c11bf88b026587c24ee338f02f883a306d947a0448b998e966f1d93": "EthStaker",
+    "0x75ecb8844ba91a1173664ff2d272bfe706a79229085f97eaf2c11dad806e7725": "Proving Less, Verifying More: 3.5× Faster L2 Validity Proofs",
+    "0xa294407354c71d4ad9fd5088726a36a6e3bebc3be70f2b968cec0d601e9a8a7f": "Applied cryptography",
+    "0x534159dc5484b15ebb34d6ef659b750e3df809cf23ffbccfa7827dd810fdfa3f": "DeFi Agents You Can Actually Trust",
+    "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e": "Block Fighters",
+    "0x25e18b7adef859a2b20f1fd9295f6a89dedd2867ca7107abece97d6f357a6f3f": "Accelerating Ethereum",
+    "0xf63693f53890c4bb6493b440fb611f501f8aa134348d8c9633069dbf138fb599": "Preparing Blockchains for the Post-Quantum Era",
+    "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b": "Canton Network: sleeping giant?",
+    "0xa3f9c3685bd933d2b2fcafb2a1459ecc1f6aa57fc03ab8e0a3e2ed8158f400ec": "The key takeaways of Scaling the L1. The data collected in the trenches and what should we expect.",
+    "0x015ff7a134a5013348206209f011d31bf62f51094c864b6d3551097d8e474d35": "Decrypting Encrypted Mempools: State of the Art, Convergent Designs, and Future Directions",
+    "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc": "Research",
+    "0x194957306ca1f429df0712351d0e86b980136e9f4d0cbfc44cd48b02846b0c0c": "Making Sub-12s ZKPs on Ethereum Possible With a New Builder–Prover Design",
+    "0x6db174a3a7b61f37d7ebce56c91062d5a949f6bc439fec779616aa7cc4fce075": "Fairness in Token Delegation: Mitigating Voting Power Concentration in DAOs",
+    "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f": "Security",
+    "0xa1ace10f77b5b560038429d8012862db14a5664bcd53f0b55da75f4cb99ac29d": "Zero Tech & TEE",
+    "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d": "EthCC[9]"
+  },
+  "predicates": {
+    "has tag": "0x7ec36d201c842dc787b45cb5bb753bea4cf849be3908fb1b0a7d067c3c3cc1f5",
+    "speaking at": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "presented at": "0xd565b68b86bbca8c77bfac6c6947ce96046ecf6d23c997c04cb10af7638ac6b6",
+    "are interested by": "0x0cdf92bb37466e0954a7ce69e39e5ead44b901cf0d889eeb20ec0f1f2da697e1",
+    "attending": "0x8e03485341c3e557be0bf07dcbc9170add35fd436024cf280329c5ceb5a65863"
+  },
+  "triples": {
+    "speakingAt": [
+      {
+        "termId": "0xf92536eb873a5f2dcb689034145984ee40830d4eea73f4fe2a5df24ac70e0db3",
+        "speaker": "Julien Bouteloup",
+        "speakerAtomId": "0x680a635ad5c4e78b91c4dc3eb7428fed11d3c4127065817619759ecf6c9c3a81",
+        "session": "DeFi's hidden risk stack",
+        "sessionAtomId": "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5"
+      },
+      {
+        "termId": "0x0fb3c2354528484c6975f9bf75e614b5239c6e4e1e6147e7169d68a938da8d1c",
+        "speaker": "Juan David Mendieta",
+        "speakerAtomId": "0x1a4eaa6d21a2576f6cba6eeb66aaa0f2d0f8753f7999d8c3eb53aac6affc7f06",
+        "session": "DeFi From the Inside: What Power Users Reveal About the Next Wave of Adoption",
+        "sessionAtomId": "0x1976fe35c10edd13ef4027096b55ef295f541f9f83831e0e230bd806d4e6e225"
+      },
+      {
+        "termId": "0xe783f31e7186779da132264104cbd064425b3d78161e380f9184f2663d7e6103",
+        "speaker": "definikola",
+        "speakerAtomId": "0xfd7e2dd70242f6bec7d32bccaec861e6526513935aafa98920c127c0e72a125f",
+        "session": "The Expanding Spectrum of Stablecoin Yield Sources in DeFi and Its Risk Implications",
+        "sessionAtomId": "0xb5c77634fc6b24c665111237ad167bb664dae2f83c02957617053f315b76ac6a"
+      },
+      {
+        "termId": "0x8cd7f65af9efef465d205e1ca5e02f198fef3a13e83a7bfd1b75d1efc62aa281",
+        "speaker": "Christine Moy",
+        "speakerAtomId": "0x88d723b2942528e13f416bf2f2124b729312ccf799ba056cb037ecb7306394d5",
+        "session": "RWAs Done Right: Utility, Liquidity, and DeFi Values",
+        "sessionAtomId": "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb"
+      },
+      {
+        "termId": "0x9c607895ee939077728e64644765c9fb29e5441f4a8658f4afc3bdd3335385a0",
+        "speaker": "Alisia Painter",
+        "speakerAtomId": "0xfccff01e88ec93ec8d6729598ec5f8aa983142e0621217d807dbfdba5a2e92ef",
+        "session": "Bitcoin as Collateral: A $1 Trillion Opportunity for Ethereum DeFi",
+        "sessionAtomId": "0xb63e06765f9ebb45e28d6bd085fc5c68b675fa6250f753fff83df9622bd995a9"
+      },
+      {
+        "termId": "0x470e4e17c9a08d4a3ab0031e77c99e3b0c7d030638c3c525ba2198be353c427c",
+        "speaker": "Julian Grigo",
+        "speakerAtomId": "0x7ec5f55fcd690aa8d37cf8e264200160f2dd1d299a170807f8b4f03480768e08",
+        "session": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+        "sessionAtomId": "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca"
+      },
+      {
+        "termId": "0xf9fc8c9f17447438c08b9894490527d2edf4702b2d94d43a23f41e5a6580d1c8",
+        "speaker": "Wish Wu",
+        "speakerAtomId": "0xec23c62906698df0ffa4b22e3ee8294d5f0e9c45e451e137edfbacbfcd381d14",
+        "session": "Building the Financial Layer 1 for Trillions Onchain",
+        "sessionAtomId": "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e"
+      },
+      {
+        "termId": "0x334bef27c549aff01695e246810c3102c8f6a79cfac32a2af0cc3b83ef21dcab",
+        "speaker": "Ami Nagata",
+        "speakerAtomId": "0x1b3d35b911b039320db5132580d7e084bc654aeac9494553de55c20e1f8f463c",
+        "session": "From Protocols to Products: Turning Digital Asset Innovation Into Institutional Reality",
+        "sessionAtomId": "0x2b1a7ca41172348d1a435b76b99d3d48c2963428895b0400f5bf55457de32864"
+      },
+      {
+        "termId": "0xf9fc1de32326b864cfbdd1506ea96ea7ada049ba0426d09c5596df3618f42ebf",
+        "speaker": "Julie Bader",
+        "speakerAtomId": "0xc34abee5ff180bd1476a7d99404664e9c83fe28cebf14f190fc4486a239965b3",
+        "session": "Stablecoins in Payments: Regulation, Qualification Debates & Market Opportunities MiCA, PSD3 &Beyond",
+        "sessionAtomId": "0xb567f758fcd9fd978eb86bc2c9c73da03d602501df81190281f4d18584352fec"
+      },
+      {
+        "termId": "0x258f14cd19b57ec6fa6a561ed8c73891c42b9e294d1e52093ccbf8e8860f4481",
+        "speaker": "Marcin Kazmierczak",
+        "speakerAtomId": "0x45072b34d8f458731f390284bd4e747ac3184ad33adbaf68c289baa608033516",
+        "session": "Risk Ratings: The Missing Piece for DeFi & Onchain Finance Mass Adoption",
+        "sessionAtomId": "0xe3f51c70d4c8826d052d8bc5d9d0b89c13faf6b1cddefa3856eefff0bce17618"
+      },
+      {
+        "termId": "0x08722f836663d4cf82387cae3dc53698600c64f5893b855b34b456c6675b4320",
+        "speaker": "Bhaji Illuminati",
+        "speakerAtomId": "0x76b0c295fe6ebec4072bf126ee95bef8f3110be03098a85e3cd38afbe8590a96",
+        "session": "RWAs Done Right: Utility, Liquidity, and DeFi Values",
+        "sessionAtomId": "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb"
+      },
+      {
+        "termId": "0xb00177666fd4ce699f0d630f59273f57d13fe16dc7662e97809584cc01aa4e53",
+        "speaker": "Alexander Müller",
+        "speakerAtomId": "0x725b4871f0d1e6f1c9f24675e5b4dc789e6fdd1a9ce40937c8fe05627b90f12a",
+        "session": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+        "sessionAtomId": "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e"
+      },
+      {
+        "termId": "0xa1a8b80098a0396dcbab5780df37620194ff15a9a62297a32ac388c2041fa10e",
+        "speaker": "Yeho Hwang",
+        "speakerAtomId": "0xa89cfe5f03ce0eadf7ecaa160ba4335e853cf378d842fbf209866e0f8fa7ff49",
+        "session": "What's Next for DeFi UX: Behavior-based Systems for the RWA Era",
+        "sessionAtomId": "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b"
+      },
+      {
+        "termId": "0xa3c54134aaf282ddb345cb0bf2ab17bfd554c1d5247b416ef4316343a01cee2a",
+        "speaker": "Eric Zhong",
+        "speakerAtomId": "0x172b18472fee86050c540fa5e97673a01b464bb57189444bc47b4d835574668c",
+        "session": "Continuous Clearing Auctions: The new standard for bootstrapping liquidity",
+        "sessionAtomId": "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e"
+      },
+      {
+        "termId": "0x66385c0e0f6b7d66de1ec95055f1a1e9b59fabbfbfc33268f19a391eb3f6e5f6",
+        "speaker": "Friederike Ernst",
+        "speakerAtomId": "0xbcbb7bf9133d05368b4a51d14e48b2db0fb393639aba461f31268b4384824bd2",
+        "session": "Rollups Broke Ethereum. Synchronous Composability Can Fix It.",
+        "sessionAtomId": "0xd608768a276c1fe59794873a70ddbbc883cd76df6dcf860eb22d0b03a115e2e1"
+      },
+      {
+        "termId": "0xc5482df6a63e0c81047f162433a544d730f790e605e0f4e2ad3c107efda999a0",
+        "speaker": "Xiangru Ma",
+        "speakerAtomId": "0xb68efd67bd67e4ad3e8ec752d17dffd16aa2a9152de169dfb37a92f6ced4938d",
+        "session": "Forget Private AMMs: Scaling DeFi Back Onchain with Parallel AMM",
+        "sessionAtomId": "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293"
+      },
+      {
+        "termId": "0xc132c3eefe05dcacf94025b5180cd3b7512784e3316c73ceaa86f9c472fe3516",
+        "speaker": "Ed Felten",
+        "speakerAtomId": "0x113514867483270ad45d2d6824c261d00beed45d8e1b232fe0cce061377e825f",
+        "session": "How Ethereum Can Scale to Billions of Users",
+        "sessionAtomId": "0x649e6f8ff891baaec19065b46fb301cb72c5e81fad800973e71621b60c23a149"
+      },
+      {
+        "termId": "0x8c8353a5a072b8abf58ebb3aafb4e05b979dd5988ff2ef065c88ecb8cea24912",
+        "speaker": "Suki Yang",
+        "speakerAtomId": "0x0a8bc142ebd6d425fbb4b91fecdaffff153d8f1c54c7779c78e32fba340872c0",
+        "session": "High-frequency-trading in Crypto",
+        "sessionAtomId": "0x1b1e47acc0d49f5a15cdc4a40554c9e3bad237ffa166e2082d543d19c79fa455"
+      },
+      {
+        "termId": "0x219c50c7d9310c7197e0471e967b539fe98bdd370b27e884c751fa2dec0a0302",
+        "speaker": "Mariia Yatskovska",
+        "speakerAtomId": "0x06f62bac4bf8a58d89b3c83dc81a37139df00b1cb3ad4b41c5f8efd75dcf54ca",
+        "session": "When Theory Meets Mainnet: Intent-Based Trading at Scale",
+        "sessionAtomId": "0xcf9c5f737857473ca109dbef91181e26d68d93ff309c50cbb51e4d9a548ed5b7"
+      },
+      {
+        "termId": "0xfac337e4b8898fcf2b1e49435fc5cf4494880d53f9268ff00164631ffa6ad5fb",
+        "speaker": "Sam MacPherson",
+        "speakerAtomId": "0xd85251b594f01662d037f1f686bb4ca73463e178194398f739324438d2f4e7e1",
+        "session": "The Next $33 Billion: Stablecoin Lending and the Institutional Frontier",
+        "sessionAtomId": "0xc4fce956e4e6e02ba18afd64f9344f3ac5f389985d18fb30c1d7b7fdfc7be741"
+      },
+      {
+        "termId": "0x4421e7fba79e0ea812ac5b5b68e3915cb470d670b4d53c2cf8e321acb936568e",
+        "speaker": "Andrii Bondar",
+        "speakerAtomId": "0x3ab34a41ec529d77d95ecd6bfe35d31d39dbcf1e66f40feacb17f73aea9e3e6a",
+        "session": "Make Privacy Sexy: From Cypherpunk to Consumer",
+        "sessionAtomId": "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb"
+      },
+      {
+        "termId": "0xfd001aac748f320777656cde92cf6f128971bf39af39e23aef758a83ae8f8f03",
+        "speaker": "Max Lomu",
+        "speakerAtomId": "0xa829045e35c648537403147f630526459773260af1e0464a9c46cb2fd533d501",
+        "session": "Building Crypto Cities",
+        "sessionAtomId": "0x9a9f3a4d48261329b8b426b3bbebb1dd672e1b4fd7e774769a67feaaf7a22b7f"
+      },
+      {
+        "termId": "0xe01f08c4bc0f847c2cc37aa95ef5c715a0ee08083cc3cfffe09db5d7c8a2514c",
+        "speaker": "Jan Setina",
+        "speakerAtomId": "0x449d70a3951ca06ccd2800112e1ff2fd31a5625c6d6f3e67d6e1803e57bcb2a2",
+        "session": "Build on Trezor: Join Us in Scaling an Open-Source and Secure Future",
+        "sessionAtomId": "0xe9a2c05e70ea9845cee3d27233a55eb2c6140c00b0635871d38e84e167ae3aaa"
+      },
+      {
+        "termId": "0x85175000a04035b8dd222669adf3c393601c8893ab67e914f324f167f0cea327",
+        "speaker": "Erick  Zhang",
+        "speakerAtomId": "0x5a2499d3f03e95532c68f108eeb3bbad8fb89f623f2c273814d6406f0c91ba46",
+        "session": "ICO 2.0:  how will ICOs evolve?",
+        "sessionAtomId": "0x28105e1813e7d8fae1acf9fea0a628ae5b5441e0d1a2c99d5e61cf88024fd5d0"
+      },
+      {
+        "termId": "0xafb45d5e636142de49eece5132563fc60c585b4952c99c87eb1bf2fd188c47ce",
+        "speaker": "Sylvain Prigent",
+        "speakerAtomId": "0x2021a1cc1305388b1c0ee7aed9feba371b0a560e99ca938a127e2e594a0b28d8",
+        "session": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+        "sessionAtomId": "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca"
+      },
+      {
+        "termId": "0xf83cdaad0ca2343c322e954859c5cf4844b5f137823c8e7d291808484993adfb",
+        "speaker": "Belma Gutlic",
+        "speakerAtomId": "0xbcaece8c8b5f2f38c60a7c576cab7d00abe3111ac0d91a2b148af49eb0e23eea",
+        "session": "Keeping your users' private parts private",
+        "sessionAtomId": "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239"
+      },
+      {
+        "termId": "0x67e1f4d4dc266301b88ddd82ce4201006e6b8220ec13191701fb2eeab9e28d59",
+        "speaker": "Darius Moukhtarzade",
+        "speakerAtomId": "0x1bbb0c071d03aab7334510517144acb1702eaf7bbc2062bf0c387df339035636",
+        "session": "Why Token Launches Fail — and How to Get Them Right in 2026",
+        "sessionAtomId": "0xdc84e5e27bcbca3c2bd4343b8bf530fcb647d50a798d09a371cca6fd3603a549"
+      },
+      {
+        "termId": "0x7ee3d78f5d715d58c8778efe0f7516695aaa123f2c8147a277be3ca68da455da",
+        "speaker": "Doo Wan Nam",
+        "speakerAtomId": "0x94efa62191083a4587105bfa7e43bf0a44285fb12012189c01931fb40dd3a53f",
+        "session": "End of Beginning of DAO",
+        "sessionAtomId": "0x317d2ba4151aa1172cdaccfdda2308fb348a6d3cf2e9d4f3e34c9bbafce350a5"
+      },
+      {
+        "termId": "0x62a7dc1f56410f1c00ee27817d144baeb64ac0bcf9224ca149c3acf506a53e92",
+        "speaker": "Reno",
+        "speakerAtomId": "0x4abdfa6f7602879471fee13f2231edaa36392437135bdf95efdbd4464872cbd4",
+        "session": "Hardware wallet integration of Privacy preserving protocols for the Kohaku wallet",
+        "sessionAtomId": "0xffac32778ae305c8eed46022dd471ba42a2ff8e6b86133ba3bc807d904617c5e"
+      },
+      {
+        "termId": "0x14e1e6bb15dda564819aeadff6aca49cc233b67528e3f98cd7c05e6595b2f1d1",
+        "speaker": "jacobc.eth",
+        "speakerAtomId": "0x7aaf6be11ebccffb81f6195013fe4dc3d52fbde76e1f34ce2c9df22c5f195b31",
+        "session": "AI Agents Will Replace Dapps",
+        "sessionAtomId": "0x3dcdde8756b1d26cd449560c67b4e795e39280ebea5fb3d9c892cba5d5e78d64"
+      },
+      {
+        "termId": "0xe701a7fd912d4e602416eac897fd6a8ce2ce13e7b1e48cfdbe4cb8dacd86a246",
+        "speaker": "Reno",
+        "speakerAtomId": "0x4abdfa6f7602879471fee13f2231edaa36392437135bdf95efdbd4464872cbd4",
+        "session": "Quantum dilema",
+        "sessionAtomId": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837"
+      },
+      {
+        "termId": "0x9a3b5598a59b8dcee112ae072d4af42eb8d3439c65f195e169a8653a428e626a",
+        "speaker": "Devon Martens",
+        "speakerAtomId": "0x263ca13c69d57ce73edde7c6e2f8a5721ffd76ecd9b299b9aaf48bb1f683b950",
+        "session": "Autonomous On-Chain Intelligence: How AI Agents Will Transform Web3 User Behavior & Payments",
+        "sessionAtomId": "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858"
+      },
+      {
+        "termId": "0x251c9ea384f5beecdf3e7da3d4692df0cf9f39050e3a853a4990573564b38eeb",
+        "speaker": "Joan  Alavedra",
+        "speakerAtomId": "0x62173ee98394f7042e9d81852edad4388dc9a29afd51446fd4d88ceaab0d19a0",
+        "session": "OpenSigner: Open-source non-custodial key management",
+        "sessionAtomId": "0xa892532c6f3b99f7fb51fb54ba94bf41896086baf5869e018b1c08041118498b"
+      },
+      {
+        "termId": "0xe09d8acc6d9b5be0c3d0997a659f372db6d2c984ce63a75e9dfd8c8060f7f8dd",
+        "speaker": "Hong Kim",
+        "speakerAtomId": "0xeb7088eebcc99267f52de6c57378b52b29e27493b6ad2db8550f7cbcbf88a75f",
+        "session": "Raising the Bar: A Deep Dive into Institutional Ethereum Staking Infrastructure",
+        "sessionAtomId": "0xa265e2848c26f4e724bb73c4b1f23db77f6fc9c089a3f2da49284f65d98e36bf"
+      },
+      {
+        "termId": "0xe35a2c79f51379570e4a891b8dd9c4602a5001fcc7e57795dd4375e9adb345be",
+        "speaker": "Mende",
+        "speakerAtomId": "0xe5dd097e326f7d4e5cd6f36a91c07b2533bebdacc042a23181899bf75e9bd72e",
+        "session": "Web3 Is Alive: The Human Layer in Action (Live Demo)",
+        "sessionAtomId": "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7"
+      },
+      {
+        "termId": "0x8d4f1e3bcdfc9a6a15b98a3e191da4e4e6e4f616ea645864a3f86fdce7f47903",
+        "speaker": "Adrian Brink",
+        "speakerAtomId": "0xd21e1c8caa37325ae6bc2fa45620c5e39a78f7922f33ba6d5ccf345e43d098f8",
+        "session": "Privacy and self-sovereign infrastructure!",
+        "sessionAtomId": "0x69affd99159a7e77006e574190753026b0c37601ac31efdbe6a43150919ad5d7"
+      },
+      {
+        "termId": "0x2c034e7b59fa3fd7861587431d6977904338213d2e1611fb4076ef069ad0c0ed",
+        "speaker": "terence tsao",
+        "speakerAtomId": "0x5348a3f8e7b026e9715370a70d5bf445e2cad678f42c0752eaa68a076f2070d7",
+        "session": "From MEV-Boost to ePBS: The Protocolization of Proposer-Builder Separation",
+        "sessionAtomId": "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec"
+      },
+      {
+        "termId": "0x5b266e2785311fd1e629a2240b52926f07384bff6c688763c2647a901e672377",
+        "speaker": "Izzy",
+        "speakerAtomId": "0xf7819e297039663b1847c51c7f8bb4aafd0784c8f5feef6be7656385c6daec60",
+        "session": "ETH issuance clash",
+        "sessionAtomId": "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42"
+      },
+      {
+        "termId": "0xa831cd424703eb5662fba3944fd4c66540be4ad68d759e219f3546512c4ab9ae",
+        "speaker": "Michael  Wu",
+        "speakerAtomId": "0xf9a3e48585b09dd7ea1735ebdd2154c592c9453cac1b35aab4e838fdddd54d49",
+        "session": "Financial Services in the Agent Economy: From Platforms to Autonomous Operating Systems",
+        "sessionAtomId": "0x1434da448088552a449de3d79ba7d726177594f2d94b2c6b48d0d7da9528e6b5"
+      },
+      {
+        "termId": "0xc45d5889af853a39814fe4253a6bbd8429a70b2f4e8730c8c403ea5cb17b65a8",
+        "speaker": "Praneeth Srikanti",
+        "speakerAtomId": "0xf71481d8ce34fb766d3fda74b8a0334f35a283da17ffb29c56e8a83ba4e242aa",
+        "session": "There is such a thing as a free lunch - the deep fake refund economy",
+        "sessionAtomId": "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218"
+      },
+      {
+        "termId": "0xe9c16743ff1a501be38f18961a241f14e1f715fdbeea75dc2dc5231f9784c8cb",
+        "speaker": "Gwen",
+        "speakerAtomId": "0xac677ac31b4e39d4391613619055f444cb2fd89c1eb9a77658828900ec48c9c5",
+        "session": "Educating Developers, What can we Learn from Experimental Schools?",
+        "sessionAtomId": "0xa60e8f3c2f7afc0b1f4b92a7782b80e7f9fb17b0964cc42be78c6e072ff9faf3"
+      },
+      {
+        "termId": "0xd89a8a7ea8b049817c204a00e682fab7d1ae452efd56bbe97bd5cb834bade11e",
+        "speaker": "Bob Summerwill",
+        "speakerAtomId": "0x623a66029ecb2d3ca103dffeab4af6c19352c9b9cc4d4a08c85644d61b8addbb",
+        "session": "The Early Days of Ethereum",
+        "sessionAtomId": "0x60694cf0ece5a32e29e1db8a0e7539eb94066da7816fac35f02e5955a88b3cf4"
+      },
+      {
+        "termId": "0xe7a3bf768fff887f368794bf0cc3f9af737d0e4336ade6556c638658eef8a7c4",
+        "speaker": "Barnabé Monnot",
+        "speakerAtomId": "0xf5d21c807a3192c7dac56f227dc520e0719c95697068fb5ad0deeccebdcd4f3f",
+        "session": "Updates on Ethereum Interoperability",
+        "sessionAtomId": "0x100481e77dd456b2744e968a213142ae0f59049645f7012eb5d74bca4340938e"
+      },
+      {
+        "termId": "0x403703093a0dd41790c82f77ff3c298c1bd3cb0179df415eef26cc7b2380adf1",
+        "speaker": "AKAKI MAMAGEISHVILI",
+        "speakerAtomId": "0xfcb28bafc0860e63ed88cf6f4122e1e6d7178b8e2c97242ad1390e062984d69c",
+        "session": "Economic Censorship Games in Fraud Proofs",
+        "sessionAtomId": "0xa07180d055e4c90b849a6e5bad16c7466171a5b596ae8e87a37e4eb938ff9a4b"
+      },
+      {
+        "termId": "0x842aa8d4452ee2ad1d0ebe1cd6b41227953a94ea982ec1503f373da60759b435",
+        "speaker": "Amxx",
+        "speakerAtomId": "0x93348061b084dfa0798f42281e48bca6f7ecce21e2289fbffad0ef0487a9b4c6",
+        "session": "Getting your EIP included is harder than getting a Ph.D.",
+        "sessionAtomId": "0xe32d2695dd73bf85fc7625f0fad63cce321039fd8db9a5a53dc7c87195e608c9"
+      },
+      {
+        "termId": "0x3b8f090d1b7b5d5c938e7c468da5f0a852535920236da3c28c884e9a80bb1e8b",
+        "speaker": "Griff",
+        "speakerAtomId": "0x933656f65c3e143ffebfaafd7842dc3ba4fa22d4a3f082c2e4b767be307715ba",
+        "session": "DAOs: Fail or success",
+        "sessionAtomId": "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0"
+      },
+      {
+        "termId": "0x43f84c11f0e233b7ad717c8c9736e7517b8b650b9b4e6a1c40f568714e04358e",
+        "speaker": "Martin Hansen",
+        "speakerAtomId": "0x5bf0c238473bc3aaa54f237dc0951d81f2a79266983ea606d8ddf2c5bc8a436a",
+        "session": "The Ethereum Kernel",
+        "sessionAtomId": "0xd7f507324dfa925051372edded19a1851fab03c63d47c47497a140ea8b2a2950"
+      },
+      {
+        "termId": "0x0a550cf972c189a9b418e99b9b9e8d84aae3cef4f77b7a40187cda76ec176ab1",
+        "speaker": "Yaniv Tal",
+        "speakerAtomId": "0x46b8311d53146b42960e1984519891a194ee40c7a51c7fd8642c0704eca253b6",
+        "session": "How Web3 Can Rebuild Truth on the Internet",
+        "sessionAtomId": "0xdc1d883940f8ccceaed853e545cc6769a7b997095e2722629e8c13988df51687"
+      },
+      {
+        "termId": "0xa5e30d7e10b82cb5664b7243e11e521789146481b8eb04a7e8e2d9aea0916231",
+        "speaker": "Mark Ballandies",
+        "speakerAtomId": "0xe4b3b6ef20bc8f31e47fa885dae73d01e511ea85f5e4793a90453f22c814994f",
+        "session": "Token Engineering",
+        "sessionAtomId": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5"
+      },
+      {
+        "termId": "0x0d729d2969449e5d89407753d75270abbb456dc8dc39cd2ef2d2d56a21310eb9",
+        "speaker": "Lioba Heimbach",
+        "speakerAtomId": "0xb1058edd14e64cdfb10c3e493d4adffdbd503f69d79b58fb2936482d479c2b9a",
+        "session": "EVM Workloads in the Wild: Measuring Gas, State Growth, and State Sensitivity Across L1 and L2",
+        "sessionAtomId": "0x4d0f4b77632e5e8589f46864ea3e84186f176e7d98faf03729d43948ae125db7"
+      },
+      {
+        "termId": "0x33fcdbf2d17b7760d188a5e4dfb2f5633e75bb8fdb093da2e7d109b2d347d787",
+        "speaker": "Stephan Duan",
+        "speakerAtomId": "0x47be929fba3b5d3a73c7947356473d660ed2f6890687995ee34905f3756c6248",
+        "session": "Prove Geth with Ziren",
+        "sessionAtomId": "0xac836ad5e24bc08c0eeda1a4458cf8cfc405b74012ef3b707760d745cab03902"
+      },
+      {
+        "termId": "0x3454026ab20903ceebeb1cd0b75f68f2b1db0d4b92aa0aafa72a0822de35ea6a",
+        "speaker": "cheeky-gorilla",
+        "speakerAtomId": "0x2afb90965bb2ea8ab7321fc399bace102cab971014ce5d6f2492bed7498495aa",
+        "session": "Maintaining Ethereum's Future",
+        "sessionAtomId": "0x938102699cb1ebcd224c15674d8d34ee475e2d06a22fba5abbbf5059a91bc773"
+      },
+      {
+        "termId": "0x10f66dffba42901c747062d634dc4afabbdadc927e9e754bd925380d08974a1c",
+        "speaker": "Oisín Kyne",
+        "speakerAtomId": "0x5ef7d7555d3dd7833b4059392a9d491f6cd06e6bab50bba5656e3e3e038a5645",
+        "session": "Ethereum's decentralisation; five years into proof of stake",
+        "sessionAtomId": "0x8fc53c552ba351998bf87fa22c4662dbb44ef5b245c4803b2283319d91940331"
+      },
+      {
+        "termId": "0x8c37e132fb4062177a438ef9dc922b3b2b3bc8632b7ca0d946d5c17c06ce74e7",
+        "speaker": "Stéphane Tetsing",
+        "speakerAtomId": "0x900fa6c12a8bf1d47dd0138f76c2c87745f186e31e0510f52dd6bd28ea1d44b0",
+        "session": "New AI Workflows in Remix - from Concept to DApp",
+        "sessionAtomId": "0x4085219f65a31ed0b9fd1d620ea57e6492191f70efecb6163337d9d126496974"
+      },
+      {
+        "termId": "0xb4c6aa34a520738fca663198f0a6913db4db83d4a8712b40701f36ecbdd2b440",
+        "speaker": "MB Richardson",
+        "speakerAtomId": "0x3f933204b9041c926329e34b99a789b0121ae023826f47f0bab22409ae00723c",
+        "session": "Token Engineering",
+        "sessionAtomId": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5"
+      },
+      {
+        "termId": "0x1d56b293eab00d2dc3e612af989e66854d89af5508c65ffb0874f4e8342a0218",
+        "speaker": "Wolfgang Vitale",
+        "speakerAtomId": "0x7f3db83051d2a74ea76aa7f2dc05786cdfa4a23610dd2b1cc8af114dc8f1a2b3",
+        "session": "The road to post-quantum Ethereum",
+        "sessionAtomId": "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda"
+      },
+      {
+        "termId": "0x4a2114fbe9fc301fd490d902f81f33575f22e15a93a93e58d37490ef396f03a4",
+        "speaker": "Eugene Joo",
+        "speakerAtomId": "0xf40ac9a4cd3d134da35df50000c0fdf8814bf6c2e9c56d923e9e02644bd90571",
+        "session": "FHEthereum: FHE for Ethereum",
+        "sessionAtomId": "0x67597433b3fa101da1cac396bdd54b16e58a0a1852e0df8698c926e1d6d225de"
+      },
+      {
+        "termId": "0x9fb50d15adfb26a73d9449d0fa512bed295d15b9743fa2f10c6a314a5817a385",
+        "speaker": "Grace Rachmany",
+        "speakerAtomId": "0xed6c07940f085640492314de3534c35d34854f8d039ed66f4c859b00d19e3f19",
+        "session": "DAOs: Fail or success",
+        "sessionAtomId": "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0"
+      },
+      {
+        "termId": "0x7c8c9e0ad9d2983dc3c973412fe464e1c69bc3f6e431f51149f09cbda111c09d",
+        "speaker": "Han",
+        "speakerAtomId": "0xe9861effc96100a69c7484ba2b97f507d1b9a43ac2fa313c228648affe143404",
+        "session": "Not All State is Equal",
+        "sessionAtomId": "0xaaa36e82925f761d9d5abf5f4fb80d7f9277b1ec1c548da59e99128a4f55dd03"
+      },
+      {
+        "termId": "0x1fd1f680df9c0bbca919a8c53b45ededd3aaa9ec613d908c1596dcd8c4fc4b7f",
+        "speaker": "0xPenryn",
+        "speakerAtomId": "0xdc70d85811fada2e482b80ea95f13486c993f81940d6526f23289aaccdaa6e67",
+        "session": "Inside the Orb: Privacy in World's Hardware",
+        "sessionAtomId": "0xa68c3978edc35ada15194e44fa4285947f461bdc16454410219e12128f9528d9"
+      },
+      {
+        "termId": "0x9fa9142e544ada1932ea3691ea8c2c108d783c3f3ce598ae96dab789617f4411",
+        "speaker": "Vincent",
+        "speakerAtomId": "0xbc2fe68e638a53d5b77dd5e76b54b1a7468ffb024fc869776080f5104d15204b",
+        "session": "Improving Blockchain Security via the Open Source STABL Framework and Scalable Accountability",
+        "sessionAtomId": "0x0617e219d2370de11bfacaa7a860f3ceab5022f9c952434ffb9023c78960aa0a"
+      },
+      {
+        "termId": "0xed32b28d84384d78302f7f90e866c411e54c2fd77e8a010152c4bf5b8f5895df",
+        "speaker": "Andrea Canidio",
+        "speakerAtomId": "0xb2f7b44981358aa5ce8c123c85f3cd60d47c36f0fe2dfe5b5a2d4aa5c63f251b",
+        "session": "Becoming Immutable: how Ethereum is made",
+        "sessionAtomId": "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b"
+      },
+      {
+        "termId": "0xd737df688728a25ac9a3b101bde9e1893e1c359180ce130d23e43b7e3062bf02",
+        "speaker": "Richard Meissner",
+        "speakerAtomId": "0x408c46d5610146a3a5e931bb4e5eea8fd00dc681daa806086337fd05aec52787",
+        "session": "Safenet: A transaction security protocol",
+        "sessionAtomId": "0x2766aa7c06b243d1eabefd52df421859392e438df0bf651badfd566871bb4f00"
+      },
+      {
+        "termId": "0x1e296b24923093684d2e5e20488c9b511639e54caa9931d1f5627cf2c72bc8f1",
+        "speaker": "Ambre Soubiran",
+        "speakerAtomId": "0x51bd9c00768aeb23cdcbe64f21fc38aadf5c525c5b57a3bfcc8a0c9f0ce8d091",
+        "session": "DeFi Revolutionizes TradFi with 24/7 Markets on Equities, Commodities & FX",
+        "sessionAtomId": "0x3c3681e5cd6efa0de2ecb4dbf29b15b94d3cd0c926882499470863513b8792e5"
+      },
+      {
+        "termId": "0x3d35ea0b8040f675a6993d9f90bb0a2780484dbb68aeefa08674f10b76abec88",
+        "speaker": "OxFlint_",
+        "speakerAtomId": "0xb164ba02eee83720356954bf1218ffe67c04b6c5903c2cdd43619dfd4faceb4e",
+        "session": "Assumptions: The Root of All Bugs",
+        "sessionAtomId": "0x0f14dbd15d1937505bda86dd350e789fcf70f2804920cbe6c6431773df6e4b2a"
+      },
+      {
+        "termId": "0xedf27ebf12fd6d20f3743c14febcdf5cb539ad878729b1a6a7ff6cc096eb71d7",
+        "speaker": "Vabuk",
+        "speakerAtomId": "0xd70db6178000d4dc00e3e1c399e9a637db0b6272c5349ea8f51b1a321484657a",
+        "session": "Becoming Immutable: how Ethereum is made",
+        "sessionAtomId": "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b"
+      },
+      {
+        "termId": "0xb3957c2f2b0092097b2b9fac06b0311b4c1c1ef6b0a40ee124c2ac3daadf2367",
+        "speaker": "Sarah Hicks",
+        "speakerAtomId": "0x93dcc7f37cc20a76c936f6917fdbd2df372093d77ca7ec1473d8e660be2f42a5",
+        "session": "The Next Billion in Web3 Will Get Hacked Unless We Rethink Security",
+        "sessionAtomId": "0xfa8ad1a380527fe2852a2286334b43eb30533bc6463ba7dc8a1eb6a73fd2793f"
+      },
+      {
+        "termId": "0x44c607cdfcdcd7949a7f424acaf66ba252cec1583db451468e68c49b4f2c2d26",
+        "speaker": "Bianca Buzea",
+        "speakerAtomId": "0xb0351a20be9a91ac954fd2eea2b6c019f8849d8ebffdde16a139132083338e3f",
+        "session": "Strengthening Oracle Security in 2026: Key Principles for Builders",
+        "sessionAtomId": "0x3fb77dc40173b0b4b858040fe85734cbd944ee1de51c57b98df566b01c114ea5"
+      },
+      {
+        "termId": "0xd8f24d8a22bb219ed200ec46f0465c79d441ff808694a5f8d600f2ca049cb25d",
+        "speaker": "AliceAndBob",
+        "speakerAtomId": "0x2ba5b87f2b29dd8c848583f493cb183bfa8c10624cbadb3aff6b820eaa428034",
+        "session": "New Security Challenges with EIP‑4337 & EIP‑7702",
+        "sessionAtomId": "0x545d906ece2500e4ec79555c8bfe19d5222ce428524dc152315189626453b93b"
+      },
+      {
+        "termId": "0xe1f263490079ced4e75cce794af9f4469236d092c0b221043a9f101a5df8f778",
+        "speaker": "Kaloyan Kosev",
+        "speakerAtomId": "0xbb4046b5d498ce2e8e54a64651bed8259c0e64a2e5a34746565b68fba6f945b4",
+        "session": "EIP-7702 meets hardware wallets: stories from the browser extension wallet frontlines",
+        "sessionAtomId": "0xd60269c27c7ab6ff86a92acb594cd549843b368be73e15a5939b932217aa2e4d"
+      },
+      {
+        "termId": "0xa494e4daf6b9402665969932f5500fb14754fcba5fdcf6bfcfeb2e08e0470c75",
+        "speaker": "Kasra Khosravi",
+        "speakerAtomId": "0xfe22c076be133c129b09e62bad115059a7fd9cee8ee5ea069578ecb44cc93668",
+        "session": "Solving EVM RPC Reliability Issues",
+        "sessionAtomId": "0xef4654089e9d788dea40f5929b1fcefd762a8d4aecbf07243c75af95ca060d7a"
+      },
+      {
+        "termId": "0x2a65bb7f127a1330db9e4e606d985a7f090d6ccb1f3a365f759dbb6237ae9e39",
+        "speaker": "Kite Liu",
+        "speakerAtomId": "0x987ddfe48adecf3575b95f5c4d3f7cf54e6a8fed804c3378e3ad43e8bfdfb2d8",
+        "session": "Continuous Clearing Auctions: The new standard for bootstrapping liquidity",
+        "sessionAtomId": "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e"
+      },
+      {
+        "termId": "0xbcd740eea5df5369b36ea3e8c44e0ce5639f65305cba9a2df76f2d55aacc57db",
+        "speaker": "Justin Drake",
+        "speakerAtomId": "0xbc6ede1c524cc597fe94973e7522dd4eff89380df3f2e71477c16960b5027766",
+        "session": "Quantum dilema",
+        "sessionAtomId": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837"
+      }
+    ],
+    "hasTag": [
+      {
+        "termId": "0xb5e0014208f937e1e281f133ce602cfa27cf23d438cc65d28c6bd26d3b8219b5",
+        "session": "Beyond Rewards: Incentives as Core Infrastructure in Modern DeFi",
+        "sessionAtomId": "0x706d73d0a7d15fbe2574c93a9ac353aa7ff72b19df9070c880350b4a1544b731",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x3253bd8d9d5a6409a65a52d8e839874f9a12c057e563fa52bfcd089dab746361",
+        "session": "Bitcoin as Collateral: A $1 Trillion Opportunity for Ethereum DeFi",
+        "sessionAtomId": "0xb63e06765f9ebb45e28d6bd085fc5c68b675fa6250f753fff83df9622bd995a9",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0xe437b563166781cb5ba73e2d60c40fb13f279d711d32d29d223fed4bc85e3277",
+        "session": "Building the Financial Layer 1 for Trillions Onchain",
+        "sessionAtomId": "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e",
+        "track": "RWA Tokenisation",
+        "trackAtomId": "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb"
+      },
+      {
+        "termId": "0x405a0728e6a5ede87e2bd7352bb753cc534d82367288d28e6774bf29173ab641",
+        "session": "DeFi's hidden risk stack",
+        "sessionAtomId": "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x47197a997ee655ffce6744543e2585498f281f1625f1eca9a6e8dac09f02e51c",
+        "session": "Risk Ratings: The Missing Piece for DeFi & Onchain Finance Mass Adoption",
+        "sessionAtomId": "0xe3f51c70d4c8826d052d8bc5d9d0b89c13faf6b1cddefa3856eefff0bce17618",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x431f1fe08c46dd05ea0cb36cec168ce57356d81309552fff0b11adc014a9ee02",
+        "session": "From Protocols to Products: Turning Digital Asset Innovation Into Institutional Reality",
+        "sessionAtomId": "0x2b1a7ca41172348d1a435b76b99d3d48c2963428895b0400f5bf55457de32864",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0xd7f8a9b6765127d760e64eb71a321faf759f7ef5dfb4bf7384e63baa2e3c00b0",
+        "session": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+        "sessionAtomId": "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0xb016452ea4e9b52f7e58996135b78bdb9888187d45c0ee1f1825ec8efab96707",
+        "session": "Make Privacy Sexy: From Cypherpunk to Consumer",
+        "sessionAtomId": "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb",
+        "track": "Cypherpunk & Privacy",
+        "trackAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "termId": "0xa693cb3e6c577a4d3dee0c734b371dea06220c4e494a83c453e6827e852c72a4",
+        "session": "Stablecoins in Payments: Regulation, Qualification Debates & Market Opportunities MiCA, PSD3 &Beyond",
+        "sessionAtomId": "0xb567f758fcd9fd978eb86bc2c9c73da03d602501df81190281f4d18584352fec",
+        "track": "Stablecoins & Global Payments",
+        "trackAtomId": "0x3192914ddee59330c9b4f453efb940d407578859cb87feb585d4062ac10f89c7"
+      },
+      {
+        "termId": "0xed4fc0ff9055a1f53ec85df572978c2722f09a3476a3967636e7c45549aae202",
+        "session": "RWAs Done Right: Utility, Liquidity, and DeFi Values",
+        "sessionAtomId": "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb",
+        "track": "RWA Tokenisation",
+        "trackAtomId": "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb"
+      },
+      {
+        "termId": "0x128b874d21ab9614d73071e13f2d1dbe538c98809e60385cd3f1cb0073ab55ef",
+        "session": "DeFi From the Inside: What Power Users Reveal About the Next Wave of Adoption",
+        "sessionAtomId": "0x1976fe35c10edd13ef4027096b55ef295f541f9f83831e0e230bd806d4e6e225",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x2df9a1427f11297ad0584ee0a20b376ad6027ae437f2fb477c00857954484cab",
+        "session": "Forget Private AMMs: Scaling DeFi Back Onchain with Parallel AMM",
+        "sessionAtomId": "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293",
+        "track": "Built on Ethereum",
+        "trackAtomId": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985"
+      },
+      {
+        "termId": "0x1cc907827385cfd6b89d555e305d5d42e20db24a0725419481fdcc01bcd1f850",
+        "session": "The Expanding Spectrum of Stablecoin Yield Sources in DeFi and Its Risk Implications",
+        "sessionAtomId": "0xb5c77634fc6b24c665111237ad167bb664dae2f83c02957617053f315b76ac6a",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0xb89b1f144686b6a2e170a1630e6f5483c1642a3cff522fb3c1cf09b5f735127e",
+        "session": "The Anatomy of the Perfect Stablecoin: Trust, Liquidity, and Global Utility",
+        "sessionAtomId": "0x1a622b7045cb503f5de03f6c0377e7d12909e94ca273ff67293a4ace2817bb54",
+        "track": "Stablecoins & Global Payments",
+        "trackAtomId": "0x3192914ddee59330c9b4f453efb940d407578859cb87feb585d4062ac10f89c7"
+      },
+      {
+        "termId": "0x59240b6e574c6a8711111ba2c4404e5000ee932018e68c8ed10bb164b6d2b794",
+        "session": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+        "sessionAtomId": "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca",
+        "track": "Stablecoins & Global Payments",
+        "trackAtomId": "0x3192914ddee59330c9b4f453efb940d407578859cb87feb585d4062ac10f89c7"
+      },
+      {
+        "termId": "0x843a5f0ece18441643beee5fc32f23d29062d76f44a20f0f536dd5d6023e2bf1",
+        "session": "High-frequency-trading in Crypto",
+        "sessionAtomId": "0x1b1e47acc0d49f5a15cdc4a40554c9e3bad237ffa166e2082d543d19c79fa455",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x4c286f9922f38e860e36ed5fae63cc41fbcaa88c2842267d912bf9e46ecec784",
+        "session": "When Theory Meets Mainnet: Intent-Based Trading at Scale",
+        "sessionAtomId": "0xcf9c5f737857473ca109dbef91181e26d68d93ff309c50cbb51e4d9a548ed5b7",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x5f0df6061daf6268c462d1afcf88de50d3f63ba947a8456d96d36ed8a65caec0",
+        "session": "Keeping your users' private parts private",
+        "sessionAtomId": "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239",
+        "track": "Cypherpunk & Privacy",
+        "trackAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "termId": "0xaf0e26f0fa92b6cbf6e484879dc3b9f27a26a07c6c8ad6115f13e7cfa25072cd",
+        "session": "Bringing traditional risk analysis to DeFi",
+        "sessionAtomId": "0x82d8e626581a84e709b228fa286a28fa02e516e162b4d3adbff049b40b5bbd2c",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0xb5884c17620bcc6e5052263913732cca6146e4db7b8aaf43c2fa8e37156c711f",
+        "session": "The Next $33 Billion: Stablecoin Lending and the Institutional Frontier",
+        "sessionAtomId": "0xc4fce956e4e6e02ba18afd64f9344f3ac5f389985d18fb30c1d7b7fdfc7be741",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x8d76fb435d98fc2f550d933f8a3a4cf79ced5f55e721e26a8637c11e2f035924",
+        "session": "Continuous Clearing Auctions: The new standard for bootstrapping liquidity",
+        "sessionAtomId": "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0xf7d4ea297e969a6121176ae2d78c2f66f6633defbcf4ba0895e7d36a66c16eed",
+        "session": "What's Next for DeFi UX: Behavior-based Systems for the RWA Era",
+        "sessionAtomId": "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b",
+        "track": "RWA Tokenisation",
+        "trackAtomId": "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb"
+      },
+      {
+        "termId": "0x97bd827846df05c7948d1a31758530f7e469665b1fa2d2dd0a9f68a546c9a31f",
+        "session": "How Ethereum Can Scale to Billions of Users",
+        "sessionAtomId": "0x649e6f8ff891baaec19065b46fb301cb72c5e81fad800973e71621b60c23a149",
+        "track": "Layer 2s",
+        "trackAtomId": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a"
+      },
+      {
+        "termId": "0x837d91492b411bf5a06f1e3e5301d72fa468c30fab42761e550c0311a4d1b7ea",
+        "session": "ICO 2.0:  how will ICOs evolve?",
+        "sessionAtomId": "0x28105e1813e7d8fae1acf9fea0a628ae5b5441e0d1a2c99d5e61cf88024fd5d0",
+        "track": "Product & Marketers",
+        "trackAtomId": "0xd3b79740eb2ab4ba95dd6145aa303196ed89cca32a89f88361938de6f962c81f"
+      },
+      {
+        "termId": "0xb148c24c975b71f07eefb3c634f5bb95e80e69881c97e7a4becf16969187b884",
+        "session": "Why Does Programmable Block Construction Matter for Custom Execution in L2s?",
+        "sessionAtomId": "0xee2ea9faadae7a3554053b7620a14aa3ef81e317b11fee50f1bb5a59295d5b54",
+        "track": "Layer 2s",
+        "trackAtomId": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a"
+      },
+      {
+        "termId": "0xe02136b97b38f9de2662f0b0b7dedd4bc7a7a03cffbf61d99bb6655b9c903552",
+        "session": "OpenSigner: Open-source non-custodial key management",
+        "sessionAtomId": "0xa892532c6f3b99f7fb51fb54ba94bf41896086baf5869e018b1c08041118498b",
+        "track": "Cypherpunk & Privacy",
+        "trackAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "termId": "0x5384b2003c87faf32d4e40262c19a70582762a6ea137918d5bdd2538fbf02242",
+        "session": "Web3 Is Alive: The Human Layer in Action (Live Demo)",
+        "sessionAtomId": "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7",
+        "track": "Built on Ethereum",
+        "trackAtomId": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985"
+      },
+      {
+        "termId": "0xc17a1bf69fd98cc3010a881997a799a4fa7aa0374c59b78eedebd03dad6015b5",
+        "session": "Rollups Broke Ethereum. Synchronous Composability Can Fix It.",
+        "sessionAtomId": "0xd608768a276c1fe59794873a70ddbbc883cd76df6dcf860eb22d0b03a115e2e1",
+        "track": "Layer 2s",
+        "trackAtomId": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a"
+      },
+      {
+        "termId": "0xacc60bb21260ffbc9c21d51f5205c98b2fe5d127f8bcf93ffe246a7c587bb715",
+        "session": "Building Crypto Cities",
+        "sessionAtomId": "0x9a9f3a4d48261329b8b426b3bbebb1dd672e1b4fd7e774769a67feaaf7a22b7f",
+        "track": "Built on Ethereum",
+        "trackAtomId": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985"
+      },
+      {
+        "termId": "0x43060ca5944cbdcff53febb6bc72a5f8069dae7ce6ddd5e2182058eaeba972ff",
+        "session": "End of Beginning of DAO",
+        "sessionAtomId": "0x317d2ba4151aa1172cdaccfdda2308fb348a6d3cf2e9d4f3e34c9bbafce350a5",
+        "track": "Cypherpunk & Privacy",
+        "trackAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "termId": "0xda29e5bc952328633cd2a50ee2a24589b16a18b4af4ca9020b389713b502c032",
+        "session": "Build on Trezor: Join Us in Scaling an Open-Source and Secure Future",
+        "sessionAtomId": "0xe9a2c05e70ea9845cee3d27233a55eb2c6140c00b0635871d38e84e167ae3aaa",
+        "track": "Product & Marketers",
+        "trackAtomId": "0xd3b79740eb2ab4ba95dd6145aa303196ed89cca32a89f88361938de6f962c81f"
+      },
+      {
+        "termId": "0x34f38f5ef71c60b9e2df9a27594e82933f31ea38340c288c8e31eeaf80b307b1",
+        "session": "Economic Censorship Games in Fraud Proofs",
+        "sessionAtomId": "0xa07180d055e4c90b849a6e5bad16c7466171a5b596ae8e87a37e4eb938ff9a4b",
+        "track": "Layer 2s",
+        "trackAtomId": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a"
+      },
+      {
+        "termId": "0xd987da1dbfbe56c2d0784ef5d22b4f00deb210d7a8225d15c4dc82605368a7e7",
+        "session": "Legal & Compliance",
+        "sessionAtomId": "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae",
+        "track": "Breakout sessions",
+        "trackAtomId": "0x47ba370df0bca8846e101c4ec5b7695921e1d3ecb31c0d3374a0845a8c172a2b"
+      },
+      {
+        "termId": "0xcafa21d09a30dd7d6fe47a171dbea279e67bd4a17f6a538603346b7ef886acd7",
+        "session": "Aave V4 and Beyond: Bringing Capital Markets Onchain",
+        "sessionAtomId": "0x39b9b18c3767afd2e2808829006e78a9a4c390baaebcee9954420a4f711071ab",
+        "track": "RWA Tokenisation",
+        "trackAtomId": "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb"
+      },
+      {
+        "termId": "0x63ab5610750ac8b56d8eff5fe9ae85c5d7cca20d52907c54daf22dd67f3a7437",
+        "session": "Hardware wallet integration of Privacy preserving protocols for the Kohaku wallet",
+        "sessionAtomId": "0xffac32778ae305c8eed46022dd471ba42a2ff8e6b86133ba3bc807d904617c5e",
+        "track": "Cypherpunk & Privacy",
+        "trackAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "termId": "0xdacd695a95d14f3231f20277e59781ab717c6d4256b5bc8c6f67bbb7948420a3",
+        "session": "Solving EVM RPC Reliability Issues",
+        "sessionAtomId": "0xef4654089e9d788dea40f5929b1fcefd762a8d4aecbf07243c75af95ca060d7a",
+        "track": "Built on Ethereum",
+        "trackAtomId": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985"
+      },
+      {
+        "termId": "0xeb339e34480027421c86c0e9b040d6dca116838274863f3692a8b02c76833f25",
+        "session": "Why Token Launches Fail — and How to Get Them Right in 2026",
+        "sessionAtomId": "0xdc84e5e27bcbca3c2bd4343b8bf530fcb647d50a798d09a371cca6fd3603a549",
+        "track": "Product & Marketers",
+        "trackAtomId": "0xd3b79740eb2ab4ba95dd6145aa303196ed89cca32a89f88361938de6f962c81f"
+      },
+      {
+        "termId": "0xeb93c1f7f28b2931ab8505ec80ceb1a5582914c8e580225b96ae0b9b4776138b",
+        "session": "AI Agents Will Replace Dapps",
+        "sessionAtomId": "0x3dcdde8756b1d26cd449560c67b4e795e39280ebea5fb3d9c892cba5d5e78d64",
+        "track": "AI Agents and Automation",
+        "trackAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      },
+      {
+        "termId": "0x8cc0b45c8b20ea9e0ed85b98e9b7c7d6407e34944f66f2ab751f89de4ab23f1f",
+        "session": "Financial Services in the Agent Economy: From Platforms to Autonomous Operating Systems",
+        "sessionAtomId": "0x1434da448088552a449de3d79ba7d726177594f2d94b2c6b48d0d7da9528e6b5",
+        "track": "AI Agents and Automation",
+        "trackAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      },
+      {
+        "termId": "0x31cef41a0c73b3455fd7a7340cb63188e81fa3f2e482486f1af94f59ed535582",
+        "session": "Spritz — Building a Truly Decentralized, Censorship-Resistant and Permissionless Communication App",
+        "sessionAtomId": "0x5cdc50208dd188f546c76d72edf708c6c407845b8dc120df63f51ae20f902616",
+        "track": "Built on Ethereum",
+        "trackAtomId": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985"
+      },
+      {
+        "termId": "0xadd64f2922b82d2182dbeacb8027c9459f79bcfaffd4036b4adc0c993fc30573",
+        "session": "EIP-7702 meets hardware wallets: stories from the browser extension wallet frontlines",
+        "sessionAtomId": "0xd60269c27c7ab6ff86a92acb594cd549843b368be73e15a5939b932217aa2e4d",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0xc60216e101bcfccac2746653bf47243188b3451f6a1821e77bad2e3c277d258e",
+        "session": "The Early Days of Ethereum",
+        "sessionAtomId": "0x60694cf0ece5a32e29e1db8a0e7539eb94066da7816fac35f02e5955a88b3cf4",
+        "track": "The Unexpected",
+        "trackAtomId": "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367"
+      },
+      {
+        "termId": "0x805ba293f0befb9eb9161afc0e4083f075eec8c4d683493f91862f56123fdddd",
+        "session": "VOPS / Partial Stateless nodes",
+        "sessionAtomId": "0x7bda101c57c4561ce1a3b32b03f399648982f86c331a31136827cda097c58b19",
+        "track": "EthStaker",
+        "trackAtomId": "0x60792f8e7c11bf88b026587c24ee338f02f883a306d947a0448b998e966f1d93"
+      },
+      {
+        "termId": "0xca27eeaeee028e07abb4bc3c7e187ed8c8226f33aaa0457be3d0c4803d19294e",
+        "session": "Proving Less, Verifying More: 3.5× Faster L2 Validity Proofs",
+        "sessionAtomId": "0x75ecb8844ba91a1173664ff2d272bfe706a79229085f97eaf2c11dad806e7725",
+        "track": "Applied cryptography",
+        "trackAtomId": "0xa294407354c71d4ad9fd5088726a36a6e3bebc3be70f2b968cec0d601e9a8a7f"
+      },
+      {
+        "termId": "0x75739fb242e0c49d4f9935c65c595286061f2e9e62df2e812b206ab3cdd4733b",
+        "session": "From MEV-Boost to ePBS: The Protocolization of Proposer-Builder Separation",
+        "sessionAtomId": "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0xe1213131ce7fc9d77977cf4e12d3139a3f6a7dfd779573d55d2692b8f4bf53d5",
+        "session": "There is such a thing as a free lunch - the deep fake refund economy",
+        "sessionAtomId": "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218",
+        "track": "Applied cryptography",
+        "trackAtomId": "0xa294407354c71d4ad9fd5088726a36a6e3bebc3be70f2b968cec0d601e9a8a7f"
+      },
+      {
+        "termId": "0x3d9b33f8bcd3d461047e702fbdc05c494ad39981b7d61e14eb233e7a45316cf4",
+        "session": "Privacy and self-sovereign infrastructure!",
+        "sessionAtomId": "0x69affd99159a7e77006e574190753026b0c37601ac31efdbe6a43150919ad5d7",
+        "track": "Cypherpunk & Privacy",
+        "trackAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "termId": "0xaad27d5212f18b1083aa2cab0421fef29fce0aaa44b9a2ae8dc49ff75363ad34",
+        "session": "DeFi Agents You Can Actually Trust",
+        "sessionAtomId": "0x534159dc5484b15ebb34d6ef659b750e3df809cf23ffbccfa7827dd810fdfa3f",
+        "track": "AI Agents and Automation",
+        "trackAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      },
+      {
+        "termId": "0x32fbb07d6f0b6ba868d9b0f3a39ad0d81d7acae5d5a28166fab8259cbc31a8ad",
+        "session": "Updates on Ethereum Interoperability",
+        "sessionAtomId": "0x100481e77dd456b2744e968a213142ae0f59049645f7012eb5d74bca4340938e",
+        "track": "Layer 2s",
+        "trackAtomId": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a"
+      },
+      {
+        "termId": "0x228d1da98f0c1eb6d438a703623385705b4b11c731ab545e528ab3e947579ff1",
+        "session": "Educating Developers, What can we Learn from Experimental Schools?",
+        "sessionAtomId": "0xa60e8f3c2f7afc0b1f4b92a7782b80e7f9fb17b0964cc42be78c6e072ff9faf3",
+        "track": "The Unexpected",
+        "trackAtomId": "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367"
+      },
+      {
+        "termId": "0xb5da6d39ff3fafd56afeef26d7793573f8691326da30637da64dd7afbb467f46",
+        "session": "ETH issuance clash",
+        "sessionAtomId": "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42",
+        "track": "Block Fighters",
+        "trackAtomId": "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e"
+      },
+      {
+        "termId": "0xdea4541ed581a4ff1cb670d77d0816435151beb884af607bc1cd6ffd8ba39400",
+        "session": "Quantum dilema",
+        "sessionAtomId": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837",
+        "track": "Block Fighters",
+        "trackAtomId": "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e"
+      },
+      {
+        "termId": "0x8ec35958cd0ff749cd777db20a48f995e9c96c64583900927ce9e09db3d7ea39",
+        "session": "Autonomous On-Chain Intelligence: How AI Agents Will Transform Web3 User Behavior & Payments",
+        "sessionAtomId": "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858",
+        "track": "AI Agents and Automation",
+        "trackAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      },
+      {
+        "termId": "0xab6670ad6867ea21905f23c818b68150af6d1a3aaaee01f9d6430de7bc94c42f",
+        "session": "Maintaining Ethereum's Future",
+        "sessionAtomId": "0x938102699cb1ebcd224c15674d8d34ee475e2d06a22fba5abbbf5059a91bc773",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0xcf0da3a9b5b854bc57207211f71e75bd2f0b10f72b6d3a3e261d20ebb5fd5870",
+        "session": "Prove Geth with Ziren",
+        "sessionAtomId": "0xac836ad5e24bc08c0eeda1a4458cf8cfc405b74012ef3b707760d745cab03902",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0xd92bad4cc5f8dc6e58da2625fff95a91a35eb2a9031cd357703adee809bf1b1f",
+        "session": "Ethereum's decentralisation; five years into proof of stake",
+        "sessionAtomId": "0x8fc53c552ba351998bf87fa22c4662dbb44ef5b245c4803b2283319d91940331",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0x5d8932af8f9506be74af2f9548dc9a23233b807f8d8e8ba6b19e00ab37507cf2",
+        "session": "Accelerating Ethereum",
+        "sessionAtomId": "0x25e18b7adef859a2b20f1fd9295f6a89dedd2867ca7107abece97d6f357a6f3f",
+        "track": "The Unexpected",
+        "trackAtomId": "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367"
+      },
+      {
+        "termId": "0x52deb4c1081fa736b52cda7ae7f5957cf9d510db954b2cd53e91fd32314ffe76",
+        "session": "Raising the Bar: A Deep Dive into Institutional Ethereum Staking Infrastructure",
+        "sessionAtomId": "0xa265e2848c26f4e724bb73c4b1f23db77f6fc9c089a3f2da49284f65d98e36bf",
+        "track": "The Unexpected",
+        "trackAtomId": "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367"
+      },
+      {
+        "termId": "0xb21d90f1b3833ec207422baad0c9601d3ddc31eef30ed8c331076f81f06981ff",
+        "session": "Token Engineering",
+        "sessionAtomId": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5",
+        "track": "Breakout sessions",
+        "trackAtomId": "0x47ba370df0bca8846e101c4ec5b7695921e1d3ecb31c0d3374a0845a8c172a2b"
+      },
+      {
+        "termId": "0x17bba30f0361768add2ee9a6ee8e2219f2ea6d2fd769dd596c4f91c5e2986d8c",
+        "session": "How Web3 Can Rebuild Truth on the Internet",
+        "sessionAtomId": "0xdc1d883940f8ccceaed853e545cc6769a7b997095e2722629e8c13988df51687",
+        "track": "The Unexpected",
+        "trackAtomId": "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367"
+      },
+      {
+        "termId": "0xb13938533a8242138c87e21e7c43b6e1ad281ceccb7cd258a4d34f5cb6c34f7a",
+        "session": "DAOs: Fail or success",
+        "sessionAtomId": "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0",
+        "track": "Block Fighters",
+        "trackAtomId": "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e"
+      },
+      {
+        "termId": "0x45979ad1e73701e7eb34a005fe939594aa75bf9ded3e3f7440c4b03ccf428b8b",
+        "session": "Preparing Blockchains for the Post-Quantum Era",
+        "sessionAtomId": "0xf63693f53890c4bb6493b440fb611f501f8aa134348d8c9633069dbf138fb599",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0x0673bde84f76be6e8e0b8792202b01b1d0386b1d44e5f41de53364258988bce3",
+        "session": "Getting your EIP included is harder than getting a Ph.D.",
+        "sessionAtomId": "0xe32d2695dd73bf85fc7625f0fad63cce321039fd8db9a5a53dc7c87195e608c9",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0x8b49e6bc61077d9ea6331dd86393aa58aeea01a5478f771cb28920f48c998f36",
+        "session": "Not All State is Equal",
+        "sessionAtomId": "0xaaa36e82925f761d9d5abf5f4fb80d7f9277b1ec1c548da59e99128a4f55dd03",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0xfaf473c109c187f2da7b47b40bbca33c775686ccfc29acfc614cf3979ce24d2c",
+        "session": "Canton Network: sleeping giant?",
+        "sessionAtomId": "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b",
+        "track": "Block Fighters",
+        "trackAtomId": "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e"
+      },
+      {
+        "termId": "0x93d7a26f398547597ff8fbe919043d025bc44cb6a61f96bdd505d9fd45340966",
+        "session": "New AI Workflows in Remix - from Concept to DApp",
+        "sessionAtomId": "0x4085219f65a31ed0b9fd1d620ea57e6492191f70efecb6163337d9d126496974",
+        "track": "AI Agents and Automation",
+        "trackAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      },
+      {
+        "termId": "0x32e2df41ffefa0e6cd1d1851d6cc2f4507ff9b63303fd8c8c09ee69dde0af53e",
+        "session": "FHEthereum: FHE for Ethereum",
+        "sessionAtomId": "0x67597433b3fa101da1cac396bdd54b16e58a0a1852e0df8698c926e1d6d225de",
+        "track": "Applied cryptography",
+        "trackAtomId": "0xa294407354c71d4ad9fd5088726a36a6e3bebc3be70f2b968cec0d601e9a8a7f"
+      },
+      {
+        "termId": "0xf9cd1c7d700d2734ba3fc41ba67fe1a3301b49aca55690e57236e47b49a5e694",
+        "session": "The key takeaways of Scaling the L1. The data collected in the trenches and what should we expect.",
+        "sessionAtomId": "0xa3f9c3685bd933d2b2fcafb2a1459ecc1f6aa57fc03ab8e0a3e2ed8158f400ec",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0xb46501e36d04ba808d47cae3c23883dd9d1500b5713b4c01904fef9330415c38",
+        "session": "Decrypting Encrypted Mempools: State of the Art, Convergent Designs, and Future Directions",
+        "sessionAtomId": "0x015ff7a134a5013348206209f011d31bf62f51094c864b6d3551097d8e474d35",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0x19580ad72b54cfa45581458321edc26d4c9d6c1e3649c23cc99395a41b0e017a",
+        "session": "Improving Blockchain Security via the Open Source STABL Framework and Scalable Accountability",
+        "sessionAtomId": "0x0617e219d2370de11bfacaa7a860f3ceab5022f9c952434ffb9023c78960aa0a",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0xedeafc367ea5aece9484047bbcccf6d0e7cc236798d995765b7d07a82c08065d",
+        "session": "Making Sub-12s ZKPs on Ethereum Possible With a New Builder–Prover Design",
+        "sessionAtomId": "0x194957306ca1f429df0712351d0e86b980136e9f4d0cbfc44cd48b02846b0c0c",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0x4dc542d87bd3a46c6f477163f0e03f1e529ef0414de2ed525004571438ecb11e",
+        "session": "DeFi Revolutionizes TradFi with 24/7 Markets on Equities, Commodities & FX",
+        "sessionAtomId": "0x3c3681e5cd6efa0de2ecb4dbf29b15b94d3cd0c926882499470863513b8792e5",
+        "track": "DeFi",
+        "trackAtomId": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c"
+      },
+      {
+        "termId": "0x0375c596af7fa3d6e39c28c07991f7853136f8ec26095cb8df962b03ac9cad34",
+        "session": "Fairness in Token Delegation: Mitigating Voting Power Concentration in DAOs",
+        "sessionAtomId": "0x6db174a3a7b61f37d7ebce56c91062d5a949f6bc439fec779616aa7cc4fce075",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0x7b5482be2eea3f168afb46bbed4b81561c456ea05686f63a2c8afc10d60f6c80",
+        "session": "The Ethereum Kernel",
+        "sessionAtomId": "0xd7f507324dfa925051372edded19a1851fab03c63d47c47497a140ea8b2a2950",
+        "track": "Core Protocol",
+        "trackAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "termId": "0x76110ee6071ab66de15850ddf497ca744ff632ddece53794c0605360830467ce",
+        "session": "The road to post-quantum Ethereum",
+        "sessionAtomId": "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0x0b11da6fbdf5505ec67ec13905e8e9c27460030d5f9494190cb565493644a1da",
+        "session": "EVM Workloads in the Wild: Measuring Gas, State Growth, and State Sensitivity Across L1 and L2",
+        "sessionAtomId": "0x4d0f4b77632e5e8589f46864ea3e84186f176e7d98faf03729d43948ae125db7",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0x5e8bc3c0bfb0c787ef82a2b112c54f854005074cb8f01c4152719833eac3c249",
+        "session": "Becoming Immutable: how Ethereum is made",
+        "sessionAtomId": "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b",
+        "track": "Research",
+        "trackAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "termId": "0x8e784815e40f10e22c48fa85ed7a24b70fb8ccc24c17b9fcd9db313c0a04af43",
+        "session": "Assumptions: The Root of All Bugs",
+        "sessionAtomId": "0x0f14dbd15d1937505bda86dd350e789fcf70f2804920cbe6c6431773df6e4b2a",
+        "track": "Security",
+        "trackAtomId": "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f"
+      },
+      {
+        "termId": "0x371908819093d4e6fb918a5e905cbf8422ff7f03637fcb604f04818cd5df4128",
+        "session": "Inside the Orb: Privacy in World's Hardware",
+        "sessionAtomId": "0xa68c3978edc35ada15194e44fa4285947f461bdc16454410219e12128f9528d9",
+        "track": "Zero Tech & TEE",
+        "trackAtomId": "0xa1ace10f77b5b560038429d8012862db14a5664bcd53f0b55da75f4cb99ac29d"
+      },
+      {
+        "termId": "0x7cda485a7111cec767956c3b4e2ac6b81eb05e28be1a0aaaf5c180feea0cf608",
+        "session": "New Security Challenges with EIP‑4337 & EIP‑7702",
+        "sessionAtomId": "0x545d906ece2500e4ec79555c8bfe19d5222ce428524dc152315189626453b93b",
+        "track": "Security",
+        "trackAtomId": "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f"
+      },
+      {
+        "termId": "0xe184b4901ca8f8beae9ba26b1a5e80ac562c4ef82cca5068a3f1dcba9c5ae77b",
+        "session": "Safenet: A transaction security protocol",
+        "sessionAtomId": "0x2766aa7c06b243d1eabefd52df421859392e438df0bf651badfd566871bb4f00",
+        "track": "Security",
+        "trackAtomId": "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f"
+      },
+      {
+        "termId": "0x53f68b275688570568427512d78f7b2fdb90076dbb0251831f5d1511cdd10a26",
+        "session": "The Next Billion in Web3 Will Get Hacked Unless We Rethink Security",
+        "sessionAtomId": "0xfa8ad1a380527fe2852a2286334b43eb30533bc6463ba7dc8a1eb6a73fd2793f",
+        "track": "Security",
+        "trackAtomId": "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f"
+      },
+      {
+        "termId": "0x3706ca174f0ece1d3f9dd068cb86d75b75dc77302e47272c0947ea4397755c23",
+        "session": "Strengthening Oracle Security in 2026: Key Principles for Builders",
+        "sessionAtomId": "0x3fb77dc40173b0b4b858040fe85734cbd944ee1de51c57b98df566b01c114ea5",
+        "track": "Security",
+        "trackAtomId": "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f"
+      }
+    ],
+    "presentedAt": [
+      {
+        "termId": "0x962790434a44e58b29e0dde777173e34b351ffcbfef5b5e1eeac3fd4e6de8e9d",
+        "session": "Continuous Clearing Auctions: The new standard for bootstrapping liquidity",
+        "sessionAtomId": "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x1a01e3f778334ba65d400fc4163144c60e4f252f3fce1213fb4c0ac7af683161",
+        "session": "Bringing traditional risk analysis to DeFi",
+        "sessionAtomId": "0x82d8e626581a84e709b228fa286a28fa02e516e162b4d3adbff049b40b5bbd2c",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x74383427069b47c17c647a783ebc09adc7050d9d2df80ed1e4d0231b35b99d57",
+        "session": "Stablecoins in Payments: Regulation, Qualification Debates & Market Opportunities MiCA, PSD3 &Beyond",
+        "sessionAtomId": "0xb567f758fcd9fd978eb86bc2c9c73da03d602501df81190281f4d18584352fec",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x331f304e10e8d6621d335795122616206d5feca187777fa833e5f5caced57bed",
+        "session": "Beyond Rewards: Incentives as Core Infrastructure in Modern DeFi",
+        "sessionAtomId": "0x706d73d0a7d15fbe2574c93a9ac353aa7ff72b19df9070c880350b4a1544b731",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x7fba42472ed6e8323da4dc73aa448b2d7e69ea230c52a3f1046b3c4ab61f985e",
+        "session": "DeFi's hidden risk stack",
+        "sessionAtomId": "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x48f8839c45c4c0df719e79a77c57465bc69bee681d02d750e57bd7a7197f5cdf",
+        "session": "Building the Financial Layer 1 for Trillions Onchain",
+        "sessionAtomId": "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xb1f584840962016eb324ba5b5a6b91a5e9aa4e06732cff5b6f10bf46e910f5f1",
+        "session": "Risk Ratings: The Missing Piece for DeFi & Onchain Finance Mass Adoption",
+        "sessionAtomId": "0xe3f51c70d4c8826d052d8bc5d9d0b89c13faf6b1cddefa3856eefff0bce17618",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x20f6a76ef1d1ee0e6fc058dd124d1b44bfd905e720412cd437c133b74bb2bc00",
+        "session": "From Protocols to Products: Turning Digital Asset Innovation Into Institutional Reality",
+        "sessionAtomId": "0x2b1a7ca41172348d1a435b76b99d3d48c2963428895b0400f5bf55457de32864",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xb92aea1590353bd84ea336dba7735f024fb1f170d53abcb478f1f804b67d2b29",
+        "session": "The Expanding Spectrum of Stablecoin Yield Sources in DeFi and Its Risk Implications",
+        "sessionAtomId": "0xb5c77634fc6b24c665111237ad167bb664dae2f83c02957617053f315b76ac6a",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xce059c8d22d12e1d2a66a8a3e1f6073b0f1a8030de940ff8af1b1d47f541d682",
+        "session": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+        "sessionAtomId": "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xb52dc1a60001b3c6b13c5c6ea195864247de4070da34fc0627f6fb9068bde66a",
+        "session": "RWAs Done Right: Utility, Liquidity, and DeFi Values",
+        "sessionAtomId": "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xf969bc55782b14a60b6d69bdd582734331e3ba199b43b0d0315dbcc67e308589",
+        "session": "Bitcoin as Collateral: A $1 Trillion Opportunity for Ethereum DeFi",
+        "sessionAtomId": "0xb63e06765f9ebb45e28d6bd085fc5c68b675fa6250f753fff83df9622bd995a9",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x7c2dd4d7f07750bd542c82a67a5e230e02c70f61034e8b48ecc39c16c0f18345",
+        "session": "DeFi From the Inside: What Power Users Reveal About the Next Wave of Adoption",
+        "sessionAtomId": "0x1976fe35c10edd13ef4027096b55ef295f541f9f83831e0e230bd806d4e6e225",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xfe77c063c0635a4b6e7b7baddb914cea7fb6215ee79e825e1c212990e4b22072",
+        "session": "What's Next for DeFi UX: Behavior-based Systems for the RWA Era",
+        "sessionAtomId": "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x80f8d5900a98f74fa2507ab1a30fb8cd248b8e5b3046fdf250bf7c1f888f2496",
+        "session": "The Anatomy of the Perfect Stablecoin: Trust, Liquidity, and Global Utility",
+        "sessionAtomId": "0x1a622b7045cb503f5de03f6c0377e7d12909e94ca273ff67293a4ace2817bb54",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xdd14f5c3c45ddebb00a95ce616dc63924dee1d96285d22ae06f89c71982d50b1",
+        "session": "Why Does Programmable Block Construction Matter for Custom Execution in L2s?",
+        "sessionAtomId": "0xee2ea9faadae7a3554053b7620a14aa3ef81e317b11fee50f1bb5a59295d5b54",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x99570e3fa5b300cb76686e842cb4c772967b537de34a0cfe10a2dd076ab6f105",
+        "session": "Solving EVM RPC Reliability Issues",
+        "sessionAtomId": "0xef4654089e9d788dea40f5929b1fcefd762a8d4aecbf07243c75af95ca060d7a",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x56285ffc7a4b8354a2710222f29a932646e5b148a7945e41f2a0261d47efa6b9",
+        "session": "How Ethereum Can Scale to Billions of Users",
+        "sessionAtomId": "0x649e6f8ff891baaec19065b46fb301cb72c5e81fad800973e71621b60c23a149",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xca77742cfbc8403a9608eddfe3e1236ae01ce443f2b9faac0a20faeb38dd211c",
+        "session": "Why Token Launches Fail — and How to Get Them Right in 2026",
+        "sessionAtomId": "0xdc84e5e27bcbca3c2bd4343b8bf530fcb647d50a798d09a371cca6fd3603a549",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x7bd51b5a7adc5ba3371c3a87a3a421ec7154286c35526a8f64cf240ed97eb7e0",
+        "session": "High-frequency-trading in Crypto",
+        "sessionAtomId": "0x1b1e47acc0d49f5a15cdc4a40554c9e3bad237ffa166e2082d543d19c79fa455",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xa908d74c3f9dd4462581f6c9db0d0f83f10a30fb426510687ec67e6661092a84",
+        "session": "Forget Private AMMs: Scaling DeFi Back Onchain with Parallel AMM",
+        "sessionAtomId": "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x055e34af0396b783c2c6d7477a62d10f922d037d6a368f61bce8ae5160360836",
+        "session": "End of Beginning of DAO",
+        "sessionAtomId": "0x317d2ba4151aa1172cdaccfdda2308fb348a6d3cf2e9d4f3e34c9bbafce350a5",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x58a8845df53c32c19c9f3f8221816a39012831fdc63e3ee5f190dea8627f6ce6",
+        "session": "When Theory Meets Mainnet: Intent-Based Trading at Scale",
+        "sessionAtomId": "0xcf9c5f737857473ca109dbef91181e26d68d93ff309c50cbb51e4d9a548ed5b7",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xd64be52ec9a7e5e95c25ca09703baf56af4f2bc559b252dd00cb8f49f1e7fba5",
+        "session": "The Next $33 Billion: Stablecoin Lending and the Institutional Frontier",
+        "sessionAtomId": "0xc4fce956e4e6e02ba18afd64f9344f3ac5f389985d18fb30c1d7b7fdfc7be741",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x76e4fe8a42e4c566261339b24bbe1f486a28abba89092a3292ebfe801dfb3557",
+        "session": "Make Privacy Sexy: From Cypherpunk to Consumer",
+        "sessionAtomId": "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xf974fc7cd519cb16423866262c72b8052c0f698e0f309068d3aed18f170568ba",
+        "session": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+        "sessionAtomId": "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x89d95eb67bf54c45b65e4f6fbbd33ca4e5f1783c78d4055f99c047ff0b0e56bb",
+        "session": "Keeping your users' private parts private",
+        "sessionAtomId": "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xd97cdc6024d1d16ff07d509dd326fd7b35bf6a12bee2848d7f6e13f006273dea",
+        "session": "Build on Trezor: Join Us in Scaling an Open-Source and Secure Future",
+        "sessionAtomId": "0xe9a2c05e70ea9845cee3d27233a55eb2c6140c00b0635871d38e84e167ae3aaa",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x0edc5e35c27d31210e1d4c9e6da7f406d23bce772a247c858a8d3971b0190a02",
+        "session": "Building Crypto Cities",
+        "sessionAtomId": "0x9a9f3a4d48261329b8b426b3bbebb1dd672e1b4fd7e774769a67feaaf7a22b7f",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x6406ff5bdcd3a349344494d21d2bfa83f8fc3e0407b8e3767e4c156ec465c37c",
+        "session": "ICO 2.0:  how will ICOs evolve?",
+        "sessionAtomId": "0x28105e1813e7d8fae1acf9fea0a628ae5b5441e0d1a2c99d5e61cf88024fd5d0",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xc6b3be9dbf7098441e9e493b598d97869be1afc51ce5d2737e394fd042b6a66c",
+        "session": "Economic Censorship Games in Fraud Proofs",
+        "sessionAtomId": "0xa07180d055e4c90b849a6e5bad16c7466171a5b596ae8e87a37e4eb938ff9a4b",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x9c93e27a12f0914f447de6a325dd9fa61853a8463d6ff68ad8c7413a634df6dd",
+        "session": "From MEV-Boost to ePBS: The Protocolization of Proposer-Builder Separation",
+        "sessionAtomId": "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x7b0e58f34a37204e5be587f446e414e380db1470ed4c3f1101feb48ce456b89b",
+        "session": "Aave V4 and Beyond: Bringing Capital Markets Onchain",
+        "sessionAtomId": "0x39b9b18c3767afd2e2808829006e78a9a4c390baaebcee9954420a4f711071ab",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x19e7f5012f9aa00fca7eb49bfb5b50728e5cfed4951711df5f097152c737cf70",
+        "session": "Rollups Broke Ethereum. Synchronous Composability Can Fix It.",
+        "sessionAtomId": "0xd608768a276c1fe59794873a70ddbbc883cd76df6dcf860eb22d0b03a115e2e1",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x483834caa333ac2ae5afad88acef81adb1b2e7b480257d570f7dedacd8067ec2",
+        "session": "Hardware wallet integration of Privacy preserving protocols for the Kohaku wallet",
+        "sessionAtomId": "0xffac32778ae305c8eed46022dd471ba42a2ff8e6b86133ba3bc807d904617c5e",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x3658cff9abff7f4918d7494cd273ac3d0ace819a62c8bfaf2a93045a056561fc",
+        "session": "Spritz — Building a Truly Decentralized, Censorship-Resistant and Permissionless Communication App",
+        "sessionAtomId": "0x5cdc50208dd188f546c76d72edf708c6c407845b8dc120df63f51ae20f902616",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x7ceb693fc721bd4453ca01cf9431ef83d5f5be851b960b6221b09d9222930a41",
+        "session": "OpenSigner: Open-source non-custodial key management",
+        "sessionAtomId": "0xa892532c6f3b99f7fb51fb54ba94bf41896086baf5869e018b1c08041118498b",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xd123deb56f0eb30a51a8cbddb7a95a9e9be2a6ec6068a7120129e7aaf9425518",
+        "session": "Legal & Compliance",
+        "sessionAtomId": "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x865f380812b2ff29fc2d870ac3f04b4bdf669db263c077c4756a9ab13d6f376e",
+        "session": "The Early Days of Ethereum",
+        "sessionAtomId": "0x60694cf0ece5a32e29e1db8a0e7539eb94066da7816fac35f02e5955a88b3cf4",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xef25c2de8b228283de6d1af02740087d6a94d9eef15ed32d77ab86b7fa50c7bb",
+        "session": "Privacy and self-sovereign infrastructure!",
+        "sessionAtomId": "0x69affd99159a7e77006e574190753026b0c37601ac31efdbe6a43150919ad5d7",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x052cc76147758bd3bb0aac3787ad710b9cb4be0596a740c754d6dbe7bfa042fa",
+        "session": "VOPS / Partial Stateless nodes",
+        "sessionAtomId": "0x7bda101c57c4561ce1a3b32b03f399648982f86c331a31136827cda097c58b19",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x942844e0884e2cb1d73d45218375e8adf8e88220a0a3d58270b0a3a61548e446",
+        "session": "Web3 Is Alive: The Human Layer in Action (Live Demo)",
+        "sessionAtomId": "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x5bba6edeb1db21409b51ddfc2ebfd25dd7a982566db723d17ecba0a7c4c1533e",
+        "session": "Updates on Ethereum Interoperability",
+        "sessionAtomId": "0x100481e77dd456b2744e968a213142ae0f59049645f7012eb5d74bca4340938e",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x2dc70c74a606b1ce19396f848faa7a8b0a7a9eef8f5f5a88902719b22f0e21e3",
+        "session": "Educating Developers, What can we Learn from Experimental Schools?",
+        "sessionAtomId": "0xa60e8f3c2f7afc0b1f4b92a7782b80e7f9fb17b0964cc42be78c6e072ff9faf3",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xbe5a9c9848582dcde7bbc2173bffa1d19553314e1c94c5eb432d76856df0d865",
+        "session": "Quantum dilema",
+        "sessionAtomId": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xe35c2a35de74bbcda009b26edb6ce777bf2b3948831d724873b6821673c3059e",
+        "session": "DeFi Agents You Can Actually Trust",
+        "sessionAtomId": "0x534159dc5484b15ebb34d6ef659b750e3df809cf23ffbccfa7827dd810fdfa3f",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x0d7e8f4848d1131b0c0ba1e0f8b8a38a4a6fc66fcf630344db26b758961e1231",
+        "session": "Financial Services in the Agent Economy: From Platforms to Autonomous Operating Systems",
+        "sessionAtomId": "0x1434da448088552a449de3d79ba7d726177594f2d94b2c6b48d0d7da9528e6b5",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x46484ddcc98688484cce7cd21bf967aeb9ddebf5818c74e9f2c99ff28a1512f1",
+        "session": "ETH issuance clash",
+        "sessionAtomId": "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x8b788caa8f404bc40d00b1779a6bead3724719761f6d05db756ae477c4f0a439",
+        "session": "There is such a thing as a free lunch - the deep fake refund economy",
+        "sessionAtomId": "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xb650af9a1d47c59d937e4802e4b1aaebbd425d69567b45ab9415dc674e55e505",
+        "session": "Canton Network: sleeping giant?",
+        "sessionAtomId": "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x91246cba4ac9ee641489868ad0eddcc45771dddbbdcb4fe526ae2f5d7cc8588c",
+        "session": "Accelerating Ethereum",
+        "sessionAtomId": "0x25e18b7adef859a2b20f1fd9295f6a89dedd2867ca7107abece97d6f357a6f3f",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x447e466f10a2b414d99a6e052fea9ab8fb355f33d8fe25b4bb613d8f805d1235",
+        "session": "DAOs: Fail or success",
+        "sessionAtomId": "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xf662dd814e2bffe3c6d1ca8153aa872446d61e38dc6e211373a7f82839891a03",
+        "session": "Maintaining Ethereum's Future",
+        "sessionAtomId": "0x938102699cb1ebcd224c15674d8d34ee475e2d06a22fba5abbbf5059a91bc773",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x1c728626f0b78d1f8d769e6bcfec02dd6bbc8364c208061d7fb17e184f45d135",
+        "session": "Prove Geth with Ziren",
+        "sessionAtomId": "0xac836ad5e24bc08c0eeda1a4458cf8cfc405b74012ef3b707760d745cab03902",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x0b5c7db1708bc2ab4c62069f4616e8082fbc7743accc54d5953e5790d4c39943",
+        "session": "Raising the Bar: A Deep Dive into Institutional Ethereum Staking Infrastructure",
+        "sessionAtomId": "0xa265e2848c26f4e724bb73c4b1f23db77f6fc9c089a3f2da49284f65d98e36bf",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xdb175a11b774ba31b66f45a35a85659eab89e1dfac5aa9dc383a0a7bbe873e26",
+        "session": "EIP-7702 meets hardware wallets: stories from the browser extension wallet frontlines",
+        "sessionAtomId": "0xd60269c27c7ab6ff86a92acb594cd549843b368be73e15a5939b932217aa2e4d",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x80d06002d1e9d31a279fd1772db66055c52614e37c9fed4fc33d32b0d08b3e0c",
+        "session": "New AI Workflows in Remix - from Concept to DApp",
+        "sessionAtomId": "0x4085219f65a31ed0b9fd1d620ea57e6492191f70efecb6163337d9d126496974",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xb0da6227377879077b7f65d3f3df103df415e0152a383c9453d3ead08db1fe6f",
+        "session": "Proving Less, Verifying More: 3.5× Faster L2 Validity Proofs",
+        "sessionAtomId": "0x75ecb8844ba91a1173664ff2d272bfe706a79229085f97eaf2c11dad806e7725",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x33bdd885a23d0b72197bb2abcbcf56e7bcee8747218488baa42b4756564a41d0",
+        "session": "Autonomous On-Chain Intelligence: How AI Agents Will Transform Web3 User Behavior & Payments",
+        "sessionAtomId": "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xc17d0e9977950c5249c18ca2bb921310cbb12eb80745c86fed85b57e033ff7db",
+        "session": "AI Agents Will Replace Dapps",
+        "sessionAtomId": "0x3dcdde8756b1d26cd449560c67b4e795e39280ebea5fb3d9c892cba5d5e78d64",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xaec1c418f1a21e4980950a39d18a5693e0c441973cb9c577e60540ece0bf4308",
+        "session": "New Security Challenges with EIP‑4337 & EIP‑7702",
+        "sessionAtomId": "0x545d906ece2500e4ec79555c8bfe19d5222ce428524dc152315189626453b93b",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x67fd22b7d43cb4d2e6f80ac490ac5789baa812fb4c768f91e7917b9a413bdb94",
+        "session": "Assumptions: The Root of All Bugs",
+        "sessionAtomId": "0x0f14dbd15d1937505bda86dd350e789fcf70f2804920cbe6c6431773df6e4b2a",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xa1cd57aaacdca66f15d3be5b7989db823ee38343900bd4c684a08d974a6b495a",
+        "session": "Ethereum's decentralisation; five years into proof of stake",
+        "sessionAtomId": "0x8fc53c552ba351998bf87fa22c4662dbb44ef5b245c4803b2283319d91940331",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x6ef082ceadd3b243c62f3e7b3a42a2092a36e2a4aad22ebd2637b9faa3241713",
+        "session": "Becoming Immutable: how Ethereum is made",
+        "sessionAtomId": "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x7b73c68a64f22a497196bcab4a0964b1810302d82003d16d761b801a81039292",
+        "session": "Getting your EIP included is harder than getting a Ph.D.",
+        "sessionAtomId": "0xe32d2695dd73bf85fc7625f0fad63cce321039fd8db9a5a53dc7c87195e608c9",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x89447c4220534a177f39edff5330f2529689ecf562bc501b81cb5a46d547fd5d",
+        "session": "Preparing Blockchains for the Post-Quantum Era",
+        "sessionAtomId": "0xf63693f53890c4bb6493b440fb611f501f8aa134348d8c9633069dbf138fb599",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x58b94434e77ac340208f4d73572a80708f92974c7e548e58e2c94ff584317b6d",
+        "session": "The road to post-quantum Ethereum",
+        "sessionAtomId": "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x0ef7efe3dbb0ba9258826bc8ec1ecfe877a740230b39112612f27fb05412ffea",
+        "session": "How Web3 Can Rebuild Truth on the Internet",
+        "sessionAtomId": "0xdc1d883940f8ccceaed853e545cc6769a7b997095e2722629e8c13988df51687",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xbe0421f3f9541fcaef67711e34f4ca2bd8c11b662d92b6a76907bb7a01d40770",
+        "session": "Not All State is Equal",
+        "sessionAtomId": "0xaaa36e82925f761d9d5abf5f4fb80d7f9277b1ec1c548da59e99128a4f55dd03",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xbeab3a846894203042208fd16eb7b4523bd1ae8b77585a53cf6488737f42b878",
+        "session": "FHEthereum: FHE for Ethereum",
+        "sessionAtomId": "0x67597433b3fa101da1cac396bdd54b16e58a0a1852e0df8698c926e1d6d225de",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xbd487c1abb1692e494615dabe36eb4969a0d74d3b6ea9aad16294b88fecbcce5",
+        "session": "EVM Workloads in the Wild: Measuring Gas, State Growth, and State Sensitivity Across L1 and L2",
+        "sessionAtomId": "0x4d0f4b77632e5e8589f46864ea3e84186f176e7d98faf03729d43948ae125db7",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xc97af7cff43360b45a481cfd8d48c827128a348f4f89d134de324bf821a91e67",
+        "session": "The key takeaways of Scaling the L1. The data collected in the trenches and what should we expect.",
+        "sessionAtomId": "0xa3f9c3685bd933d2b2fcafb2a1459ecc1f6aa57fc03ab8e0a3e2ed8158f400ec",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x8113e89f23a6f088f4a241f72b445bf6a90fa97413480b588897fb464c70ddf6",
+        "session": "Token Engineering",
+        "sessionAtomId": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x23f93ef0483d07191b72bf25ea3a11976155afbe35ebcc4065e26007b3c08ef4",
+        "session": "The Ethereum Kernel",
+        "sessionAtomId": "0xd7f507324dfa925051372edded19a1851fab03c63d47c47497a140ea8b2a2950",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x35e88267e1bdad7dbb428a14cf7374d24a99ab067b7969d4b408ab52890a6f1d",
+        "session": "Inside the Orb: Privacy in World's Hardware",
+        "sessionAtomId": "0xa68c3978edc35ada15194e44fa4285947f461bdc16454410219e12128f9528d9",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x873f3424c4fd57cc99d7a2296b6ecaee25651cdd400abc0238efb56c61a57c48",
+        "session": "DeFi Revolutionizes TradFi with 24/7 Markets on Equities, Commodities & FX",
+        "sessionAtomId": "0x3c3681e5cd6efa0de2ecb4dbf29b15b94d3cd0c926882499470863513b8792e5",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x29ebda163d0a273d23774e96837db8e255548f16f1f273671ce820d895124136",
+        "session": "Making Sub-12s ZKPs on Ethereum Possible With a New Builder–Prover Design",
+        "sessionAtomId": "0x194957306ca1f429df0712351d0e86b980136e9f4d0cbfc44cd48b02846b0c0c",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x4abb5f356f7e994b6db42f0b2f17af185e5f2af252d5f3839622f5fd2f0e4e20",
+        "session": "Fairness in Token Delegation: Mitigating Voting Power Concentration in DAOs",
+        "sessionAtomId": "0x6db174a3a7b61f37d7ebce56c91062d5a949f6bc439fec779616aa7cc4fce075",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x22a586d610a7bc112339ba7f40246edd2732d0d0a243044408e3b25ae96cdd59",
+        "session": "Strengthening Oracle Security in 2026: Key Principles for Builders",
+        "sessionAtomId": "0x3fb77dc40173b0b4b858040fe85734cbd944ee1de51c57b98df566b01c114ea5",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0xbf1ce95ed0c3ac8ca0a3189c200258d0134b48a56e00331bc221cdeb9315b526",
+        "session": "Improving Blockchain Security via the Open Source STABL Framework and Scalable Accountability",
+        "sessionAtomId": "0x0617e219d2370de11bfacaa7a860f3ceab5022f9c952434ffb9023c78960aa0a",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x953501c9f5f793619043936bcb8bc3e69c66c98258b8c762c03f3fdecd0197d3",
+        "session": "Decrypting Encrypted Mempools: State of the Art, Convergent Designs, and Future Directions",
+        "sessionAtomId": "0x015ff7a134a5013348206209f011d31bf62f51094c864b6d3551097d8e474d35",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x3cbe4abd5deca2698d2b1a851a041d4409363b31001c0c55ee52a4d93a2138bf",
+        "session": "Safenet: A transaction security protocol",
+        "sessionAtomId": "0x2766aa7c06b243d1eabefd52df421859392e438df0bf651badfd566871bb4f00",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      },
+      {
+        "termId": "0x792975c9959f9a00ca6c940abb07734af6e060527f8f9fd5a638209a7b506ef3",
+        "session": "The Next Billion in Web3 Will Get Hacked Unless We Rethink Security",
+        "sessionAtomId": "0xfa8ad1a380527fe2852a2286334b43eb30533bc6463ba7dc8a1eb6a73fd2793f",
+        "event": "EthCC[9]",
+        "eventAtomId": "0x6e0e646c13ec1a2e85a14c40c31d9019a873d7fb312a4746b52764f7b1bbf00d"
+      }
+    ]
+  },
+  "sessionByAtomId": {
+    "0x706d73d0a7d15fbe2574c93a9ac353aa7ff72b19df9070c880350b4a1544b731": {
+      "label": "Beyond Rewards: Incentives as Core Infrastructure in Modern DeFi",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0xb5e0014208f937e1e281f133ce602cfa27cf23d438cc65d28c6bd26d3b8219b5",
+        "presentedAt": "0x331f304e10e8d6621d335795122616206d5feca187777fa833e5f5caced57bed"
+      }
+    },
+    "0xb63e06765f9ebb45e28d6bd085fc5c68b675fa6250f753fff83df9622bd995a9": {
+      "label": "Bitcoin as Collateral: A $1 Trillion Opportunity for Ethereum DeFi",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x3253bd8d9d5a6409a65a52d8e839874f9a12c057e563fa52bfcd089dab746361",
+        "presentedAt": "0xf969bc55782b14a60b6d69bdd582734331e3ba199b43b0d0315dbcc67e308589"
+      },
+      "speakers": [
+        {
+          "name": "Alisia Painter",
+          "atomId": "0xfccff01e88ec93ec8d6729598ec5f8aa983142e0621217d807dbfdba5a2e92ef",
+          "tripleId": "0x9c607895ee939077728e64644765c9fb29e5441f4a8658f4afc3bdd3335385a0"
+        }
+      ]
+    },
+    "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e": {
+      "label": "Building the Financial Layer 1 for Trillions Onchain",
+      "tracks": [
+        "RWA Tokenisation"
+      ],
+      "tripleIds": {
+        "hasTag_RWA Tokenisation": "0xe437b563166781cb5ba73e2d60c40fb13f279d711d32d29d223fed4bc85e3277",
+        "presentedAt": "0x48f8839c45c4c0df719e79a77c57465bc69bee681d02d750e57bd7a7197f5cdf"
+      },
+      "speakers": [
+        {
+          "name": "Wish Wu",
+          "atomId": "0xec23c62906698df0ffa4b22e3ee8294d5f0e9c45e451e137edfbacbfcd381d14",
+          "tripleId": "0xf9fc8c9f17447438c08b9894490527d2edf4702b2d94d43a23f41e5a6580d1c8"
+        }
+      ]
+    },
+    "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5": {
+      "label": "DeFi's hidden risk stack",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x405a0728e6a5ede87e2bd7352bb753cc534d82367288d28e6774bf29173ab641",
+        "presentedAt": "0x7fba42472ed6e8323da4dc73aa448b2d7e69ea230c52a3f1046b3c4ab61f985e"
+      },
+      "speakers": [
+        {
+          "name": "Julien Bouteloup",
+          "atomId": "0x680a635ad5c4e78b91c4dc3eb7428fed11d3c4127065817619759ecf6c9c3a81",
+          "tripleId": "0xf92536eb873a5f2dcb689034145984ee40830d4eea73f4fe2a5df24ac70e0db3"
+        }
+      ]
+    },
+    "0xe3f51c70d4c8826d052d8bc5d9d0b89c13faf6b1cddefa3856eefff0bce17618": {
+      "label": "Risk Ratings: The Missing Piece for DeFi & Onchain Finance Mass Adoption",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x47197a997ee655ffce6744543e2585498f281f1625f1eca9a6e8dac09f02e51c",
+        "presentedAt": "0xb1f584840962016eb324ba5b5a6b91a5e9aa4e06732cff5b6f10bf46e910f5f1"
+      },
+      "speakers": [
+        {
+          "name": "Marcin Kazmierczak",
+          "atomId": "0x45072b34d8f458731f390284bd4e747ac3184ad33adbaf68c289baa608033516",
+          "tripleId": "0x258f14cd19b57ec6fa6a561ed8c73891c42b9e294d1e52093ccbf8e8860f4481"
+        }
+      ]
+    },
+    "0x2b1a7ca41172348d1a435b76b99d3d48c2963428895b0400f5bf55457de32864": {
+      "label": "From Protocols to Products: Turning Digital Asset Innovation Into Institutional Reality",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x431f1fe08c46dd05ea0cb36cec168ce57356d81309552fff0b11adc014a9ee02",
+        "presentedAt": "0x20f6a76ef1d1ee0e6fc058dd124d1b44bfd905e720412cd437c133b74bb2bc00"
+      },
+      "speakers": [
+        {
+          "name": "Ami Nagata",
+          "atomId": "0x1b3d35b911b039320db5132580d7e084bc654aeac9494553de55c20e1f8f463c",
+          "tripleId": "0x334bef27c549aff01695e246810c3102c8f6a79cfac32a2af0cc3b83ef21dcab"
+        }
+      ]
+    },
+    "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e": {
+      "label": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0xd7f8a9b6765127d760e64eb71a321faf759f7ef5dfb4bf7384e63baa2e3c00b0",
+        "presentedAt": "0xce059c8d22d12e1d2a66a8a3e1f6073b0f1a8030de940ff8af1b1d47f541d682"
+      },
+      "speakers": [
+        {
+          "name": "Alexander Müller",
+          "atomId": "0x725b4871f0d1e6f1c9f24675e5b4dc789e6fdd1a9ce40937c8fe05627b90f12a",
+          "tripleId": "0xb00177666fd4ce699f0d630f59273f57d13fe16dc7662e97809584cc01aa4e53"
+        }
+      ]
+    },
+    "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb": {
+      "label": "Make Privacy Sexy: From Cypherpunk to Consumer",
+      "tracks": [
+        "Cypherpunk & Privacy"
+      ],
+      "tripleIds": {
+        "hasTag_Cypherpunk & Privacy": "0xb016452ea4e9b52f7e58996135b78bdb9888187d45c0ee1f1825ec8efab96707",
+        "presentedAt": "0x76e4fe8a42e4c566261339b24bbe1f486a28abba89092a3292ebfe801dfb3557"
+      },
+      "speakers": [
+        {
+          "name": "Andrii Bondar",
+          "atomId": "0x3ab34a41ec529d77d95ecd6bfe35d31d39dbcf1e66f40feacb17f73aea9e3e6a",
+          "tripleId": "0x4421e7fba79e0ea812ac5b5b68e3915cb470d670b4d53c2cf8e321acb936568e"
+        }
+      ]
+    },
+    "0xb567f758fcd9fd978eb86bc2c9c73da03d602501df81190281f4d18584352fec": {
+      "label": "Stablecoins in Payments: Regulation, Qualification Debates & Market Opportunities MiCA, PSD3 &Beyond",
+      "tracks": [
+        "Stablecoins & Global Payments"
+      ],
+      "tripleIds": {
+        "hasTag_Stablecoins & Global Payments": "0xa693cb3e6c577a4d3dee0c734b371dea06220c4e494a83c453e6827e852c72a4",
+        "presentedAt": "0x74383427069b47c17c647a783ebc09adc7050d9d2df80ed1e4d0231b35b99d57"
+      },
+      "speakers": [
+        {
+          "name": "Julie Bader",
+          "atomId": "0xc34abee5ff180bd1476a7d99404664e9c83fe28cebf14f190fc4486a239965b3",
+          "tripleId": "0xf9fc1de32326b864cfbdd1506ea96ea7ada049ba0426d09c5596df3618f42ebf"
+        }
+      ]
+    },
+    "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb": {
+      "label": "RWAs Done Right: Utility, Liquidity, and DeFi Values",
+      "tracks": [
+        "RWA Tokenisation"
+      ],
+      "tripleIds": {
+        "hasTag_RWA Tokenisation": "0xed4fc0ff9055a1f53ec85df572978c2722f09a3476a3967636e7c45549aae202",
+        "presentedAt": "0xb52dc1a60001b3c6b13c5c6ea195864247de4070da34fc0627f6fb9068bde66a"
+      },
+      "speakers": [
+        {
+          "name": "Christine Moy",
+          "atomId": "0x88d723b2942528e13f416bf2f2124b729312ccf799ba056cb037ecb7306394d5",
+          "tripleId": "0x8cd7f65af9efef465d205e1ca5e02f198fef3a13e83a7bfd1b75d1efc62aa281"
+        },
+        {
+          "name": "Bhaji Illuminati",
+          "atomId": "0x76b0c295fe6ebec4072bf126ee95bef8f3110be03098a85e3cd38afbe8590a96",
+          "tripleId": "0x08722f836663d4cf82387cae3dc53698600c64f5893b855b34b456c6675b4320"
+        }
+      ]
+    },
+    "0x1976fe35c10edd13ef4027096b55ef295f541f9f83831e0e230bd806d4e6e225": {
+      "label": "DeFi From the Inside: What Power Users Reveal About the Next Wave of Adoption",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x128b874d21ab9614d73071e13f2d1dbe538c98809e60385cd3f1cb0073ab55ef",
+        "presentedAt": "0x7c2dd4d7f07750bd542c82a67a5e230e02c70f61034e8b48ecc39c16c0f18345"
+      },
+      "speakers": [
+        {
+          "name": "Juan David Mendieta",
+          "atomId": "0x1a4eaa6d21a2576f6cba6eeb66aaa0f2d0f8753f7999d8c3eb53aac6affc7f06",
+          "tripleId": "0x0fb3c2354528484c6975f9bf75e614b5239c6e4e1e6147e7169d68a938da8d1c"
+        }
+      ]
+    },
+    "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293": {
+      "label": "Forget Private AMMs: Scaling DeFi Back Onchain with Parallel AMM",
+      "tracks": [
+        "Built on Ethereum"
+      ],
+      "tripleIds": {
+        "hasTag_Built on Ethereum": "0x2df9a1427f11297ad0584ee0a20b376ad6027ae437f2fb477c00857954484cab",
+        "presentedAt": "0xa908d74c3f9dd4462581f6c9db0d0f83f10a30fb426510687ec67e6661092a84"
+      },
+      "speakers": [
+        {
+          "name": "Xiangru Ma",
+          "atomId": "0xb68efd67bd67e4ad3e8ec752d17dffd16aa2a9152de169dfb37a92f6ced4938d",
+          "tripleId": "0xc5482df6a63e0c81047f162433a544d730f790e605e0f4e2ad3c107efda999a0"
+        }
+      ]
+    },
+    "0xb5c77634fc6b24c665111237ad167bb664dae2f83c02957617053f315b76ac6a": {
+      "label": "The Expanding Spectrum of Stablecoin Yield Sources in DeFi and Its Risk Implications",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x1cc907827385cfd6b89d555e305d5d42e20db24a0725419481fdcc01bcd1f850",
+        "presentedAt": "0xb92aea1590353bd84ea336dba7735f024fb1f170d53abcb478f1f804b67d2b29"
+      },
+      "speakers": [
+        {
+          "name": "definikola",
+          "atomId": "0xfd7e2dd70242f6bec7d32bccaec861e6526513935aafa98920c127c0e72a125f",
+          "tripleId": "0xe783f31e7186779da132264104cbd064425b3d78161e380f9184f2663d7e6103"
+        }
+      ]
+    },
+    "0x1a622b7045cb503f5de03f6c0377e7d12909e94ca273ff67293a4ace2817bb54": {
+      "label": "The Anatomy of the Perfect Stablecoin: Trust, Liquidity, and Global Utility",
+      "tracks": [
+        "Stablecoins & Global Payments"
+      ],
+      "tripleIds": {
+        "hasTag_Stablecoins & Global Payments": "0xb89b1f144686b6a2e170a1630e6f5483c1642a3cff522fb3c1cf09b5f735127e",
+        "presentedAt": "0x80f8d5900a98f74fa2507ab1a30fb8cd248b8e5b3046fdf250bf7c1f888f2496"
+      }
+    },
+    "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca": {
+      "label": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+      "tracks": [
+        "Stablecoins & Global Payments"
+      ],
+      "tripleIds": {
+        "hasTag_Stablecoins & Global Payments": "0x59240b6e574c6a8711111ba2c4404e5000ee932018e68c8ed10bb164b6d2b794",
+        "presentedAt": "0xf974fc7cd519cb16423866262c72b8052c0f698e0f309068d3aed18f170568ba"
+      },
+      "speakers": [
+        {
+          "name": "Julian Grigo",
+          "atomId": "0x7ec5f55fcd690aa8d37cf8e264200160f2dd1d299a170807f8b4f03480768e08",
+          "tripleId": "0x470e4e17c9a08d4a3ab0031e77c99e3b0c7d030638c3c525ba2198be353c427c"
+        },
+        {
+          "name": "Sylvain Prigent",
+          "atomId": "0x2021a1cc1305388b1c0ee7aed9feba371b0a560e99ca938a127e2e594a0b28d8",
+          "tripleId": "0xafb45d5e636142de49eece5132563fc60c585b4952c99c87eb1bf2fd188c47ce"
+        }
+      ]
+    },
+    "0x1b1e47acc0d49f5a15cdc4a40554c9e3bad237ffa166e2082d543d19c79fa455": {
+      "label": "High-frequency-trading in Crypto",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x843a5f0ece18441643beee5fc32f23d29062d76f44a20f0f536dd5d6023e2bf1",
+        "presentedAt": "0x7bd51b5a7adc5ba3371c3a87a3a421ec7154286c35526a8f64cf240ed97eb7e0"
+      },
+      "speakers": [
+        {
+          "name": "Suki Yang",
+          "atomId": "0x0a8bc142ebd6d425fbb4b91fecdaffff153d8f1c54c7779c78e32fba340872c0",
+          "tripleId": "0x8c8353a5a072b8abf58ebb3aafb4e05b979dd5988ff2ef065c88ecb8cea24912"
+        }
+      ]
+    },
+    "0xcf9c5f737857473ca109dbef91181e26d68d93ff309c50cbb51e4d9a548ed5b7": {
+      "label": "When Theory Meets Mainnet: Intent-Based Trading at Scale",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x4c286f9922f38e860e36ed5fae63cc41fbcaa88c2842267d912bf9e46ecec784",
+        "presentedAt": "0x58a8845df53c32c19c9f3f8221816a39012831fdc63e3ee5f190dea8627f6ce6"
+      },
+      "speakers": [
+        {
+          "name": "Mariia Yatskovska",
+          "atomId": "0x06f62bac4bf8a58d89b3c83dc81a37139df00b1cb3ad4b41c5f8efd75dcf54ca",
+          "tripleId": "0x219c50c7d9310c7197e0471e967b539fe98bdd370b27e884c751fa2dec0a0302"
+        }
+      ]
+    },
+    "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239": {
+      "label": "Keeping your users' private parts private",
+      "tracks": [
+        "Cypherpunk & Privacy"
+      ],
+      "tripleIds": {
+        "hasTag_Cypherpunk & Privacy": "0x5f0df6061daf6268c462d1afcf88de50d3f63ba947a8456d96d36ed8a65caec0",
+        "presentedAt": "0x89d95eb67bf54c45b65e4f6fbbd33ca4e5f1783c78d4055f99c047ff0b0e56bb"
+      },
+      "speakers": [
+        {
+          "name": "Belma Gutlic",
+          "atomId": "0xbcaece8c8b5f2f38c60a7c576cab7d00abe3111ac0d91a2b148af49eb0e23eea",
+          "tripleId": "0xf83cdaad0ca2343c322e954859c5cf4844b5f137823c8e7d291808484993adfb"
+        }
+      ]
+    },
+    "0x82d8e626581a84e709b228fa286a28fa02e516e162b4d3adbff049b40b5bbd2c": {
+      "label": "Bringing traditional risk analysis to DeFi",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0xaf0e26f0fa92b6cbf6e484879dc3b9f27a26a07c6c8ad6115f13e7cfa25072cd",
+        "presentedAt": "0x1a01e3f778334ba65d400fc4163144c60e4f252f3fce1213fb4c0ac7af683161"
+      }
+    },
+    "0xc4fce956e4e6e02ba18afd64f9344f3ac5f389985d18fb30c1d7b7fdfc7be741": {
+      "label": "The Next $33 Billion: Stablecoin Lending and the Institutional Frontier",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0xb5884c17620bcc6e5052263913732cca6146e4db7b8aaf43c2fa8e37156c711f",
+        "presentedAt": "0xd64be52ec9a7e5e95c25ca09703baf56af4f2bc559b252dd00cb8f49f1e7fba5"
+      },
+      "speakers": [
+        {
+          "name": "Sam MacPherson",
+          "atomId": "0xd85251b594f01662d037f1f686bb4ca73463e178194398f739324438d2f4e7e1",
+          "tripleId": "0xfac337e4b8898fcf2b1e49435fc5cf4494880d53f9268ff00164631ffa6ad5fb"
+        }
+      ]
+    },
+    "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e": {
+      "label": "Continuous Clearing Auctions: The new standard for bootstrapping liquidity",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x8d76fb435d98fc2f550d933f8a3a4cf79ced5f55e721e26a8637c11e2f035924",
+        "presentedAt": "0x962790434a44e58b29e0dde777173e34b351ffcbfef5b5e1eeac3fd4e6de8e9d"
+      },
+      "speakers": [
+        {
+          "name": "Eric Zhong",
+          "atomId": "0x172b18472fee86050c540fa5e97673a01b464bb57189444bc47b4d835574668c",
+          "tripleId": "0xa3c54134aaf282ddb345cb0bf2ab17bfd554c1d5247b416ef4316343a01cee2a"
+        },
+        {
+          "name": "Kite Liu",
+          "atomId": "0x987ddfe48adecf3575b95f5c4d3f7cf54e6a8fed804c3378e3ad43e8bfdfb2d8",
+          "tripleId": "0x2a65bb7f127a1330db9e4e606d985a7f090d6ccb1f3a365f759dbb6237ae9e39"
+        }
+      ]
+    },
+    "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b": {
+      "label": "What's Next for DeFi UX: Behavior-based Systems for the RWA Era",
+      "tracks": [
+        "RWA Tokenisation"
+      ],
+      "tripleIds": {
+        "hasTag_RWA Tokenisation": "0xf7d4ea297e969a6121176ae2d78c2f66f6633defbcf4ba0895e7d36a66c16eed",
+        "presentedAt": "0xfe77c063c0635a4b6e7b7baddb914cea7fb6215ee79e825e1c212990e4b22072"
+      },
+      "speakers": [
+        {
+          "name": "Yeho Hwang",
+          "atomId": "0xa89cfe5f03ce0eadf7ecaa160ba4335e853cf378d842fbf209866e0f8fa7ff49",
+          "tripleId": "0xa1a8b80098a0396dcbab5780df37620194ff15a9a62297a32ac388c2041fa10e"
+        }
+      ]
+    },
+    "0x649e6f8ff891baaec19065b46fb301cb72c5e81fad800973e71621b60c23a149": {
+      "label": "How Ethereum Can Scale to Billions of Users",
+      "tracks": [
+        "Layer 2s"
+      ],
+      "tripleIds": {
+        "hasTag_Layer 2s": "0x97bd827846df05c7948d1a31758530f7e469665b1fa2d2dd0a9f68a546c9a31f",
+        "presentedAt": "0x56285ffc7a4b8354a2710222f29a932646e5b148a7945e41f2a0261d47efa6b9"
+      },
+      "speakers": [
+        {
+          "name": "Ed Felten",
+          "atomId": "0x113514867483270ad45d2d6824c261d00beed45d8e1b232fe0cce061377e825f",
+          "tripleId": "0xc132c3eefe05dcacf94025b5180cd3b7512784e3316c73ceaa86f9c472fe3516"
+        }
+      ]
+    },
+    "0x28105e1813e7d8fae1acf9fea0a628ae5b5441e0d1a2c99d5e61cf88024fd5d0": {
+      "label": "ICO 2.0:  how will ICOs evolve?",
+      "tracks": [
+        "Product & Marketers"
+      ],
+      "tripleIds": {
+        "hasTag_Product & Marketers": "0x837d91492b411bf5a06f1e3e5301d72fa468c30fab42761e550c0311a4d1b7ea",
+        "presentedAt": "0x6406ff5bdcd3a349344494d21d2bfa83f8fc3e0407b8e3767e4c156ec465c37c"
+      },
+      "speakers": [
+        {
+          "name": "Erick  Zhang",
+          "atomId": "0x5a2499d3f03e95532c68f108eeb3bbad8fb89f623f2c273814d6406f0c91ba46",
+          "tripleId": "0x85175000a04035b8dd222669adf3c393601c8893ab67e914f324f167f0cea327"
+        }
+      ]
+    },
+    "0xee2ea9faadae7a3554053b7620a14aa3ef81e317b11fee50f1bb5a59295d5b54": {
+      "label": "Why Does Programmable Block Construction Matter for Custom Execution in L2s?",
+      "tracks": [
+        "Layer 2s"
+      ],
+      "tripleIds": {
+        "hasTag_Layer 2s": "0xb148c24c975b71f07eefb3c634f5bb95e80e69881c97e7a4becf16969187b884",
+        "presentedAt": "0xdd14f5c3c45ddebb00a95ce616dc63924dee1d96285d22ae06f89c71982d50b1"
+      }
+    },
+    "0xa892532c6f3b99f7fb51fb54ba94bf41896086baf5869e018b1c08041118498b": {
+      "label": "OpenSigner: Open-source non-custodial key management",
+      "tracks": [
+        "Cypherpunk & Privacy"
+      ],
+      "tripleIds": {
+        "hasTag_Cypherpunk & Privacy": "0xe02136b97b38f9de2662f0b0b7dedd4bc7a7a03cffbf61d99bb6655b9c903552",
+        "presentedAt": "0x7ceb693fc721bd4453ca01cf9431ef83d5f5be851b960b6221b09d9222930a41"
+      },
+      "speakers": [
+        {
+          "name": "Joan  Alavedra",
+          "atomId": "0x62173ee98394f7042e9d81852edad4388dc9a29afd51446fd4d88ceaab0d19a0",
+          "tripleId": "0x251c9ea384f5beecdf3e7da3d4692df0cf9f39050e3a853a4990573564b38eeb"
+        }
+      ]
+    },
+    "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7": {
+      "label": "Web3 Is Alive: The Human Layer in Action (Live Demo)",
+      "tracks": [
+        "Built on Ethereum"
+      ],
+      "tripleIds": {
+        "hasTag_Built on Ethereum": "0x5384b2003c87faf32d4e40262c19a70582762a6ea137918d5bdd2538fbf02242",
+        "presentedAt": "0x942844e0884e2cb1d73d45218375e8adf8e88220a0a3d58270b0a3a61548e446"
+      },
+      "speakers": [
+        {
+          "name": "Mende",
+          "atomId": "0xe5dd097e326f7d4e5cd6f36a91c07b2533bebdacc042a23181899bf75e9bd72e",
+          "tripleId": "0xe35a2c79f51379570e4a891b8dd9c4602a5001fcc7e57795dd4375e9adb345be"
+        }
+      ]
+    },
+    "0xd608768a276c1fe59794873a70ddbbc883cd76df6dcf860eb22d0b03a115e2e1": {
+      "label": "Rollups Broke Ethereum. Synchronous Composability Can Fix It.",
+      "tracks": [
+        "Layer 2s"
+      ],
+      "tripleIds": {
+        "hasTag_Layer 2s": "0xc17a1bf69fd98cc3010a881997a799a4fa7aa0374c59b78eedebd03dad6015b5",
+        "presentedAt": "0x19e7f5012f9aa00fca7eb49bfb5b50728e5cfed4951711df5f097152c737cf70"
+      },
+      "speakers": [
+        {
+          "name": "Friederike Ernst",
+          "atomId": "0xbcbb7bf9133d05368b4a51d14e48b2db0fb393639aba461f31268b4384824bd2",
+          "tripleId": "0x66385c0e0f6b7d66de1ec95055f1a1e9b59fabbfbfc33268f19a391eb3f6e5f6"
+        }
+      ]
+    },
+    "0x9a9f3a4d48261329b8b426b3bbebb1dd672e1b4fd7e774769a67feaaf7a22b7f": {
+      "label": "Building Crypto Cities",
+      "tracks": [
+        "Built on Ethereum"
+      ],
+      "tripleIds": {
+        "hasTag_Built on Ethereum": "0xacc60bb21260ffbc9c21d51f5205c98b2fe5d127f8bcf93ffe246a7c587bb715",
+        "presentedAt": "0x0edc5e35c27d31210e1d4c9e6da7f406d23bce772a247c858a8d3971b0190a02"
+      },
+      "speakers": [
+        {
+          "name": "Max Lomu",
+          "atomId": "0xa829045e35c648537403147f630526459773260af1e0464a9c46cb2fd533d501",
+          "tripleId": "0xfd001aac748f320777656cde92cf6f128971bf39af39e23aef758a83ae8f8f03"
+        }
+      ]
+    },
+    "0x317d2ba4151aa1172cdaccfdda2308fb348a6d3cf2e9d4f3e34c9bbafce350a5": {
+      "label": "End of Beginning of DAO",
+      "tracks": [
+        "Cypherpunk & Privacy"
+      ],
+      "tripleIds": {
+        "hasTag_Cypherpunk & Privacy": "0x43060ca5944cbdcff53febb6bc72a5f8069dae7ce6ddd5e2182058eaeba972ff",
+        "presentedAt": "0x055e34af0396b783c2c6d7477a62d10f922d037d6a368f61bce8ae5160360836"
+      },
+      "speakers": [
+        {
+          "name": "Doo Wan Nam",
+          "atomId": "0x94efa62191083a4587105bfa7e43bf0a44285fb12012189c01931fb40dd3a53f",
+          "tripleId": "0x7ee3d78f5d715d58c8778efe0f7516695aaa123f2c8147a277be3ca68da455da"
+        }
+      ]
+    },
+    "0xe9a2c05e70ea9845cee3d27233a55eb2c6140c00b0635871d38e84e167ae3aaa": {
+      "label": "Build on Trezor: Join Us in Scaling an Open-Source and Secure Future",
+      "tracks": [
+        "Product & Marketers"
+      ],
+      "tripleIds": {
+        "hasTag_Product & Marketers": "0xda29e5bc952328633cd2a50ee2a24589b16a18b4af4ca9020b389713b502c032",
+        "presentedAt": "0xd97cdc6024d1d16ff07d509dd326fd7b35bf6a12bee2848d7f6e13f006273dea"
+      },
+      "speakers": [
+        {
+          "name": "Jan Setina",
+          "atomId": "0x449d70a3951ca06ccd2800112e1ff2fd31a5625c6d6f3e67d6e1803e57bcb2a2",
+          "tripleId": "0xe01f08c4bc0f847c2cc37aa95ef5c715a0ee08083cc3cfffe09db5d7c8a2514c"
+        }
+      ]
+    },
+    "0xa07180d055e4c90b849a6e5bad16c7466171a5b596ae8e87a37e4eb938ff9a4b": {
+      "label": "Economic Censorship Games in Fraud Proofs",
+      "tracks": [
+        "Layer 2s"
+      ],
+      "tripleIds": {
+        "hasTag_Layer 2s": "0x34f38f5ef71c60b9e2df9a27594e82933f31ea38340c288c8e31eeaf80b307b1",
+        "presentedAt": "0xc6b3be9dbf7098441e9e493b598d97869be1afc51ce5d2737e394fd042b6a66c"
+      },
+      "speakers": [
+        {
+          "name": "AKAKI MAMAGEISHVILI",
+          "atomId": "0xfcb28bafc0860e63ed88cf6f4122e1e6d7178b8e2c97242ad1390e062984d69c",
+          "tripleId": "0x403703093a0dd41790c82f77ff3c298c1bd3cb0179df415eef26cc7b2380adf1"
+        }
+      ]
+    },
+    "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae": {
+      "label": "Legal & Compliance",
+      "tracks": [
+        "Breakout sessions"
+      ],
+      "tripleIds": {
+        "hasTag_Breakout sessions": "0xd987da1dbfbe56c2d0784ef5d22b4f00deb210d7a8225d15c4dc82605368a7e7",
+        "presentedAt": "0xd123deb56f0eb30a51a8cbddb7a95a9e9be2a6ec6068a7120129e7aaf9425518"
+      }
+    },
+    "0x39b9b18c3767afd2e2808829006e78a9a4c390baaebcee9954420a4f711071ab": {
+      "label": "Aave V4 and Beyond: Bringing Capital Markets Onchain",
+      "tracks": [
+        "RWA Tokenisation"
+      ],
+      "tripleIds": {
+        "hasTag_RWA Tokenisation": "0xcafa21d09a30dd7d6fe47a171dbea279e67bd4a17f6a538603346b7ef886acd7",
+        "presentedAt": "0x7b0e58f34a37204e5be587f446e414e380db1470ed4c3f1101feb48ce456b89b"
+      }
+    },
+    "0xffac32778ae305c8eed46022dd471ba42a2ff8e6b86133ba3bc807d904617c5e": {
+      "label": "Hardware wallet integration of Privacy preserving protocols for the Kohaku wallet",
+      "tracks": [
+        "Cypherpunk & Privacy"
+      ],
+      "tripleIds": {
+        "hasTag_Cypherpunk & Privacy": "0x63ab5610750ac8b56d8eff5fe9ae85c5d7cca20d52907c54daf22dd67f3a7437",
+        "presentedAt": "0x483834caa333ac2ae5afad88acef81adb1b2e7b480257d570f7dedacd8067ec2"
+      },
+      "speakers": [
+        {
+          "name": "Reno",
+          "atomId": "0x4abdfa6f7602879471fee13f2231edaa36392437135bdf95efdbd4464872cbd4",
+          "tripleId": "0x62a7dc1f56410f1c00ee27817d144baeb64ac0bcf9224ca149c3acf506a53e92"
+        }
+      ]
+    },
+    "0xef4654089e9d788dea40f5929b1fcefd762a8d4aecbf07243c75af95ca060d7a": {
+      "label": "Solving EVM RPC Reliability Issues",
+      "tracks": [
+        "Built on Ethereum"
+      ],
+      "tripleIds": {
+        "hasTag_Built on Ethereum": "0xdacd695a95d14f3231f20277e59781ab717c6d4256b5bc8c6f67bbb7948420a3",
+        "presentedAt": "0x99570e3fa5b300cb76686e842cb4c772967b537de34a0cfe10a2dd076ab6f105"
+      },
+      "speakers": [
+        {
+          "name": "Kasra Khosravi",
+          "atomId": "0xfe22c076be133c129b09e62bad115059a7fd9cee8ee5ea069578ecb44cc93668",
+          "tripleId": "0xa494e4daf6b9402665969932f5500fb14754fcba5fdcf6bfcfeb2e08e0470c75"
+        }
+      ]
+    },
+    "0xdc84e5e27bcbca3c2bd4343b8bf530fcb647d50a798d09a371cca6fd3603a549": {
+      "label": "Why Token Launches Fail — and How to Get Them Right in 2026",
+      "tracks": [
+        "Product & Marketers"
+      ],
+      "tripleIds": {
+        "hasTag_Product & Marketers": "0xeb339e34480027421c86c0e9b040d6dca116838274863f3692a8b02c76833f25",
+        "presentedAt": "0xca77742cfbc8403a9608eddfe3e1236ae01ce443f2b9faac0a20faeb38dd211c"
+      },
+      "speakers": [
+        {
+          "name": "Darius Moukhtarzade",
+          "atomId": "0x1bbb0c071d03aab7334510517144acb1702eaf7bbc2062bf0c387df339035636",
+          "tripleId": "0x67e1f4d4dc266301b88ddd82ce4201006e6b8220ec13191701fb2eeab9e28d59"
+        }
+      ]
+    },
+    "0x3dcdde8756b1d26cd449560c67b4e795e39280ebea5fb3d9c892cba5d5e78d64": {
+      "label": "AI Agents Will Replace Dapps",
+      "tracks": [
+        "AI Agents and Automation"
+      ],
+      "tripleIds": {
+        "hasTag_AI Agents and Automation": "0xeb93c1f7f28b2931ab8505ec80ceb1a5582914c8e580225b96ae0b9b4776138b",
+        "presentedAt": "0xc17d0e9977950c5249c18ca2bb921310cbb12eb80745c86fed85b57e033ff7db"
+      },
+      "speakers": [
+        {
+          "name": "jacobc.eth",
+          "atomId": "0x7aaf6be11ebccffb81f6195013fe4dc3d52fbde76e1f34ce2c9df22c5f195b31",
+          "tripleId": "0x14e1e6bb15dda564819aeadff6aca49cc233b67528e3f98cd7c05e6595b2f1d1"
+        }
+      ]
+    },
+    "0x1434da448088552a449de3d79ba7d726177594f2d94b2c6b48d0d7da9528e6b5": {
+      "label": "Financial Services in the Agent Economy: From Platforms to Autonomous Operating Systems",
+      "tracks": [
+        "AI Agents and Automation"
+      ],
+      "tripleIds": {
+        "hasTag_AI Agents and Automation": "0x8cc0b45c8b20ea9e0ed85b98e9b7c7d6407e34944f66f2ab751f89de4ab23f1f",
+        "presentedAt": "0x0d7e8f4848d1131b0c0ba1e0f8b8a38a4a6fc66fcf630344db26b758961e1231"
+      },
+      "speakers": [
+        {
+          "name": "Michael  Wu",
+          "atomId": "0xf9a3e48585b09dd7ea1735ebdd2154c592c9453cac1b35aab4e838fdddd54d49",
+          "tripleId": "0xa831cd424703eb5662fba3944fd4c66540be4ad68d759e219f3546512c4ab9ae"
+        }
+      ]
+    },
+    "0x5cdc50208dd188f546c76d72edf708c6c407845b8dc120df63f51ae20f902616": {
+      "label": "Spritz — Building a Truly Decentralized, Censorship-Resistant and Permissionless Communication App",
+      "tracks": [
+        "Built on Ethereum"
+      ],
+      "tripleIds": {
+        "hasTag_Built on Ethereum": "0x31cef41a0c73b3455fd7a7340cb63188e81fa3f2e482486f1af94f59ed535582",
+        "presentedAt": "0x3658cff9abff7f4918d7494cd273ac3d0ace819a62c8bfaf2a93045a056561fc"
+      }
+    },
+    "0xd60269c27c7ab6ff86a92acb594cd549843b368be73e15a5939b932217aa2e4d": {
+      "label": "EIP-7702 meets hardware wallets: stories from the browser extension wallet frontlines",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0xadd64f2922b82d2182dbeacb8027c9459f79bcfaffd4036b4adc0c993fc30573",
+        "presentedAt": "0xdb175a11b774ba31b66f45a35a85659eab89e1dfac5aa9dc383a0a7bbe873e26"
+      },
+      "speakers": [
+        {
+          "name": "Kaloyan Kosev",
+          "atomId": "0xbb4046b5d498ce2e8e54a64651bed8259c0e64a2e5a34746565b68fba6f945b4",
+          "tripleId": "0xe1f263490079ced4e75cce794af9f4469236d092c0b221043a9f101a5df8f778"
+        }
+      ]
+    },
+    "0x60694cf0ece5a32e29e1db8a0e7539eb94066da7816fac35f02e5955a88b3cf4": {
+      "label": "The Early Days of Ethereum",
+      "tracks": [
+        "The Unexpected"
+      ],
+      "tripleIds": {
+        "hasTag_The Unexpected": "0xc60216e101bcfccac2746653bf47243188b3451f6a1821e77bad2e3c277d258e",
+        "presentedAt": "0x865f380812b2ff29fc2d870ac3f04b4bdf669db263c077c4756a9ab13d6f376e"
+      },
+      "speakers": [
+        {
+          "name": "Bob Summerwill",
+          "atomId": "0x623a66029ecb2d3ca103dffeab4af6c19352c9b9cc4d4a08c85644d61b8addbb",
+          "tripleId": "0xd89a8a7ea8b049817c204a00e682fab7d1ae452efd56bbe97bd5cb834bade11e"
+        }
+      ]
+    },
+    "0x7bda101c57c4561ce1a3b32b03f399648982f86c331a31136827cda097c58b19": {
+      "label": "VOPS / Partial Stateless nodes",
+      "tracks": [
+        "EthStaker"
+      ],
+      "tripleIds": {
+        "hasTag_EthStaker": "0x805ba293f0befb9eb9161afc0e4083f075eec8c4d683493f91862f56123fdddd",
+        "presentedAt": "0x052cc76147758bd3bb0aac3787ad710b9cb4be0596a740c754d6dbe7bfa042fa"
+      }
+    },
+    "0x75ecb8844ba91a1173664ff2d272bfe706a79229085f97eaf2c11dad806e7725": {
+      "label": "Proving Less, Verifying More: 3.5× Faster L2 Validity Proofs",
+      "tracks": [
+        "Applied cryptography"
+      ],
+      "tripleIds": {
+        "hasTag_Applied cryptography": "0xca27eeaeee028e07abb4bc3c7e187ed8c8226f33aaa0457be3d0c4803d19294e",
+        "presentedAt": "0xb0da6227377879077b7f65d3f3df103df415e0152a383c9453d3ead08db1fe6f"
+      }
+    },
+    "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec": {
+      "label": "From MEV-Boost to ePBS: The Protocolization of Proposer-Builder Separation",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0x75739fb242e0c49d4f9935c65c595286061f2e9e62df2e812b206ab3cdd4733b",
+        "presentedAt": "0x9c93e27a12f0914f447de6a325dd9fa61853a8463d6ff68ad8c7413a634df6dd"
+      },
+      "speakers": [
+        {
+          "name": "terence tsao",
+          "atomId": "0x5348a3f8e7b026e9715370a70d5bf445e2cad678f42c0752eaa68a076f2070d7",
+          "tripleId": "0x2c034e7b59fa3fd7861587431d6977904338213d2e1611fb4076ef069ad0c0ed"
+        }
+      ]
+    },
+    "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218": {
+      "label": "There is such a thing as a free lunch - the deep fake refund economy",
+      "tracks": [
+        "Applied cryptography"
+      ],
+      "tripleIds": {
+        "hasTag_Applied cryptography": "0xe1213131ce7fc9d77977cf4e12d3139a3f6a7dfd779573d55d2692b8f4bf53d5",
+        "presentedAt": "0x8b788caa8f404bc40d00b1779a6bead3724719761f6d05db756ae477c4f0a439"
+      },
+      "speakers": [
+        {
+          "name": "Praneeth Srikanti",
+          "atomId": "0xf71481d8ce34fb766d3fda74b8a0334f35a283da17ffb29c56e8a83ba4e242aa",
+          "tripleId": "0xc45d5889af853a39814fe4253a6bbd8429a70b2f4e8730c8c403ea5cb17b65a8"
+        }
+      ]
+    },
+    "0x69affd99159a7e77006e574190753026b0c37601ac31efdbe6a43150919ad5d7": {
+      "label": "Privacy and self-sovereign infrastructure!",
+      "tracks": [
+        "Cypherpunk & Privacy"
+      ],
+      "tripleIds": {
+        "hasTag_Cypherpunk & Privacy": "0x3d9b33f8bcd3d461047e702fbdc05c494ad39981b7d61e14eb233e7a45316cf4",
+        "presentedAt": "0xef25c2de8b228283de6d1af02740087d6a94d9eef15ed32d77ab86b7fa50c7bb"
+      },
+      "speakers": [
+        {
+          "name": "Adrian Brink",
+          "atomId": "0xd21e1c8caa37325ae6bc2fa45620c5e39a78f7922f33ba6d5ccf345e43d098f8",
+          "tripleId": "0x8d4f1e3bcdfc9a6a15b98a3e191da4e4e6e4f616ea645864a3f86fdce7f47903"
+        }
+      ]
+    },
+    "0x534159dc5484b15ebb34d6ef659b750e3df809cf23ffbccfa7827dd810fdfa3f": {
+      "label": "DeFi Agents You Can Actually Trust",
+      "tracks": [
+        "AI Agents and Automation"
+      ],
+      "tripleIds": {
+        "hasTag_AI Agents and Automation": "0xaad27d5212f18b1083aa2cab0421fef29fce0aaa44b9a2ae8dc49ff75363ad34",
+        "presentedAt": "0xe35c2a35de74bbcda009b26edb6ce777bf2b3948831d724873b6821673c3059e"
+      }
+    },
+    "0x100481e77dd456b2744e968a213142ae0f59049645f7012eb5d74bca4340938e": {
+      "label": "Updates on Ethereum Interoperability",
+      "tracks": [
+        "Layer 2s"
+      ],
+      "tripleIds": {
+        "hasTag_Layer 2s": "0x32fbb07d6f0b6ba868d9b0f3a39ad0d81d7acae5d5a28166fab8259cbc31a8ad",
+        "presentedAt": "0x5bba6edeb1db21409b51ddfc2ebfd25dd7a982566db723d17ecba0a7c4c1533e"
+      },
+      "speakers": [
+        {
+          "name": "Barnabé Monnot",
+          "atomId": "0xf5d21c807a3192c7dac56f227dc520e0719c95697068fb5ad0deeccebdcd4f3f",
+          "tripleId": "0xe7a3bf768fff887f368794bf0cc3f9af737d0e4336ade6556c638658eef8a7c4"
+        }
+      ]
+    },
+    "0xa60e8f3c2f7afc0b1f4b92a7782b80e7f9fb17b0964cc42be78c6e072ff9faf3": {
+      "label": "Educating Developers, What can we Learn from Experimental Schools?",
+      "tracks": [
+        "The Unexpected"
+      ],
+      "tripleIds": {
+        "hasTag_The Unexpected": "0x228d1da98f0c1eb6d438a703623385705b4b11c731ab545e528ab3e947579ff1",
+        "presentedAt": "0x2dc70c74a606b1ce19396f848faa7a8b0a7a9eef8f5f5a88902719b22f0e21e3"
+      },
+      "speakers": [
+        {
+          "name": "Gwen",
+          "atomId": "0xac677ac31b4e39d4391613619055f444cb2fd89c1eb9a77658828900ec48c9c5",
+          "tripleId": "0xe9c16743ff1a501be38f18961a241f14e1f715fdbeea75dc2dc5231f9784c8cb"
+        }
+      ]
+    },
+    "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42": {
+      "label": "ETH issuance clash",
+      "tracks": [
+        "Block Fighters"
+      ],
+      "tripleIds": {
+        "hasTag_Block Fighters": "0xb5da6d39ff3fafd56afeef26d7793573f8691326da30637da64dd7afbb467f46",
+        "presentedAt": "0x46484ddcc98688484cce7cd21bf967aeb9ddebf5818c74e9f2c99ff28a1512f1"
+      },
+      "speakers": [
+        {
+          "name": "Izzy",
+          "atomId": "0xf7819e297039663b1847c51c7f8bb4aafd0784c8f5feef6be7656385c6daec60",
+          "tripleId": "0x5b266e2785311fd1e629a2240b52926f07384bff6c688763c2647a901e672377"
+        }
+      ]
+    },
+    "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837": {
+      "label": "Quantum dilema",
+      "tracks": [
+        "Block Fighters"
+      ],
+      "tripleIds": {
+        "hasTag_Block Fighters": "0xdea4541ed581a4ff1cb670d77d0816435151beb884af607bc1cd6ffd8ba39400",
+        "presentedAt": "0xbe5a9c9848582dcde7bbc2173bffa1d19553314e1c94c5eb432d76856df0d865"
+      },
+      "speakers": [
+        {
+          "name": "Reno",
+          "atomId": "0x4abdfa6f7602879471fee13f2231edaa36392437135bdf95efdbd4464872cbd4",
+          "tripleId": "0xe701a7fd912d4e602416eac897fd6a8ce2ce13e7b1e48cfdbe4cb8dacd86a246"
+        },
+        {
+          "name": "Justin Drake",
+          "atomId": "0xbc6ede1c524cc597fe94973e7522dd4eff89380df3f2e71477c16960b5027766",
+          "tripleId": "0xbcd740eea5df5369b36ea3e8c44e0ce5639f65305cba9a2df76f2d55aacc57db"
+        }
+      ]
+    },
+    "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858": {
+      "label": "Autonomous On-Chain Intelligence: How AI Agents Will Transform Web3 User Behavior & Payments",
+      "tracks": [
+        "AI Agents and Automation"
+      ],
+      "tripleIds": {
+        "hasTag_AI Agents and Automation": "0x8ec35958cd0ff749cd777db20a48f995e9c96c64583900927ce9e09db3d7ea39",
+        "presentedAt": "0x33bdd885a23d0b72197bb2abcbcf56e7bcee8747218488baa42b4756564a41d0"
+      },
+      "speakers": [
+        {
+          "name": "Devon Martens",
+          "atomId": "0x263ca13c69d57ce73edde7c6e2f8a5721ffd76ecd9b299b9aaf48bb1f683b950",
+          "tripleId": "0x9a3b5598a59b8dcee112ae072d4af42eb8d3439c65f195e169a8653a428e626a"
+        }
+      ]
+    },
+    "0x938102699cb1ebcd224c15674d8d34ee475e2d06a22fba5abbbf5059a91bc773": {
+      "label": "Maintaining Ethereum's Future",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0xab6670ad6867ea21905f23c818b68150af6d1a3aaaee01f9d6430de7bc94c42f",
+        "presentedAt": "0xf662dd814e2bffe3c6d1ca8153aa872446d61e38dc6e211373a7f82839891a03"
+      },
+      "speakers": [
+        {
+          "name": "cheeky-gorilla",
+          "atomId": "0x2afb90965bb2ea8ab7321fc399bace102cab971014ce5d6f2492bed7498495aa",
+          "tripleId": "0x3454026ab20903ceebeb1cd0b75f68f2b1db0d4b92aa0aafa72a0822de35ea6a"
+        }
+      ]
+    },
+    "0xac836ad5e24bc08c0eeda1a4458cf8cfc405b74012ef3b707760d745cab03902": {
+      "label": "Prove Geth with Ziren",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0xcf0da3a9b5b854bc57207211f71e75bd2f0b10f72b6d3a3e261d20ebb5fd5870",
+        "presentedAt": "0x1c728626f0b78d1f8d769e6bcfec02dd6bbc8364c208061d7fb17e184f45d135"
+      },
+      "speakers": [
+        {
+          "name": "Stephan Duan",
+          "atomId": "0x47be929fba3b5d3a73c7947356473d660ed2f6890687995ee34905f3756c6248",
+          "tripleId": "0x33fcdbf2d17b7760d188a5e4dfb2f5633e75bb8fdb093da2e7d109b2d347d787"
+        }
+      ]
+    },
+    "0x8fc53c552ba351998bf87fa22c4662dbb44ef5b245c4803b2283319d91940331": {
+      "label": "Ethereum's decentralisation; five years into proof of stake",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0xd92bad4cc5f8dc6e58da2625fff95a91a35eb2a9031cd357703adee809bf1b1f",
+        "presentedAt": "0xa1cd57aaacdca66f15d3be5b7989db823ee38343900bd4c684a08d974a6b495a"
+      },
+      "speakers": [
+        {
+          "name": "Oisín Kyne",
+          "atomId": "0x5ef7d7555d3dd7833b4059392a9d491f6cd06e6bab50bba5656e3e3e038a5645",
+          "tripleId": "0x10f66dffba42901c747062d634dc4afabbdadc927e9e754bd925380d08974a1c"
+        }
+      ]
+    },
+    "0x25e18b7adef859a2b20f1fd9295f6a89dedd2867ca7107abece97d6f357a6f3f": {
+      "label": "Accelerating Ethereum",
+      "tracks": [
+        "The Unexpected"
+      ],
+      "tripleIds": {
+        "hasTag_The Unexpected": "0x5d8932af8f9506be74af2f9548dc9a23233b807f8d8e8ba6b19e00ab37507cf2",
+        "presentedAt": "0x91246cba4ac9ee641489868ad0eddcc45771dddbbdcb4fe526ae2f5d7cc8588c"
+      }
+    },
+    "0xa265e2848c26f4e724bb73c4b1f23db77f6fc9c089a3f2da49284f65d98e36bf": {
+      "label": "Raising the Bar: A Deep Dive into Institutional Ethereum Staking Infrastructure",
+      "tracks": [
+        "The Unexpected"
+      ],
+      "tripleIds": {
+        "hasTag_The Unexpected": "0x52deb4c1081fa736b52cda7ae7f5957cf9d510db954b2cd53e91fd32314ffe76",
+        "presentedAt": "0x0b5c7db1708bc2ab4c62069f4616e8082fbc7743accc54d5953e5790d4c39943"
+      },
+      "speakers": [
+        {
+          "name": "Hong Kim",
+          "atomId": "0xeb7088eebcc99267f52de6c57378b52b29e27493b6ad2db8550f7cbcbf88a75f",
+          "tripleId": "0xe09d8acc6d9b5be0c3d0997a659f372db6d2c984ce63a75e9dfd8c8060f7f8dd"
+        }
+      ]
+    },
+    "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5": {
+      "label": "Token Engineering",
+      "tracks": [
+        "Breakout sessions"
+      ],
+      "tripleIds": {
+        "hasTag_Breakout sessions": "0xb21d90f1b3833ec207422baad0c9601d3ddc31eef30ed8c331076f81f06981ff",
+        "presentedAt": "0x8113e89f23a6f088f4a241f72b445bf6a90fa97413480b588897fb464c70ddf6"
+      },
+      "speakers": [
+        {
+          "name": "Mark Ballandies",
+          "atomId": "0xe4b3b6ef20bc8f31e47fa885dae73d01e511ea85f5e4793a90453f22c814994f",
+          "tripleId": "0xa5e30d7e10b82cb5664b7243e11e521789146481b8eb04a7e8e2d9aea0916231"
+        },
+        {
+          "name": "MB Richardson",
+          "atomId": "0x3f933204b9041c926329e34b99a789b0121ae023826f47f0bab22409ae00723c",
+          "tripleId": "0xb4c6aa34a520738fca663198f0a6913db4db83d4a8712b40701f36ecbdd2b440"
+        }
+      ]
+    },
+    "0xdc1d883940f8ccceaed853e545cc6769a7b997095e2722629e8c13988df51687": {
+      "label": "How Web3 Can Rebuild Truth on the Internet",
+      "tracks": [
+        "The Unexpected"
+      ],
+      "tripleIds": {
+        "hasTag_The Unexpected": "0x17bba30f0361768add2ee9a6ee8e2219f2ea6d2fd769dd596c4f91c5e2986d8c",
+        "presentedAt": "0x0ef7efe3dbb0ba9258826bc8ec1ecfe877a740230b39112612f27fb05412ffea"
+      },
+      "speakers": [
+        {
+          "name": "Yaniv Tal",
+          "atomId": "0x46b8311d53146b42960e1984519891a194ee40c7a51c7fd8642c0704eca253b6",
+          "tripleId": "0x0a550cf972c189a9b418e99b9b9e8d84aae3cef4f77b7a40187cda76ec176ab1"
+        }
+      ]
+    },
+    "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0": {
+      "label": "DAOs: Fail or success",
+      "tracks": [
+        "Block Fighters"
+      ],
+      "tripleIds": {
+        "hasTag_Block Fighters": "0xb13938533a8242138c87e21e7c43b6e1ad281ceccb7cd258a4d34f5cb6c34f7a",
+        "presentedAt": "0x447e466f10a2b414d99a6e052fea9ab8fb355f33d8fe25b4bb613d8f805d1235"
+      },
+      "speakers": [
+        {
+          "name": "Griff",
+          "atomId": "0x933656f65c3e143ffebfaafd7842dc3ba4fa22d4a3f082c2e4b767be307715ba",
+          "tripleId": "0x3b8f090d1b7b5d5c938e7c468da5f0a852535920236da3c28c884e9a80bb1e8b"
+        },
+        {
+          "name": "Grace Rachmany",
+          "atomId": "0xed6c07940f085640492314de3534c35d34854f8d039ed66f4c859b00d19e3f19",
+          "tripleId": "0x9fb50d15adfb26a73d9449d0fa512bed295d15b9743fa2f10c6a314a5817a385"
+        }
+      ]
+    },
+    "0xf63693f53890c4bb6493b440fb611f501f8aa134348d8c9633069dbf138fb599": {
+      "label": "Preparing Blockchains for the Post-Quantum Era",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0x45979ad1e73701e7eb34a005fe939594aa75bf9ded3e3f7440c4b03ccf428b8b",
+        "presentedAt": "0x89447c4220534a177f39edff5330f2529689ecf562bc501b81cb5a46d547fd5d"
+      }
+    },
+    "0xe32d2695dd73bf85fc7625f0fad63cce321039fd8db9a5a53dc7c87195e608c9": {
+      "label": "Getting your EIP included is harder than getting a Ph.D.",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0x0673bde84f76be6e8e0b8792202b01b1d0386b1d44e5f41de53364258988bce3",
+        "presentedAt": "0x7b73c68a64f22a497196bcab4a0964b1810302d82003d16d761b801a81039292"
+      },
+      "speakers": [
+        {
+          "name": "Amxx",
+          "atomId": "0x93348061b084dfa0798f42281e48bca6f7ecce21e2289fbffad0ef0487a9b4c6",
+          "tripleId": "0x842aa8d4452ee2ad1d0ebe1cd6b41227953a94ea982ec1503f373da60759b435"
+        }
+      ]
+    },
+    "0xaaa36e82925f761d9d5abf5f4fb80d7f9277b1ec1c548da59e99128a4f55dd03": {
+      "label": "Not All State is Equal",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0x8b49e6bc61077d9ea6331dd86393aa58aeea01a5478f771cb28920f48c998f36",
+        "presentedAt": "0xbe0421f3f9541fcaef67711e34f4ca2bd8c11b662d92b6a76907bb7a01d40770"
+      },
+      "speakers": [
+        {
+          "name": "Han",
+          "atomId": "0xe9861effc96100a69c7484ba2b97f507d1b9a43ac2fa313c228648affe143404",
+          "tripleId": "0x7c8c9e0ad9d2983dc3c973412fe464e1c69bc3f6e431f51149f09cbda111c09d"
+        }
+      ]
+    },
+    "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b": {
+      "label": "Canton Network: sleeping giant?",
+      "tracks": [
+        "Block Fighters"
+      ],
+      "tripleIds": {
+        "hasTag_Block Fighters": "0xfaf473c109c187f2da7b47b40bbca33c775686ccfc29acfc614cf3979ce24d2c",
+        "presentedAt": "0xb650af9a1d47c59d937e4802e4b1aaebbd425d69567b45ab9415dc674e55e505"
+      }
+    },
+    "0x4085219f65a31ed0b9fd1d620ea57e6492191f70efecb6163337d9d126496974": {
+      "label": "New AI Workflows in Remix - from Concept to DApp",
+      "tracks": [
+        "AI Agents and Automation"
+      ],
+      "tripleIds": {
+        "hasTag_AI Agents and Automation": "0x93d7a26f398547597ff8fbe919043d025bc44cb6a61f96bdd505d9fd45340966",
+        "presentedAt": "0x80d06002d1e9d31a279fd1772db66055c52614e37c9fed4fc33d32b0d08b3e0c"
+      },
+      "speakers": [
+        {
+          "name": "Stéphane Tetsing",
+          "atomId": "0x900fa6c12a8bf1d47dd0138f76c2c87745f186e31e0510f52dd6bd28ea1d44b0",
+          "tripleId": "0x8c37e132fb4062177a438ef9dc922b3b2b3bc8632b7ca0d946d5c17c06ce74e7"
+        }
+      ]
+    },
+    "0x67597433b3fa101da1cac396bdd54b16e58a0a1852e0df8698c926e1d6d225de": {
+      "label": "FHEthereum: FHE for Ethereum",
+      "tracks": [
+        "Applied cryptography"
+      ],
+      "tripleIds": {
+        "hasTag_Applied cryptography": "0x32e2df41ffefa0e6cd1d1851d6cc2f4507ff9b63303fd8c8c09ee69dde0af53e",
+        "presentedAt": "0xbeab3a846894203042208fd16eb7b4523bd1ae8b77585a53cf6488737f42b878"
+      },
+      "speakers": [
+        {
+          "name": "Eugene Joo",
+          "atomId": "0xf40ac9a4cd3d134da35df50000c0fdf8814bf6c2e9c56d923e9e02644bd90571",
+          "tripleId": "0x4a2114fbe9fc301fd490d902f81f33575f22e15a93a93e58d37490ef396f03a4"
+        }
+      ]
+    },
+    "0xa3f9c3685bd933d2b2fcafb2a1459ecc1f6aa57fc03ab8e0a3e2ed8158f400ec": {
+      "label": "The key takeaways of Scaling the L1. The data collected in the trenches and what should we expect.",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0xf9cd1c7d700d2734ba3fc41ba67fe1a3301b49aca55690e57236e47b49a5e694",
+        "presentedAt": "0xc97af7cff43360b45a481cfd8d48c827128a348f4f89d134de324bf821a91e67"
+      }
+    },
+    "0x015ff7a134a5013348206209f011d31bf62f51094c864b6d3551097d8e474d35": {
+      "label": "Decrypting Encrypted Mempools: State of the Art, Convergent Designs, and Future Directions",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0xb46501e36d04ba808d47cae3c23883dd9d1500b5713b4c01904fef9330415c38",
+        "presentedAt": "0x953501c9f5f793619043936bcb8bc3e69c66c98258b8c762c03f3fdecd0197d3"
+      }
+    },
+    "0x0617e219d2370de11bfacaa7a860f3ceab5022f9c952434ffb9023c78960aa0a": {
+      "label": "Improving Blockchain Security via the Open Source STABL Framework and Scalable Accountability",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0x19580ad72b54cfa45581458321edc26d4c9d6c1e3649c23cc99395a41b0e017a",
+        "presentedAt": "0xbf1ce95ed0c3ac8ca0a3189c200258d0134b48a56e00331bc221cdeb9315b526"
+      },
+      "speakers": [
+        {
+          "name": "Vincent",
+          "atomId": "0xbc2fe68e638a53d5b77dd5e76b54b1a7468ffb024fc869776080f5104d15204b",
+          "tripleId": "0x9fa9142e544ada1932ea3691ea8c2c108d783c3f3ce598ae96dab789617f4411"
+        }
+      ]
+    },
+    "0x194957306ca1f429df0712351d0e86b980136e9f4d0cbfc44cd48b02846b0c0c": {
+      "label": "Making Sub-12s ZKPs on Ethereum Possible With a New Builder–Prover Design",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0xedeafc367ea5aece9484047bbcccf6d0e7cc236798d995765b7d07a82c08065d",
+        "presentedAt": "0x29ebda163d0a273d23774e96837db8e255548f16f1f273671ce820d895124136"
+      }
+    },
+    "0x3c3681e5cd6efa0de2ecb4dbf29b15b94d3cd0c926882499470863513b8792e5": {
+      "label": "DeFi Revolutionizes TradFi with 24/7 Markets on Equities, Commodities & FX",
+      "tracks": [
+        "DeFi"
+      ],
+      "tripleIds": {
+        "hasTag_DeFi": "0x4dc542d87bd3a46c6f477163f0e03f1e529ef0414de2ed525004571438ecb11e",
+        "presentedAt": "0x873f3424c4fd57cc99d7a2296b6ecaee25651cdd400abc0238efb56c61a57c48"
+      },
+      "speakers": [
+        {
+          "name": "Ambre Soubiran",
+          "atomId": "0x51bd9c00768aeb23cdcbe64f21fc38aadf5c525c5b57a3bfcc8a0c9f0ce8d091",
+          "tripleId": "0x1e296b24923093684d2e5e20488c9b511639e54caa9931d1f5627cf2c72bc8f1"
+        }
+      ]
+    },
+    "0x6db174a3a7b61f37d7ebce56c91062d5a949f6bc439fec779616aa7cc4fce075": {
+      "label": "Fairness in Token Delegation: Mitigating Voting Power Concentration in DAOs",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0x0375c596af7fa3d6e39c28c07991f7853136f8ec26095cb8df962b03ac9cad34",
+        "presentedAt": "0x4abb5f356f7e994b6db42f0b2f17af185e5f2af252d5f3839622f5fd2f0e4e20"
+      }
+    },
+    "0xd7f507324dfa925051372edded19a1851fab03c63d47c47497a140ea8b2a2950": {
+      "label": "The Ethereum Kernel",
+      "tracks": [
+        "Core Protocol"
+      ],
+      "tripleIds": {
+        "hasTag_Core Protocol": "0x7b5482be2eea3f168afb46bbed4b81561c456ea05686f63a2c8afc10d60f6c80",
+        "presentedAt": "0x23f93ef0483d07191b72bf25ea3a11976155afbe35ebcc4065e26007b3c08ef4"
+      },
+      "speakers": [
+        {
+          "name": "Martin Hansen",
+          "atomId": "0x5bf0c238473bc3aaa54f237dc0951d81f2a79266983ea606d8ddf2c5bc8a436a",
+          "tripleId": "0x43f84c11f0e233b7ad717c8c9736e7517b8b650b9b4e6a1c40f568714e04358e"
+        }
+      ]
+    },
+    "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda": {
+      "label": "The road to post-quantum Ethereum",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0x76110ee6071ab66de15850ddf497ca744ff632ddece53794c0605360830467ce",
+        "presentedAt": "0x58b94434e77ac340208f4d73572a80708f92974c7e548e58e2c94ff584317b6d"
+      },
+      "speakers": [
+        {
+          "name": "Wolfgang Vitale",
+          "atomId": "0x7f3db83051d2a74ea76aa7f2dc05786cdfa4a23610dd2b1cc8af114dc8f1a2b3",
+          "tripleId": "0x1d56b293eab00d2dc3e612af989e66854d89af5508c65ffb0874f4e8342a0218"
+        }
+      ]
+    },
+    "0x4d0f4b77632e5e8589f46864ea3e84186f176e7d98faf03729d43948ae125db7": {
+      "label": "EVM Workloads in the Wild: Measuring Gas, State Growth, and State Sensitivity Across L1 and L2",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0x0b11da6fbdf5505ec67ec13905e8e9c27460030d5f9494190cb565493644a1da",
+        "presentedAt": "0xbd487c1abb1692e494615dabe36eb4969a0d74d3b6ea9aad16294b88fecbcce5"
+      },
+      "speakers": [
+        {
+          "name": "Lioba Heimbach",
+          "atomId": "0xb1058edd14e64cdfb10c3e493d4adffdbd503f69d79b58fb2936482d479c2b9a",
+          "tripleId": "0x0d729d2969449e5d89407753d75270abbb456dc8dc39cd2ef2d2d56a21310eb9"
+        }
+      ]
+    },
+    "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b": {
+      "label": "Becoming Immutable: how Ethereum is made",
+      "tracks": [
+        "Research"
+      ],
+      "tripleIds": {
+        "hasTag_Research": "0x5e8bc3c0bfb0c787ef82a2b112c54f854005074cb8f01c4152719833eac3c249",
+        "presentedAt": "0x6ef082ceadd3b243c62f3e7b3a42a2092a36e2a4aad22ebd2637b9faa3241713"
+      },
+      "speakers": [
+        {
+          "name": "Andrea Canidio",
+          "atomId": "0xb2f7b44981358aa5ce8c123c85f3cd60d47c36f0fe2dfe5b5a2d4aa5c63f251b",
+          "tripleId": "0xed32b28d84384d78302f7f90e866c411e54c2fd77e8a010152c4bf5b8f5895df"
+        },
+        {
+          "name": "Vabuk",
+          "atomId": "0xd70db6178000d4dc00e3e1c399e9a637db0b6272c5349ea8f51b1a321484657a",
+          "tripleId": "0xedf27ebf12fd6d20f3743c14febcdf5cb539ad878729b1a6a7ff6cc096eb71d7"
+        }
+      ]
+    },
+    "0x0f14dbd15d1937505bda86dd350e789fcf70f2804920cbe6c6431773df6e4b2a": {
+      "label": "Assumptions: The Root of All Bugs",
+      "tracks": [
+        "Security"
+      ],
+      "tripleIds": {
+        "hasTag_Security": "0x8e784815e40f10e22c48fa85ed7a24b70fb8ccc24c17b9fcd9db313c0a04af43",
+        "presentedAt": "0x67fd22b7d43cb4d2e6f80ac490ac5789baa812fb4c768f91e7917b9a413bdb94"
+      },
+      "speakers": [
+        {
+          "name": "OxFlint_",
+          "atomId": "0xb164ba02eee83720356954bf1218ffe67c04b6c5903c2cdd43619dfd4faceb4e",
+          "tripleId": "0x3d35ea0b8040f675a6993d9f90bb0a2780484dbb68aeefa08674f10b76abec88"
+        }
+      ]
+    },
+    "0xa68c3978edc35ada15194e44fa4285947f461bdc16454410219e12128f9528d9": {
+      "label": "Inside the Orb: Privacy in World's Hardware",
+      "tracks": [
+        "Zero Tech & TEE"
+      ],
+      "tripleIds": {
+        "hasTag_Zero Tech & TEE": "0x371908819093d4e6fb918a5e905cbf8422ff7f03637fcb604f04818cd5df4128",
+        "presentedAt": "0x35e88267e1bdad7dbb428a14cf7374d24a99ab067b7969d4b408ab52890a6f1d"
+      },
+      "speakers": [
+        {
+          "name": "0xPenryn",
+          "atomId": "0xdc70d85811fada2e482b80ea95f13486c993f81940d6526f23289aaccdaa6e67",
+          "tripleId": "0x1fd1f680df9c0bbca919a8c53b45ededd3aaa9ec613d908c1596dcd8c4fc4b7f"
+        }
+      ]
+    },
+    "0x545d906ece2500e4ec79555c8bfe19d5222ce428524dc152315189626453b93b": {
+      "label": "New Security Challenges with EIP‑4337 & EIP‑7702",
+      "tracks": [
+        "Security"
+      ],
+      "tripleIds": {
+        "hasTag_Security": "0x7cda485a7111cec767956c3b4e2ac6b81eb05e28be1a0aaaf5c180feea0cf608",
+        "presentedAt": "0xaec1c418f1a21e4980950a39d18a5693e0c441973cb9c577e60540ece0bf4308"
+      },
+      "speakers": [
+        {
+          "name": "AliceAndBob",
+          "atomId": "0x2ba5b87f2b29dd8c848583f493cb183bfa8c10624cbadb3aff6b820eaa428034",
+          "tripleId": "0xd8f24d8a22bb219ed200ec46f0465c79d441ff808694a5f8d600f2ca049cb25d"
+        }
+      ]
+    },
+    "0x2766aa7c06b243d1eabefd52df421859392e438df0bf651badfd566871bb4f00": {
+      "label": "Safenet: A transaction security protocol",
+      "tracks": [
+        "Security"
+      ],
+      "tripleIds": {
+        "hasTag_Security": "0xe184b4901ca8f8beae9ba26b1a5e80ac562c4ef82cca5068a3f1dcba9c5ae77b",
+        "presentedAt": "0x3cbe4abd5deca2698d2b1a851a041d4409363b31001c0c55ee52a4d93a2138bf"
+      },
+      "speakers": [
+        {
+          "name": "Richard Meissner",
+          "atomId": "0x408c46d5610146a3a5e931bb4e5eea8fd00dc681daa806086337fd05aec52787",
+          "tripleId": "0xd737df688728a25ac9a3b101bde9e1893e1c359180ce130d23e43b7e3062bf02"
+        }
+      ]
+    },
+    "0xfa8ad1a380527fe2852a2286334b43eb30533bc6463ba7dc8a1eb6a73fd2793f": {
+      "label": "The Next Billion in Web3 Will Get Hacked Unless We Rethink Security",
+      "tracks": [
+        "Security"
+      ],
+      "tripleIds": {
+        "hasTag_Security": "0x53f68b275688570568427512d78f7b2fdb90076dbb0251831f5d1511cdd10a26",
+        "presentedAt": "0x792975c9959f9a00ca6c940abb07734af6e060527f8f9fd5a638209a7b506ef3"
+      },
+      "speakers": [
+        {
+          "name": "Sarah Hicks",
+          "atomId": "0x93dcc7f37cc20a76c936f6917fdbd2df372093d77ca7ec1473d8e660be2f42a5",
+          "tripleId": "0xb3957c2f2b0092097b2b9fac06b0311b4c1c1ef6b0a40ee124c2ac3daadf2367"
+        }
+      ]
+    },
+    "0x3fb77dc40173b0b4b858040fe85734cbd944ee1de51c57b98df566b01c114ea5": {
+      "label": "Strengthening Oracle Security in 2026: Key Principles for Builders",
+      "tracks": [
+        "Security"
+      ],
+      "tripleIds": {
+        "hasTag_Security": "0x3706ca174f0ece1d3f9dd068cb86d75b75dc77302e47272c0947ea4397755c23",
+        "presentedAt": "0x22a586d610a7bc112339ba7f40246edd2732d0d0a243044408e3b25ae96cdd59"
+      },
+      "speakers": [
+        {
+          "name": "Bianca Buzea",
+          "atomId": "0xb0351a20be9a91ac954fd2eea2b6c019f8849d8ebffdde16a139132083338e3f",
+          "tripleId": "0x44c607cdfcdcd7949a7f424acaf66ba252cec1583db451468e68c49b4f2c2d26"
+        }
+      ]
+    }
+  },
+  "trackAtomIds": {
+    "DeFi": "0x31d170b3efaa2820d0d6b0c53c7232618ec74495871ed32907a1c9028ce78a8c",
+    "RWA Tokenisation": "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb",
+    "Cypherpunk & Privacy": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019",
+    "Stablecoins & Global Payments": "0x3192914ddee59330c9b4f453efb940d407578859cb87feb585d4062ac10f89c7",
+    "Built on Ethereum": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985",
+    "Layer 2s": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a",
+    "Product & Marketers": "0xd3b79740eb2ab4ba95dd6145aa303196ed89cca32a89f88361938de6f962c81f",
+    "Breakout sessions": "0x47ba370df0bca8846e101c4ec5b7695921e1d3ecb31c0d3374a0845a8c172a2b",
+    "AI Agents and Automation": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671",
+    "Core Protocol": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf",
+    "The Unexpected": "0x5e6f3a9bb00b0dc14be9a358dd1f107895392c5767b50225c6b4f3f4b8e73367",
+    "EthStaker": "0x60792f8e7c11bf88b026587c24ee338f02f883a306d947a0448b998e966f1d93",
+    "Applied cryptography": "0xa294407354c71d4ad9fd5088726a36a6e3bebc3be70f2b968cec0d601e9a8a7f",
+    "Block Fighters": "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e",
+    "Research": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc",
+    "Security": "0x44f497066d7ade71154420d3cd075c3a2b02b9f2446301cbf154cdd5f9c5d50f",
+    "Zero Tech & TEE": "0xa1ace10f77b5b560038429d8012862db14a5664bcd53f0b55da75f4cb99ac29d"
+  },
+  "sessionIdToAtomId": {
+    "2l38l8YppgPCrNBfbYxO": "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e",
+    "5LgbVoPSIWqupo6ysMkZ": "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5",
+    "C0RdqrFmYDwGN0FANUlE": "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e",
+    "Dhyq60FeKS1WFoWR8eCq": "0x706d73d0a7d15fbe2574c93a9ac353aa7ff72b19df9070c880350b4a1544b731",
+    "1EFmzJSHUDtSAttwEXB2": "0xb63e06765f9ebb45e28d6bd085fc5c68b675fa6250f753fff83df9622bd995a9",
+    "1QKhZYlAlTscD7brC8Ks": "0x2b1a7ca41172348d1a435b76b99d3d48c2963428895b0400f5bf55457de32864",
+    "23Gv7b2zFADiZUqlLIH5": "0xe3f51c70d4c8826d052d8bc5d9d0b89c13faf6b1cddefa3856eefff0bce17618",
+    "0V5IrWOnQ846xYbQcRV8": "0x82d8e626581a84e709b228fa286a28fa02e516e162b4d3adbff049b40b5bbd2c",
+    "A759GtMHarCFBwUONE13": "0xf0e6f1d122b6acd9e07d7fc6521c390e9a21134ac5143023145282a60984e47e",
+    "G29baU7IeWNcApKCFA0t": "0xb5c77634fc6b24c665111237ad167bb664dae2f83c02957617053f315b76ac6a",
+    "0QDjs6ocYeRdlsqpjIwA": "0xb567f758fcd9fd978eb86bc2c9c73da03d602501df81190281f4d18584352fec",
+    "ASytypZme6Yc86U1AmAo": "0x445673a0f48dcb26dbd3f3e609cb7a5eb02442e66b4553a4226dab98a22f13bb",
+    "FxrCDQmyJCZt6b3s8eyu": "0x1976fe35c10edd13ef4027096b55ef295f541f9f83831e0e230bd806d4e6e225",
+    "0gHL5FKoKZvrxwQRstxu": "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b",
+    "7LNzSWaErj0wWL27i3G9": "0x1a622b7045cb503f5de03f6c0377e7d12909e94ca273ff67293a4ace2817bb54",
+    "EyufBPv759FquzJHdiWs": "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca",
+    "0eYbKdP3iJ75NMRUygLo": "0x1b1e47acc0d49f5a15cdc4a40554c9e3bad237ffa166e2082d543d19c79fa455",
+    "4Eu1TD9Qakz9NHpgBhm9": "0xcf9c5f737857473ca109dbef91181e26d68d93ff309c50cbb51e4d9a548ed5b7",
+    "09O6ZoMzzeVfGUNJK732": "0xc4fce956e4e6e02ba18afd64f9344f3ac5f389985d18fb30c1d7b7fdfc7be741",
+    "2i1svhk9XiI8VYuu6TYV": "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293",
+    "3bJJxLhljyIPJswiwWrX": "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb",
+    "3qxs3wJeD1sXD5R6R0P6": "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239",
+    "05GaOSG3FI4ychS5IIX1": "0xe9a2c05e70ea9845cee3d27233a55eb2c6140c00b0635871d38e84e167ae3aaa",
+    "GsRf4WCq2ddZ3wbAwLFY": "0xee2ea9faadae7a3554053b7620a14aa3ef81e317b11fee50f1bb5a59295d5b54",
+    "4SP4DERuuhYipwivS4tV": "0x9a9f3a4d48261329b8b426b3bbebb1dd672e1b4fd7e774769a67feaaf7a22b7f",
+    "6EpgNJDgDTKW53ZKG60u": "0x28105e1813e7d8fae1acf9fea0a628ae5b5441e0d1a2c99d5e61cf88024fd5d0",
+    "6iWCWhSaUf9qhnrNSSvX": "0xef4654089e9d788dea40f5929b1fcefd762a8d4aecbf07243c75af95ca060d7a",
+    "0csPofEyXzr7r7COWvCx": "0xdc84e5e27bcbca3c2bd4343b8bf530fcb647d50a798d09a371cca6fd3603a549",
+    "F8eC6wcupA0D8ENj4kQj": "0x649e6f8ff891baaec19065b46fb301cb72c5e81fad800973e71621b60c23a149",
+    "D0tD7nGE1oOZ0mUuu9Lz": "0x317d2ba4151aa1172cdaccfdda2308fb348a6d3cf2e9d4f3e34c9bbafce350a5",
+    "69m3TdSdOucLzx4BbNEq": "0x39b9b18c3767afd2e2808829006e78a9a4c390baaebcee9954420a4f711071ab",
+    "CVzpmz7FVbyqlfm70jA5": "0xd608768a276c1fe59794873a70ddbbc883cd76df6dcf860eb22d0b03a115e2e1",
+    "4ehetVFGI0vtYL2nZcyx": "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae",
+    "4etQjws0ksSmIewfl55b": "0xffac32778ae305c8eed46022dd471ba42a2ff8e6b86133ba3bc807d904617c5e",
+    "Dt2YkeU7IlMWd0QT8vdx": "0xa07180d055e4c90b849a6e5bad16c7466171a5b596ae8e87a37e4eb938ff9a4b",
+    "4fPfl153ol7Q8swm4R14": "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7",
+    "214jkwbwv228iIIM0hdB": "0xa892532c6f3b99f7fb51fb54ba94bf41896086baf5869e018b1c08041118498b",
+    "BygVnBiSccrna2IYrDiq": "0x5cdc50208dd188f546c76d72edf708c6c407845b8dc120df63f51ae20f902616",
+    "G9ESBS7utkMuyfg8kAHT": "0x69affd99159a7e77006e574190753026b0c37601ac31efdbe6a43150919ad5d7",
+    "3lPPypz8YCQOnl3GcfHy": "0x100481e77dd456b2744e968a213142ae0f59049645f7012eb5d74bca4340938e",
+    "4d6CKQrSAsRmbBZwKGpI": "0x60694cf0ece5a32e29e1db8a0e7539eb94066da7816fac35f02e5955a88b3cf4",
+    "4AUvAxLMnwMf184yJWqy": "0xa60e8f3c2f7afc0b1f4b92a7782b80e7f9fb17b0964cc42be78c6e072ff9faf3",
+    "6to6QjWfqqRgfsCSseNP": "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec",
+    "BeCKAnPQFgoQ3tYY0ASQ": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837",
+    "CHzqBfgcHfIN0Hm3Ejqb": "0x7bda101c57c4561ce1a3b32b03f399648982f86c331a31136827cda097c58b19",
+    "D6JVGBwERRMsuF6dC9yf": "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218",
+    "D0LoFjjt7HaTRbLO906G": "0x75ecb8844ba91a1173664ff2d272bfe706a79229085f97eaf2c11dad806e7725",
+    "7PRUuB03MTtixjs16M8B": "0x3dcdde8756b1d26cd449560c67b4e795e39280ebea5fb3d9c892cba5d5e78d64",
+    "9GlSJq4y1JfKxQebvdz1": "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42",
+    "33BHiHrbnmsST0p2sBNs": "0xd60269c27c7ab6ff86a92acb594cd549843b368be73e15a5939b932217aa2e4d",
+    "ARPUzF6pM0JUy9k7Abg2": "0x1434da448088552a449de3d79ba7d726177594f2d94b2c6b48d0d7da9528e6b5",
+    "E1EQiPWN2qpEEGg4V7gl": "0x534159dc5484b15ebb34d6ef659b750e3df809cf23ffbccfa7827dd810fdfa3f",
+    "5SluvQKf4EQFFp6l0RvV": "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858",
+    "EE1BFuxcUckasPJV7y0V": "0xa265e2848c26f4e724bb73c4b1f23db77f6fc9c089a3f2da49284f65d98e36bf",
+    "1gLoT6hu6Nyvw6GvRryp": "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b",
+    "EPRvYcgSicFBIer8VyUY": "0x25e18b7adef859a2b20f1fd9295f6a89dedd2867ca7107abece97d6f357a6f3f",
+    "CZI82OWTsIFzicVay69K": "0x4085219f65a31ed0b9fd1d620ea57e6492191f70efecb6163337d9d126496974",
+    "FF5EyR6YohFEi18jQFer": "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0",
+    "7vFNYgc5lxzzaAaNqMc0": "0x938102699cb1ebcd224c15674d8d34ee475e2d06a22fba5abbbf5059a91bc773",
+    "2k95MwJRdxq86GrVIxuB": "0xac836ad5e24bc08c0eeda1a4458cf8cfc405b74012ef3b707760d745cab03902",
+    "EDsC4cRKvDWRtBJ7DfCK": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5",
+    "5euEAEz8eRXpypX2NHL9": "0xdc1d883940f8ccceaed853e545cc6769a7b997095e2722629e8c13988df51687",
+    "7aXIjRX6G641HD8NrvHE": "0xe32d2695dd73bf85fc7625f0fad63cce321039fd8db9a5a53dc7c87195e608c9",
+    "6hTYYFLzPnTI8Kz7YT2g": "0xf63693f53890c4bb6493b440fb611f501f8aa134348d8c9633069dbf138fb599",
+    "Ah63p6bYntFfkPhPgIEn": "0xaaa36e82925f761d9d5abf5f4fb80d7f9277b1ec1c548da59e99128a4f55dd03",
+    "11LduC9wEGeqyGsXnxVe": "0x8fc53c552ba351998bf87fa22c4662dbb44ef5b245c4803b2283319d91940331",
+    "CPJDHI9M9YEcCYUNgRqO": "0x67597433b3fa101da1cac396bdd54b16e58a0a1852e0df8698c926e1d6d225de",
+    "FmUDqkLYX5rHjn5bg1eb": "0xa3f9c3685bd933d2b2fcafb2a1459ecc1f6aa57fc03ab8e0a3e2ed8158f400ec",
+    "EzsvjbLm9E6dTSwWHoM6": "0xd7f507324dfa925051372edded19a1851fab03c63d47c47497a140ea8b2a2950",
+    "8CILxcV1tqgNpOiljlkO": "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda",
+    "35LZ4f5t4Xa0whAun4Y7": "0x4d0f4b77632e5e8589f46864ea3e84186f176e7d98faf03729d43948ae125db7",
+    "ABayOVWueOdItjNmT2Q6": "0x8cece1040ec7d4456d17e2a5aafc632cf51e28fb0f056a9db39b2a21d230c60b",
+    "530YzLrnLeEKpvIPIN9k": "0x0f14dbd15d1937505bda86dd350e789fcf70f2804920cbe6c6431773df6e4b2a",
+    "Awt4rzCjlCY2OojA95Al": "0xa68c3978edc35ada15194e44fa4285947f461bdc16454410219e12128f9528d9",
+    "79c2Zw0X8Z9Hg8WKWtRx": "0x545d906ece2500e4ec79555c8bfe19d5222ce428524dc152315189626453b93b",
+    "5EmdOMDQAcfiGZaCFK6z": "0x2766aa7c06b243d1eabefd52df421859392e438df0bf651badfd566871bb4f00",
+    "5k7o0JuBI31rvDz57Whb": "0xfa8ad1a380527fe2852a2286334b43eb30533bc6463ba7dc8a1eb6a73fd2793f",
+    "9bPYyi73xWXngUjfaIZD": "0x6db174a3a7b61f37d7ebce56c91062d5a949f6bc439fec779616aa7cc4fce075",
+    "AAu70hhhjCLx393tJq2u": "0x015ff7a134a5013348206209f011d31bf62f51094c864b6d3551097d8e474d35",
+    "4GuXiV0qGnb1WWsynn9d": "0x0617e219d2370de11bfacaa7a860f3ceab5022f9c952434ffb9023c78960aa0a",
+    "5OxhaCVSMuVWeNiTCEbT": "0x194957306ca1f429df0712351d0e86b980136e9f4d0cbfc44cd48b02846b0c0c",
+    "5cCwhkaSI7uaXaCURpjX": "0x3c3681e5cd6efa0de2ecb4dbf29b15b94d3cd0c926882499470863513b8792e5",
+    "FHjgyBralTdrfDaYCnb7": "0x3fb77dc40173b0b4b858040fe85734cbd944ee1de51c57b98df566b01c114ea5"
+  }
+}

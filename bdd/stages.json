@@ -1,0 +1,147 @@
+{
+  "totalStages": 8,
+  "stages": [
+    {
+      "name": "Burton Stage",
+      "id": "burton-stage",
+      "sessionCount": 16,
+      "activeDates": [
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "tracks": [
+        "AI Agents and Automation",
+        "Built on Ethereum",
+        "DeFi",
+        "RWA Tokenisation",
+        "Research",
+        "Security"
+      ]
+    },
+    {
+      "name": "Chaplin Stage",
+      "id": "chaplin-stage-partners",
+      "sessionCount": 4,
+      "activeDates": [
+        "2026-04-01"
+      ],
+      "tracks": [
+        "Block Fighters"
+      ]
+    },
+    {
+      "name": "Hepburn Stage",
+      "id": "hepburn-stage",
+      "sessionCount": 9,
+      "activeDates": [
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "tracks": [
+        "Core Protocol",
+        "Cypherpunk & Privacy",
+        "EthStaker",
+        "Layer 2s",
+        "Product & Marketers",
+        "Research"
+      ]
+    },
+    {
+      "name": "Kelly Stage",
+      "id": "kelly-stage",
+      "sessionCount": 13,
+      "activeDates": [
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "tracks": [
+        "AI Agents and Automation",
+        "Core Protocol",
+        "Cypherpunk & Privacy",
+        "DeFi",
+        "Product & Marketers",
+        "Zero Tech & TEE"
+      ]
+    },
+    {
+      "name": "Monroe Stage",
+      "id": "monroe-stage",
+      "sessionCount": 12,
+      "activeDates": [
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "tracks": [
+        "Applied cryptography",
+        "DeFi",
+        "Layer 2s",
+        "Product & Marketers",
+        "RWA Tokenisation",
+        "Security",
+        "Stablecoins & Global Payments",
+        "The Unexpected"
+      ]
+    },
+    {
+      "name": "Redford Stage",
+      "id": "redford-stage",
+      "sessionCount": 12,
+      "activeDates": [
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "tracks": [
+        "Core Protocol",
+        "DeFi",
+        "Layer 2s",
+        "RWA Tokenisation",
+        "Research",
+        "Security",
+        "The Unexpected"
+      ]
+    },
+    {
+      "name": "Taylor Stage",
+      "id": "taylor-stage",
+      "sessionCount": 15,
+      "activeDates": [
+        "2026-03-30",
+        "2026-03-31",
+        "2026-04-01",
+        "2026-04-02"
+      ],
+      "tracks": [
+        "AI Agents and Automation",
+        "Applied cryptography",
+        "Core Protocol",
+        "Cypherpunk & Privacy",
+        "DeFi",
+        "Layer 2s",
+        "Security",
+        "Stablecoins & Global Payments",
+        "The Unexpected"
+      ]
+    },
+    {
+      "name": "Vision Room",
+      "id": "vision-room-bs",
+      "sessionCount": 2,
+      "activeDates": [
+        "2026-03-31",
+        "2026-04-01"
+      ],
+      "tracks": [
+        "Breakout sessions"
+      ]
+    }
+  ]
+}
