@@ -32,7 +32,7 @@ export default function App() {
       {/* Hero */}
       <header className="hero">
         <div className="hero-inner">
-          <img src="/images/ethcc_logo.svg" alt="EthCC" className="hero-logo" />
+          <img src={`${import.meta.env.BASE_URL}images/ethcc_logo.svg`} alt="EthCC" className="hero-logo" />
           <div>
             <h1>{event.name}</h1>
             <p className="hero-sub">
