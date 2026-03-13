@@ -1,4 +1,5 @@
 import type { Session } from "../../types";
+import { CHAIN_CONFIG } from "../../config/constants";
 
 interface TransactionSummaryProps {
   topics: Set<string>;
@@ -15,7 +16,7 @@ export function TransactionSummary({
     <section className="profile-section">
       <h2 className="profile-section-title">On-chain transaction</h2>
       <p className="tx-desc">
-        This will create triples on the Intuition knowledge graph (Chain ID 1155). Each triple links your wallet to your interests and sessions.
+        This will create triples on the Intuition knowledge graph via the Sofia proxy. Each triple includes a deposit into its vault.
       </p>
       <div className="tx-summary">
         {topics.size > 0 && (
@@ -53,11 +54,15 @@ export function TransactionSummary({
         </div>
         <div className="tx-summary-row tx-summary-info">
           <span>Network</span>
-          <span>Intuition (Chain 1155)</span>
+          <span>Intuition (Chain {CHAIN_CONFIG.CHAIN_ID})</span>
         </div>
         <div className="tx-summary-row tx-summary-info">
-          <span>Cost per triple</span>
-          <span>tripleCost in $TRUST</span>
+          <span>Cost</span>
+          <span>tripleCost + deposit + Sofia fees per triple</span>
+        </div>
+        <div className="tx-summary-row tx-summary-info">
+          <span>Proxy</span>
+          <span className="tx-proxy-address">{CHAIN_CONFIG.SOFIA_PROXY}</span>
         </div>
       </div>
     </section>

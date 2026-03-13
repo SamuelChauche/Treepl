@@ -30,10 +30,17 @@ export const CHAIN_CONFIG = {
   CHAIN_ID: 1155,
   CHAIN_ID_HEX: "0x483",
   MULTIVAULT: "0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e",
+  SOFIA_PROXY: "0x26F81d723Ad1648194FAA4b7E235105Fd1212c6c",
   RPC_URL: "https://rpc.intuition.systems/http",
   CHAIN_NAME: "Intuition",
   NATIVE_CURRENCY: { name: "TRUST", symbol: "TRUST", decimals: 18 },
+  CURVE_ID: 1, // linear bonding curve
+  APPROVAL_TYPE_DEPOSIT: 1, // MultiVault ApprovalTypes.DEPOSIT
 } as const;
+
+// ─── Default deposit per triple (in wei) ────────────────────────
+// 0.001 TRUST per triple — users deposit into vaults on creation
+export const DEFAULT_DEPOSIT_PER_TRIPLE = "100000000000000000"; // 1e17 = 0.1 TRUST
 
 // ─── API URLs ───────────────────────────────────────────────────
 export const GQL_URL = "https://mainnet.intuition.sh/v1/graphql";

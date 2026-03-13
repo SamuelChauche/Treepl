@@ -1,44 +1,141 @@
 import graphData from "../../../bdd/intuition_graph.json";
+import { CHAIN_CONFIG, DEFAULT_DEPOSIT_PER_TRIPLE } from "../config/constants";
+import { SofiaFeeProxyAbi } from "../config/SofiaFeeProxyABI";
 
-const CHAIN_ID = 1155;
-const CHAIN_ID_HEX = "0x" + CHAIN_ID.toString(16);
-const MULTIVAULT = "0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e";
-const RPC_URL = "https://rpc.intuition.systems/http";
-
-// Predicate atom IDs
+// ─── On-chain data mappings ──────────────────────────────────────
 const PREDICATES = graphData.predicates as Record<string, string>;
-
-// Track name → atom ID
 const TRACK_ATOM_IDS = graphData.trackAtomIds as Record<string, string>;
-
-// Session ID (from sessions.json) → atom ID on Intuition
 const SESSION_ATOM_IDS = graphData.sessionIdToAtomId as Record<string, string>;
 
-// ABI fragments we need
-const ABI = [
-  "function getTripleCost() view returns (uint256)",
-  "function getAtomCost() view returns (uint256)",
-  "function createTriples(bytes32[] subjectIds, bytes32[] predicateIds, bytes32[] objectIds, uint256[] assets) payable returns (bytes32[])",
-  "function createAtoms(bytes[] atomDatas, uint256[] assets) payable returns (bytes32[])",
-  "function calculateAtomId(bytes data) pure returns (bytes32)",
-  "function isTermCreated(bytes32 id) view returns (bool)",
-];
-
+// ─── Types ───────────────────────────────────────────────────────
 export interface IntuitionTriple {
   subjectId: string;
   predicateId: string;
   objectId: string;
-  label: string; // human-readable description
+  label: string;
 }
 
+// MultiVault ABI — reads + approve
+const MULTIVAULT_ABI = [
+  "function getTripleCost() view returns (uint256)",
+  "function getAtomCost() view returns (uint256)",
+  "function calculateAtomId(bytes data) pure returns (bytes32)",
+  "function isTermCreated(bytes32 id) view returns (bool)",
+  "function approve(address sender, uint8 approvalType)",
+];
+
+export interface WalletConnection {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  provider: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  signer: any;
+  /** Proxy contract — writes only (createAtoms, createTriples, deposit, fee calc) */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  proxy: any;
+  /** MultiVault contract — reads + approve */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  multiVault: any;
+  address: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ethers: any;
+}
+
+// ─── Connect wallet ──────────────────────────────────────────────
+
+export async function connectWallet(): Promise<WalletConnection> {
+  const { ethers } = await import("ethers");
+
+  if (!window.ethereum) {
+    throw new Error("No wallet found. Please install a Web3 wallet.");
+  }
+
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  provider.pollingInterval = 30000;
+
+  // Force account picker (MetaMask), fallback for other wallets
+  try {
+    await provider.send("wallet_requestPermissions", [{ eth_accounts: {} }]);
+  } catch {
+    await provider.send("eth_requestAccounts", []);
+  }
+
+  // Add / switch to Intuition chain
+  try {
+    await provider.send("wallet_addEthereumChain", [
+      {
+        chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
+        chainName: CHAIN_CONFIG.CHAIN_NAME,
+        rpcUrls: [CHAIN_CONFIG.RPC_URL],
+        nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
+      },
+    ]);
+  } catch {
+    await provider.send("wallet_switchEthereumChain", [
+      { chainId: CHAIN_CONFIG.CHAIN_ID_HEX },
+    ]);
+  }
+
+  // Re-init after chain switch
+  const freshProvider = new ethers.BrowserProvider(window.ethereum);
+  freshProvider.pollingInterval = 30000;
+  const signer = await freshProvider.getSigner();
+  const address = await signer.getAddress();
+
+  // Proxy for writes (createAtoms, createTriples, deposit) + fee calc
+  const proxy = new ethers.Contract(
+    CHAIN_CONFIG.SOFIA_PROXY,
+    SofiaFeeProxyAbi,
+    signer
+  );
+
+  // MultiVault for reads (getTripleCost, calculateAtomId, etc.) + approve
+  const multiVault = new ethers.Contract(
+    CHAIN_CONFIG.MULTIVAULT,
+    MULTIVAULT_ABI,
+    signer
+  );
+
+  return { provider, signer, proxy, multiVault, address, ethers };
+}
+
+// ─── Proxy approval ──────────────────────────────────────────────
+
 /**
- * Build the list of triples to create for a user's profile.
- *
- * Given the user's wallet atom ID, selected topics (track names),
- * and selected session IDs, returns:
- * - (user) are interested by (track) — for each topic
- * - (user) attending (session) — for each session
+ * Approve the proxy as a spender on MultiVault (one-time per wallet).
+ * Must be called before any proxy write operation.
  */
+export async function approveProxy(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  multiVault: any
+): Promise<void> {
+  const tx = await multiVault.approve(
+    CHAIN_CONFIG.SOFIA_PROXY,
+    CHAIN_CONFIG.APPROVAL_TYPE_DEPOSIT
+  );
+  await tx.wait();
+}
+
+// ─── Get user atom ID ────────────────────────────────────────────
+
+/**
+ * Calculate the deterministic atom ID for a wallet address.
+ * Does NOT create the atom — it must already exist on-chain.
+ */
+export async function getUserAtomId(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  multiVault: any,
+  address: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ethersLib: any
+): Promise<string> {
+  const hexData = ethersLib.hexlify(
+    ethersLib.toUtf8Bytes(address.toLowerCase())
+  );
+  return await multiVault.calculateAtomId(hexData);
+}
+
+// ─── Build profile triples ───────────────────────────────────────
+
 export function buildProfileTriples(
   userAtomId: string,
   topics: string[],
@@ -46,7 +143,6 @@ export function buildProfileTriples(
 ): IntuitionTriple[] {
   const triples: IntuitionTriple[] = [];
 
-  // "are interested by" triples
   for (const topic of topics) {
     const trackAtomId = TRACK_ATOM_IDS[topic];
     if (!trackAtomId) continue;
@@ -58,7 +154,6 @@ export function buildProfileTriples(
     });
   }
 
-  // "attending" triples
   for (const sessionId of sessionIds) {
     const sessionAtomId = SESSION_ATOM_IDS[sessionId];
     if (!sessionAtomId) continue;
@@ -73,103 +168,104 @@ export function buildProfileTriples(
   return triples;
 }
 
-/**
- * Connect wallet, switch to Intuition chain, return ethers signer + contract.
- */
-export async function connectWallet() {
-  const { ethers } = await import("ethers");
-
-  if (!window.ethereum) {
-    throw new Error("No wallet found. Please install a Web3 wallet.");
-  }
-
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  provider.pollingInterval = 30000;
-  await provider.send("eth_requestAccounts", []);
-
-  // Add chain first, then switch
-  try {
-    await provider.send("wallet_addEthereumChain", [
-      {
-        chainId: CHAIN_ID_HEX,
-        chainName: "Intuition",
-        rpcUrls: [RPC_URL],
-        nativeCurrency: { name: "TRUST", symbol: "TRUST", decimals: 18 },
-      },
-    ]);
-  } catch {
-    // Some wallets reject addEthereumChain if chain already exists, try switch
-    await provider.send("wallet_switchEthereumChain", [
-      { chainId: CHAIN_ID_HEX },
-    ]);
-  }
-
-  // Re-init after chain switch
-  const freshProvider = new ethers.BrowserProvider(window.ethereum);
-  freshProvider.pollingInterval = 30000;
-  const signer = await freshProvider.getSigner();
-  const contract = new ethers.Contract(MULTIVAULT, ABI, signer);
-  const address = await signer.getAddress();
-
-  return { provider: freshProvider, signer, contract, address, ethers };
-}
+// ─── Create profile triples via proxy with deposit ───────────────
 
 /**
- * Ensure the user's wallet has an atom on Intuition.
- * If it doesn't exist, create it.
- * Returns the atom ID (bytes32).
- */
-export async function ensureUserAtom(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  contract: any,
-  address: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ethersLib: any
-): Promise<string> {
-  const hexData = ethersLib.hexlify(ethersLib.toUtf8Bytes(address.toLowerCase()));
-  const atomId = await contract.calculateAtomId(hexData);
-  const exists = await contract.isTermCreated(atomId);
-
-  if (!exists) {
-    const atomCost = await contract.getAtomCost();
-    const tx = await contract.createAtoms([hexData], [atomCost], {
-      value: atomCost,
-    });
-    await tx.wait();
-  }
-
-  return atomId;
-}
-
-/**
- * Create all profile triples in a single transaction.
+ * Create all profile triples in a single batch transaction via the proxy.
+ * Each triple gets a deposit of `depositPerTriple` into its vault.
  */
 export async function createProfileTriples(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  contract: any,
-  triples: IntuitionTriple[]
+  multiVault: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  proxy: any,
+  address: string,
+  triples: IntuitionTriple[],
+  depositPerTriple?: bigint
 ): Promise<{ hash: string; blockNumber: number }> {
-  const tripleCost = await contract.getTripleCost();
+  const tripleCost = await multiVault.getTripleCost();
+
+  const deposit = depositPerTriple ?? BigInt(DEFAULT_DEPOSIT_PER_TRIPLE);
+
   const subjectIds = triples.map((t) => t.subjectId);
   const predicateIds = triples.map((t) => t.predicateId);
   const objectIds = triples.map((t) => t.objectId);
-  const assets = triples.map(() => tripleCost);
-  const totalCost = tripleCost * BigInt(triples.length);
+  // assets[i] = deposit only — proxy adds tripleCost internally before forwarding to MultiVault
+  const assets = triples.map(() => deposit);
 
-  const tx = await contract.createTriples(
+  // Calculate costs for getTotalCreationCost
+  const n = BigInt(triples.length);
+  const totalDeposit = deposit * n;
+  const multiVaultCost = (tripleCost * n) + totalDeposit;
+  const totalCost = await proxy.getTotalCreationCost(
+    n,              // depositCount
+    totalDeposit,   // totalDeposit (just deposits, not including tripleCost)
+    multiVaultCost  // multiVaultCost (tripleCost * count + totalDeposit)
+  );
+
+  // Verify all atoms exist on-chain before calling createTriples
+  const allIds = [...new Set([...subjectIds, ...predicateIds, ...objectIds])];
+  for (const id of allIds) {
+    const exists = await multiVault.isTermCreated(id);
+    if (!exists) {
+      throw new Error(`Atom ${id} does not exist on-chain. Cannot create triple.`);
+    }
+  }
+
+  const tx = await proxy.createTriples(
+    address,       // receiver
     subjectIds,
     predicateIds,
     objectIds,
     assets,
+    CHAIN_CONFIG.CURVE_ID,
     { value: totalCost }
   );
   const receipt = await tx.wait();
   return { hash: tx.hash, blockNumber: receipt.blockNumber };
 }
 
+// ─── Fee estimation (for UI) ─────────────────────────────────────
+
+export interface FeeEstimate {
+  tripleCost: bigint;
+  depositPerTriple: bigint;
+  sofiaFee: bigint;
+  totalCost: bigint;
+}
+
 /**
- * Add the Intuition chain to the user's wallet (standalone, no full connect needed).
+ * Estimate the total cost for creating N triples with deposit.
+ * Useful for displaying cost breakdown in the UI before signing.
  */
+export async function estimateFees(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  multiVault: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  proxy: any,
+  tripleCount: number,
+  depositPerTriple?: bigint
+): Promise<FeeEstimate> {
+  const tripleCost = await multiVault.getTripleCost();
+  const deposit = depositPerTriple ?? BigInt(DEFAULT_DEPOSIT_PER_TRIPLE);
+  const perTripleValue = tripleCost + deposit;
+  const n = BigInt(tripleCount);
+  const totalDeposit = deposit * n;
+  const totalMultiVaultCost = perTripleValue * n;
+
+  const totalCost: bigint = await proxy.getTotalCreationCost(
+    n,
+    totalDeposit,
+    totalMultiVaultCost
+  );
+
+  const sofiaFee = totalCost - totalMultiVaultCost;
+
+  return { tripleCost, depositPerTriple: deposit, sofiaFee, totalCost };
+}
+
+// ─── Add chain (standalone) ──────────────────────────────────────
+
 export async function addIntuitionChain() {
   if (!window.ethereum) {
     throw new Error("No wallet found. Please install a Web3 wallet.");
@@ -178,12 +274,17 @@ export async function addIntuitionChain() {
   const provider = new ethers.BrowserProvider(window.ethereum);
   await provider.send("wallet_addEthereumChain", [
     {
-      chainId: CHAIN_ID_HEX,
-      chainName: "Intuition",
-      rpcUrls: [RPC_URL],
-      nativeCurrency: { name: "TRUST", symbol: "TRUST", decimals: 18 },
+      chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
+      chainName: CHAIN_CONFIG.CHAIN_NAME,
+      rpcUrls: [CHAIN_CONFIG.RPC_URL],
+      nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
     },
   ]);
 }
 
-export { TRACK_ATOM_IDS, SESSION_ATOM_IDS, PREDICATES, CHAIN_ID, MULTIVAULT };
+// ─── Re-exports ──────────────────────────────────────────────────
+export {
+  TRACK_ATOM_IDS,
+  SESSION_ATOM_IDS,
+  PREDICATES,
+};

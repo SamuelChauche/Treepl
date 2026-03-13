@@ -3,22 +3,16 @@ import { sessions } from "../data";
 import {
   connectWallet,
   addIntuitionChain,
-  ensureUserAtom,
+  approveProxy,
+  getUserAtomId,
   buildProfileTriples,
   createProfileTriples,
+  estimateFees,
 } from "../services/intuition";
+import type { WalletConnection, FeeEstimate } from "../services/intuition";
 import { StorageService } from "../services/StorageService";
 
 export type WalletStep = "recap" | "wallet" | "connected" | "signing" | "created";
-
-interface WalletState {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  contract: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ethers: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  provider: any;
-}
 
 export function useWallet() {
   const [step, setStep] = useState<WalletStep>("recap");
@@ -26,8 +20,9 @@ export function useWallet() {
   const [txHash, setTxHash] = useState("");
   const [txError, setTxError] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
-  const [walletState, setWalletState] = useState<WalletState | null>(null);
+  const [walletState, setWalletState] = useState<WalletConnection | null>(null);
   const [trustBalance, setTrustBalance] = useState<string | null>(null);
+  const [feeEstimate, setFeeEstimate] = useState<FeeEstimate | null>(null);
 
   const cart = useMemo(() => StorageService.loadCart(), []);
   const topics = useMemo(() => StorageService.loadTopics(), []);
@@ -43,13 +38,39 @@ export function useWallet() {
     setTxError("");
     setTxStatus("Connecting wallet...");
     try {
-      const { contract, address, ethers, provider } = await connectWallet();
-      setWalletAddress(address);
-      setWalletState({ contract, ethers, provider });
+      const connection = await connectWallet();
+      setWalletAddress(connection.address);
+      setWalletState(connection);
+
+      // Approve proxy on MultiVault (one-time)
+      setTxStatus("Approving proxy on MultiVault... Please confirm in your wallet");
+      try {
+        await approveProxy(connection.multiVault);
+      } catch (approvalErr: unknown) {
+        const msg = approvalErr instanceof Error ? approvalErr.message : String(approvalErr);
+        if (msg.includes("user rejected") || msg.includes("denied") || msg.includes("ACTION_REJECTED")) {
+          setTxError("You must approve the proxy to create your profile.");
+          setTxStatus("");
+          return;
+        }
+        // May already be approved — continue
+      }
+
       setTxStatus("");
       setStep("connected");
-      const bal = await provider.getBalance(address);
-      setTrustBalance(ethers.formatEther(bal));
+
+      const bal = await connection.provider.getBalance(connection.address);
+      setTrustBalance(connection.ethers.formatEther(bal));
+
+      // Estimate fees in background
+      if (tripleCount > 0) {
+        try {
+          const fees = await estimateFees(connection.multiVault, connection.proxy, tripleCount);
+          setFeeEstimate(fees);
+        } catch {
+          // Fee estimate is non-critical
+        }
+      }
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
       setTxError(msg);
@@ -84,10 +105,11 @@ export function useWallet() {
     setStep("signing");
 
     try {
-      const { contract, ethers } = walletState;
+      const { proxy, ethers, address } = walletState;
 
       setTxStatus("Checking your atom on Intuition...");
-      const userAtomId = await ensureUserAtom(contract, walletAddress, ethers);
+      const { multiVault } = walletState;
+      const userAtomId = await getUserAtomId(multiVault, address, ethers);
 
       const triples = buildProfileTriples(
         userAtomId,
@@ -102,9 +124,9 @@ export function useWallet() {
       }
 
       setTxStatus(
-        `Creating ${triples.length} triples... Confirm in your wallet`
+        `Creating ${triples.length} triples with deposit... Confirm in your wallet`
       );
-      const result = await createProfileTriples(contract, triples);
+      const result = await createProfileTriples(multiVault, proxy, address, triples);
 
       setTxHash(result.hash);
       setStep("created");
@@ -123,6 +145,7 @@ export function useWallet() {
     txError,
     walletAddress,
     trustBalance,
+    feeEstimate,
     cart,
     topics,
     selectedSessions,
