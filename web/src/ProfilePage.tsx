@@ -1,196 +1,32 @@
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
-import { sessions } from "./data";
-import {
-  connectWallet,
-  addIntuitionChain,
-  ensureUserAtom,
-  buildProfileTriples,
-  createProfileTriples,
-  TRACK_ATOM_IDS,
-  PREDICATES,
-} from "./intuition";
-import type { Session } from "./types";
-
-const GQL_URL = "https://mainnet.intuition.sh/v1/graphql";
-
-const CART_KEY = "ethcc-cart";
-const TOPICS_KEY = "ethcc-topics";
-
-function loadSet(key: string): Set<string> {
-  try {
-    const raw = localStorage.getItem(key);
-    if (raw) return new Set(JSON.parse(raw));
-  } catch {}
-  return new Set();
-}
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-US", {
-    weekday: "short",
-    day: "numeric",
-    month: "short",
-  });
-}
-
-const TYPE_BORDER: Record<string, string> = {
-  Talk: "var(--orange)",
-  Workshop: "var(--yellow)",
-  Panel: "var(--blue)",
-  Demo: "var(--lime)",
-};
-
-type Step = "recap" | "wallet" | "connected" | "signing" | "created";
+import { explorerTxUrl, intuitionProfileUrl, getTypeCssColor } from "./config/constants";
+import { formatDateShort } from "./utils/date.utils";
+import { groupSessionsByDate } from "./utils/session.utils";
+import { useWallet } from "./hooks/useWallet";
+import { useInterestCounts } from "./hooks/useInterestCounts";
 
 export function ProfilePage() {
-  const [step, setStep] = useState<Step>("recap");
-  const [txStatus, setTxStatus] = useState("");
-  const [txHash, setTxHash] = useState("");
-  const [txError, setTxError] = useState("");
-  const [walletAddress, setWalletAddress] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [walletState, setWalletState] = useState<{ contract: any; ethers: any; provider: any } | null>(null);
-  const [trustBalance, setTrustBalance] = useState<string | null>(null); // null = not checked yet
+  const {
+    step,
+    setStep,
+    txStatus,
+    txHash,
+    txError,
+    walletAddress,
+    trustBalance,
+    cart,
+    topics,
+    selectedSessions,
+    tripleCount,
+    handleConnect,
+    handleCreate,
+    addIntuitionChain,
+  } = useWallet();
 
-  const cart = useMemo(() => loadSet(CART_KEY), []);
-  const topics = useMemo(() => loadSet(TOPICS_KEY), []);
-
-  const selectedSessions = useMemo(
-    () => sessions.filter((s) => cart.has(s.id)),
-    [cart]
-  );
-
-  const grouped = useMemo(() => {
-    const map = new Map<string, Session[]>();
-    for (const s of selectedSessions) {
-      const list = map.get(s.date) ?? [];
-      list.push(s);
-      map.set(s.date, list);
-    }
-    for (const list of map.values()) {
-      list.sort((a, b) => a.startTime.localeCompare(b.startTime));
-    }
-    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
-  }, [selectedSessions]);
-
-  const tripleCount = topics.size + selectedSessions.length;
-
-  // Fetch "also interested" counts from Intuition GraphQL
-  const [interestCounts, setInterestCounts] = useState<Record<string, number>>({});
-  useEffect(() => {
-    if (topics.size === 0) return;
-    const trackIds = [...topics]
-      .map((t) => TRACK_ATOM_IDS[t])
-      .filter(Boolean);
-    if (trackIds.length === 0) return;
-
-    const query = `{
-      ${trackIds.map((id, i) => `
-        t${i}: triples_aggregate(where: {
-          predicate: { term_id: { _eq: "${PREDICATES["are interested by"]}" } }
-          object: { term_id: { _eq: "${id}" } }
-        }) { aggregate { count } }
-      `).join("")}
-    }`;
-
-    fetch(GQL_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
-    })
-      .then((r) => r.json())
-      .then((res) => {
-        const counts: Record<string, number> = {};
-        const topicList = [...topics];
-        trackIds.forEach((id, i) => {
-          const c = res.data?.[`t${i}`]?.aggregate?.count ?? 0;
-          // find the topic name for this trackId
-          const name = topicList.find((t) => TRACK_ATOM_IDS[t] === id);
-          if (name) counts[name] = c;
-        });
-        setInterestCounts(counts);
-      })
-      .catch(() => {});
-  }, [topics]);
-
-  async function handleConnect() {
-    setTxError("");
-    setTxStatus("Connecting wallet...");
-
-    try {
-      const { contract, address, ethers, provider } = await connectWallet();
-      setWalletAddress(address);
-      setWalletState({ contract, ethers, provider });
-      setTxStatus("");
-      setStep("connected");
-
-      // Check initial balance
-      const bal = await provider.getBalance(address);
-      setTrustBalance(ethers.formatEther(bal));
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : String(e);
-      setTxError(msg);
-      setTxStatus("");
-    }
-  }
-
-  // Poll balance when connected and balance is 0
-  useEffect(() => {
-    if (!walletState || !walletAddress || trustBalance === null) return;
-    if (parseFloat(trustBalance) > 0) return;
-
-    const interval = setInterval(async () => {
-      try {
-        const bal = await walletState.provider.getBalance(walletAddress);
-        const formatted = walletState.ethers.formatEther(bal);
-        setTrustBalance(formatted);
-        if (parseFloat(formatted) > 0) {
-          clearInterval(interval);
-        }
-      } catch {}
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [walletState, walletAddress, trustBalance]);
-
-  async function handleCreate() {
-    if (!walletState) return;
-    setTxError("");
-    setStep("signing");
-
-    try {
-      const { contract, ethers } = walletState;
-
-      setTxStatus("Checking your atom on Intuition...");
-      const userAtomId = await ensureUserAtom(contract, walletAddress, ethers);
-
-      const triples = buildProfileTriples(
-        userAtomId,
-        [...topics],
-        [...cart]
-      );
-
-      if (triples.length === 0) {
-        setTxError("No triples to create.");
-        setStep("connected");
-        return;
-      }
-
-      setTxStatus(
-        `Creating ${triples.length} triples... Confirm in your wallet`
-      );
-      const result = await createProfileTriples(contract, triples);
-
-      setTxHash(result.hash);
-      setStep("created");
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : String(e);
-      setTxError(msg);
-      setStep("connected");
-    }
-  }
+  const interestCounts = useInterestCounts(topics);
+  const grouped = useMemo(() => groupSessionsByDate(selectedSessions), [selectedSessions]);
 
   if (cart.size === 0) {
     return (
@@ -247,15 +83,14 @@ export function ProfilePage() {
             </h2>
             {grouped.map(([date, list]) => (
               <div key={date} className="profile-day">
-                <h3 className="profile-day-label">{formatDate(date)}</h3>
+                <h3 className="profile-day-label">{formatDateShort(date)}</h3>
                 <div className="profile-session-list">
                   {list.map((s) => (
                     <div
                       key={s.id}
                       className="profile-session"
                       style={{
-                        borderLeftColor:
-                          TYPE_BORDER[s.type] ?? "var(--teal)",
+                        borderLeftColor: getTypeCssColor(s.type),
                       }}
                     >
                       <div className="profile-session-time">
@@ -456,7 +291,7 @@ export function ProfilePage() {
 
           {txHash && (
             <a
-              href={`https://explorer.intuition.systems/tx/${txHash}`}
+              href={explorerTxUrl(txHash)}
               target="_blank"
               rel="noopener noreferrer"
               className="tx-link"
@@ -467,7 +302,7 @@ export function ProfilePage() {
 
           {walletAddress && (
             <a
-              href={`https://portal.intuition.systems/app/profile/${walletAddress}`}
+              href={intuitionProfileUrl(walletAddress)}
               target="_blank"
               rel="noopener noreferrer"
               className="tx-link"

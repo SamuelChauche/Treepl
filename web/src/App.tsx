@@ -1,108 +1,31 @@
-import { useState, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { sessions, trackNames, dates, sessionTypes, event } from "./data";
+import { trackNames, dates, sessionTypes, event } from "./data";
 import { SessionCard } from "./SessionCard";
-import type { Session } from "./types";
+import { TYPE_DATA_COLORS } from "./config/constants";
+import { formatDateLong, formatDateShort } from "./utils/date.utils";
+import { StorageService } from "./services/StorageService";
+import { useCart } from "./hooks/useCart";
+import { useSessionFilter } from "./hooks/useSessionFilter";
 import "./App.css";
-
-const CART_KEY = "ethcc-cart";
-const TOPICS_KEY = "ethcc-topics";
-
-function loadCart(): Set<string> {
-  try {
-    const raw = localStorage.getItem(CART_KEY);
-    if (raw) return new Set(JSON.parse(raw));
-  } catch {}
-  return new Set();
-}
-
-function saveCart(cart: Set<string>) {
-  localStorage.setItem(CART_KEY, JSON.stringify([...cart]));
-}
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-US", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
-}
-
-function formatDateShort(dateStr: string): string {
-  const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-US", {
-    weekday: "short",
-    day: "numeric",
-    month: "short",
-  });
-}
-
-const TYPE_COLORS: Record<string, string> = {
-  Talk: "orange",
-  Workshop: "yellow",
-  Panel: "blue",
-  Demo: "lime",
-};
 
 export default function App() {
   const navigate = useNavigate();
-  const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
-  const [selectedDay, setSelectedDay] = useState<string | null>(null);
-  const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
-  const [search, setSearch] = useState("");
-  const [cart, setCart] = useState<Set<string>>(loadCart);
-
-  const toggleCart = useCallback((id: string) => {
-    setCart((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      saveCart(next);
-      return next;
-    });
-  }, []);
-
-  const filtered = useMemo(() => {
-    const q = search.toLowerCase().trim();
-    return sessions.filter((s) => {
-      if (selectedTracks.size > 0 && !selectedTracks.has(s.track)) return false;
-      if (selectedDay && s.date !== selectedDay) return false;
-      if (selectedTypes.size > 0 && !selectedTypes.has(s.type)) return false;
-      if (
-        q &&
-        !s.title.toLowerCase().includes(q) &&
-        !s.description.toLowerCase().includes(q) &&
-        !s.speakers.some(
-          (sp) =>
-            sp.name.toLowerCase().includes(q) ||
-            sp.organization.toLowerCase().includes(q)
-        )
-      )
-        return false;
-      return true;
-    });
-  }, [selectedTracks, selectedDay, selectedTypes, search]);
-
-  const grouped = useMemo(() => {
-    const map = new Map<string, Session[]>();
-    for (const s of filtered) {
-      const list = map.get(s.date) ?? [];
-      list.push(s);
-      map.set(s.date, list);
-    }
-    for (const list of map.values()) {
-      list.sort((a, b) => a.startTime.localeCompare(b.startTime));
-    }
-    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
-  }, [filtered]);
-
-  function toggle(set: Set<string>, value: string): Set<string> {
-    const next = new Set(set);
-    if (next.has(value)) next.delete(value);
-    else next.add(value);
-    return next;
-  }
+  const { cart, toggleCart, clearCart } = useCart();
+  const {
+    selectedTracks,
+    selectedDay,
+    selectedTypes,
+    search,
+    setSearch,
+    filtered,
+    grouped,
+    toggleTrack,
+    toggleType,
+    clearTracks,
+    clearTypes,
+    toggleDay,
+    selectAllDays,
+  } = useSessionFilter();
 
   return (
     <div className="app">
@@ -145,7 +68,7 @@ export default function App() {
           <div className="toolbar-row-pills">
             <button
               className={`pill ${selectedDay === null ? "all-active" : ""}`}
-              onClick={() => setSelectedDay(null)}
+              onClick={selectAllDays}
             >
               All
             </button>
@@ -153,7 +76,7 @@ export default function App() {
               <button
                 key={d}
                 className={`pill ${selectedDay === d ? "day-active" : ""}`}
-                onClick={() => setSelectedDay(selectedDay === d ? null : d)}
+                onClick={() => toggleDay(d)}
               >
                 {formatDateShort(d)}
               </button>
@@ -171,8 +94,8 @@ export default function App() {
               <button
                 key={t}
                 className={`pill ${selectedTypes.has(t) ? "filter-active" : ""}`}
-                data-color={TYPE_COLORS[t] ?? "teal"}
-                onClick={() => setSelectedTypes(toggle(selectedTypes, t))}
+                data-color={TYPE_DATA_COLORS[t] ?? "teal"}
+                onClick={() => toggleType(t)}
               >
                 {t}
               </button>
@@ -180,7 +103,7 @@ export default function App() {
             {selectedTypes.size > 0 && (
               <button
                 className="filter-clear"
-                onClick={() => setSelectedTypes(new Set())}
+                onClick={clearTypes}
               >
                 Clear
               </button>
@@ -197,7 +120,7 @@ export default function App() {
                 key={t}
                 className={`pill ${selectedTracks.has(t) ? "filter-active" : ""}`}
                 data-color="teal"
-                onClick={() => setSelectedTracks(toggle(selectedTracks, t))}
+                onClick={() => toggleTrack(t)}
               >
                 {t}
               </button>
@@ -205,7 +128,7 @@ export default function App() {
             {selectedTracks.size > 0 && (
               <button
                 className="filter-clear"
-                onClick={() => setSelectedTracks(new Set())}
+                onClick={clearTracks}
               >
                 Clear
               </button>
@@ -218,7 +141,7 @@ export default function App() {
       <main className="content">
         {grouped.map(([date, list]) => (
           <section key={date} className="day-group">
-            <h2 className="day-heading">{formatDate(date)}</h2>
+            <h2 className="day-heading">{formatDateLong(date)}</h2>
             <div className="session-grid">
               {list.map((s, i) => (
                 <SessionCard
@@ -242,18 +165,14 @@ export default function App() {
         <div className="validate-bar">
           <button
             className="validate-clear-btn"
-            onClick={() => {
-              const next = new Set<string>();
-              saveCart(next);
-              setCart(next);
-            }}
+            onClick={clearCart}
           >
             Clear
           </button>
           <button
             className="validate-btn"
             onClick={() => {
-              localStorage.setItem(TOPICS_KEY, JSON.stringify([...selectedTracks]));
+              StorageService.saveTopics(selectedTracks);
               navigate("/profile");
             }}
           >

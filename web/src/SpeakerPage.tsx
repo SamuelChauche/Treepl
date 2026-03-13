@@ -1,14 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { speakersBySlug } from "./data";
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-US", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
-}
+import { getTypeCssColor } from "./config/constants";
+import { formatDateLong } from "./utils/date.utils";
 
 export function SpeakerPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -99,19 +92,10 @@ export function SpeakerPage() {
               <div key={talk.sessionId} className="talk-card">
                 <div
                   className="talk-accent"
-                  style={{
-                    background:
-                      talk.type === "Talk"
-                        ? "var(--orange)"
-                        : talk.type === "Workshop"
-                          ? "var(--yellow)"
-                          : talk.type === "Panel"
-                            ? "var(--blue)"
-                            : "var(--lime)",
-                  }}
+                  style={{ background: getTypeCssColor(talk.type) }}
                 />
                 <div className="talk-time">
-                  <span className="talk-date">{formatDate(talk.date)}</span>
+                  <span className="talk-date">{formatDateLong(talk.date)}</span>
                   <span>
                     {talk.startTime} – {talk.endTime}
                   </span>
