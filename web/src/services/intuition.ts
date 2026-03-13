@@ -1,4 +1,4 @@
-import graphData from "../../bdd/intuition_graph.json";
+import graphData from "../../../bdd/intuition_graph.json";
 
 const CHAIN_ID = 1155;
 const CHAIN_ID_HEX = "0x" + CHAIN_ID.toString(16);

@@ -1,7 +1,7 @@
-import sessionsJson from "../../bdd/sessions.json";
-import tracksJson from "../../bdd/tracks.json";
-import speakersJson from "../../bdd/speakers.json";
-import type { Session, Track, Speaker } from "./types";
+import sessionsJson from "../../../bdd/sessions.json";
+import tracksJson from "../../../bdd/tracks.json";
+import speakersJson from "../../../bdd/speakers.json";
+import type { Session, Track, Speaker } from "../types";
 
 export const sessions: Session[] = (sessionsJson as { sessions: Session[] }).sessions;
 export const tracks: Track[] = (tracksJson as { tracks: Track[] }).tracks;

@@ -1,0 +1,171 @@
+/* ── Speaker page ────────────────────────────────────── */
+.speaker-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3rem;
+}
+
+.speaker-profile {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.speaker-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid var(--teal);
+  box-shadow: 0 0 0 6px rgba(42, 206, 204, 0.12);
+}
+
+.speaker-info h1 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+}
+
+.speaker-role {
+  color: var(--teal);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.speaker-organization {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.speaker-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.speaker-socials {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--teal);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.social-link:hover {
+  background: var(--surface-hover);
+  border-color: var(--teal);
+}
+
+.speaker-bio {
+  margin-bottom: 2rem;
+}
+
+.speaker-bio h2,
+.speaker-talks h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+  letter-spacing: -0.01em;
+}
+
+.speaker-bio p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.talk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.talk-card {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.talk-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.talk-accent {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--teal);
+}
+
+.talk-inner {
+  flex: 1;
+  padding: 0.9rem 1rem;
+}
+
+.talk-time {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 0.9rem 1rem;
+}
+
+.talk-date {
+  text-transform: capitalize;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--teal);
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+
+.talk-body h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.talk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}

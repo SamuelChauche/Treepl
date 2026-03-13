@@ -1,0 +1,191 @@
+/* ── Toolbar (unified filter zone) ────────────────────── */
+.toolbar {
+  max-width: 1200px;
+  margin: 1.25rem auto 0;
+  padding: 1.25rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.toolbar-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.toolbar-row-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.toolbar-row-label {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 52px;
+}
+
+.toolbar-row-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Search */
+.search-box {
+  flex: 1;
+  min-width: 180px;
+  max-width: 360px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.5rem 0.9rem 0.5rem 2.2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-box input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(42, 206, 204, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.session-count {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.session-count strong {
+  color: var(--teal);
+}
+
+/* Shared pill style for day tabs + filter pills */
+.pill {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pill:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Day pill active */
+.pill.day-active {
+  background: var(--teal);
+  color: var(--base);
+  border-color: var(--teal);
+  font-weight: 600;
+}
+
+/* "All days" pill active */
+.pill.all-active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.18);
+  font-weight: 600;
+}
+
+/* Filter pill active — colored by data-color */
+.pill.filter-active {
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.pill.filter-active[data-color="orange"] {
+  background: var(--orange);
+  color: #fff;
+}
+.pill.filter-active[data-color="yellow"] {
+  background: var(--yellow);
+  color: #1a1a00;
+}
+.pill.filter-active[data-color="blue"] {
+  background: var(--blue);
+  color: #fff;
+}
+.pill.filter-active[data-color="lime"] {
+  background: var(--lime);
+  color: #1a1a00;
+}
+.pill.filter-active[data-color="teal"] {
+  background: var(--teal);
+  color: var(--base);
+}
+
+.toolbar-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+.filter-clear {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--teal);
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  margin-left: 0.25rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.filter-clear:hover {
+  opacity: 1;
+}

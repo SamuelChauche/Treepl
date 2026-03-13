@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
-import type { Session } from "./types";
-
-const TYPE_BORDER_COLORS: Record<string, string> = {
-  Talk: "var(--orange)",
-  Workshop: "var(--yellow)",
-  Panel: "var(--blue)",
-  Demo: "var(--lime)",
-};
+import type { Session } from "../../types";
+import { getTypeCssColor } from "../../config/constants";
 
 export function SessionCard({
   session,
@@ -19,7 +13,7 @@ export function SessionCard({
   selected: boolean;
   onSelect: (id: string) => void;
 }) {
-  const borderColor = TYPE_BORDER_COLORS[session.type] ?? "var(--teal)";
+  const borderColor = getTypeCssColor(session.type);
 
   return (
     <article

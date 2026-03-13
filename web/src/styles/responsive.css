@@ -1,0 +1,215 @@
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hero — compact */
+  .hero {
+    padding: 1.5rem 1rem 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-logo {
+    height: 36px;
+  }
+
+  .hero-inner {
+    gap: 1rem;
+  }
+
+  .hero-sub {
+    font-size: 0.85rem;
+  }
+
+  /* Toolbar — near edge-to-edge */
+  .toolbar {
+    margin: 0.5rem 0.5rem 0;
+    padding: 0.85rem 0.75rem;
+    gap: 0.65rem;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Search — full width */
+  .toolbar-row-horizontal {
+    gap: 0.5rem;
+  }
+
+  .search-box {
+    max-width: none;
+    flex: 1;
+  }
+
+  .search-box input {
+    font-size: 1rem;
+    padding: 0.6rem 0.9rem 0.6rem 2.4rem;
+    min-height: 44px;
+  }
+
+  /* Labels */
+  .toolbar-row-label {
+    font-size: 0.82rem;
+  }
+
+  /* Day pills — horizontal scroll */
+  .toolbar-row-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .toolbar-row-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Topic pills — wrap vertically on mobile */
+  .toolbar-row-pills.pills-wrap {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  /* Touch-friendly pill size */
+  .pill {
+    font-size: 0.82rem;
+    padding: 0.45rem 1rem;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Content */
+  .content {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  /* Cards — tighter */
+  .card-body {
+    padding: 0.75rem 0.85rem;
+  }
+
+  .card-title {
+    font-size: 0.92rem;
+  }
+
+  .card-top {
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .card-footer {
+    gap: 0.5rem;
+  }
+
+  .card-speakers {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .card-desc {
+    -webkit-line-clamp: 1;
+  }
+
+  .day-heading {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Speaker page */
+  .speaker-profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .speaker-avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .speaker-info h1 {
+    font-size: 1.4rem;
+  }
+
+  .speaker-tags,
+  .speaker-socials {
+    justify-content: center;
+  }
+
+  .speaker-page {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .talk-card {
+    flex-direction: column;
+  }
+
+  .talk-time {
+    min-width: unset;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.65rem 0.85rem 0;
+  }
+
+  .talk-body {
+    padding: 0 0.85rem 0.75rem;
+  }
+
+  .talk-body h3 {
+    font-size: 0.9rem;
+  }
+
+  /* Profile page */
+  .profile-page {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  .profile-title {
+    font-size: 1.5rem;
+  }
+
+  .profile-session {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .profile-session-time {
+    min-width: unset;
+  }
+
+  .profile-follow-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .profile-follow-info {
+    align-items: center;
+  }
+}
+
+/* ── Small phones ────────────────────────────────────── */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 1.3rem;
+  }
+
+  .hero-logo {
+    height: 30px;
+  }
+
+  .toolbar {
+    margin: 0.5rem 0.25rem 0;
+    padding: 0.65rem 0.5rem;
+  }
+
+  .content {
+    padding: 0.75rem 0.25rem 2rem;
+  }
+
+  .pill {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.85rem;
+  }
+}
