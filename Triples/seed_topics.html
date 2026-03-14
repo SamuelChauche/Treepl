@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web3 Topics &rarr; Intuition Seed</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --surface2: #21262d;
+    --border: #30363d; --text: #e6edf3; --text-muted: #8b949e;
+    --accent: #58a6ff; --green: #3fb950; --red: #f85149; --orange: #d29922;
+    --purple: #bc8cff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5; padding: 0 20px 60px;
+  }
+  header { text-align: center; padding: 30px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  header h1 { font-size: 1.8rem; font-weight: 600; }
+  header h1 span { color: var(--accent); }
+  header .chain-info { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+
+  .connect-bar { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .status-bar {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 20px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 32px; font-size: 0.9rem;
+  }
+  .status-bar .label { color: var(--text-muted); }
+  .status-bar .value { color: var(--text); font-weight: 500; }
+
+  button {
+    background: var(--accent); color: #fff; border: none; border-radius: 6px;
+    padding: 10px 20px; font-size: 0.95rem; cursor: pointer; font-weight: 500; transition: background 0.15s;
+  }
+  button:hover { background: #79c0ff; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button.execute { background: var(--green); }
+  button.execute:hover { background: #46d15a; }
+  button.secondary { background: var(--surface2); border: 1px solid var(--border); }
+
+  .step {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 24px; margin-bottom: 24px;
+  }
+  .step h2 { font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .step h2 .badge {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 2px 10px; font-size: 0.75rem; color: var(--text-muted); font-weight: 400;
+  }
+  .step-desc { color: var(--text-muted); margin-bottom: 16px; font-size: 0.9rem; }
+
+  .progress-bar { background: var(--surface2); border-radius: 4px; height: 6px; margin: 12px 0; overflow: hidden; }
+  .progress-bar .fill { background: var(--accent); height: 100%; transition: width 0.3s; border-radius: 4px; }
+  .progress-text { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+
+  .batch-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-bottom: 12px; }
+  .batch-table th {
+    text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border);
+    color: var(--text-muted); font-weight: 500; position: sticky; top: 0; background: var(--surface2);
+  }
+  .batch-table td {
+    padding: 4px 8px; border-bottom: 1px solid rgba(48,54,61,0.5);
+    color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;
+  }
+  .batch-table tr:hover td { background: rgba(88,166,255,0.05); }
+
+  .log-area {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 14px; font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.8rem; max-height: 400px; overflow-y: auto;
+    color: var(--text-muted); margin-top: 12px; white-space: pre-wrap;
+  }
+  .log-area .success { color: var(--green); }
+  .log-area .error { color: var(--red); }
+  .log-area .info { color: var(--accent); }
+  .log-area .warn { color: var(--orange); }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; }
+  .tag.done { background: rgba(63,185,80,0.15); color: var(--green); }
+  .tag.pending { background: var(--surface2); color: var(--text-muted); }
+  .tag.running { background: rgba(88,166,255,0.15); color: var(--accent); }
+
+  .export-area {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 14px; font-family: monospace; font-size: 0.75rem;
+    max-height: 300px; overflow-y: auto; white-space: pre-wrap; margin-top: 12px;
+    color: var(--green);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>Web3 Topics</span> &rarr; Intuition Seed</h1>
+  <div class="chain-info">Intuition Mainnet &middot; Chain 1155 &middot; MultiVault direct (no proxy)</div>
+</header>
+
+<div class="connect-bar">
+  <button id="connectBtn" onclick="handleConnect()">Connect MetaMask</button>
+</div>
+
+<div class="status-bar" id="statusBar" style="display:none">
+  <div><span class="label">Address: </span><span class="value" id="addrDisplay"></span></div>
+  <div><span class="label">Balance: </span><span class="value" id="balDisplay"></span></div>
+  <div><span class="label">Atom Cost: </span><span class="value" id="atomCostDisplay"></span></div>
+  <div><span class="label">Topics: </span><span class="value" id="topicsCount"></span></div>
+</div>
+
+<!-- Step 1: Preview -->
+<div class="step" id="step1">
+  <h2>Step 1: Preview <span class="badge">Data</span></h2>
+  <p class="step-desc">Loaded from <code>../bdd/web3_topics.json</code>. These topics will become atoms on Intuition.</p>
+  <div id="previewTable"></div>
+</div>
+
+<!-- Step 2: Check existing -->
+<div class="step" id="step2">
+  <h2>Step 2: Check Existing Atoms <span class="badge">On-chain</span></h2>
+  <p class="step-desc">Check which atoms already exist to avoid duplicates. Also check/create the "supports" predicate.</p>
+  <button onclick="checkExisting()" id="checkBtn" disabled>Check Existing</button>
+  <div class="progress-bar" id="checkProgress" style="display:none"><div class="fill" id="checkFill"></div></div>
+  <div class="progress-text" id="checkText" style="display:none"></div>
+  <div class="log-area" id="checkLog" style="display:none"></div>
+</div>
+
+<!-- Step 3: Create Atoms -->
+<div class="step" id="step3">
+  <h2>Step 3: Create Atoms <span class="badge">On-chain</span></h2>
+  <p class="step-desc">Batch-create topic atoms. Each batch sends one MetaMask transaction.</p>
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <button class="execute" onclick="createAllAtoms()" id="createBtn" disabled>Create All Atoms</button>
+    <button class="secondary" onclick="exportMapping()">Export Mapping JSON</button>
+  </div>
+  <div class="progress-bar" id="createProgress" style="display:none"><div class="fill" id="createFill"></div></div>
+  <div class="progress-text" id="createText" style="display:none"></div>
+  <div class="log-area" id="createLog" style="display:none"></div>
+  <div class="export-area" id="exportArea" style="display:none"></div>
+</div>
+
+<script>
+// ============================================================
+// Config
+// ============================================================
+const CHAIN_ID = 1155;
+const CHAIN_HEX = '0x483';
+const RPC_URL = 'https://rpc.intuition.systems/http';
+const MULTIVAULT = '0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e';
+
+const INTUITION_CHAIN = {
+  chainId: CHAIN_HEX,
+  chainName: 'Intuition',
+  nativeCurrency: { name: 'Intuition', symbol: 'TRUST', decimals: 18 },
+  rpcUrls: [RPC_URL],
+  blockExplorerUrls: ['https://explorer.intuition.systems']
+};
+
+const ABI = [
+  'function getAtomCost() view returns (uint256)',
+  'function calculateAtomId(bytes data) pure returns (bytes32)',
+  'function isTermCreated(bytes32 id) view returns (bool)',
+  'function createAtoms(bytes[] atomDatas, uint256[] assets) payable returns (bytes32[])'
+];
+
+const BATCH_SIZE = 20;
+const SUPPORTS_PREDICATE_NAME = 'supports';
+
+// ============================================================
+// State
+// ============================================================
+let provider, signer, contract;
+let atomCost = 0n;
+let topicsData = null;      // parsed JSON
+let allTopics = [];          // flat list { id, name, categoryId, categoryName, type }
+let atomIdMap = {};           // topic.id -> { name, atomId, hexData, exists }
+let supportsAtom = null;      // { name, atomId, hexData, exists }
+
+// Custom tx.wait to avoid rate limits
+async function waitForTx(tx, intervalMs = 5000, maxAttempts = 120) {
+  for (let i = 0; i < maxAttempts; i++) {
+    await new Promise(r => setTimeout(r, intervalMs));
+    const receipt = await provider.getTransactionReceipt(tx.hash);
+    if (receipt && receipt.blockNumber) return receipt;
+  }
+  throw new Error('Transaction not confirmed after ' + (maxAttempts * intervalMs / 1000) + 's');
+}
+
+function log(area, msg, cls) {
+  const el = document.getElementById(area);
+  if (!el) return;
+  el.style.display = 'block';
+  const span = document.createElement('span');
+  span.className = cls || '';
+  span.textContent = msg + '\n';
+  el.appendChild(span);
+  el.scrollTop = el.scrollHeight;
+}
+
+// ============================================================
+// Embedded Data (avoids CORS issues with file://)
+// ============================================================
+const TOPICS_JSON = {"totalTopics":100,"totalCategories":20,"categories":[{"id":"defi","name":"DeFi","icon":"chart-line","color":"#00d1b2","topics":[{"id":"defi-lending","name":"Lending & Borrowing","type":"concept","description":"Permissionless lending and borrowing of crypto assets on-chain"},{"id":"defi-amm","name":"Automated Market Makers","type":"concept","description":"Algorithmic liquidity pools replacing traditional order books"},{"id":"defi-mev","name":"MEV (Maximal Extractable Value)","type":"concept","description":"Value extracted by reordering, inserting or censoring transactions"},{"id":"defi-uniswap","name":"Uniswap","type":"project","description":"Leading decentralized exchange protocol with concentrated liquidity"},{"id":"defi-aave","name":"Aave","type":"project","description":"Non-custodial liquidity protocol for earning interest and borrowing"}]},{"id":"nfts","name":"NFTs & Digital Assets","icon":"image","color":"#e056c0","topics":[{"id":"nfts-generative-art","name":"Generative Art","type":"concept","description":"Algorithmically created artwork minted as unique on-chain tokens"},{"id":"nfts-soulbound","name":"Soulbound Tokens (SBTs)","type":"concept","description":"Non-transferable tokens representing credentials and identity"},{"id":"nfts-music","name":"Music NFTs","type":"trend","description":"Tokenized music rights enabling direct artist-to-fan ownership"},{"id":"nfts-zora","name":"Zora","type":"project","description":"Permissionless protocol for creating and collecting NFTs"},{"id":"nfts-art-blocks","name":"Art Blocks","type":"project","description":"Platform for generative art stored entirely on Ethereum"}]},{"id":"layer2s","name":"Layer 2s & Scaling","icon":"layers","color":"#7c5cfc","topics":[{"id":"l2-zk-rollups","name":"ZK Rollups","type":"technology","description":"Rollups using zero-knowledge proofs for instant finality"},{"id":"l2-based-rollups","name":"Based Rollups","type":"concept","description":"Rollups that use L1 validators for sequencing"},{"id":"l2-danksharding","name":"Danksharding","type":"technology","description":"Ethereum's endgame for massive data availability scaling"},{"id":"l2-arbitrum","name":"Arbitrum","type":"project","description":"Leading optimistic rollup with Stylus multi-language support"},{"id":"l2-starknet","name":"Starknet","type":"project","description":"ZK rollup using Cairo language and STARK proofs"}]},{"id":"privacy","name":"Privacy & Cryptography","icon":"shield","color":"#2ecc71","topics":[{"id":"privacy-fhe","name":"Fully Homomorphic Encryption (FHE)","type":"technology","description":"Computing on encrypted data without decrypting it"},{"id":"privacy-stealth-addresses","name":"Stealth Addresses","type":"technology","description":"One-time addresses for private receiving of assets"},{"id":"privacy-mpc","name":"Multi-Party Computation","type":"technology","description":"Protocols for joint computation without revealing private inputs"},{"id":"privacy-aztec","name":"Aztec Network","type":"project","description":"Privacy-first L2 with encrypted smart contracts on Ethereum"},{"id":"privacy-zama","name":"Zama","type":"project","description":"Open-source FHE tooling for blockchain and AI applications"}]},{"id":"ai-web3","name":"AI + Web3","icon":"brain","color":"#ff6b35","topics":[{"id":"ai-agents-onchain","name":"AI Agents On-chain","type":"trend","description":"Autonomous AI agents executing transactions and strategies on-chain"},{"id":"ai-proof-of-inference","name":"Proof of Inference","type":"concept","description":"Cryptographic proofs that an AI model produced a specific output"},{"id":"ai-depin-gpu","name":"Decentralized GPU Networks","type":"concept","description":"Distributed compute networks for AI training and inference"},{"id":"ai-bittensor","name":"Bittensor","type":"project","description":"Decentralized network for AI model training and incentivization"},{"id":"ai-ritual","name":"Ritual","type":"project","description":"Infrastructure for integrating AI models into smart contracts"}]},{"id":"security","name":"Security","icon":"lock","color":"#e74c3c","topics":[{"id":"sec-formal-verification","name":"Formal Verification","type":"technology","description":"Mathematical proof that smart contracts behave as intended"},{"id":"sec-bug-bounties","name":"Bug Bounties","type":"concept","description":"Reward programs for discovering vulnerabilities in protocols"},{"id":"sec-social-recovery","name":"Social Recovery Wallets","type":"concept","description":"Wallet recovery using trusted guardians instead of seed phrases"},{"id":"sec-immunefi","name":"Immunefi","type":"project","description":"Leading bug bounty platform for smart contract security"},{"id":"sec-openzeppelin","name":"OpenZeppelin","type":"project","description":"Standard library of audited, reusable smart contracts"}]},{"id":"governance","name":"Governance & DAOs","icon":"users","color":"#f39c12","topics":[{"id":"gov-quadratic-voting","name":"Quadratic Voting","type":"concept","description":"Voting system where cost increases quadratically with vote strength"},{"id":"gov-futarchy","name":"Futarchy","type":"concept","description":"Governance using prediction markets to decide policy outcomes"},{"id":"gov-treasury-mgmt","name":"DAO Treasury Management","type":"concept","description":"Strategies for managing decentralized organization funds"},{"id":"gov-snapshot","name":"Snapshot","type":"project","description":"Off-chain gasless voting platform for DAOs"},{"id":"gov-nouns","name":"Nouns DAO","type":"project","description":"Experimental DAO with daily NFT auctions funding public goods"}]},{"id":"infra","name":"Infrastructure & Dev Tools","icon":"wrench","color":"#3498db","topics":[{"id":"infra-account-abstraction","name":"Account Abstraction (ERC-4337)","type":"technology","description":"Smart contract wallets with gasless transactions and custom logic"},{"id":"infra-intents","name":"Intent-based Architecture","type":"concept","description":"Users declare desired outcomes, solvers find optimal execution paths"},{"id":"infra-subgraphs","name":"Subgraphs & Indexing","type":"technology","description":"Indexing blockchain data for efficient querying by dApps"},{"id":"infra-foundry","name":"Foundry","type":"project","description":"Fast Solidity development framework with built-in fuzzing"},{"id":"infra-chainlink","name":"Chainlink","type":"project","description":"Decentralized oracle network connecting smart contracts to real-world data"}]},{"id":"stablecoins","name":"Stablecoins & Payments","icon":"dollar-sign","color":"#1abc9c","topics":[{"id":"stable-yield-bearing","name":"Yield-bearing Stablecoins","type":"trend","description":"Stablecoins that automatically earn yield from underlying assets"},{"id":"stable-streaming-payments","name":"Streaming Payments","type":"concept","description":"Continuous per-second money flows for salaries and subscriptions"},{"id":"stable-mica","name":"MiCA Regulation","type":"concept","description":"EU framework regulating crypto-assets and stablecoin issuers"},{"id":"stable-usdc","name":"USDC","type":"project","description":"Fully reserved dollar stablecoin by Circle"},{"id":"stable-superfluid","name":"Superfluid","type":"project","description":"Protocol for real-time streaming of tokens and subscriptions"}]},{"id":"rwa","name":"Real World Assets","icon":"building","color":"#e67e22","topics":[{"id":"rwa-tokenized-treasuries","name":"Tokenized Treasuries","type":"trend","description":"US Treasury bonds and bills represented as on-chain tokens"},{"id":"rwa-real-estate","name":"Tokenized Real Estate","type":"concept","description":"Fractional ownership of property via blockchain tokens"},{"id":"rwa-private-credit","name":"Private Credit On-chain","type":"concept","description":"Institutional lending markets brought to DeFi protocols"},{"id":"rwa-ondo","name":"Ondo Finance","type":"project","description":"Institutional-grade tokenized US Treasuries and bonds"},{"id":"rwa-centrifuge","name":"Centrifuge","type":"project","description":"Protocol for financing real-world assets on-chain"}]},{"id":"gaming","name":"Gaming & Metaverse","icon":"gamepad","color":"#9b59b6","topics":[{"id":"gaming-fully-onchain","name":"Fully On-chain Games","type":"trend","description":"Games with all logic and state stored entirely on blockchain"},{"id":"gaming-autonomous-worlds","name":"Autonomous Worlds","type":"concept","description":"Permissionless virtual worlds governed by on-chain rules"},{"id":"gaming-in-game-economies","name":"In-game Token Economies","type":"concept","description":"Player-owned economies with tradable items and currencies"},{"id":"gaming-dark-forest","name":"Dark Forest","type":"project","description":"ZK-powered fully on-chain strategy game with fog of war"},{"id":"gaming-immutable","name":"Immutable","type":"project","description":"L2 platform purpose-built for web3 gaming"}]},{"id":"social-identity","name":"Social & Identity","icon":"fingerprint","color":"#e91e63","topics":[{"id":"id-did","name":"Decentralized Identity (DID)","type":"technology","description":"Self-sovereign digital identity without centralized authorities"},{"id":"id-proof-of-personhood","name":"Proof of Personhood","type":"concept","description":"Verifying unique humanness without revealing personal data"},{"id":"id-attestations","name":"On-chain Attestations","type":"technology","description":"Verifiable claims and credentials stored on blockchain"},{"id":"id-farcaster","name":"Farcaster","type":"project","description":"Sufficiently decentralized social network with open protocol"},{"id":"id-intuition","name":"Intuition","type":"project","description":"Knowledge graph protocol for on-chain reputation and trust signals"}]},{"id":"eth-core","name":"Ethereum Core","icon":"cube","color":"#627eea","topics":[{"id":"eth-pbs","name":"Proposer-Builder Separation","type":"technology","description":"Separating block building from block proposing for decentralization"},{"id":"eth-verkle-trees","name":"Verkle Trees","type":"technology","description":"New state tree structure enabling stateless Ethereum clients"},{"id":"eth-pectra","name":"Pectra Upgrade","type":"trend","description":"Next major Ethereum upgrade combining Prague and Electra"},{"id":"eth-preconfirmations","name":"Preconfirmations","type":"concept","description":"Sub-second transaction confirmations from validators"},{"id":"eth-reth","name":"Reth","type":"project","description":"High-performance Ethereum execution client written in Rust"}]},{"id":"staking","name":"Staking & Validators","icon":"server","color":"#16a085","topics":[{"id":"staking-liquid","name":"Liquid Staking","type":"concept","description":"Staking ETH while receiving liquid derivative tokens"},{"id":"staking-restaking","name":"Restaking","type":"trend","description":"Reusing staked ETH to secure additional protocols simultaneously"},{"id":"staking-dvt","name":"Distributed Validator Technology","type":"technology","description":"Running validators across multiple nodes for resilience"},{"id":"staking-eigenlayer","name":"EigenLayer","type":"project","description":"Restaking protocol extending Ethereum's security to other services"},{"id":"staking-lido","name":"Lido","type":"project","description":"Largest liquid staking protocol with stETH derivative"}]},{"id":"crosschain","name":"Cross-chain & Interop","icon":"link","color":"#8e44ad","topics":[{"id":"cross-chain-abstraction","name":"Chain Abstraction","type":"concept","description":"Hiding blockchain complexity so users interact with one unified experience"},{"id":"cross-bridges","name":"Cross-chain Bridges","type":"technology","description":"Protocols enabling asset and message transfers between blockchains"},{"id":"cross-intents","name":"Intent-based Cross-chain","type":"trend","description":"Users express desired outcome, solvers execute across chains"},{"id":"cross-layerzero","name":"LayerZero","type":"project","description":"Omnichain messaging protocol for cross-chain communication"},{"id":"cross-wormhole","name":"Wormhole","type":"project","description":"Cross-chain messaging and bridging protocol with broad chain support"}]},{"id":"regulation","name":"Regulation & Compliance","icon":"gavel","color":"#95a5a6","topics":[{"id":"reg-mica","name":"MiCA Framework","type":"concept","description":"EU Markets in Crypto-Assets regulation for token issuers"},{"id":"reg-dao-legal","name":"DAO Legal Wrappers","type":"concept","description":"Legal structures enabling DAOs to interact with traditional law"},{"id":"reg-onchain-kyc","name":"On-chain KYC/AML","type":"technology","description":"Privacy-preserving identity verification for DeFi compliance"},{"id":"reg-howey-test","name":"Howey Test & Token Classification","type":"concept","description":"Legal framework determining if tokens are securities"},{"id":"reg-travel-rule","name":"Travel Rule","type":"concept","description":"Requirement to share sender/receiver info for crypto transfers"}]},{"id":"culture","name":"Culture & Community","icon":"fire","color":"#ff4757","topics":[{"id":"culture-memecoins","name":"Memecoins","type":"trend","description":"Community-driven tokens with cultural value and viral dynamics"},{"id":"culture-public-goods","name":"Public Goods Funding","type":"concept","description":"Mechanisms for funding open-source and shared infrastructure"},{"id":"culture-cypherpunk","name":"Cypherpunk Movement","type":"concept","description":"Advocacy for privacy, cryptography and individual sovereignty"},{"id":"culture-network-states","name":"Network States","type":"trend","description":"Internet-native communities organizing into sovereign entities"},{"id":"culture-pump-fun","name":"pump.fun","type":"project","description":"Permissionless memecoin launchpad with bonding curve mechanics"}]},{"id":"data","name":"Data & Analytics","icon":"bar-chart","color":"#00b894","topics":[{"id":"data-onchain-analytics","name":"On-chain Analytics","type":"concept","description":"Analyzing blockchain data to understand user behavior and trends"},{"id":"data-prediction-markets","name":"Prediction Markets","type":"concept","description":"Markets where participants bet on future event outcomes"},{"id":"data-oracles","name":"Oracle Networks","type":"technology","description":"Systems feeding external real-world data into smart contracts"},{"id":"data-dune","name":"Dune Analytics","type":"project","description":"Community-powered blockchain analytics with SQL queries"},{"id":"data-polymarket","name":"Polymarket","type":"project","description":"Leading decentralized prediction market for real-world events"}]},{"id":"sustainability","name":"Sustainability & Impact","icon":"leaf","color":"#27ae60","topics":[{"id":"sust-refi","name":"Regenerative Finance (ReFi)","type":"concept","description":"Financial systems designed to regenerate natural and social capital"},{"id":"sust-carbon-credits","name":"Carbon Credits On-chain","type":"trend","description":"Tokenized carbon offsets with transparent tracking on blockchain"},{"id":"sust-impact-daos","name":"Impact DAOs","type":"concept","description":"Decentralized organizations focused on social and environmental impact"},{"id":"sust-klimadao","name":"KlimaDAO","type":"project","description":"Protocol driving carbon credit demand through DeFi mechanisms"},{"id":"sust-gitcoin","name":"Gitcoin Grants","type":"project","description":"Quadratic funding platform for open-source public goods"}]},{"id":"frontiers","name":"Emerging Frontiers","icon":"rocket","color":"#fd79a8","topics":[{"id":"front-desci","name":"Decentralized Science (DeSci)","type":"trend","description":"Using blockchain to fund, publish and verify scientific research"},{"id":"front-depin","name":"DePIN","type":"trend","description":"Decentralized Physical Infrastructure Networks incentivized by tokens"},{"id":"front-post-quantum","name":"Post-quantum Cryptography","type":"technology","description":"Cryptographic algorithms resistant to quantum computer attacks"},{"id":"front-helium","name":"Helium","type":"project","description":"Decentralized wireless network powered by community hotspots"},{"id":"front-vitadao","name":"VitaDAO","type":"project","description":"DAO funding longevity and anti-aging research via tokenized IP"}]}]};
+
+// ============================================================
+// Load Data
+// ============================================================
+function loadData() {
+  topicsData = TOPICS_JSON;
+
+  allTopics = [];
+  for (const cat of topicsData.categories) {
+    for (const t of cat.topics) {
+      allTopics.push({
+        id: t.id,
+        name: t.name,
+        type: t.type,
+        description: t.description,
+        categoryId: cat.id,
+        categoryName: cat.name,
+        color: cat.color
+      });
+    }
+  }
+
+  renderPreview();
+}
+
+function renderPreview() {
+  const el = document.getElementById('previewTable');
+  if (!el) return;
+
+  const catCounts = {};
+  allTopics.forEach(t => { catCounts[t.categoryName] = (catCounts[t.categoryName] || 0) + 1; });
+  const summary = Object.entries(catCounts).map(([k,v]) => `${v} ${k}`).join(', ');
+
+  const rows = allTopics.map((t, i) => `<tr>
+    <td style="color:var(--text-muted)">${i + 1}</td>
+    <td style="color:${t.color}">${t.categoryName}</td>
+    <td>${t.type}</td>
+    <td title="${t.name}">${t.name}</td>
+    <td style="color:var(--text-muted)" title="${t.description}">${t.description.length > 60 ? t.description.slice(0, 60) + '...' : t.description}</td>
+  </tr>`).join('');
+
+  el.innerHTML = `
+    <p style="margin-bottom:12px;color:var(--accent);">
+      <strong>${allTopics.length} topics</strong> across ${topicsData.categories.length} categories
+      + 1 predicate (<code>"${SUPPORTS_PREDICATE_NAME}"</code>)
+    </p>
+    <details open>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;margin-bottom:8px;">
+        ${summary}
+      </summary>
+      <div style="max-height:400px;overflow-y:auto;border:1px solid var(--border);border-radius:6px;">
+        <table class="batch-table">
+          <thead><tr><th>#</th><th>Category</th><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </details>`;
+}
+
+// ============================================================
+// Wallet
+// ============================================================
+async function handleConnect() {
+  if (!window.ethereum) { alert('MetaMask not detected.'); return; }
+
+  try {
+    provider = new ethers.BrowserProvider(window.ethereum);
+    await provider.send('eth_requestAccounts', []);
+
+    try {
+      await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: CHAIN_HEX }] });
+    } catch (e) {
+      if (e.code === 4902) {
+        await window.ethereum.request({ method: 'wallet_addEthereumChain', params: [INTUITION_CHAIN] });
+      } else throw e;
+    }
+
+    provider = new ethers.BrowserProvider(window.ethereum);
+    provider.pollingInterval = 30000;
+    signer = await provider.getSigner();
+    contract = new ethers.Contract(MULTIVAULT, ABI, signer);
+
+    const addr = await signer.getAddress();
+    const bal = await provider.getBalance(addr);
+    atomCost = await contract.getAtomCost();
+
+    document.getElementById('addrDisplay').textContent = addr.slice(0,6) + '...' + addr.slice(-4);
+    document.getElementById('balDisplay').textContent = parseFloat(ethers.formatEther(bal)).toFixed(4) + ' TRUST';
+    document.getElementById('atomCostDisplay').textContent = ethers.formatEther(atomCost) + ' TRUST';
+    document.getElementById('topicsCount').textContent = allTopics.length + ' + 1 predicate';
+    document.getElementById('statusBar').style.display = 'flex';
+    document.getElementById('connectBtn').textContent = addr.slice(0,6) + '...' + addr.slice(-4);
+    document.getElementById('connectBtn').disabled = true;
+    document.getElementById('checkBtn').disabled = false;
+  } catch (e) {
+    alert('Connection failed: ' + e.message);
+  }
+}
+
+// ============================================================
+// Check Existing
+// ============================================================
+async function checkExisting() {
+  document.getElementById('checkBtn').disabled = true;
+  document.getElementById('checkProgress').style.display = 'block';
+  document.getElementById('checkText').style.display = 'block';
+
+  const total = allTopics.length + 1; // +1 for predicate
+  let checked = 0;
+  let existCount = 0;
+
+  // Check "supports" predicate
+  const predData = ethers.toUtf8Bytes(SUPPORTS_PREDICATE_NAME);
+  const predHex = ethers.hexlify(predData);
+  const predAtomId = await contract.calculateAtomId(predHex);
+  const predExists = await contract.isTermCreated(predAtomId);
+  supportsAtom = { name: SUPPORTS_PREDICATE_NAME, atomId: predAtomId, hexData: predHex, exists: predExists };
+
+  if (predExists) existCount++;
+  log('checkLog', `"${SUPPORTS_PREDICATE_NAME}" => ${predAtomId} (exists: ${predExists})`, predExists ? 'warn' : 'info');
+  checked++;
+  updateProgress('check', checked, total);
+
+  // Check each topic
+  for (const topic of allTopics) {
+    const data = ethers.toUtf8Bytes(topic.name);
+    const hexData = ethers.hexlify(data);
+    const atomId = await contract.calculateAtomId(hexData);
+    const exists = await contract.isTermCreated(atomId);
+
+    atomIdMap[topic.id] = { name: topic.name, atomId, hexData, exists };
+    if (exists) existCount++;
+
+    checked++;
+    updateProgress('check', checked, total);
+
+    if (exists) {
+      log('checkLog', `[EXISTS] ${topic.name} => ${atomId}`, 'warn');
+    }
+
+    // Rate limit: small delay every 5 checks
+    if (checked % 5 === 0) await new Promise(r => setTimeout(r, 200));
+  }
+
+  const toCreate = total - existCount;
+  log('checkLog', `\n=== ${existCount} already exist, ${toCreate} to create ===`, 'success');
+
+  if (toCreate > 0) {
+    const cost = atomCost * BigInt(toCreate);
+    log('checkLog', `Estimated cost: ${ethers.formatEther(cost)} TRUST (${toCreate} atoms × ${ethers.formatEther(atomCost)} TRUST)`, 'info');
+    document.getElementById('createBtn').disabled = false;
+  } else {
+    log('checkLog', 'All atoms already exist! Nothing to create.', 'success');
+    document.getElementById('createBtn').disabled = false; // allow export
+  }
+}
+
+function updateProgress(prefix, current, total) {
+  const pct = Math.round((current / total) * 100);
+  document.getElementById(prefix + 'Fill').style.width = pct + '%';
+  document.getElementById(prefix + 'Text').textContent = `${current} / ${total} (${pct}%)`;
+}
+
+// ============================================================
+// Create Atoms
+// ============================================================
+async function createAllAtoms() {
+  document.getElementById('createBtn').disabled = true;
+  document.getElementById('createProgress').style.display = 'block';
+  document.getElementById('createText').style.display = 'block';
+
+  // Collect atoms to create (not existing)
+  const toCreate = [];
+
+  if (!supportsAtom.exists) {
+    toCreate.push({ id: '__supports__', name: SUPPORTS_PREDICATE_NAME, hexData: supportsAtom.hexData, atomId: supportsAtom.atomId });
+  }
+
+  for (const topic of allTopics) {
+    const entry = atomIdMap[topic.id];
+    if (entry && !entry.exists) {
+      toCreate.push({ id: topic.id, name: topic.name, hexData: entry.hexData, atomId: entry.atomId });
+    }
+  }
+
+  if (toCreate.length === 0) {
+    log('createLog', 'All atoms already exist. Nothing to do.', 'success');
+    return;
+  }
+
+  log('createLog', `Creating ${toCreate.length} atoms in batches of ${BATCH_SIZE}...`, 'info');
+
+  const batches = [];
+  for (let i = 0; i < toCreate.length; i += BATCH_SIZE) {
+    batches.push(toCreate.slice(i, i + BATCH_SIZE));
+  }
+
+  let created = 0;
+  const totalToCreate = toCreate.length;
+
+  for (let b = 0; b < batches.length; b++) {
+    const batch = batches[b];
+    const atomDatas = batch.map(a => a.hexData);
+    const assets = batch.map(() => atomCost);
+    const totalCost = atomCost * BigInt(batch.length);
+
+    log('createLog', `\nBatch ${b + 1}/${batches.length}: ${batch.length} atoms (${ethers.formatEther(totalCost)} TRUST)`, 'info');
+    batch.forEach(a => log('createLog', `  - ${a.name}`));
+
+    try {
+      log('createLog', 'Sending transaction... Confirm in MetaMask.', 'info');
+      const tx = await contract.createAtoms(atomDatas, assets, { value: totalCost });
+      log('createLog', `TX sent: ${tx.hash}`, 'info');
+
+      const receipt = await waitForTx(tx);
+      log('createLog', `TX confirmed in block ${receipt.blockNumber}`, 'success');
+
+      // Mark as created
+      for (const a of batch) {
+        if (a.id === '__supports__') {
+          supportsAtom.exists = true;
+        } else {
+          atomIdMap[a.id].exists = true;
+        }
+        created++;
+      }
+
+      updateProgress('create', created, totalToCreate);
+    } catch (e) {
+      log('createLog', `ERROR batch ${b + 1}: ${e.message}`, 'error');
+      log('createLog', 'You can re-run. Already created atoms will be skipped.', 'warn');
+      document.getElementById('createBtn').disabled = false;
+      return;
+    }
+
+    // Delay between batches to avoid rate limits
+    if (b < batches.length - 1) {
+      log('createLog', 'Waiting 3s before next batch...', '');
+      await new Promise(r => setTimeout(r, 3000));
+    }
+  }
+
+  log('createLog', `\n=== All ${created} atoms created successfully! ===`, 'success');
+  log('createLog', 'Click "Export Mapping JSON" to save the result.', 'info');
+}
+
+// ============================================================
+// Export Mapping
+// ============================================================
+function exportMapping() {
+  const mapping = {
+    predicates: {
+      supports: supportsAtom ? supportsAtom.atomId : null
+    },
+    topicAtomIds: {}
+  };
+
+  for (const topic of allTopics) {
+    const entry = atomIdMap[topic.id];
+    if (entry) {
+      mapping.topicAtomIds[topic.id] = entry.atomId;
+    }
+  }
+
+  const json = JSON.stringify(mapping, null, 2);
+  const el = document.getElementById('exportArea');
+  el.style.display = 'block';
+  el.textContent = json;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(json).then(() => {
+    log('createLog', 'Mapping copied to clipboard!', 'success');
+  }).catch(() => {
+    log('createLog', 'Copy failed. Select the text manually.', 'warn');
+  });
+
+  // Also trigger download
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'web3_topics_graph.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ============================================================
+// Init
+// ============================================================
+loadData();
+</script>
+</body>
+</html>

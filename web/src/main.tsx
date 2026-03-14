@@ -5,6 +5,7 @@ import { ErrorBoundary } from "./components/ui/ErrorBoundary";
 import AgendaPage from "./pages/AgendaPage";
 import { SpeakerPage } from "./pages/SpeakerPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import VotePage from "./pages/VotePage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<AgendaPage />} />
           <Route path="/speaker/:slug" element={<SpeakerPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/vote" element={<VotePage />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>

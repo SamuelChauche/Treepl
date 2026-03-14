@@ -69,3 +69,26 @@ export interface TracksData {
   totalTracks: number;
   tracks: Track[];
 }
+
+// ─── Vote / Web3 Topics ─────────────────────────────────────────
+
+export interface Web3Topic {
+  id: string;
+  name: string;
+  type: "concept" | "project" | "trend" | "technology";
+  description: string;
+}
+
+export interface Web3Category {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  topics: Web3Topic[];
+}
+
+export interface Web3TopicsData {
+  totalTopics: number;
+  totalCategories: number;
+  categories: Web3Category[];
+}

@@ -15,13 +15,17 @@ export interface IntuitionTriple {
   label: string;
 }
 
-// MultiVault ABI — reads + approve
+// MultiVault ABI — reads + approve + redeem
 const MULTIVAULT_ABI = [
   "function getTripleCost() view returns (uint256)",
   "function getAtomCost() view returns (uint256)",
   "function calculateAtomId(bytes data) pure returns (bytes32)",
   "function isTermCreated(bytes32 id) view returns (bool)",
   "function approve(address sender, uint8 approvalType)",
+  "function redeem(address receiver, bytes32 termId, uint256 curveId, uint256 shares, uint256 minAssets) returns (uint256)",
+  "function previewRedeem(bytes32 termId, uint256 curveId, uint256 shares) view returns (uint256 assetsAfterFees, uint256 sharesUsed)",
+  "function maxRedeem(address account, bytes32 termId, uint256 curveId) view returns (uint256)",
+  "function currentSharePrice(bytes32 id, uint256 curveId) view returns (uint256)",
 ];
 
 export interface WalletConnection {

@@ -125,6 +125,16 @@ export function SuccessStep({
         )}
       </section>
 
+      {/* Big CTA → Vote page */}
+      <div className="profile-cta-bridge">
+        <Link to="/vote" className="bridge-cta-btn">
+          Stay connected with participants
+        </Link>
+        <p className="bridge-cta-sub">
+          Trade convictions on web3 topics, find people who think like you, and build your on-chain reputation.
+        </p>
+      </div>
+
       <div className="profile-cta">
         <Link to="/" className="profile-back-btn">
           Back to agenda

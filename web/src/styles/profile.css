@@ -660,3 +660,43 @@
   color: rgba(255, 255, 255, 0.7);
   font-family: "DM Sans", monospace;
 }
+
+/* ── Bridge CTA (Success → Vote) ─────────────────── */
+
+.profile-cta-bridge {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.bridge-cta-btn {
+  display: inline-block;
+  background: #fff;
+  color: #111;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 1rem 2.5rem;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.15);
+}
+
+.bridge-cta-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 32px rgba(255, 255, 255, 0.25);
+}
+
+.bridge-cta-btn:active {
+  transform: scale(0.97);
+}
+
+.bridge-cta-sub {
+  margin-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.82rem;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
