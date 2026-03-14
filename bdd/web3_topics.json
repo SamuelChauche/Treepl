@@ -6,7 +6,7 @@
       "id": "defi",
       "name": "DeFi",
       "icon": "chart-line",
-      "color": "#00d1b2",
+      "color": "#a8e6cf",
       "topics": [
         { "id": "defi-lending", "name": "Lending & Borrowing", "type": "concept", "description": "Permissionless lending and borrowing of crypto assets on-chain" },
         { "id": "defi-amm", "name": "Automated Market Makers", "type": "concept", "description": "Algorithmic liquidity pools replacing traditional order books" },
@@ -19,7 +19,7 @@
       "id": "nfts",
       "name": "NFTs & Digital Assets",
       "icon": "image",
-      "color": "#e056c0",
+      "color": "#f2b5d4",
       "topics": [
         { "id": "nfts-generative-art", "name": "Generative Art", "type": "concept", "description": "Algorithmically created artwork minted as unique on-chain tokens" },
         { "id": "nfts-soulbound", "name": "Soulbound Tokens (SBTs)", "type": "concept", "description": "Non-transferable tokens representing credentials and identity" },
@@ -32,7 +32,7 @@
       "id": "layer2s",
       "name": "Layer 2s & Scaling",
       "icon": "layers",
-      "color": "#7c5cfc",
+      "color": "#c4b5fd",
       "topics": [
         { "id": "l2-zk-rollups", "name": "ZK Rollups", "type": "technology", "description": "Rollups using zero-knowledge proofs for instant finality" },
         { "id": "l2-based-rollups", "name": "Based Rollups", "type": "concept", "description": "Rollups that use L1 validators for sequencing" },
@@ -45,7 +45,7 @@
       "id": "privacy",
       "name": "Privacy & Cryptography",
       "icon": "shield",
-      "color": "#2ecc71",
+      "color": "#b5e8c3",
       "topics": [
         { "id": "privacy-fhe", "name": "Fully Homomorphic Encryption (FHE)", "type": "technology", "description": "Computing on encrypted data without decrypting it" },
         { "id": "privacy-stealth-addresses", "name": "Stealth Addresses", "type": "technology", "description": "One-time addresses for private receiving of assets" },
@@ -58,7 +58,7 @@
       "id": "ai-web3",
       "name": "AI + Web3",
       "icon": "brain",
-      "color": "#ff6b35",
+      "color": "#ffcdb2",
       "topics": [
         { "id": "ai-agents-onchain", "name": "AI Agents On-chain", "type": "trend", "description": "Autonomous AI agents executing transactions and strategies on-chain" },
         { "id": "ai-proof-of-inference", "name": "Proof of Inference", "type": "concept", "description": "Cryptographic proofs that an AI model produced a specific output" },
@@ -71,7 +71,7 @@
       "id": "security",
       "name": "Security",
       "icon": "lock",
-      "color": "#e74c3c",
+      "color": "#f4a5a5",
       "topics": [
         { "id": "sec-formal-verification", "name": "Formal Verification", "type": "technology", "description": "Mathematical proof that smart contracts behave as intended" },
         { "id": "sec-bug-bounties", "name": "Bug Bounties", "type": "concept", "description": "Reward programs for discovering vulnerabilities in protocols" },
@@ -84,7 +84,7 @@
       "id": "governance",
       "name": "Governance & DAOs",
       "icon": "users",
-      "color": "#f39c12",
+      "color": "#fde68a",
       "topics": [
         { "id": "gov-quadratic-voting", "name": "Quadratic Voting", "type": "concept", "description": "Voting system where cost increases quadratically with vote strength" },
         { "id": "gov-futarchy", "name": "Futarchy", "type": "concept", "description": "Governance using prediction markets to decide policy outcomes" },
@@ -97,7 +97,7 @@
       "id": "infra",
       "name": "Infrastructure & Dev Tools",
       "icon": "wrench",
-      "color": "#3498db",
+      "color": "#a5c8e8",
       "topics": [
         { "id": "infra-account-abstraction", "name": "Account Abstraction (ERC-4337)", "type": "technology", "description": "Smart contract wallets with gasless transactions and custom logic" },
         { "id": "infra-intents", "name": "Intent-based Architecture", "type": "concept", "description": "Users declare desired outcomes, solvers find optimal execution paths" },
@@ -110,7 +110,7 @@
       "id": "stablecoins",
       "name": "Stablecoins & Payments",
       "icon": "dollar-sign",
-      "color": "#1abc9c",
+      "color": "#a0d9d0",
       "topics": [
         { "id": "stable-yield-bearing", "name": "Yield-bearing Stablecoins", "type": "trend", "description": "Stablecoins that automatically earn yield from underlying assets" },
         { "id": "stable-streaming-payments", "name": "Streaming Payments", "type": "concept", "description": "Continuous per-second money flows for salaries and subscriptions" },
@@ -123,7 +123,7 @@
       "id": "rwa",
       "name": "Real World Assets",
       "icon": "building",
-      "color": "#e67e22",
+      "color": "#f5cba7",
       "topics": [
         { "id": "rwa-tokenized-treasuries", "name": "Tokenized Treasuries", "type": "trend", "description": "US Treasury bonds and bills represented as on-chain tokens" },
         { "id": "rwa-real-estate", "name": "Tokenized Real Estate", "type": "concept", "description": "Fractional ownership of property via blockchain tokens" },
@@ -136,7 +136,7 @@
       "id": "gaming",
       "name": "Gaming & Metaverse",
       "icon": "gamepad",
-      "color": "#9b59b6",
+      "color": "#d4a5d4",
       "topics": [
         { "id": "gaming-fully-onchain", "name": "Fully On-chain Games", "type": "trend", "description": "Games with all logic and state stored entirely on blockchain" },
         { "id": "gaming-autonomous-worlds", "name": "Autonomous Worlds", "type": "concept", "description": "Permissionless virtual worlds governed by on-chain rules" },
@@ -149,7 +149,7 @@
       "id": "social-identity",
       "name": "Social & Identity",
       "icon": "fingerprint",
-      "color": "#e91e63",
+      "color": "#f4a8c4",
       "topics": [
         { "id": "id-did", "name": "Decentralized Identity (DID)", "type": "technology", "description": "Self-sovereign digital identity without centralized authorities" },
         { "id": "id-proof-of-personhood", "name": "Proof of Personhood", "type": "concept", "description": "Verifying unique humanness without revealing personal data" },
@@ -162,7 +162,7 @@
       "id": "eth-core",
       "name": "Ethereum Core",
       "icon": "cube",
-      "color": "#627eea",
+      "color": "#b4c6f0",
       "topics": [
         { "id": "eth-pbs", "name": "Proposer-Builder Separation", "type": "technology", "description": "Separating block building from block proposing for decentralization" },
         { "id": "eth-verkle-trees", "name": "Verkle Trees", "type": "technology", "description": "New state tree structure enabling stateless Ethereum clients" },
@@ -175,7 +175,7 @@
       "id": "staking",
       "name": "Staking & Validators",
       "icon": "server",
-      "color": "#16a085",
+      "color": "#a3d5c9",
       "topics": [
         { "id": "staking-liquid", "name": "Liquid Staking", "type": "concept", "description": "Staking ETH while receiving liquid derivative tokens" },
         { "id": "staking-restaking", "name": "Restaking", "type": "trend", "description": "Reusing staked ETH to secure additional protocols simultaneously" },
@@ -188,7 +188,7 @@
       "id": "crosschain",
       "name": "Cross-chain & Interop",
       "icon": "link",
-      "color": "#8e44ad",
+      "color": "#cba8d9",
       "topics": [
         { "id": "cross-chain-abstraction", "name": "Chain Abstraction", "type": "concept", "description": "Hiding blockchain complexity so users interact with one unified experience" },
         { "id": "cross-bridges", "name": "Cross-chain Bridges", "type": "technology", "description": "Protocols enabling asset and message transfers between blockchains" },
@@ -201,7 +201,7 @@
       "id": "regulation",
       "name": "Regulation & Compliance",
       "icon": "gavel",
-      "color": "#95a5a6",
+      "color": "#c8d6d6",
       "topics": [
         { "id": "reg-mica", "name": "MiCA Framework", "type": "concept", "description": "EU Markets in Crypto-Assets regulation for token issuers" },
         { "id": "reg-dao-legal", "name": "DAO Legal Wrappers", "type": "concept", "description": "Legal structures enabling DAOs to interact with traditional law" },
@@ -214,7 +214,7 @@
       "id": "culture",
       "name": "Culture & Community",
       "icon": "fire",
-      "color": "#ff4757",
+      "color": "#f8a4ad",
       "topics": [
         { "id": "culture-memecoins", "name": "Memecoins", "type": "trend", "description": "Community-driven tokens with cultural value and viral dynamics" },
         { "id": "culture-public-goods", "name": "Public Goods Funding", "type": "concept", "description": "Mechanisms for funding open-source and shared infrastructure" },
@@ -227,7 +227,7 @@
       "id": "data",
       "name": "Data & Analytics",
       "icon": "bar-chart",
-      "color": "#00b894",
+      "color": "#a8dece",
       "topics": [
         { "id": "data-onchain-analytics", "name": "On-chain Analytics", "type": "concept", "description": "Analyzing blockchain data to understand user behavior and trends" },
         { "id": "data-prediction-markets", "name": "Prediction Markets", "type": "concept", "description": "Markets where participants bet on future event outcomes" },
@@ -240,7 +240,7 @@
       "id": "sustainability",
       "name": "Sustainability & Impact",
       "icon": "leaf",
-      "color": "#27ae60",
+      "color": "#b5d8a8",
       "topics": [
         { "id": "sust-refi", "name": "Regenerative Finance (ReFi)", "type": "concept", "description": "Financial systems designed to regenerate natural and social capital" },
         { "id": "sust-carbon-credits", "name": "Carbon Credits On-chain", "type": "trend", "description": "Tokenized carbon offsets with transparent tracking on blockchain" },
@@ -253,7 +253,7 @@
       "id": "frontiers",
       "name": "Emerging Frontiers",
       "icon": "rocket",
-      "color": "#fd79a8",
+      "color": "#f9c4d2",
       "topics": [
         { "id": "front-desci", "name": "Decentralized Science (DeSci)", "type": "trend", "description": "Using blockchain to fund, publish and verify scientific research" },
         { "id": "front-depin", "name": "DePIN", "type": "trend", "description": "Decentralized Physical Infrastructure Networks incentivized by tokens" },

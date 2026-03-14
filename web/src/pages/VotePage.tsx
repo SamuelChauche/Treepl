@@ -396,7 +396,7 @@ function PortfolioView({
   }
 
   const totalVal = Number(portfolio.totalValue) / 1e18;
-  const pnlVal = Number(portfolio.totalPnl);
+  const pnlVal = Number(portfolio.totalPnl) / 1e18;
 
   return (
     <div className="pf">
@@ -454,7 +454,7 @@ function PortfolioView({
                 <div
                   className="pf-card-bar-fill"
                   style={{
-                    width: `${Math.min(100, (shares / (totalVal || 1)) * 100)}%`,
+                    width: `${totalVal > 0 ? Math.min(100, (shares / totalVal) * 100) : 0}%`,
                     background: color.light,
                   }}
                 />
@@ -689,7 +689,7 @@ export default function VotePage() {
           <div className="category-pills">
             <button
               className={`cat-pill${activeCategory === null ? " active" : ""}`}
-              style={activeCategory === null ? { background: "var(--teal)", color: "#001e2f" } : {}}
+              style={activeCategory === null ? { background: "rgba(255,255,255,0.2)", color: "#fff" } : {}}
               onClick={() => setActiveCategory(null)}
             >
               All
@@ -736,10 +736,15 @@ export default function VotePage() {
               </div>
             ) : (
               trendingData
-                .filter((d) => !activeCategory || d.topicId.startsWith(activeCategory))
+                .filter((d) => {
+                  if (activeCategory) {
+                    const found = allTopicsWithCategory.find((t) => t.topic.id === d.topicId);
+                    if (!found || found.category.id !== activeCategory) return false;
+                  }
+                  return allTopicsWithCategory.some((t) => t.topic.id === d.topicId);
+                })
                 .map((d, i) => {
-                  const found = allTopicsWithCategory.find((t) => t.topic.id === d.topicId);
-                  if (!found) return null;
+                  const found = allTopicsWithCategory.find((t) => t.topic.id === d.topicId)!;
                   return (
                     <TopicRow
                       key={d.topicId}

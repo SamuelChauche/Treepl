@@ -319,12 +319,16 @@ export async function fetchAllTopicEvents(): Promise<Map<string, number[]>> {
 export async function fetchLikeMinded(
   userAddress: string
 ): Promise<{ address: string; commonTopics: string[]; count: number }[]> {
+  // Sanitize address — must be a valid hex address
+  const sanitized = userAddress.replace(/[^a-fA-F0-9x]/g, "").toLowerCase();
+  if (!/^0x[a-f0-9]{40}$/.test(sanitized)) return [];
+
   // First get all topics this user voted on
   const query = `{
     triples(
       where: {
         predicate: { term_id: { _eq: "${SUPPORTS_PREDICATE}" } }
-        subject: { label: { _ilike: "${userAddress.toLowerCase()}" } }
+        subject: { label: { _ilike: "${sanitized}" } }
       }
     ) {
       object {
@@ -352,7 +356,7 @@ export async function fetchLikeMinded(
       where: {
         predicate: { term_id: { _eq: "${SUPPORTS_PREDICATE}" } }
         object: { term_id: { _in: [${userTopics.map((id: string) => `"${id}"`).join(",")}] } }
-        subject: { label: { _nilike: "${userAddress.toLowerCase()}" } }
+        subject: { label: { _nilike: "${sanitized}" } }
       }
     ) {
       subject {
