@@ -50,7 +50,15 @@ export async function connectWallet(): Promise<WalletConnection> {
   const { ethers } = await import("ethers");
 
   if (!window.ethereum) {
-    throw new Error("No wallet found. Please install a Web3 wallet.");
+    // Mobile: redirect to MetaMask in-app browser via deep link
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      const dappUrl = window.location.href.replace(/^https?:\/\//, "");
+      window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
+      // Won't return — browser navigates away
+      await new Promise(() => {}); // hang until redirect
+    }
+    throw new Error("No wallet found. Please install MetaMask.");
   }
 
   const provider = new ethers.BrowserProvider(window.ethereum);
