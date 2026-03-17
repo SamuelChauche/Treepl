@@ -87,23 +87,21 @@ export async function connectWallet(): Promise<WalletConnection> {
     return buildWalletConnection(ethers, freshProvider, signer, address);
   }
 
-  // No injected wallet — mobile: redirect into MetaMask's in-app browser
-  // Desktop: open AppKit modal (WalletConnect QR code)
+  // No injected wallet
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   if (isMobile) {
-    // Deep link opens MetaMask and loads our site inside its browser
-    // window.ethereum will be available there — user stays in MetaMask
+    // Redirect into MetaMask's in-app browser where window.ethereum is available
     const dappUrl = window.location.href.replace(/^https?:\/\//, "");
     window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
-    await new Promise(() => {}); // hang until redirect
+    throw new Error("REDIRECT_METAMASK");
   }
 
-  // Desktop without MetaMask — open AppKit modal
+  // Desktop — open AppKit modal (WalletConnect QR, Coinbase, etc.)
   if (modal) {
     modal.open();
   }
-  throw new Error("Please connect a wallet using the modal, or install MetaMask.");
+  throw new Error("NO_WALLET");
 }
 
 function buildWalletConnection(

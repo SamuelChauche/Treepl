@@ -182,7 +182,18 @@ export default function OnboardingPage() {
       setTrustBalance(conn.ethers.formatEther(bal));
       setWalletState("connected");
     } catch (e: unknown) {
-      setTxError(e instanceof Error ? e.message : String(e));
+      const msg = e instanceof Error ? e.message : String(e);
+      if (msg === "REDIRECT_METAMASK") {
+        setTxError("Opening MetaMask... Click Connect again once inside MetaMask.");
+        setWalletState("idle");
+        return;
+      }
+      if (msg === "NO_WALLET") {
+        setTxError("Select a wallet from the modal to connect.");
+        setWalletState("idle");
+        return;
+      }
+      setTxError(msg);
       setWalletState("idle");
     }
   }

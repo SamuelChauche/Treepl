@@ -397,7 +397,11 @@ export default function BuyTrustPage() {
               setWalletAddr(w.address);
               setWalletConnected(true);
               localStorage.setItem("ethcc-wallet-address", w.address);
-            } catch { /* user rejected */ }
+            } catch (e: unknown) {
+              const msg = e instanceof Error ? e.message : "";
+              if (msg === "REDIRECT_METAMASK" || msg === "NO_WALLET") return;
+              /* user rejected */
+            }
           }}
         >
           {walletConnected ? (
