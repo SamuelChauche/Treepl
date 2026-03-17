@@ -59,6 +59,49 @@ export function useWalletConnection() {
         const provider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
         provider.pollingInterval = 30000;
 
+        // Ensure wallet is on Intuition chain (1155)
+        try {
+          const network = await provider.getNetwork();
+          if (Number(network.chainId) !== CHAIN_CONFIG.CHAIN_ID) {
+            try {
+              await provider.send("wallet_addEthereumChain", [
+                {
+                  chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
+                  chainName: CHAIN_CONFIG.CHAIN_NAME,
+                  rpcUrls: [CHAIN_CONFIG.RPC_URL],
+                  nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
+                },
+              ]);
+            } catch {
+              await provider.send("wallet_switchEthereumChain", [
+                { chainId: CHAIN_CONFIG.CHAIN_ID_HEX },
+              ]);
+            }
+            // Re-init provider after chain switch
+            const freshProvider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
+            freshProvider.pollingInterval = 30000;
+            const signer = await freshProvider.getSigner();
+            const addr = await signer.getAddress();
+
+            const proxy = new ethers.Contract(CHAIN_CONFIG.SOFIA_PROXY, SofiaFeeProxyAbi, signer);
+            const multiVault = new ethers.Contract(CHAIN_CONFIG.MULTIVAULT, MULTIVAULT_ABI, signer);
+            const conn: WalletConnection = { provider: freshProvider, signer, proxy, multiVault, address: addr, ethers };
+            setWallet(conn);
+            builtForRef.current = address;
+            localStorage.setItem("ethcc-wallet-address", addr);
+            setError("");
+            setLoading(false);
+            buildingRef.current = false;
+
+            try {
+              const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
+              const bal = await rpcProvider.getBalance(addr);
+              setBalance(ethers.formatEther(bal));
+            } catch { /* non-critical */ }
+            return;
+          }
+        } catch { /* getNetwork failed — proceed anyway */ }
+
         const signer = await provider.getSigner();
         const addr = await signer.getAddress();
 
