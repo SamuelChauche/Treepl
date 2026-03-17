@@ -49,29 +49,69 @@ export interface WalletConnection {
 export async function connectWallet(): Promise<WalletConnection> {
   const { ethers } = await import("ethers");
 
-  if (!window.ethereum) {
-    // Mobile: redirect to MetaMask in-app browser via deep link
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
-      const dappUrl = window.location.href.replace(/^https?:\/\//, "");
-      window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
-      // Won't return — browser navigates away
-      await new Promise(() => {}); // hang until redirect
+  // Try direct window.ethereum first (MetaMask injected, or inside MetaMask browser)
+  if (window.ethereum) {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    provider.pollingInterval = 30000;
+
+    try {
+      await provider.send("wallet_requestPermissions", [{ eth_accounts: {} }]);
+    } catch {
+      await provider.send("eth_requestAccounts", []);
     }
-    throw new Error("No wallet found. Please install MetaMask.");
+
+    // Add / switch to Intuition chain
+    try {
+      await provider.send("wallet_addEthereumChain", [
+        {
+          chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
+          chainName: CHAIN_CONFIG.CHAIN_NAME,
+          rpcUrls: [CHAIN_CONFIG.RPC_URL],
+          nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
+        },
+      ]);
+    } catch {
+      await provider.send("wallet_switchEthereumChain", [
+        { chainId: CHAIN_CONFIG.CHAIN_ID_HEX },
+      ]);
+    }
+
+    const freshProvider = new ethers.BrowserProvider(window.ethereum);
+    freshProvider.pollingInterval = 30000;
+    const signer = await freshProvider.getSigner();
+    const address = await signer.getAddress();
+
+    localStorage.setItem("ethcc-wallet-address", address);
+
+    return buildWalletConnection(ethers, freshProvider, signer, address);
   }
 
-  const provider = new ethers.BrowserProvider(window.ethereum);
+  // No injected wallet — open AppKit modal
+  const { modal } = await import("@reown/appkit/react");
+  if (!modal) throw new Error("AppKit not initialized.");
+
+  modal.open();
+
+  // Wait for wallet to connect via AppKit (polls window.ethereum)
+  const walletProvider = await new Promise<unknown>((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error("Connection timeout")), 120000);
+    const interval = setInterval(() => {
+      if (window.ethereum) {
+        clearInterval(interval);
+        clearTimeout(timeout);
+        resolve(window.ethereum);
+      }
+    }, 500);
+  });
+
+  // Close modal
+  modal.close();
+
+  const provider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
   provider.pollingInterval = 30000;
+  await provider.send("eth_requestAccounts", []);
 
-  // Force account picker (MetaMask), fallback for other wallets
-  try {
-    await provider.send("wallet_requestPermissions", [{ eth_accounts: {} }]);
-  } catch {
-    await provider.send("eth_requestAccounts", []);
-  }
-
-  // Add / switch to Intuition chain
+  // Switch to Intuition chain
   try {
     await provider.send("wallet_addEthereumChain", [
       {
@@ -87,11 +127,25 @@ export async function connectWallet(): Promise<WalletConnection> {
     ]);
   }
 
-  // Re-init after chain switch
-  const freshProvider = new ethers.BrowserProvider(window.ethereum);
+  const freshProvider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
   freshProvider.pollingInterval = 30000;
   const signer = await freshProvider.getSigner();
   const address = await signer.getAddress();
+
+  localStorage.setItem("ethcc-wallet-address", address);
+
+  return buildWalletConnection(ethers, freshProvider, signer, address);
+}
+
+function buildWalletConnection(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ethers: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  provider: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  signer: any,
+  address: string
+): WalletConnection {
 
   // Proxy for writes (createAtoms, createTriples, deposit) + fee calc
   const proxy = new ethers.Contract(

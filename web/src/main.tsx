@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ErrorBoundary } from "./components/ui/ErrorBoundary";
 import App from "./App";
 
+// Initialize AppKit (multi-wallet: MetaMask, WalletConnect, Coinbase)
+import "./config/appkit";
+
 // Pages
 import OnboardingPage from "./pages/OnboardingPage";
 import HomePage from "./pages/HomePage";

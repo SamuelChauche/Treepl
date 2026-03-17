@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reown/appkit": "^1.8.19",
+    "@reown/appkit-adapter-ethers": "^1.8.19",
     "@types/three": "^0.183.1",
     "ethers": "^6.16.0",
     "postprocessing": "^6.38.3",
