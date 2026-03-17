@@ -86,55 +86,24 @@ export async function connectWallet(): Promise<WalletConnection> {
     return buildWalletConnection(ethers, freshProvider, signer, address);
   }
 
-  // No injected wallet — open AppKit modal
-  const { modal } = await import("@reown/appkit/react");
-  if (!modal) throw new Error("AppKit not initialized.");
+  // No injected wallet — mobile: redirect into MetaMask's in-app browser
+  // Desktop: open AppKit modal (WalletConnect QR code)
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  modal.open();
-
-  // Wait for wallet to connect via AppKit (polls window.ethereum)
-  const walletProvider = await new Promise<unknown>((resolve, reject) => {
-    const timeout = setTimeout(() => reject(new Error("Connection timeout")), 120000);
-    const interval = setInterval(() => {
-      if (window.ethereum) {
-        clearInterval(interval);
-        clearTimeout(timeout);
-        resolve(window.ethereum);
-      }
-    }, 500);
-  });
-
-  // Close modal
-  modal.close();
-
-  const provider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
-  provider.pollingInterval = 30000;
-  await provider.send("eth_requestAccounts", []);
-
-  // Switch to Intuition chain
-  try {
-    await provider.send("wallet_addEthereumChain", [
-      {
-        chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
-        chainName: CHAIN_CONFIG.CHAIN_NAME,
-        rpcUrls: [CHAIN_CONFIG.RPC_URL],
-        nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
-      },
-    ]);
-  } catch {
-    await provider.send("wallet_switchEthereumChain", [
-      { chainId: CHAIN_CONFIG.CHAIN_ID_HEX },
-    ]);
+  if (isMobile) {
+    // Deep link opens MetaMask and loads our site inside its browser
+    // window.ethereum will be available there — user stays in MetaMask
+    const dappUrl = window.location.href.replace(/^https?:\/\//, "");
+    window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
+    await new Promise(() => {}); // hang until redirect
   }
 
-  const freshProvider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
-  freshProvider.pollingInterval = 30000;
-  const signer = await freshProvider.getSigner();
-  const address = await signer.getAddress();
-
-  localStorage.setItem("ethcc-wallet-address", address);
-
-  return buildWalletConnection(ethers, freshProvider, signer, address);
+  // Desktop without MetaMask — open AppKit modal
+  const { modal } = await import("@reown/appkit/react");
+  if (modal) {
+    modal.open();
+  }
+  throw new Error("Please connect a wallet using the modal, or install MetaMask.");
 }
 
 function buildWalletConnection(
