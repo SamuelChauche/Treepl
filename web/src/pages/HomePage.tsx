@@ -6,6 +6,13 @@ import { Ic } from "../components/ui/Icons";
 // StatusBar removed - real OS handles it on mobile
 import { VIBES } from "../data/social";
 import { useCart } from "../hooks/useCart";
+import {
+  hasEmbeddedWallet,
+  getEmbeddedAddress,
+  isBackupDone,
+  connectEmbeddedWallet,
+  markBackupDone,
+} from "../services/embeddedWallet";
 
 // ─── Styles ─────────────────────────────────────────────────────
 const page: CSSProperties = {
@@ -189,6 +196,37 @@ export default function HomePage() {
   // Online vibes
   const onlineVibes = useMemo(() => VIBES.filter((v) => v.online), []);
 
+  // Embedded wallet state
+  const isEmbedded = hasEmbeddedWallet() && getEmbeddedAddress() === walletAddress;
+  const needsBackup = isEmbedded && !isBackupDone();
+  const [showUnlock, setShowUnlock] = useState(false);
+  const [unlockPassword, setUnlockPassword] = useState("");
+  const [unlockError, setUnlockError] = useState("");
+  const [walletUnlocked, setWalletUnlocked] = useState(false);
+  const [showBackupReminder, setShowBackupReminder] = useState(needsBackup);
+  const [backupKey, setBackupKey] = useState("");
+
+  const handleUnlock = async () => {
+    setUnlockError("");
+    try {
+      const conn = await connectEmbeddedWallet(unlockPassword);
+      setWalletUnlocked(true);
+      setShowUnlock(false);
+      setUnlockPassword("");
+      // Refresh balance
+      const bal = await conn.provider.getBalance(conn.address);
+      setTrustBalance(conn.ethers.formatEther(bal));
+    } catch {
+      setUnlockError("Wrong password");
+    }
+  };
+
+  const handleBackupAck = () => {
+    markBackupDone();
+    setShowBackupReminder(false);
+    setBackupKey("");
+  };
+
   return (
     <div style={page}>
       {/* Fixed color background */}
@@ -240,6 +278,107 @@ export default function HomePage() {
           <span style={{ fontSize: 13, fontWeight: 500, color: C.textPrimary }}>Invite</span>
         </button>
       </div>
+
+      {/* ── Backup reminder (embedded wallet, never backed up) ── */}
+      {showBackupReminder && isEmbedded && (
+        <div style={{ ...glassSurface, margin: "0 16px 12px", padding: 14, border: `1px solid ${C.warning}44` }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: C.warning, marginBottom: 6 }}>
+            Backup your private key
+          </div>
+          <div style={{ fontSize: 12, color: C.textSecondary, marginBottom: 10 }}>
+            You created an embedded wallet but never saved your private key. If you lose it, your funds are gone.
+          </div>
+          {backupKey ? (
+            <>
+              <div style={{ fontSize: 11, color: C.textSecondary, fontFamily: "monospace", wordBreak: "break-all", background: C.surfaceGray, padding: 10, borderRadius: R.md, marginBottom: 8 }}>
+                {backupKey}
+              </div>
+              <div style={{ display: "flex", gap: 8 }}>
+                <button
+                  onClick={() => { navigator.clipboard.writeText(backupKey); }}
+                  style={{ flex: 1, padding: "8px 0", borderRadius: R.btn, border: "none", background: C.surfaceGray, color: C.textPrimary, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}
+                >
+                  Copy
+                </button>
+                <button
+                  onClick={handleBackupAck}
+                  style={{ flex: 1, padding: "8px 0", borderRadius: R.btn, border: "none", background: C.flat, color: "#0a0a0a", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}
+                >
+                  I've saved it
+                </button>
+              </div>
+            </>
+          ) : (
+            <button
+              onClick={async () => {
+                // Need password to reveal key
+                const pw = prompt("Enter your wallet password to reveal the key:");
+                if (!pw) return;
+                try {
+                  const conn = await connectEmbeddedWallet(pw);
+                  // The private key is on the signer
+                  setBackupKey(conn.signer.privateKey ?? "Could not retrieve key");
+                } catch {
+                  alert("Wrong password");
+                }
+              }}
+              style={{ padding: "8px 16px", borderRadius: R.btn, border: "none", background: C.warning, color: "#0a0a0a", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}
+            >
+              Reveal Private Key
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* ── Unlock embedded wallet banner ──────────────────── */}
+      {isEmbedded && !walletUnlocked && !showUnlock && (
+        <div
+          style={{ ...glassSurface, margin: "0 16px 12px", padding: 14, display: "flex", alignItems: "center", gap: 12, cursor: "pointer", border: `1px solid ${C.primary}44` }}
+          onClick={() => setShowUnlock(true)}
+        >
+          <Ic.Wallet s={20} c={C.primary} />
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: C.textPrimary }}>Unlock Embedded Wallet</div>
+            <div style={{ fontSize: 11, color: C.textSecondary }}>Enter password to sign transactions</div>
+          </div>
+          <Ic.Right s={16} c={C.textTertiary} />
+        </div>
+      )}
+
+      {showUnlock && (
+        <div style={{ ...glassSurface, margin: "0 16px 12px", padding: 14 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 8 }}>Enter wallet password</div>
+          <input
+            type="password"
+            value={unlockPassword}
+            onChange={(e) => setUnlockPassword(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter") handleUnlock(); }}
+            placeholder="Password"
+            autoFocus
+            style={{
+              width: "100%", padding: "10px 14px", borderRadius: R.md,
+              border: `1px solid ${C.border}`, background: C.surfaceGray,
+              color: C.textPrimary, fontSize: 14, fontFamily: FONT,
+              outline: "none", boxSizing: "border-box", marginBottom: 8,
+            }}
+          />
+          {unlockError && <div style={{ fontSize: 11, color: C.error, marginBottom: 6 }}>{unlockError}</div>}
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={() => { setShowUnlock(false); setUnlockPassword(""); setUnlockError(""); }}
+              style={{ flex: 1, padding: "8px 0", borderRadius: R.btn, border: "none", background: C.surfaceGray, color: C.textSecondary, fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleUnlock}
+              style={{ flex: 1, padding: "8px 0", borderRadius: R.btn, border: "none", background: C.flat, color: "#0a0a0a", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}
+            >
+              Unlock
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── Nearby Vibes ───────────────────────────────────── */}
       <div style={sectionHeader}>
@@ -315,7 +454,7 @@ export default function HomePage() {
                     fontSize: 10,
                     padding: "2px 6px",
                     borderRadius: 4,
-                    background: "rgba(255,255,255,0.06)",
+                    background: C.surfaceGray,
                     color: C.textSecondary,
                   }}
                 >

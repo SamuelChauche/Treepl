@@ -24,6 +24,7 @@ import VibeProfilePage from "./pages/VibeProfilePage";
 import VibesListPage from "./pages/VibesListPage";
 import SettingsPage from "./pages/SettingsPage";
 import TopicDetailPage from "./pages/TopicDetailPage";
+import RateSessionPage from "./pages/RateSessionPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -43,6 +44,7 @@ createRoot(document.getElementById("root")!).render(
 
             {/* Detail pages */}
             <Route path="/session/:id" element={<SessionDetailPage />} />
+            <Route path="/rate/:id" element={<RateSessionPage />} />
             <Route path="/topic/:id" element={<TopicDetailPage />} />
             <Route path="/speaker/:slug" element={<SpeakerPage />} />
 

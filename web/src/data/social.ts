@@ -2,13 +2,13 @@ import type { Vibe, Platform, LeaderboardUser } from "../types";
 
 // ─── Mock vibe matches (to be replaced by Intuition GraphQL) ────
 export const VIBES: Vibe[] = [
-  { name: "Alice.eth", addr: "0xAlice...1234", shared: ["DeFi", "Privacy & ZK", "AI & Crypto"], pct: 91, online: true, dist: "12m" },
-  { name: "0xBob", addr: "0xBob...5678", shared: ["Infrastructure", "Core Protocol"], pct: 72, online: true, dist: "45m" },
-  { name: "CryptoCarla", addr: "0xCarla...9abc", shared: ["DeFi", "Governance", "MEV"], pct: 87, online: false, dist: "120m" },
-  { name: "DevDave.eth", addr: "0xDave...def0", shared: ["AI & Crypto", "Security"], pct: 68, online: true, dist: "8m" },
-  { name: "EthEnthusiast", addr: "0xEth...1111", shared: ["Core Protocol", "DeFi", "Infrastructure"], pct: 83, online: true, dist: "30m" },
-  { name: "ZkZara.eth", addr: "0xZara...2222", shared: ["Privacy & ZK", "Security", "Core Protocol"], pct: 79, online: false, dist: "200m" },
-  { name: "NftNina", addr: "0xNina...3333", shared: ["NFT & Culture", "Social & Identity"], pct: 65, online: true, dist: "55m" },
+  { name: "Alice.eth", addr: "0xAlice...1234", shared: ["DeFi", "Privacy & ZK", "AI & Crypto"], pct: 91, online: true, dist: "12m", socials: { github: "alice-eth", twitter: "@alice_defi", url: "https://alice.xyz" } },
+  { name: "0xBob", addr: "0xBob...5678", shared: ["Infrastructure", "Core Protocol"], pct: 72, online: true, dist: "45m", socials: { github: "bob-builder", discord: "bob#1337" } },
+  { name: "CryptoCarla", addr: "0xCarla...9abc", shared: ["DeFi", "Governance", "MEV"], pct: 87, online: false, dist: "120m", socials: { twitter: "@carla_mev", github: "carla-crypto" } },
+  { name: "DevDave.eth", addr: "0xDave...def0", shared: ["AI & Crypto", "Security"], pct: 68, online: true, dist: "8m", socials: { github: "devdave", twitter: "@devdave_eth", url: "https://devdave.dev" } },
+  { name: "EthEnthusiast", addr: "0xEth...1111", shared: ["Core Protocol", "DeFi", "Infrastructure"], pct: 83, online: true, dist: "30m", socials: { github: "eth-enthusiast" } },
+  { name: "ZkZara.eth", addr: "0xZara...2222", shared: ["Privacy & ZK", "Security", "Core Protocol"], pct: 79, online: false, dist: "200m", socials: { github: "zkzara", twitter: "@zk_zara" } },
+  { name: "NftNina", addr: "0xNina...3333", shared: ["NFT & Culture", "Social & Identity"], pct: 65, online: true, dist: "55m", socials: { twitter: "@nft_nina", discord: "nina#4242", url: "https://nftnina.art" } },
 ];
 
 // ─── Connected platforms ────────────────────────────────────────

@@ -1,11 +1,13 @@
 import { useState, useMemo, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glassSurface, FONT } from "../config/theme";
-import { PLATFORMS } from "../data/social";
 
 import { Ic } from "../components/ui/Icons";
 import { StorageService } from "../services/StorageService";
 import { useVibeMatches } from "../hooks/useVibeMatches";
+import { useEnsProfile } from "../hooks/useEnsProfile";
+import { getSocialLinks } from "../services/ensService";
+import { hasEmbeddedWallet, getEmbeddedAddress } from "../services/embeddedWallet";
 
 // ─── Styles ──────────────────────────────────────────
 
@@ -100,36 +102,11 @@ const platformDesc: CSSProperties = {
   textOverflow: "ellipsis",
 };
 
-const toggleTrack = (on: boolean): CSSProperties => ({
-  width: 44,
-  height: 24,
-  borderRadius: 12,
-  background: on ? C.success : "rgba(255,255,255,0.1)",
-  position: "relative" as const,
-  cursor: "pointer",
-  transition: "background 0.2s",
-  border: "none",
-  flexShrink: 0,
-});
-
-const toggleKnob = (on: boolean): CSSProperties => ({
-  width: 20,
-  height: 20,
-  borderRadius: 10,
-  background: "#fff",
-  position: "absolute" as const,
-  top: 2,
-  left: on ? 22 : 2,
-  transition: "left 0.2s",
-});
 
 // ─── Component ───────────────────────────────────────
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const [connectedPlatforms, setConnectedPlatforms] = useState<Set<string>>(
-    new Set(["github", "x"])
-  );
 
   const walletAddress = localStorage.getItem("ethcc-wallet-address") ?? "";
   const savedTopics = useMemo(() => StorageService.loadTopics(), []);
@@ -144,13 +121,30 @@ export default function ProfilePage() {
     }
   }, []);
 
-  const togglePlatform = (id: string) => {
-    setConnectedPlatforms((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+  // Detect if connected via embedded wallet (no ENS possible)
+  const isEmbeddedWallet = hasEmbeddedWallet() && getEmbeddedAddress()?.toLowerCase() === walletAddress.toLowerCase();
+
+  // ENS profile resolution — use a separate ENS address if user reconnected with external wallet
+  const [ensAddress, setEnsAddress] = useState<string | null>(null);
+  const ensLookupAddr = ensAddress ?? (isEmbeddedWallet ? null : walletAddress || null);
+  const { profile: ensProfile, loading: ensLoading } = useEnsProfile(ensLookupAddr);
+  const socialLinks = ensProfile ? getSocialLinks(ensProfile) : [];
+
+  const handleReconnectEns = async () => {
+    try {
+      if (!window.ethereum) {
+        alert("No external wallet detected. Install MetaMask to connect your ENS.");
+        return;
+      }
+      const { ethers } = await import("ethers");
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = await provider.getSigner();
+      const addr = await signer.getAddress();
+      setEnsAddress(addr);
+    } catch {
+      // User cancelled or no wallet
+    }
   };
 
   // Real vibe matches from on-chain data
@@ -207,29 +201,71 @@ export default function ProfilePage() {
         Invite Nearby Participants
       </button>
 
-      {/* Connected Platforms */}
-      <div style={sectionTitle}>Connected Platforms</div>
-      {PLATFORMS.map((p) => {
-        const on = connectedPlatforms.has(p.id);
-        return (
-          <div key={p.id} style={platformRow}>
-            <div style={{ ...platformIcon, background: `${p.color}22` }}>
-              {p.icon}
+      {/* Social Profiles (from ENS) */}
+      <div style={sectionTitle}>
+        {ensProfile?.name ? `${ensProfile.name}` : "Social Profiles"}
+      </div>
+      {ensLoading && (
+        <div style={{ ...glassSurface, margin: "0 16px 8px", padding: 16, textAlign: "center" }}>
+          <div style={{ fontSize: 13, color: C.textSecondary }}>Loading ENS profile...</div>
+        </div>
+      )}
+      {!ensLoading && socialLinks.length > 0 && socialLinks.map((link) => (
+        <a
+          key={link.label}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          <div style={platformRow}>
+            <div style={{
+              ...platformIcon,
+              background: link.icon === "🐙" ? "rgba(51,51,51,0.2)"
+                : link.icon === "𝕏" ? "rgba(255,255,255,0.08)"
+                : link.icon === "💬" ? "rgba(88,101,242,0.2)"
+                : "rgba(255,255,255,0.08)",
+            }}>
+              <span style={{ fontSize: 20 }}>{link.icon}</span>
             </div>
             <div style={platformInfo}>
-              <div style={platformName}>{p.name}</div>
-              <div style={platformDesc}>{p.desc}</div>
+              <div style={platformName}>{link.label}</div>
+              <div style={platformDesc}>
+                {link.icon === "🐙" ? "GitHub" : link.icon === "𝕏" ? "X / Twitter" : link.icon === "💬" ? "Discord" : "Website"}
+              </div>
             </div>
-            <div style={{ fontSize: 11, color: C.success, marginRight: 8 }}>{p.score}</div>
-            <button
-              style={toggleTrack(on)}
-              onClick={() => togglePlatform(p.id)}
-            >
-              <div style={toggleKnob(on)} />
-            </button>
+            <Ic.Right s={16} c={C.textTertiary} />
           </div>
-        );
-      })}
+        </a>
+      ))}
+      {!ensLoading && socialLinks.length === 0 && (
+        <div style={{ ...glassSurface, margin: "0 16px 8px", padding: 16, textAlign: "center" }}>
+          <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: isEmbeddedWallet ? 12 : 0 }}>
+            {isEmbeddedWallet
+              ? "Embedded wallet has no ENS. Connect an external wallet to load your socials."
+              : walletAddress
+                ? "No ENS profile found. Set up your ENS records to share your socials."
+                : "Connect wallet to load your ENS profile"}
+          </div>
+          {isEmbeddedWallet && (
+            <button
+              onClick={handleReconnectEns}
+              style={{
+                padding: "10px 20px", borderRadius: R.btn, border: "none",
+                background: C.flat, color: "#0a0a0a", fontSize: 13, fontWeight: 600,
+                cursor: "pointer", fontFamily: FONT,
+              }}
+            >
+              Connect with ENS wallet
+            </button>
+          )}
+        </div>
+      )}
+      {ensProfile?.name && (
+        <div style={{ margin: "4px 16px 0", fontSize: 11, color: C.textTertiary, textAlign: "center" }}>
+          Loaded from ENS: {ensProfile.name}
+        </div>
+      )}
 
       </div>
     </div>

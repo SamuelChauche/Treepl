@@ -1,7 +1,8 @@
-import { type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, glassSurface, FONT } from "../config/theme";
 import { LEADERBOARD } from "../data/social";
+import { fetchLeaderboard, type LeaderboardEntry } from "../services/leaderboardService";
 
 
 // ─── Styles ──────────────────────────────────────────
@@ -239,9 +240,50 @@ const meTag: CSSProperties = {
 
 export default function LeaderboardPage() {
   const navigate = useNavigate();
+  const walletAddr = (localStorage.getItem("ethcc-wallet-address") ?? "").toLowerCase();
 
-  const top3 = LEADERBOARD.filter((u) => u.rank <= 3);
-  const rest = LEADERBOARD.filter((u) => u.rank > 3);
+  const [liveData, setLiveData] = useState<LeaderboardEntry[] | null>(null);
+  const [, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch real leaderboard from Blockscout explorer API
+    // Use known addresses (connected users stored in localStorage transfers, or hardcoded event addresses)
+    const knownAddresses: string[] = [];
+    try {
+      const transfers = JSON.parse(localStorage.getItem("ethcc-trust-transfers") ?? "[]");
+      for (const t of transfers) {
+        if (t.from && !knownAddresses.includes(t.from)) knownAddresses.push(t.from);
+        if (t.to && !knownAddresses.includes(t.to)) knownAddresses.push(t.to);
+      }
+    } catch { /* ignore */ }
+    if (walletAddr && !knownAddresses.includes(walletAddr)) knownAddresses.push(walletAddr);
+
+    if (knownAddresses.length > 0) {
+      fetchLeaderboard(knownAddresses).then((data) => {
+        if (data.length > 0) setLiveData(data);
+        setLoading(false);
+      }).catch(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [walletAddr]);
+
+  // Use live data if available, fallback to mock
+  const leaderboard = liveData
+    ? liveData.map((e) => ({
+        name: e.label,
+        addr: `${e.address.slice(0, 6)}...${e.address.slice(-4)}`,
+        pnl: `${e.totalSent.toFixed(2)} TRUST`,
+        up: true,
+        votes: e.txCount,
+        mktCap: `${e.txCount} tx`,
+        rank: e.rank,
+        isMe: e.address.toLowerCase() === walletAddr,
+      }))
+    : LEADERBOARD;
+
+  const top3 = leaderboard.filter((u) => u.rank <= 3);
+  const rest = leaderboard.filter((u) => u.rank > 3);
 
   return (
     <div style={page}>
@@ -250,7 +292,7 @@ export default function LeaderboardPage() {
         <button style={backBtn} onClick={() => navigate(-1)}>
           &#8249;
         </button>
-        <div style={title}>PnL Leaderboard</div>
+        <div style={title}>{liveData ? "Trust Sent" : "PnL Leaderboard"}</div>
       </div>
 
       {/* Scrollable content */}

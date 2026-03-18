@@ -49,12 +49,12 @@ const orgStyle: CSSProperties = { fontSize: 14, color: C.textSecondary };
 
 const tagPill: CSSProperties = {
   padding: "4px 12px", borderRadius: R.btn, fontSize: 11, fontWeight: 600,
-  background: "rgba(255,255,255,0.06)", border: `1px solid ${C.border}`, color: C.textSecondary,
+  background: C.surfaceGray, border: `1px solid ${C.border}`, color: C.textSecondary,
 };
 
 const socialBtn: CSSProperties = {
   padding: "6px 14px", borderRadius: R.btn, fontSize: 12, fontWeight: 500,
-  background: "rgba(255,255,255,0.06)", border: `1px solid ${C.border}`,
+  background: C.surfaceGray, border: `1px solid ${C.border}`,
   color: C.primary, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6,
 };
 

@@ -107,16 +107,25 @@ export function useVibeMatches(
           }
         });
 
-        // Convert to array, exclude current user, sort by score
+        // Convert to array, exclude current user, sort by similarity score
+        const totalUserTopics = topicList.length;
+        const totalUserSessions = sessionIds.length;
+        const totalItems = totalUserTopics + totalUserSessions;
+
         const result: VibeMatch[] = [];
         for (const [id, info] of userMap) {
           if (info.label.toLowerCase() === addr) continue;
+          // Jaccard-like similarity: shared / union
+          const shared = info.topics.size + info.sessions.size;
+          const otherTotal = info.topics.size + info.sessions.size; // what we know about them
+          const union = totalItems + otherTotal - shared;
+          const similarity = union > 0 ? Math.round((shared / union) * 100) : 0;
           result.push({
             subjectTermId: id,
             label: info.label,
             sharedTopics: [...info.topics],
             sharedSessions: [...info.sessions],
-            matchScore: info.topics.size + info.sessions.size,
+            matchScore: similarity, // now 0-100 percentage
           });
         }
 

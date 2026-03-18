@@ -1,6 +1,9 @@
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, useRef, useCallback, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glassSurface, btnPill, FONT } from "../config/theme";
+import { QRCodeSVG } from "qrcode.react";
+import { connectWallet } from "../services/intuition";
+import type { WalletConnection } from "../services/intuition";
 
 
 // ─── Styles ──────────────────────────────────────────
@@ -66,30 +69,12 @@ const tabBtn = (active: boolean): CSSProperties => ({
 // QR Styles
 const qrBox: CSSProperties = {
   ...glassSurface,
-  margin: "0 16px",
   padding: 24,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: 16,
 };
-
-const qrGrid: CSSProperties = {
-  width: 200,
-  height: 200,
-  display: "grid",
-  gridTemplateColumns: "repeat(11, 1fr)",
-  gridTemplateRows: "repeat(11, 1fr)",
-  gap: 2,
-  padding: 16,
-  background: "#fff",
-  borderRadius: R.lg,
-};
-
-const qrCell = (dark: boolean): CSSProperties => ({
-  borderRadius: 2,
-  background: dark ? "#0a0a0a" : "#fff",
-});
 
 const infoRow: CSSProperties = {
   display: "flex",
@@ -113,7 +98,6 @@ const infoValue: CSSProperties = {
 // Scan styles
 const scanArea: CSSProperties = {
   ...glassSurface,
-  margin: "0 16px",
   height: 240,
   display: "flex",
   alignItems: "center",
@@ -130,44 +114,9 @@ const scanOverlay: CSSProperties = {
   justifyContent: "center",
 };
 
-const scanFrame: CSSProperties = {
-  width: 160,
-  height: 160,
-  border: `2px solid ${C.primary}`,
-  borderRadius: R.lg,
-  position: "relative" as const,
-};
-
-const scanLine: CSSProperties = {
-  position: "absolute" as const,
-  left: 4,
-  right: 4,
-  height: 2,
-  background: C.primary,
-  top: "50%",
-  boxShadow: `0 0 12px ${C.primary}`,
-  animation: "scanMove 2s ease-in-out infinite",
-};
-
-const cornerStyle = (pos: { top?: number; bottom?: number; left?: number; right?: number }): CSSProperties => ({
-  position: "absolute" as const,
-  width: 20,
-  height: 20,
-  ...pos,
-  borderColor: C.primary,
-  borderStyle: "solid",
-  borderWidth: 0,
-  ...(pos.top !== undefined && pos.left !== undefined
-    ? { borderTopWidth: 3, borderLeftWidth: 3, borderTopLeftRadius: 6 }
-    : pos.top !== undefined && pos.right !== undefined
-    ? { borderTopWidth: 3, borderRightWidth: 3, borderTopRightRadius: 6 }
-    : pos.bottom !== undefined && pos.left !== undefined
-    ? { borderBottomWidth: 3, borderLeftWidth: 3, borderBottomLeftRadius: 6 }
-    : { borderBottomWidth: 3, borderRightWidth: 3, borderBottomRightRadius: 6 }),
-});
 
 const amountSection: CSSProperties = {
-  margin: "16px 16px 0",
+  marginTop: 16,
 };
 
 const amountInput: CSSProperties = {
@@ -175,12 +124,25 @@ const amountInput: CSSProperties = {
   padding: "14px 16px",
   borderRadius: R.lg,
   border: `1px solid ${C.border}`,
-  background: "rgba(255,255,255,0.04)",
+  background: C.surfaceGray,
   color: C.textPrimary,
   fontSize: 24,
   fontWeight: 700,
   fontFamily: FONT,
   textAlign: "center" as const,
+  outline: "none",
+  boxSizing: "border-box" as const,
+};
+
+const addressInput: CSSProperties = {
+  width: "100%",
+  padding: "12px 16px",
+  borderRadius: R.lg,
+  border: `1px solid ${C.border}`,
+  background: C.surfaceGray,
+  color: C.textPrimary,
+  fontSize: 13,
+  fontFamily: "monospace",
   outline: "none",
   boxSizing: "border-box" as const,
 };
@@ -206,7 +168,7 @@ const presetBtn = (active: boolean): CSSProperties => ({
 
 const confirmBox: CSSProperties = {
   ...glassSurface,
-  margin: "16px 16px 0",
+  marginTop: 16,
   padding: 16,
 };
 
@@ -218,46 +180,170 @@ const confirmRow: CSSProperties = {
 
 const sendBtn: CSSProperties = {
   ...btnPill,
-  margin: "16px",
+  margin: "16px 0",
 };
 
-// ─── QR Pattern (deterministic pseudo-random) ────────
+const statusBanner = (type: "success" | "error" | "info"): CSSProperties => ({
+  ...glassSurface,
+  marginTop: 16,
+  padding: 14,
+  border: `1px solid ${type === "success" ? "rgba(34,197,94,0.3)" : type === "error" ? "rgba(239,68,68,0.3)" : C.border}`,
+  fontSize: 13,
+  color: type === "success" ? C.success : type === "error" ? C.error : C.textSecondary,
+  textAlign: "center" as const,
+  wordBreak: "break-all" as const,
+});
 
-function generateQRPattern(): boolean[] {
-  const cells: boolean[] = [];
-  for (let i = 0; i < 121; i++) {
-    const row = Math.floor(i / 11);
-    const col = i % 11;
-    // Corner markers
-    if ((row < 3 && col < 3) || (row < 3 && col > 7) || (row > 7 && col < 3)) {
-      cells.push(
-        (row === 0 || row === 2 || col === 0 || col === 2 || col === 8 || col === 10 || row === 8 || row === 10) ||
-        (row === 1 && col === 1) || (row === 1 && col === 9) || (row === 9 && col === 1)
-      );
-    } else {
-      cells.push(((i * 7 + 3) % 5) < 2);
-    }
-  }
-  return cells;
-}
 
 // ─── Component ───────────────────────────────────────
 
 type Mode = "qr" | "scan";
+type TxState = "idle" | "connecting" | "sending" | "success" | "error";
 
 export default function SendPage() {
   const navigate = useNavigate();
+  const walletAddr = localStorage.getItem("ethcc-wallet-address") ?? "";
+
   const [mode, setMode] = useState<Mode>("qr");
-  const [amount, setAmount] = useState("1.0");
-  const [activePreset, setActivePreset] = useState<string | null>("1.0");
+  const [amount, setAmount] = useState("5");
+  const [activePreset, setActivePreset] = useState<string | null>("5");
+  const [recipient, setRecipient] = useState("");
+  const [txState, setTxState] = useState<TxState>("idle");
+  const [txHash, setTxHash] = useState("");
+  const [txError, setTxError] = useState("");
+  const [balance, setBalance] = useState<string | null>(null);
 
-  const qrPattern = generateQRPattern();
+  const [scanning, setScanning] = useState(false);
+  const [scanError, setScanError] = useState("");
+  const scannerRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const html5QrRef = useRef<any>(null);
 
-  const presets = ["0.1", "0.5", "1.0", "5.0"];
+  const stopScanner = useCallback(() => {
+    if (html5QrRef.current) {
+      try { html5QrRef.current.clear(); } catch { /* ignore */ }
+      html5QrRef.current = null;
+    }
+    setScanning(false);
+  }, []);
+
+  const extractAddress = (text: string): string | null => {
+    // Match 0x address anywhere in the string (from QR code, URL, etc.)
+    const match = text.match(/0x[a-fA-F0-9]{40}/);
+    return match ? match[0] : null;
+  };
+
+  const startScanner = useCallback(async () => {
+    if (!scannerRef.current || scanning) return;
+    setScanError("");
+
+    try {
+      const { Html5Qrcode } = await import("html5-qrcode");
+      const scannerId = "qr-scanner-region";
+
+      // Ensure the container exists
+      if (!document.getElementById(scannerId)) return;
+
+      const scanner = new Html5Qrcode(scannerId);
+      html5QrRef.current = scanner;
+      setScanning(true);
+
+      await scanner.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: { width: 200, height: 200 } },
+        (decodedText) => {
+          const addr = extractAddress(decodedText);
+          if (addr) {
+            setRecipient(addr);
+            try { scanner.stop(); } catch { /* ignore */ }
+            html5QrRef.current = null;
+            setScanning(false);
+          }
+        },
+        () => { /* ignore scan failures */ }
+      );
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      setScanError(msg.includes("NotAllowed") ? "Camera access denied" : msg);
+      setScanning(false);
+    }
+  }, [scanning]);
+
+  // Cleanup scanner on unmount or mode change
+  useEffect(() => {
+    return () => { stopScanner(); };
+  }, [stopScanner]);
+
+  // Stop scanner when switching away from scan mode
+  useEffect(() => {
+    if (mode !== "scan") stopScanner();
+  }, [mode, stopScanner]);
+
+  const presets = ["5", "10", "50"];
 
   const handlePreset = (val: string) => {
     setAmount(val);
     setActivePreset(val);
+  };
+
+  const isValidAddress = (addr: string) => /^0x[a-fA-F0-9]{40}$/.test(addr);
+  const canSend = parseFloat(amount || "0") > 0 && isValidAddress(recipient) && txState !== "sending" && txState !== "connecting";
+
+  const handleSend = async () => {
+    if (!canSend) return;
+
+    setTxState("connecting");
+    setTxError("");
+    setTxHash("");
+
+    let connection: WalletConnection;
+    try {
+      connection = await connectWallet();
+      const bal = await connection.provider.getBalance(connection.address);
+      const formatted = connection.ethers.formatEther(bal);
+      setBalance(formatted);
+
+      const sendAmount = connection.ethers.parseEther(amount);
+      if (sendAmount > bal) {
+        setTxError(`Insufficient balance: ${parseFloat(formatted).toFixed(4)} TRUST available`);
+        setTxState("error");
+        return;
+      }
+    } catch (e: unknown) {
+      setTxError(e instanceof Error ? e.message : String(e));
+      setTxState("error");
+      return;
+    }
+
+    setTxState("sending");
+    try {
+      const tx = await connection.signer.sendTransaction({
+        to: recipient,
+        value: connection.ethers.parseEther(amount),
+      });
+
+      setTxHash(tx.hash);
+      setTxState("success");
+
+      // Track transfer for leaderboard
+      try {
+        const transfers = JSON.parse(localStorage.getItem("ethcc-trust-transfers") ?? "[]");
+        transfers.push({ from: connection.address, to: recipient, amount, hash: tx.hash, timestamp: Date.now() });
+        localStorage.setItem("ethcc-trust-transfers", JSON.stringify(transfers));
+      } catch { /* ignore */ }
+
+      // Update balance after send
+      const newBal = await connection.provider.getBalance(connection.address);
+      setBalance(connection.ethers.formatEther(newBal));
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      if (msg.includes("user rejected") || msg.includes("denied") || msg.includes("ACTION_REJECTED")) {
+        setTxError("Transaction cancelled by user");
+      } else {
+        setTxError(msg);
+      }
+      setTxState("error");
+    }
   };
 
   return (
@@ -281,25 +367,28 @@ export default function SendPage() {
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "0 16px 80px" }}>
 
       {/* ─── QR Code Mode ────────────────── */}
       {mode === "qr" && (
         <>
           <div style={qrBox}>
             <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: 4 }}>
-              Scan to receive $TRUST
+              Scan to send me $TRUST
             </div>
-            <div style={qrGrid}>
-              {qrPattern.map((dark, i) => (
-                <div key={i} style={qrCell(dark)} />
-              ))}
+            <QRCodeSVG
+              value={walletAddr || "https://ethcc.io"}
+              size={200}
+              bgColor="transparent"
+              fgColor="#ffffff"
+              level="M"
+            />
+            <div style={{ fontSize: 11, color: C.textTertiary, fontFamily: "monospace", textAlign: "center" }}>
+              {walletAddr ? `${walletAddr.slice(0, 10)}...${walletAddr.slice(-8)}` : "Connect your wallet"}
             </div>
-            <div style={{ fontSize: 16, fontWeight: 700 }}>Samuel Chauche</div>
-            <div style={{ fontSize: 12, color: C.textSecondary }}>0x1a2b...3c4d</div>
           </div>
 
-          <div style={{ ...glassSurface, margin: "16px", padding: 16 }}>
+          <div style={{ ...glassSurface, marginTop: 16, padding: 16 }}>
             <div style={infoRow}>
               <span style={infoLabel}>Network</span>
               <span style={infoValue}>Intuition (Chain 1155)</span>
@@ -310,7 +399,9 @@ export default function SendPage() {
             </div>
             <div style={{ ...infoRow, borderBottom: "none" }}>
               <span style={infoLabel}>Status</span>
-              <span style={{ ...infoValue, color: C.success }}>Ready to receive</span>
+              <span style={{ ...infoValue, color: walletAddr ? C.success : C.textTertiary }}>
+                {walletAddr ? "Ready to receive" : "Wallet not connected"}
+              </span>
             </div>
           </div>
         </>
@@ -319,18 +410,90 @@ export default function SendPage() {
       {/* ─── Scan & Send Mode ────────────── */}
       {mode === "scan" && (
         <>
-          {/* Camera Placeholder */}
-          <div style={scanArea}>
-            <div style={{ color: C.textTertiary, fontSize: 13 }}>Camera feed placeholder</div>
-            <div style={scanOverlay}>
-              <div style={scanFrame}>
-                <div style={cornerStyle({ top: -1, left: -1 })} />
-                <div style={cornerStyle({ top: -1, right: -1 })} />
-                <div style={cornerStyle({ bottom: -1, left: -1 })} />
-                <div style={cornerStyle({ bottom: -1, right: -1 })} />
-                <div style={scanLine} />
+          {/* QR Scanner */}
+          <div style={scanArea} ref={scannerRef}>
+            <div id="qr-scanner-region" style={{ width: "100%", height: "100%" }} />
+            {!scanning && !isValidAddress(recipient) && (
+              <div style={scanOverlay}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+                  <button
+                    onClick={startScanner}
+                    style={{
+                      padding: "12px 24px", borderRadius: R.btn, border: "none",
+                      background: C.flat, color: "#0a0a0a", fontSize: 14, fontWeight: 600,
+                      cursor: "pointer", fontFamily: FONT,
+                    }}
+                  >
+                    Start Camera
+                  </button>
+                  <div style={{ fontSize: 12, color: C.textTertiary }}>
+                    Scan a wallet QR code
+                  </div>
+                </div>
               </div>
+            )}
+            {scanning && !isValidAddress(recipient) && (
+              <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
+                <span style={{ fontSize: 11, color: C.success, background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4 }}>
+                  Scanning...
+                </span>
+              </div>
+            )}
+            {isValidAddress(recipient) && (
+              <div style={scanOverlay}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+                  <div style={{ fontSize: 24, color: C.success }}>&#10003;</div>
+                  <div style={{ fontSize: 13, color: C.success, fontWeight: 600 }}>Address detected</div>
+                  <div style={{ fontSize: 11, color: C.textSecondary, fontFamily: "monospace" }}>
+                    {recipient.slice(0, 10)}...{recipient.slice(-8)}
+                  </div>
+                  <button
+                    onClick={() => { setRecipient(""); startScanner(); }}
+                    style={{
+                      padding: "6px 16px", borderRadius: R.btn, border: `1px solid ${C.border}`,
+                      background: C.surfaceGray, color: C.textSecondary, fontSize: 12,
+                      cursor: "pointer", fontFamily: FONT, marginTop: 4,
+                    }}
+                  >
+                    Scan again
+                  </button>
+                </div>
+              </div>
+            )}
+            {scanError && (
+              <div style={{ ...scanOverlay, flexDirection: "column", gap: 8 }}>
+                <div style={{ fontSize: 13, color: C.error }}>{scanError}</div>
+                <button
+                  onClick={startScanner}
+                  style={{
+                    padding: "8px 16px", borderRadius: R.btn, border: "none",
+                    background: C.surfaceGray, color: C.textPrimary, fontSize: 13,
+                    cursor: "pointer", fontFamily: FONT,
+                  }}
+                >
+                  Retry
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Recipient Address */}
+          <div style={amountSection}>
+            <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: 8 }}>
+              Recipient address
             </div>
+            <input
+              type="text"
+              value={recipient}
+              onChange={(e) => setRecipient(e.target.value.trim())}
+              style={addressInput}
+              placeholder="0x..."
+            />
+            {recipient && !isValidAddress(recipient) && (
+              <div style={{ fontSize: 11, color: C.error, marginTop: 4 }}>
+                Invalid address (format: 0x + 40 hex characters)
+              </div>
+            )}
           </div>
 
           {/* Amount Input */}
@@ -346,7 +509,7 @@ export default function SendPage() {
                 setActivePreset(null);
               }}
               style={amountInput}
-              placeholder="0.0"
+              placeholder="0"
             />
             <div style={presetRow}>
               {presets.map((p) => (
@@ -355,7 +518,7 @@ export default function SendPage() {
                   style={presetBtn(activePreset === p)}
                   onClick={() => handlePreset(p)}
                 >
-                  {p}
+                  {p} TRUST
                 </button>
               ))}
             </div>
@@ -368,53 +531,66 @@ export default function SendPage() {
             </div>
             <div style={confirmRow}>
               <span style={infoLabel}>To</span>
-              <span style={infoValue}>Scan a QR code</span>
+              <span style={infoValue}>
+                {isValidAddress(recipient) ? `${recipient.slice(0, 8)}...${recipient.slice(-6)}` : "—"}
+              </span>
             </div>
             <div style={confirmRow}>
               <span style={infoLabel}>Amount</span>
-              <span style={infoValue}>{amount} TRUST</span>
+              <span style={infoValue}>{amount || "0"} TRUST</span>
             </div>
-            <div style={confirmRow}>
-              <span style={infoLabel}>Network Fee</span>
-              <span style={infoValue}>~0.001 TRUST</span>
-            </div>
-            <div style={confirmRow}>
-              <span style={infoLabel}>Total</span>
-              <span style={{ ...infoValue, color: C.flat }}>
-                {(parseFloat(amount || "0") + 0.001).toFixed(3)} TRUST
-              </span>
-            </div>
+            {balance !== null && (
+              <div style={confirmRow}>
+                <span style={infoLabel}>Your balance</span>
+                <span style={infoValue}>{parseFloat(balance).toFixed(4)} TRUST</span>
+              </div>
+            )}
           </div>
+
+          {/* Status messages */}
+          {txState === "success" && txHash && (
+            <div style={statusBanner("success")}>
+              {amount} TRUST sent successfully!<br />
+              <span style={{ fontSize: 11, opacity: 0.8 }}>TX: {txHash.slice(0, 16)}...{txHash.slice(-10)}</span>
+            </div>
+          )}
+
+          {txState === "error" && txError && (
+            <div style={statusBanner("error")}>
+              {txError}
+            </div>
+          )}
+
+          {(txState === "connecting" || txState === "sending") && (
+            <div style={statusBanner("info")}>
+              {txState === "connecting" ? "Connecting wallet..." : "Sending... Confirm in your wallet"}
+            </div>
+          )}
 
           {/* Send Button */}
           <button
             style={{
               ...sendBtn,
-              ...(parseFloat(amount || "0") <= 0
-                ? { opacity: 0.5, cursor: "not-allowed" }
-                : {}),
+              ...(canSend ? {} : { opacity: 0.5, cursor: "not-allowed" }),
             }}
-            disabled={parseFloat(amount || "0") <= 0}
-            onClick={() => {
-              if (parseFloat(amount || "0") > 0) {
-                alert(`Ready to scan QR and send ${amount} TRUST.\nCamera access required — not yet implemented on this device.`);
-              }
-            }}
+            disabled={!canSend}
+            onClick={handleSend}
           >
-            {parseFloat(amount || "0") > 0 ? `Send ${amount} TRUST` : "Enter amount to send"}
+            {txState === "connecting"
+              ? "Connecting..."
+              : txState === "sending"
+                ? "Sending..."
+                : canSend
+                  ? `Send ${amount} TRUST`
+                  : !isValidAddress(recipient)
+                    ? "Enter a valid address"
+                    : "Enter an amount"}
           </button>
         </>
       )}
 
       </div>{/* end scrollable content */}
 
-      {/* Inline keyframe for scan animation */}
-      <style>{`
-        @keyframes scanMove {
-          0%, 100% { top: 10%; }
-          50% { top: 85%; }
-        }
-      `}</style>
     </div>
   );
 }

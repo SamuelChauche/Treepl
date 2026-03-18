@@ -104,6 +104,12 @@ export interface Vibe {
   dist: string;
   px?: number;
   py?: number;
+  socials?: {
+    github?: string;
+    twitter?: string;
+    discord?: string;
+    url?: string;
+  };
 }
 
 export interface Platform {

@@ -17,7 +17,15 @@ import {
 } from "../services/intuition";
 import { useVibeMatches } from "../hooks/useVibeMatches";
 import { useWalletConnection } from "../hooks/useWalletConnection";
-import { explorerTxUrl } from "../config/constants";
+import type { WalletConnection } from "../services/intuition";
+import { usePwaInstall } from "../hooks/usePwaInstall";
+import { explorerTxUrl, STORAGE_KEYS } from "../config/constants";
+import {
+  hasEmbeddedWallet,
+  createEmbeddedWallet,
+  connectEmbeddedWallet,
+  markBackupDone,
+} from "../services/embeddedWallet";
 // Logo image loaded from public/images/logo-splash.webp
 
 // ─── Image base path (matches Vite base) ───────────────────────
@@ -109,7 +117,7 @@ const trackPill: CSSProperties = {
   transition: "all 0.2s ease",
   fontFamily: FONT,
   color: C.textPrimary,
-  background: "rgba(255,255,255,0.06)",
+  background: C.surfaceGray,
 };
 
 // sessionCard style inlined in step 5
@@ -145,16 +153,34 @@ export default function OnboardingPage() {
     connect: openWalletModal,
   } = useWalletConnection();
 
+  const { canInstall, installed, promptInstall } = usePwaInstall();
+
   const [txState, setTxState] = useState<"idle"|"signing"|"done">("idle");
   const [txHash, setTxHash] = useState("");
   const [txError, setTxError] = useState("");
   const [txStatus, setTxStatus] = useState("");
 
-  // Derive walletState from hook
+  // ── Wallet picker modal ──────────────────────────────────
+  const [showWalletPicker, setShowWalletPicker] = useState(false);
+  const [embeddedMode, setEmbeddedMode] = useState<"none"|"create"|"unlock"|"backup">("none");
+  const [embeddedPassword, setEmbeddedPassword] = useState("");
+  const [embeddedPrivateKey, setEmbeddedPrivateKey] = useState("");
+  const [embeddedKeyCopied, setEmbeddedKeyCopied] = useState(false);
+  const [embeddedWallet, setEmbeddedWallet] = useState<WalletConnection | null>(null);
+  const [embeddedAddress, setEmbeddedAddress] = useState("");
+  const [embeddedBalance, setEmbeddedBalance] = useState<string | null>(null);
+  const hasEmbedded = hasEmbeddedWallet();
+
+  // Derive walletState from hook (AppKit or embedded)
   const walletState = txState !== "idle" ? txState
     : walletLoading ? "connecting" as const
-    : walletConnected && wallet ? "connected" as const
+    : (walletConnected && wallet) || embeddedWallet ? "connected" as const
     : "idle" as const;
+
+  // Effective wallet — prefer AppKit, fallback to embedded
+  const effectiveWallet = wallet ?? embeddedWallet;
+  const effectiveAddress = walletAddress ?? embeddedAddress;
+  const effectiveBalance = trustBalance ?? embeddedBalance;
 
   // Show wallet errors
   useEffect(() => {
@@ -168,14 +194,64 @@ export default function OnboardingPage() {
     walletAddress ?? "",
   );
 
+  // ── Embedded wallet handlers ─────────────────────────────────
+  async function handleCreateEmbedded() {
+    if (!embeddedPassword || embeddedPassword.length < 4) {
+      setTxError("Password must be at least 4 characters");
+      return;
+    }
+    setTxError("");
+    try {
+      const { address, privateKey } = await createEmbeddedWallet(embeddedPassword);
+      setEmbeddedAddress(address);
+      setEmbeddedPrivateKey(privateKey);
+      setEmbeddedMode("backup");
+    } catch (e: unknown) {
+      setTxError(e instanceof Error ? e.message : String(e));
+    }
+  }
+
+  async function handleUnlockEmbedded() {
+    if (!embeddedPassword) return;
+    setTxError("");
+    try {
+      const conn = await connectEmbeddedWallet(embeddedPassword);
+      setEmbeddedWallet(conn);
+      setEmbeddedAddress(conn.address);
+      setEmbeddedMode("none");
+      localStorage.setItem("ethcc-wallet-address", conn.address);
+
+      // Fetch balance
+      const bal = await conn.provider.getBalance(conn.address);
+      setEmbeddedBalance(conn.ethers.formatEther(bal));
+    } catch (e: unknown) {
+      setTxError(e instanceof Error ? e.message : "Wrong password");
+    }
+  }
+
+  async function handleBackupDone() {
+    // After backup, unlock the wallet
+    markBackupDone();
+    setEmbeddedMode("none");
+    setShowWalletPicker(false);
+    try {
+      const conn = await connectEmbeddedWallet(embeddedPassword);
+      setEmbeddedWallet(conn);
+      const bal = await conn.provider.getBalance(conn.address);
+      setEmbeddedBalance(conn.ethers.formatEther(bal));
+    } catch (e: unknown) {
+      setTxError(e instanceof Error ? e.message : String(e));
+    }
+  }
+
   async function handleCreate() {
-    if (!wallet) return;
+    if (!effectiveWallet) return;
     setTxState("signing");
     setTxError("");
     try {
       // Step 1: Ensure user atom exists
       setTxStatus("Creating your atom...");
-      const atomId = await ensureUserAtom(wallet.multiVault, wallet.proxy, wallet.address, wallet.ethers);
+      const atomId = await ensureUserAtom(effectiveWallet.multiVault, effectiveWallet.proxy, effectiveWallet.address, effectiveWallet.ethers);
 
       let lastHash = "";
 
@@ -185,7 +261,7 @@ export default function OnboardingPage() {
 
       if (resolvedTrackAtomIds.length > 0) {
         setTxStatus(`Depositing on ${resolvedTrackAtomIds.length} interests...`);
-        const depositResult = await depositOnAtoms(wallet, resolvedTrackAtomIds, undefined, setTxStatus);
+        const depositResult = await depositOnAtoms(effectiveWallet, resolvedTrackAtomIds, undefined, setTxStatus);
         lastHash = depositResult.hash;
       }
 
@@ -193,8 +269,14 @@ export default function OnboardingPage() {
       const sessionTriples = buildProfileTriples(atomId, [], [...selectedSessions]);
       if (sessionTriples.length > 0) {
         setTxStatus(`Publishing ${sessionTriples.length} session triples...`);
-        const tripleResult = await createProfileTriples(wallet.multiVault, wallet.proxy, wallet.address, sessionTriples);
+        const tripleResult = await createProfileTriples(effectiveWallet.multiVault, effectiveWallet.proxy, effectiveWallet.address, sessionTriples);
         lastHash = tripleResult.hash;
+        // Mark sessions as permanently published
+        const published: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]");
+        for (const sid of selectedSessions) {
+          if (!published.includes(sid)) published.push(sid);
+        }
+        localStorage.setItem(STORAGE_KEYS.PUBLISHED_SESSIONS, JSON.stringify(published));
       }
 
       if (!lastHash) { setTxError("No interests or sessions selected."); setTxState("idle"); return; }
@@ -240,6 +322,7 @@ export default function OnboardingPage() {
   const handleComplete = () => {
     StorageService.saveTopics(selectedTracks);
     StorageService.saveCart(selectedSessions);
+    localStorage.setItem("ethcc-onboarded", "1");
     navigate("/home");
   };
 
@@ -527,14 +610,14 @@ export default function OnboardingPage() {
                   gap: 12,
                 }}
               >
-                <QRCodeSVG value={walletAddress ?? ""} size={160} bgColor="transparent" fgColor="#ffffff" level="M" />
+                <QRCodeSVG value={effectiveAddress ?? ""} size={160} bgColor="transparent" fgColor="#ffffff" level="M" />
                 <p style={{ fontSize: 12, color: C.textSecondary, textAlign: "center", fontFamily: "monospace" }}>
-                  {walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : ""}
+                  {effectiveAddress ? `${effectiveAddress.slice(0, 6)}...${effectiveAddress.slice(-4)}` : ""}
                 </p>
-                {trustBalance !== null && (
-                  <p style={{ fontSize: 14, fontWeight: 600, color: parseFloat(trustBalance) > 0 ? C.success : C.warning, textAlign: "center" }}>
-                    {parseFloat(trustBalance) > 0
-                      ? `${parseFloat(trustBalance).toFixed(4)} TRUST`
+                {effectiveBalance !== null && (
+                  <p style={{ fontSize: 14, fontWeight: 600, color: parseFloat(effectiveBalance) > 0 ? C.success : C.warning, textAlign: "center" }}>
+                    {parseFloat(effectiveBalance) > 0
+                      ? `${parseFloat(effectiveBalance).toFixed(4)} TRUST`
                       : "Waiting for $TRUST..."}
                   </p>
                 )}
@@ -615,10 +698,31 @@ export default function OnboardingPage() {
                 Back
               </button>
             )}
-            {walletState === "idle" && (
-              <button style={{ ...btnPill, flex: 2, background: C.flat }} onClick={openWalletModal}>
+            {walletState === "idle" && embeddedMode === "none" && (
+              <button style={{ ...btnPill, flex: 2, background: C.flat }} onClick={() => setShowWalletPicker(true)}>
                 Connect Wallet
               </button>
+            )}
+            {walletState === "idle" && embeddedMode === "backup" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 2 }}>
+                <div style={{ ...glassSurface, padding: 12, textAlign: "center" }}>
+                  <p style={{ fontSize: 12, color: C.warning, fontWeight: 600, margin: "0 0 8px" }}>
+                    Save your private key! You won't see it again.
+                  </p>
+                  <p style={{ fontSize: 11, color: C.textSecondary, fontFamily: "monospace", wordBreak: "break-all", margin: "0 0 8px" }}>
+                    {embeddedPrivateKey}
+                  </p>
+                  <button
+                    style={{ ...btnPill, height: 36, fontSize: 13, background: embeddedKeyCopied ? C.success : C.surfaceGray, color: embeddedKeyCopied ? "#0a0a0a" : C.textPrimary }}
+                    onClick={() => { navigator.clipboard.writeText(embeddedPrivateKey); setEmbeddedKeyCopied(true); }}
+                  >
+                    {embeddedKeyCopied ? "Copied!" : "Copy Private Key"}
+                  </button>
+                </div>
+                <button style={{ ...btnPill, background: C.flat }} onClick={handleBackupDone}>
+                  I've saved it — Continue
+                </button>
+              </div>
             )}
             {walletState === "connecting" && (
               <button style={{ ...btnPill, flex: 2, background: C.flat, opacity: 0.5 }} disabled>
@@ -626,7 +730,7 @@ export default function OnboardingPage() {
               </button>
             )}
             {walletState === "connected" && (
-              parseFloat(trustBalance ?? "0") > 0 ? (
+              parseFloat(effectiveBalance ?? "0") > 0 ? (
                 <button style={{ ...btnPill, flex: 2, background: C.flat }} onClick={handleCreate}>
                   Publish On-Chain
                 </button>
@@ -648,6 +752,113 @@ export default function OnboardingPage() {
             )}
           </div>
         </div>
+
+        {/* ── Wallet Picker Modal ──────────────────────────── */}
+        {showWalletPicker && walletState === "idle" && (
+          <div
+            style={{
+              position: "absolute", inset: 0, zIndex: 100,
+              background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
+              display: "flex", alignItems: "flex-end", justifyContent: "center",
+            }}
+            onClick={() => { if (embeddedMode === "none") setShowWalletPicker(false); }}
+          >
+            <div
+              style={{
+                width: "100%", maxWidth: 390, padding: 24, paddingBottom: 32,
+                background: C.background, borderRadius: "20px 20px 0 0",
+                border: `1px solid ${C.border}`, borderBottom: "none",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+                <h3 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>Connect Wallet</h3>
+                <button
+                  onClick={() => { setShowWalletPicker(false); setEmbeddedMode("none"); setEmbeddedPassword(""); }}
+                  style={{ width: 32, height: 32, borderRadius: 16, background: C.surfaceGray, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                >
+                  <Ic.X s={16} c={C.textSecondary} />
+                </button>
+              </div>
+
+              {embeddedMode === "none" && (
+                <>
+                  {/* External wallet option */}
+                  <div
+                    style={{ ...glassSurface, padding: 16, marginBottom: 10, cursor: "pointer", display: "flex", alignItems: "center", gap: 14 }}
+                    onClick={() => { setShowWalletPicker(false); openWalletModal(); }}
+                  >
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Ic.Wallet s={22} c={C.flat} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: 15, fontWeight: 600 }}>External Wallet</div>
+                      <div style={{ fontSize: 12, color: C.textSecondary, marginTop: 2 }}>MetaMask, WalletConnect, Coinbase...</div>
+                    </div>
+                    <Ic.Right s={16} c={C.textTertiary} />
+                  </div>
+
+                  {/* Embedded wallet option */}
+                  <div
+                    style={{ ...glassSurface, padding: 16, cursor: "pointer", display: "flex", alignItems: "center", gap: 14 }}
+                    onClick={() => setEmbeddedMode(hasEmbedded ? "unlock" : "create")}
+                  >
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: C.primaryLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Ic.Plus s={22} c={C.primary} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: 15, fontWeight: 600 }}>{hasEmbedded ? "Unlock Embedded Wallet" : "Create Embedded Wallet"}</div>
+                      <div style={{ fontSize: 12, color: C.textSecondary, marginTop: 2 }}>
+                        {hasEmbedded ? "Enter your password to unlock" : "No wallet? We'll create one for you"}
+                      </div>
+                    </div>
+                    <Ic.Right s={16} c={C.textTertiary} />
+                  </div>
+                </>
+              )}
+
+              {(embeddedMode === "create" || embeddedMode === "unlock") && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>
+                    {embeddedMode === "create" ? "Create a password for your wallet" : "Enter your wallet password"}
+                  </div>
+                  <input
+                    type="password"
+                    value={embeddedPassword}
+                    onChange={(e) => setEmbeddedPassword(e.target.value)}
+                    placeholder="Password"
+                    autoFocus
+                    style={{
+                      width: "100%", padding: "14px 16px", borderRadius: R.lg,
+                      border: `1px solid ${C.border}`, background: C.surfaceGray,
+                      color: C.textPrimary, fontSize: 15, fontFamily: FONT,
+                      outline: "none", boxSizing: "border-box",
+                    }}
+                  />
+                  <button
+                    style={{ ...btnPill, background: C.flat }}
+                    onClick={async () => {
+                      if (embeddedMode === "create") {
+                        await handleCreateEmbedded();
+                      } else {
+                        await handleUnlockEmbedded();
+                        setShowWalletPicker(false);
+                      }
+                    }}
+                  >
+                    {embeddedMode === "create" ? "Create Wallet" : "Unlock"}
+                  </button>
+                  <button
+                    style={{ ...btnPill, background: C.surfaceGray, color: C.textSecondary }}
+                    onClick={() => { setEmbeddedMode("none"); setEmbeddedPassword(""); }}
+                  >
+                    Back
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -934,6 +1145,21 @@ export default function OnboardingPage() {
               </div>
             )}
           </div>
+
+          {/* PWA Install prompt */}
+          {canInstall && (
+            <button
+              style={{ ...btnPill, background: C.flat, marginBottom: 12 }}
+              onClick={promptInstall}
+            >
+              Install App on Home Screen
+            </button>
+          )}
+          {installed && (
+            <div style={{ fontSize: 13, color: C.success, marginBottom: 12, fontWeight: 600 }}>
+              App installed!
+            </div>
+          )}
 
           <button style={pillBtn} onClick={handleComplete}>
             Enter the App

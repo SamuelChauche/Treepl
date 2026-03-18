@@ -2,6 +2,9 @@
 export const STORAGE_KEYS = {
   CART: "ethcc-cart",
   TOPICS: "ethcc-topics",
+  RATINGS: "ethcc-ratings-pending",
+  TRANSFERS: "ethcc-trust-transfers",
+  PUBLISHED_SESSIONS: "ethcc-published-sessions",
 } as const;
 
 // ─── Session Type Colors ────────────────────────────────────────

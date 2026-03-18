@@ -1,7 +1,12 @@
 # EthCC[9] Cannes — UI Design System & Conventions
 
 > Reference for Claude CLI / AI agents integrating or modifying this prototype.
-> Source: `ethcc-app-prototype.tsx`
+
+---
+
+## Language
+
+All UI text in the app **must be in English**. No French strings in components.
 
 ---
 
@@ -18,7 +23,7 @@ This app is **dark mode exclusively**. There is no light mode. All backgrounds a
 |---|---|---|
 | `C.background` | `#0a0a0a` | Page/screen background |
 | `C.surface` | `#161618` | Card backgrounds (legacy, prefer glassSurface) |
-| `C.surfaceGray` | `#1c1c20` | Inactive buttons, input fields, secondary surfaces |
+| `C.surfaceGray` | `#1c1c20` | Inactive buttons, **opaque input fields**, secondary surfaces |
 | `C.dark` | `#0a0a0a` | Alias for background |
 
 ### Text
@@ -83,6 +88,42 @@ C.primary (#cea2fd):
   ✅ "See all" / "View all" link text
   ❌ NEVER for active/selected UI states — use C.flat instead
 ```
+
+---
+
+## Input Fields
+
+All input fields must use **opaque backgrounds** (`C.surfaceGray`), not transparent/semi-transparent:
+
+```tsx
+// ✅ Correct
+background: C.surfaceGray  // #1c1c20
+
+// ❌ Wrong
+background: "rgba(255,255,255,0.04)"
+```
+
+---
+
+## Layout — Scrollable Pages
+
+Pages with scrollable content use a parent padding pattern. Do NOT add horizontal margin to child elements — the scroll container handles it:
+
+```tsx
+// ✅ Correct: padding on scroll container, no margin on children
+<div style={{ flex: 1, overflowY: "auto", padding: "0 16px 80px" }}>
+  <div style={{ ...glassSurface, marginTop: 16 }}>...</div>
+  <button style={{ ...btnPill, marginTop: 16 }}>...</button>
+</div>
+
+// ❌ Wrong: margin on children inside padded container (causes misalignment)
+<div style={{ flex: 1, overflowY: "auto", padding: "0 16px" }}>
+  <div style={{ ...glassSurface, margin: "16px" }}>...</div>
+  <button style={{ ...btnPill, margin: "16px" }}>...</button>
+</div>
+```
+
+Use `paddingBottom: 80` on scroll containers to ensure content isn't hidden behind Nav5.
 
 ---
 
@@ -193,27 +234,31 @@ background: C.surfaceGray, color: C.textSecondary
 ## Component Architecture
 
 ### Screen Components (full-page)
-| Component | Route/State | Description |
+| Component | Route | Description |
 |---|---|---|
-| `Onboarding` | `screen === "onboarding"` | 8-step flow: Splash → Slides → Interests → Sessions → QR → VibeMatches |
-| `HomePage` | `tab === "home"` | Balance header, Send/Invite actions, Nearby Vibes, Today's Sessions |
-| `AgendaPage` | `tab === "agenda"` | Day filters, type filters, search, session cards with cart toggle |
-| `CartPage` | `tab === "cart"` | Review selections, QR, TX summary, publish on-chain |
-| `VotePage` | `tab === "vote"` | PnL header, Trending/My Votes/Discover tabs |
-| `ProfilePage` | `tab === "profile"` | Stats badges, interests, vibe matches, connected platforms |
-| `SessionDetail` | `session !== null` | Session info, trend, add to cart |
-| `VibeProfile` | `vibeUser !== null` | User match profile, shared interests, connect |
-| `InvitePage` | `showInvite` | Geolocation map, QR code, nearby user list |
-| `SendPage` | `showSend` | QR code display / camera scan for $TRUST transfer |
-| `BuyTrustPage` | `showBuy` | Amount picker, wallet connect (MetaMask), purchase |
-| `LeaderboardPage` | `showLeaderboard` | PnL podium + ranked list |
+| `OnboardingPage` | `/` | 8-step flow: Splash → Slides → Interests → Sessions → Wallet → Publish → Success |
+| `HomePage` | `/home` | Balance header, Send/Invite actions, Nearby Vibes, Today's Sessions |
+| `AgendaPage` | `/agenda` | Day filters, type filters, search, session cards with cart toggle |
+| `CartPage` | `/cart` | Review selections, QR, TX summary, publish on-chain |
+| `VotePage` | `/vote` | PnL header, Trending/My Votes/Discover tabs |
+| `ProfilePage` | `/profile` | ENS social profiles from text records, Connect with ENS wallet for embedded users |
+| `SessionDetailPage` | `/session/:id` | Session info, trend, add to cart |
+| `TopicDetailPage` | `/topic/:id` | Topic detail with vault data |
+| `SpeakerPage` | `/speaker/:slug` | Speaker profile, talks timeline |
+| `VibeProfilePage` | `/vibe/:index` | ENS socials + mock socials fallback, Send $TRUST button (no Follow/Share) |
+| `VibesListPage` | `/vibes` | Full list of vibe matches |
+| `InvitePage` | `/invite` | QR code download app + Send $TRUST button + My Wallet QR |
+| `SendPage` | `/send` | QR code display + $TRUST transfer with real `signer.sendTransaction()` |
+| `BuyTrustPage` | `/buy` | Amount picker, wallet connect (MetaMask), purchase |
+| `LeaderboardPage` | `/leaderboard` | PnL podium + ranked list |
+| `SettingsPage` | `/settings` | Settings/preferences |
 
 ### Shared Components
 | Component | Props | Description |
 |---|---|---|
 | `SplashBg` | `children` | Diamond mesh + dot grid background for splash screen |
 | `Logo` | `size` | EthCC logo (two circles) |
-| `PhoneFrame` | `children` | 390×844 phone mockup container |
+| `PhoneFrame` | `children` | 390x844 phone mockup container |
 | `StatusBar` | `light?: boolean` | iOS status bar (9:41, signal, battery) |
 | `Dots` | `n, a` | Pagination dots (active = `C.flat`) |
 | `Spark` | `data, color, h` | Mini sparkline bar chart |
@@ -227,6 +272,65 @@ All icons accept `{ s?: number, c?: string, f?: boolean }`:
 
 ---
 
+## Services
+
+### `intuition.ts` — On-chain operations (Intuition Protocol)
+- `connectWallet()` — MetaMask/AppKit, falls back to embedded wallet
+- `ensureUserAtom()` — create user atom if not exists
+- `buildProfileTriples()` / `createProfileTriples()` — on-chain profile
+- `depositOnAtoms()` — batch deposit on topic/track atoms
+- `estimateFees()` — fee estimation via proxy
+- `approveProxy()` — one-time proxy approval
+
+### `embeddedWallet.ts` — Client-side wallet for users without MetaMask
+- `createEmbeddedWallet(password)` — generates `ethers.Wallet.createRandom()`, encrypts private key with AES-GCM (PBKDF2-derived key), stores in localStorage
+- `connectEmbeddedWallet(password)` — decrypts and returns a `WalletConnection` compatible with all services
+- `hasEmbeddedWallet()` / `getEmbeddedAddress()` — check stored wallet
+- Private key is shown once during creation (backup screen), then only accessible via password
+
+### `sessionNotifService.ts` — Session end toast scheduler
+- Schedules local toast notifications for when sessions end
+- No external dependencies (replaces Push Protocol)
+
+### `leaderboardService.ts` — Blockscout API
+- Fetches transaction data from Blockscout for leaderboard ranking
+- PnL = $TRUST sent, fallback to mock data
+
+### `ensService.ts` — ENS text records resolution
+- Resolves ENS text records (GitHub, X, Discord, Website)
+- Used by ProfilePage and VibeProfilePage for social profiles
+
+### `voteService.ts` — Topic voting
+- `submitVotes()` — batch deposit on topic atom vaults (support/oppose)
+
+### `portfolioService.ts` — Position tracking
+- `fetchUserPositions()` / `fetchPortfolio()` — GraphQL query for user vault positions
+- `redeemPosition()` — withdraw from vault
+
+### `trendingService.ts` — Trending data
+- `fetchTrendingTopics()` — topics sorted by total TRUST deposited
+- `fetchTopicVoters()` / `fetchTopicEvents()` — vault activity
+
+### `StorageService.ts` — localStorage persistence
+- Cart (`ethcc-cart`), Topics (`ethcc-topics`), Votes (`ethcc-votes`)
+
+---
+
+## Hooks
+
+| Hook | Purpose |
+|---|---|
+| `useCart` | Cart state + persistence + `useSyncExternalStore` for Nav5 badge |
+| `useSessionFilter` | Filter state (day, type, topic) |
+| `useWallet` | Full wallet flow: connect → approve → create profile |
+| `useWalletConnection` | Low-level AppKit wallet state (provider, signer, balance) |
+| `useVibeMatches` | GraphQL query for like-minded users by shared interests |
+| `useInterestCounts` | Interest count polling per topic |
+| `usePwaInstall` | Captures `beforeinstallprompt`, provides `promptInstall()` + `canInstall` |
+| `useEnsProfile` | Resolves ENS text records for user social profiles |
+
+---
+
 ## TypeScript Interfaces
 
 ```typescript
@@ -236,6 +340,7 @@ interface Web3Topic { id: string; name: string; cat: string; votes: number; pnl:
 interface Vibe { name: string; addr: string; shared: string[]; pct: number; online: boolean; dist: string; px?: number; py?: number; }
 interface Platform { id: string; name: string; icon: string; color: string; desc: string; score: string; }
 interface LeaderboardUser { name: string; addr: string; pnl: string; up: boolean; votes: number; mktCap: string; rank: number; isMe?: boolean; }
+interface WalletConnection { provider: any; signer: any; proxy: any; multiVault: any; address: string; ethers: any; }
 interface IconProps { s?: number; c?: string; f?: boolean; }
 ```
 
@@ -245,29 +350,52 @@ interface IconProps { s?: number; c?: string; f?: boolean; }
 
 - **Chain**: 1155 (Intuition L3)
 - **Token**: $TRUST (native gas token)
-- **Contract**: `0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e` (MultiVault)
-- **Triples**: `[User] --interested by--> [Topic]`, `[User] --attending--> [Session]`
-- **Publishing**: Interests and session selections are published as on-chain triples during onboarding (step 6: QR → TX)
+- **MultiVault**: `0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e`
+- **Sofia Fee Proxy**: `0x26F81d723Ad1648194FAa4b7E235105Fd1212c6c`
+- **Creator**: `0x077b59a3751Cd6682534C8203aAb29113876af01`
+- **RPC**: `https://rpc.intuition.systems/http`
+- **GraphQL**: `https://mainnet.intuition.sh/v1/graphql`
+- **Atom "I" pattern**: All vote triples use shared atom "I" (`0x7ab197b...`) as subject. Users identified by vault positions, not individual atoms.
+- **Profile triples**: `[User] --are interested by--> [Track]`, `[User] --attending--> [Session]`
 
 ---
 
-## Navigation State Machine
+## Sessions — Published Sessions
+
+Published sessions are permanent (`ethcc-published-sessions` in localStorage). Once published on-chain, they cannot be unchecked or removed from the cart.
+
+---
+
+## Ratings — Cart & Checkout
+
+Ratings are added to cart, then deposited at checkout via `depositBatch`. Each rating creates a deposit in the vault of the corresponding `[Session] --has tag--> [N/5]` triple.
+
+---
+
+## Navigation
+
+Routes defined in `main.tsx` via react-router-dom v7:
 
 ```
-App state:
-  screen: "onboarding" | "app"
-  tab: "home" | "agenda" | "cart" | "vote" | "profile"
-
-Overlays (priority order, first match wins):
-  vibeUser → VibeProfile
-  showSend → SendPage
-  showBuy → BuyTrustPage
-  showLeaderboard → LeaderboardPage
-  showInvite → InvitePage
-  session → SessionDetail
-
-Nav5 is visible only when: screen==="app" && no overlay active
+/           → OnboardingPage
+/home       → HomePage
+/agenda     → AgendaPage
+/cart       → CartPage
+/vote       → VotePage
+/profile    → ProfilePage
+/session/:id → SessionDetailPage
+/topic/:id  → TopicDetailPage
+/speaker/:slug → SpeakerPage
+/send       → SendPage
+/buy        → BuyTrustPage
+/leaderboard → LeaderboardPage
+/invite     → InvitePage
+/vibes      → VibesListPage
+/vibe/:index → VibeProfilePage
+/settings   → SettingsPage
 ```
+
+Nav5 is visible on: `/home`, `/agenda`, `/cart`, `/vote`, `/profile`
 
 ---
 
@@ -305,4 +433,11 @@ background: C.surfaceGray, color: C.textSecondary
 <button onClick={onBack} style={{ width: 42, height: 42, borderRadius: 14, background: C.surfaceGray, display: "flex", alignItems: "center", justifyContent: "center", border: "none", cursor: "pointer" }}>
   <Ic.Back c={C.textPrimary} />
 </button>
+```
+
+### Notification toast (App.tsx)
+```tsx
+// Local toast via sessionNotifService scheduler (no Push Protocol)
+// 5-second auto-dismiss, click to close
+// Uses glass background with slideDown animation
 ```

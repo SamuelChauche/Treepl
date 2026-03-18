@@ -1,11 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glassSurface, FONT, getTrackStyle, TYPE_COLORS } from "../config/theme";
-import { sessions, dates } from "../data";
+import { sessions, dates, trackNames } from "../data";
 import { Ic } from "../components/ui/Icons";
-
 import { useCart } from "../hooks/useCart";
-import type { CSSProperties } from "react";
+import { StorageService } from "../services/StorageService";
+import { STORAGE_KEYS } from "../config/constants";
 
 // ─── Helpers ──────────────────────────────────────────
 
@@ -108,10 +108,35 @@ const sessionListWrap: CSSProperties = {
 
 export default function AgendaPage() {
   const navigate = useNavigate();
-  const { cart, toggleCart } = useCart();
+  const { cart, toggleCart, addToCart } = useCart();
+  const publishedSessions: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]");
+
+  // Published interests (on-chain) vs pending interests (in cart, not yet published)
+  const publishedTopics = useMemo(() => StorageService.loadTopics(), []);
+  const [pendingTopics, setPendingTopics] = useState<Set<string>>(() => {
+    try {
+      const raw = localStorage.getItem("ethcc-pending-topics");
+      return raw ? new Set(JSON.parse(raw)) : new Set();
+    } catch { return new Set(); }
+  });
+
+  const allMyTopics = useMemo(() => new Set([...publishedTopics, ...pendingTopics]), [publishedTopics, pendingTopics]);
+  const availableTopics = useMemo(() => trackNames.filter((t) => !allMyTopics.has(t)), [allMyTopics]);
+
+  const [showAddInterest, setShowAddInterest] = useState(false);
   const [selectedDay, setSelectedDay] = useState(dates[0] ?? "");
   const [selectedType, setSelectedType] = useState<string>("All");
   const [search, setSearch] = useState("");
+
+  const addInterest = (track: string) => {
+    const next = new Set(pendingTopics);
+    next.add(track);
+    setPendingTopics(next);
+    localStorage.setItem("ethcc-pending-topics", JSON.stringify([...next]));
+    // Add all sessions of this track to cart so they go through checkout
+    sessions.filter((s) => s.track === track).forEach((s) => addToCart(s.id));
+    setShowAddInterest(false);
+  };
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -201,7 +226,86 @@ export default function AgendaPage() {
             );
           })}
         </div>
+
+        {/* Add Interest button */}
+        {availableTopics.length > 0 && (
+          <button
+            onClick={() => setShowAddInterest(!showAddInterest)}
+            style={{
+              marginTop: 10, padding: "8px 16px", borderRadius: R.btn, border: `1px solid ${C.flat}`,
+              background: "transparent", color: C.flat, fontSize: 12, fontWeight: 600,
+              cursor: "pointer", fontFamily: FONT, display: "flex", alignItems: "center", gap: 6,
+            }}
+          >
+            <Ic.Plus s={14} c={C.flat} />
+            Add Interest ({availableTopics.length} available)
+          </button>
+        )}
       </div>
+
+      {/* Add Interest modal */}
+      {showAddInterest && (
+        <div
+          style={{
+            position: "fixed", inset: 0, zIndex: 100,
+            background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
+            display: "flex", alignItems: "flex-end", justifyContent: "center",
+          }}
+          onClick={() => setShowAddInterest(false)}
+        >
+          <div
+            style={{
+              width: "100%", maxWidth: 390, padding: 24, paddingBottom: 32,
+              background: C.background, borderRadius: "20px 20px 0 0",
+              border: `1px solid ${C.border}`, borderBottom: "none",
+              maxHeight: "70vh", overflowY: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+              <h3 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>Add Interest</h3>
+              <button
+                onClick={() => setShowAddInterest(false)}
+                style={{ width: 32, height: 32, borderRadius: 16, background: C.surfaceGray, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+              >
+                <Ic.X s={16} c={C.textSecondary} />
+              </button>
+            </div>
+            <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: 16 }}>
+              Select a topic to unlock its sessions. The interest will be added to your cart for on-chain validation.
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {availableTopics.map((track) => {
+                const ts = getTrackStyle(track);
+                const sessionCount = sessions.filter((s) => s.track === track).length;
+                return (
+                  <div
+                    key={track}
+                    onClick={() => addInterest(track)}
+                    style={{
+                      ...glassSurface, padding: 14, cursor: "pointer",
+                      display: "flex", alignItems: "center", gap: 12,
+                    }}
+                  >
+                    <div style={{
+                      width: 40, height: 40, borderRadius: 12,
+                      background: `${ts.color}22`, display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: 18,
+                    }}>
+                      {ts.icon}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: C.textPrimary }}>{track}</div>
+                      <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>{sessionCount} sessions</div>
+                    </div>
+                    <Ic.Plus s={18} c={C.flat} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Session list */}
       <div style={sessionListWrap}>
@@ -213,8 +317,42 @@ export default function AgendaPage() {
 
         {filtered.map((s) => {
           const ts = getTrackStyle(s.track);
-          const inCart = cart.has(s.id);
+          const isPublished = publishedSessions.includes(s.id);
+          const isTrackPublished = publishedTopics.has(s.track);
+          const isTrackPending = pendingTopics.has(s.track);
+          const isLocked = isTrackPending && !isTrackPublished;
+          const inCart = isPublished || cart.has(s.id);
           const speakerLine = s.speakers.map((sp) => sp.name).join(", ");
+
+          // Locked card — session from a pending (unpublished) interest
+          if (isLocked) {
+            return (
+              <div key={s.id} style={{ ...cardWrap, opacity: 0.5, cursor: "default" }}>
+                <div style={{ ...trackIcon, background: `${ts.color}22` }}>
+                  🔒
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: C.textTertiary, marginBottom: 4 }}>
+                    Session locked
+                  </div>
+                  <div style={{ fontSize: 12, color: C.textTertiary }}>
+                    Validate the tx to see this event
+                  </div>
+                  <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
+                    <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: R.sm, background: `${ts.color}22`, color: ts.color }}>
+                      {s.track}
+                    </span>
+                  </div>
+                </div>
+                <div style={{
+                  width: 36, height: 36, borderRadius: 18,
+                  background: C.surfaceGray, display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Ic.Clock s={14} c={C.textTertiary} />
+                </div>
+              </div>
+            );
+          }
 
           return (
             <div
@@ -223,12 +361,7 @@ export default function AgendaPage() {
               onClick={() => navigate(`/session/${s.id}`)}
             >
               {/* Track icon */}
-              <div
-                style={{
-                  ...trackIcon,
-                  background: `${ts.color}22`,
-                }}
-              >
+              <div style={{ ...trackIcon, background: `${ts.color}22` }}>
                 {ts.icon}
               </div>
 
@@ -246,26 +379,10 @@ export default function AgendaPage() {
                   {s.startTime} - {s.endTime} &middot; {s.stage}
                 </div>
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                  <span
-                    style={{
-                      fontSize: 11,
-                      padding: "2px 8px",
-                      borderRadius: R.sm,
-                      background: `${ts.color}22`,
-                      color: ts.color,
-                    }}
-                  >
+                  <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: R.sm, background: `${ts.color}22`, color: ts.color }}>
                     {s.track}
                   </span>
-                  <span
-                    style={{
-                      fontSize: 11,
-                      padding: "2px 8px",
-                      borderRadius: R.sm,
-                      background: `${TYPE_COLORS[s.type] ?? C.primary}22`,
-                      color: TYPE_COLORS[s.type] ?? C.primary,
-                    }}
-                  >
+                  <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: R.sm, background: `${TYPE_COLORS[s.type] ?? C.primary}22`, color: TYPE_COLORS[s.type] ?? C.primary }}>
                     {s.type}
                   </span>
                 </div>
@@ -275,20 +392,13 @@ export default function AgendaPage() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  toggleCart(s.id);
+                  if (!isPublished) toggleCart(s.id);
                 }}
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 18,
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  alignSelf: "center",
-                  background: inCart ? C.successLight : "rgba(255,255,255,0.06)",
+                  width: 36, height: 36, borderRadius: 18, border: "none", cursor: isPublished ? "default" : "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0, alignSelf: "center",
+                  background: inCart ? C.successLight : C.surfaceGray,
                   transition: "background 0.2s",
                 }}
               >

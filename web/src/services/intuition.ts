@@ -97,6 +97,15 @@ export async function connectWallet(): Promise<WalletConnection> {
     throw new Error("REDIRECT_METAMASK");
   }
 
+  // Try embedded wallet
+  const { hasEmbeddedWallet, connectEmbeddedWallet } = await import("./embeddedWallet");
+  if (hasEmbeddedWallet()) {
+    const password = prompt("Enter your embedded wallet password:");
+    if (password) {
+      return await connectEmbeddedWallet(password);
+    }
+  }
+
   // Desktop — open AppKit modal (WalletConnect QR, Coinbase, etc.)
   if (modal) {
     modal.open();

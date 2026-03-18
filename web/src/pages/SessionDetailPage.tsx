@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { C, R, glassSurface, btnPill, FONT, getTrackStyle, TYPE_COLORS } from "../config/theme";
 import { sessions } from "../data";
 import { Ic } from "../components/ui/Icons";
+import { getReplayUrl } from "../services/replayService";
 
 import { useCart } from "../hooks/useCart";
 import { Spark } from "../components/ui/Spark";
@@ -152,7 +153,37 @@ export default function SessionDetailPage() {
   }
 
   const ts = getTrackStyle(session.track);
-  const inCart = cart.has(session.id);
+  const publishedSessions: string[] = JSON.parse(localStorage.getItem("ethcc-published-sessions") ?? "[]");
+  const isPublished = publishedSessions.includes(session.id);
+  const inCart = isPublished || cart.has(session.id);
+
+  // ── Ratings from localStorage ──────────────────────
+  const allRatings: Record<string, { rating: number; timestamp: number }> = JSON.parse(
+    localStorage.getItem("ethcc-ratings") ?? "{}"
+  );
+  const myRating = allRatings[session.id];
+
+  // ── Replay URL (fetched from replays.json) ─────────
+  const [replayUrl, setReplayUrl] = useState<string | null>(null);
+  useEffect(() => {
+    getReplayUrl(session.id).then((url) => setReplayUrl(url));
+  }, [session.id]);
+
+  // ── Want replay ────────────────────────────────────
+  const [wantReplay, setWantReplay] = useState(() => {
+    const replays = JSON.parse(localStorage.getItem("ethcc-want-replay") ?? "[]") as string[];
+    return replays.includes(session.id);
+  });
+
+  const toggleWantReplay = () => {
+    const replays = JSON.parse(localStorage.getItem("ethcc-want-replay") ?? "[]") as string[];
+    if (wantReplay) {
+      localStorage.setItem("ethcc-want-replay", JSON.stringify(replays.filter((id: string) => id !== session.id)));
+    } else {
+      localStorage.setItem("ethcc-want-replay", JSON.stringify([...replays, session.id]));
+    }
+    setWantReplay(!wantReplay);
+  };
   const interestedCount = 12 + hashNum(session.id, 80);
   const trendPct = 3 + hashNum(session.id + "t", 25);
   const trendUp = hashNum(session.id + "dir", 2) === 1;
@@ -338,20 +369,123 @@ export default function SessionDetailPage() {
         </div>
       )}
 
+      {/* Ratings section */}
+      <div style={{ padding: "0 20px", marginBottom: 20 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 10 }}>Ratings</div>
+
+        {myRating ? (
+          <div style={{ ...glassSurface, padding: 14, display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ display: "flex", gap: 2 }}>
+              {[1, 2, 3, 4, 5].map((s) => (
+                <span key={s} style={{ fontSize: 18, color: s <= myRating.rating ? C.flat : C.textTertiary }}>★</span>
+              ))}
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.flat }}>You rated {myRating.rating}/5</div>
+            </div>
+            <button
+              style={{
+                padding: "6px 14px", borderRadius: R.btn, border: "none",
+                background: C.surfaceGray, color: C.textSecondary,
+                fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT,
+              }}
+              onClick={() => navigate(`/rate/${session.id}`)}
+            >
+              Edit
+            </button>
+          </div>
+        ) : (
+          <div
+            style={{ ...glassSurface, padding: 16, textAlign: "center", cursor: "pointer" }}
+            onClick={() => navigate(`/rate/${session.id}`)}
+          >
+            <div style={{ display: "flex", justifyContent: "center", gap: 4, marginBottom: 8 }}>
+              {[1, 2, 3, 4, 5].map((s) => (
+                <span key={s} style={{ fontSize: 22, color: C.textTertiary }}>★</span>
+              ))}
+            </div>
+            <div style={{ fontSize: 13, color: C.textSecondary }}>
+              Attended this session? Tap to rate it
+            </div>
+          </div>
+        )}
+
+        {/* TODO: Show other people's ratings from on-chain data */}
+        {/* When on-chain ratings are available, display rating distribution here */}
+      </div>
+
+      {/* Replay / Want to watch */}
+      <div style={{ padding: "0 20px", marginBottom: 24 }}>
+        {replayUrl ? (
+          <a
+            href={replayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              width: "100%", padding: 14, borderRadius: R.lg,
+              border: `1px solid ${C.success}44`, background: C.successLight,
+              display: "flex", alignItems: "center", gap: 12,
+              textDecoration: "none", fontFamily: FONT, boxSizing: "border-box",
+            }}
+          >
+            <span style={{ fontSize: 20 }}>▶️</span>
+            <div style={{ flex: 1, textAlign: "left" }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: C.success }}>
+                Watch Replay
+              </div>
+              <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>
+                Available on YouTube
+              </div>
+            </div>
+            <Ic.Right s={16} c={C.success} />
+          </a>
+        ) : (
+          <button
+            onClick={toggleWantReplay}
+            style={{
+              width: "100%", padding: 14, borderRadius: R.lg,
+              border: wantReplay ? `1px solid ${C.flat}` : `1px solid ${C.border}`,
+              background: wantReplay ? C.flatLight : C.surfaceGray,
+              cursor: "pointer", display: "flex", alignItems: "center", gap: 12,
+              fontFamily: FONT,
+            }}
+          >
+            <span style={{ fontSize: 20 }}>{wantReplay ? "📺" : "👀"}</span>
+            <div style={{ flex: 1, textAlign: "left" }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: wantReplay ? C.flat : C.textPrimary }}>
+                {wantReplay ? "Replay requested!" : "Want to watch the replay?"}
+              </div>
+              <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>
+                {wantReplay
+                  ? "We'll notify you when it's available"
+                  : "Get notified when the replay is published"}
+              </div>
+            </div>
+            {wantReplay && <Ic.Check s={18} c={C.flat} />}
+          </button>
+        )}
+      </div>
+
       </div>{/* end scrollable content */}
 
       {/* Bottom action bar */}
       <div style={bottomBar}>
         <button
-          onClick={() => toggleCart(session.id)}
+          onClick={() => { if (!isPublished) toggleCart(session.id); }}
           style={{
             ...btnPill,
             flex: 1,
-            background: inCart ? C.successLight : C.iridescence,
-            color: inCart ? C.success : C.dark,
+            background: isPublished ? C.successLight : inCart ? C.successLight : C.iridescence,
+            color: isPublished ? C.success : inCart ? C.success : C.dark,
+            cursor: isPublished ? "default" : "pointer",
           }}
         >
-          {inCart ? (
+          {isPublished ? (
+            <>
+              <Ic.Check s={18} c={C.success} />
+              Attending (on-chain)
+            </>
+          ) : inCart ? (
             <>
               <Ic.Check s={18} c={C.success} />
               In Cart
@@ -368,7 +502,7 @@ export default function SessionDetailPage() {
             width: 56,
             height: 56,
             borderRadius: R.btn,
-            background: "rgba(255,255,255,0.06)",
+            background: C.surfaceGray,
             border: `1px solid ${C.border}`,
             cursor: "pointer",
             display: "flex",

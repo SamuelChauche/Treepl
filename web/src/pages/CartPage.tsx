@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo, type CSSProperties  } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glassSurface, btnPill, FONT, getTrackStyle } from "../config/theme";
-import { sessions, trackNames } from "../data";
+import { sessions, trackNames, ratingsGraph } from "../data";
 import { allTopics, categories } from "../data/topics";
 import { Ic } from "../components/ui/Icons";
 import { useCart } from "../hooks/useCart";
 import { StorageService } from "../services/StorageService";
-import { CHAIN_CONFIG, DEFAULT_DEPOSIT_PER_TRIPLE } from "../config/constants";
+import { CHAIN_CONFIG, STORAGE_KEYS, DEFAULT_DEPOSIT_PER_TRIPLE } from "../config/constants";
 import { useWalletConnection } from "../hooks/useWalletConnection";
 import { depositOnAtoms, ensureUserAtom, buildProfileTriples, createProfileTriples, TRACK_ATOM_IDS } from "../services/intuition";
 import { resolveTopicAtomIds } from "../services/voteService";
@@ -118,12 +118,26 @@ export default function CartPage() {
 
   const topicList = [...topics].filter((t) => trackNames.includes(t));
 
-  const tripleCount = topicList.length + cartSessions.length + cartTopics.length;
+  // Pending ratings (from RateSessionPage)
+  const pendingRatings: Record<string, number> = JSON.parse(
+    localStorage.getItem(STORAGE_KEYS.RATINGS) ?? "{}"
+  );
+  const cartRatings = useMemo(() => {
+    const result: { session: typeof sessions[0]; rating: number }[] = [];
+    for (const [sessionId, ratingValue] of Object.entries(pendingRatings)) {
+      const s = sessionMap.get(sessionId);
+      if (s) result.push({ session: s, rating: ratingValue });
+    }
+    return result;
+  }, [pendingRatings, sessionMap]);
+
+  const tripleCount = topicList.length + cartSessions.length + cartTopics.length + cartRatings.length;
   const isEmpty = tripleCount === 0;
 
-  // Estimate cost: deposits use getTotalDepositCost, sessions use getTripleCost
+  // Estimate cost: deposits use calculateDepositFee, sessions use getTotalCreationCost
   const depositCount = topicList.length + cartTopics.length; // interests + voted topics → deposit
   const sessionCount = cartSessions.length; // sessions → triples
+  const ratingCount = cartRatings.length; // ratings → deposit into existing triple vaults
 
   const [realCost, setRealCost] = useState<string | null>(null);
   useEffect(() => {
@@ -156,7 +170,7 @@ export default function CartPage() {
         total += totalDep + fee;
       }
 
-      // Cost for session triples
+      // Cost for session triples (creation)
       if (sessionCount > 0) {
         const tripleCost: bigint = await mv.getTripleCost();
         const n = BigInt(sessionCount);
@@ -166,6 +180,21 @@ export default function CartPage() {
         total += triCost;
       }
 
+      // Cost for rating deposits (deposit into existing triple vaults, 0.001 TRUST each)
+      if (ratingCount > 0) {
+        const ratingDeposit = ethers.parseEther("0.001");
+        const n = BigInt(ratingCount);
+        const totalRatingDep = ratingDeposit * n;
+        // Ratings go through proxy depositBatch — add proxy fee
+        try {
+          const fee: bigint = await proxy.calculateDepositFee(n, totalRatingDep);
+          total += totalRatingDep + fee;
+        } catch {
+          // Fallback: just the deposit amount without fee
+          total += totalRatingDep;
+        }
+      }
+
       if (cancelled) return;
       const trustAmount = Number(total) / 1e18;
       setRealCost(trustAmount < 0.01 ? trustAmount.toFixed(4) : trustAmount.toFixed(2));
@@ -173,7 +202,7 @@ export default function CartPage() {
       if (!cancelled) setRealCost(null);
     });
     return () => { cancelled = true; };
-  }, [depositCount, sessionCount, tripleCount]);
+  }, [depositCount, sessionCount, ratingCount, tripleCount]);
 
   return (
     <div style={page}>
@@ -299,6 +328,53 @@ export default function CartPage() {
           </div>
         )}
 
+        {/* ── Ratings ────────────────────────── */}
+        {cartRatings.length > 0 && (
+          <div style={sectionWrap}>
+            <div style={sectionHead}>
+              <span style={{ fontSize: 16 }}>⭐</span>
+              Ratings ({cartRatings.length})
+            </div>
+            {cartRatings.map(({ session: s, rating: r }) => {
+              return (
+                <div key={`rate-${s.id}`} style={card}>
+                  <div style={{ width: 4, alignSelf: "stretch", borderRadius: 2, background: C.flat, flexShrink: 0 }} />
+                  <div style={{
+                    width: 36, height: 36, borderRadius: R.md, flexShrink: 0,
+                    background: C.flatLight,
+                    display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, color: C.flat,
+                  }}>
+                    {r}/5
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {s.title}
+                    </div>
+                    <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>
+                      Deposit into {r}/5 vault
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      const p = JSON.parse(localStorage.getItem(STORAGE_KEYS.RATINGS) ?? "{}");
+                      delete p[s.id];
+                      localStorage.setItem(STORAGE_KEYS.RATINGS, JSON.stringify(p));
+                      toggleCart(s.id);
+                    }}
+                    style={{
+                      width: 28, height: 28, borderRadius: 14, border: "none", cursor: "pointer",
+                      background: C.errorLight, display: "flex", alignItems: "center", justifyContent: "center",
+                      flexShrink: 0, alignSelf: "center",
+                    }}
+                  >
+                    <Ic.Trash s={12} c={C.error} />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
         {/* ── Transaction summary ────────────── */}
         {tripleCount > 0 && (
           <div style={summaryCard}>
@@ -317,6 +393,12 @@ export default function CartPage() {
               <span>Sessions</span>
               <span style={{ color: C.textPrimary, fontWeight: 600 }}>{cartSessions.length}</span>
             </div>
+            {cartRatings.length > 0 && (
+              <div style={summaryRow}>
+                <span>Ratings</span>
+                <span style={{ color: C.flat, fontWeight: 600 }}>{cartRatings.length}</span>
+              </div>
+            )}
             <div style={summaryRow}>
               <span>Network</span>
               <span style={{ color: C.trust, fontWeight: 600 }}>Intuition L3 (1155)</span>
@@ -385,13 +467,58 @@ export default function CartPage() {
                     if (triples.length > 0) {
                       await createProfileTriples(wallet.multiVault, wallet.proxy, wallet.address, triples);
                     }
+                    // Mark sessions as permanently published
+                    const published: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]");
+                    for (const s of cartSessions) {
+                      if (!published.includes(s.id)) published.push(s.id);
+                    }
+                    localStorage.setItem(STORAGE_KEYS.PUBLISHED_SESSIONS, JSON.stringify(published));
                   }
+
+                  // 4. Deposit on rating triple vaults
+                  if (cartRatings.length > 0) {
+                    setPublishStatus(`Depositing ${cartRatings.length} ratings...`);
+                    const ratingTripleIds: string[] = [];
+                    for (const { session: s, rating: r } of cartRatings) {
+                      const tripleData = ratingsGraph.sessionRatingTriples[s.id]?.[String(r)];
+                      if (tripleData) {
+                        const tripleId = await wallet.multiVault.calculateTripleId(
+                          tripleData.subjectId, tripleData.predicateId, tripleData.objectId
+                        );
+                        ratingTripleIds.push(tripleId);
+                      }
+                    }
+                    if (ratingTripleIds.length > 0) {
+                      const depositPerRating = wallet.ethers.parseEther("0.001");
+                      const curveIds = ratingTripleIds.map(() => CHAIN_CONFIG.CURVE_ID);
+                      const assets = ratingTripleIds.map(() => depositPerRating);
+                      const minShares = ratingTripleIds.map(() => 0n);
+                      const totalValue = depositPerRating * BigInt(ratingTripleIds.length);
+
+                      const tx = await wallet.proxy.depositBatch(
+                        wallet.address, ratingTripleIds, curveIds, assets, minShares,
+                        { value: totalValue }
+                      );
+                      await tx.wait();
+                    }
+                  }
+
+                  // Move pending topics to published topics
+                  try {
+                    const pending: string[] = JSON.parse(localStorage.getItem("ethcc-pending-topics") ?? "[]");
+                    if (pending.length > 0) {
+                      const existingTopics = StorageService.loadTopics();
+                      for (const t of pending) existingTopics.add(t);
+                      StorageService.saveTopics(existingTopics);
+                      localStorage.removeItem("ethcc-pending-topics");
+                    }
+                  } catch { /* ignore */ }
 
                   // Clear cart after successful publish
                   clearCart();
                   setTopics(new Set());
-                  StorageService.saveTopics(new Set());
                   localStorage.removeItem("ethcc-votes");
+                  localStorage.removeItem(STORAGE_KEYS.RATINGS);
 
                   setPublishDone(true);
                   setPublishStatus("");
