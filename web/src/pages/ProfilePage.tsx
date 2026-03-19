@@ -124,9 +124,9 @@ export default function ProfilePage() {
   // Detect if connected via embedded wallet (no ENS possible)
   const isEmbeddedWallet = hasEmbeddedWallet() && getEmbeddedAddress()?.toLowerCase() === walletAddress.toLowerCase();
 
-  // ENS profile resolution — use a separate ENS address if user reconnected with external wallet
+  // ENS profile resolution — always try with wallet address, override with ensAddress if set
   const [ensAddress, setEnsAddress] = useState<string | null>(null);
-  const ensLookupAddr = ensAddress ?? (isEmbeddedWallet ? null : walletAddress || null);
+  const ensLookupAddr = ensAddress ?? (walletAddress || null);
   const { profile: ensProfile, loading: ensLoading } = useEnsProfile(ensLookupAddr);
   const socialLinks = ensProfile ? getSocialLinks(ensProfile) : [];
 
@@ -147,12 +147,17 @@ export default function ProfilePage() {
     }
   };
 
-  // Real vibe matches from on-chain data
+  // Real vibe matches from on-chain data (tracks + votes + sessions)
   const cartSessionIds = useMemo(() => [...savedCart].map(String), [savedCart]);
+  const votedTopicIds = useMemo(() => {
+    try { return JSON.parse(localStorage.getItem("ethcc-published-votes") ?? "[]") as string[]; }
+    catch { return []; }
+  }, []);
   const { matches: realMatches, loading: matchesLoading } = useVibeMatches(
     savedTopics,
     cartSessionIds,
-    walletAddress
+    walletAddress,
+    votedTopicIds
   );
 
   const matchCount = realMatches.length > 0 ? realMatches.length : (walletAddress ? 0 : null);

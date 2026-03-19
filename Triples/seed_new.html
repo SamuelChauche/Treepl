@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EthCC[9] &rarr; Seed New Data</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f0e0c; --surface: #171614; --surface2: #1e1d1a; --border: rgba(210,195,170,0.08);
+    --text: #e8e0d4; --text-muted: #8c8377; --accent: #b8a080; --accent-hover: #d4bc9a;
+    --green: #8fb87a; --red: #c47a6e; --orange: #c9a855; --purple: #a08cb8;
+    --glass: rgba(210,195,170,0.03); --glass-border: rgba(210,195,170,0.06);
+    --radius: 16px; --radius-sm: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    padding: 0; min-height: 100vh;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Header */
+  header {
+    text-align: center; padding: 48px 24px 32px;
+    background: linear-gradient(180deg, rgba(184,160,128,0.06) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border); margin-bottom: 32px;
+  }
+  header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
+  header h1 span { background: linear-gradient(135deg, #d4bc9a, #a08cb8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  header .chain-info { color: var(--text-muted); font-size: 0.8rem; margin-top: 8px; font-family: 'SF Mono', 'Fira Code', monospace; letter-spacing: 0.3px; }
+
+  /* Buttons */
+  .connect-bar { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  button {
+    background: var(--accent); color: #0f0e0c; border: none; border-radius: var(--radius-sm);
+    padding: 12px 24px; font-size: 0.9rem; cursor: pointer; font-weight: 600;
+    transition: all 0.2s; box-shadow: 0 2px 8px rgba(184,160,128,0.15);
+  }
+  button:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(184,160,128,0.25); }
+  button:active { transform: translateY(0); }
+  button:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+  button.secondary { background: var(--surface2); border: 1px solid var(--border); box-shadow: none; color: var(--text-muted); font-weight: 500; }
+  button.secondary:hover { background: rgba(255,255,255,0.06); color: var(--text); transform: none; box-shadow: none; }
+  button.execute { background: var(--green); color: #0f0e0c; box-shadow: 0 2px 8px rgba(143,184,122,0.15); }
+  button.execute:hover { background: #a4c890; box-shadow: 0 4px 16px rgba(143,184,122,0.25); }
+
+  /* Status bar */
+  .status-bar {
+    background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius);
+    padding: 16px 24px; display: flex; gap: 32px; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 32px; font-size: 0.85rem;
+  }
+  .status-bar .label { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .status-bar .value { color: var(--text); font-weight: 600; font-family: 'SF Mono', monospace; }
+
+  /* Steps */
+  .step {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px; margin-bottom: 20px; transition: border-color 0.2s;
+  }
+  .step:hover { border-color: rgba(255,255,255,0.12); }
+  .step h2 { font-size: 1.15rem; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .step h2 .badge {
+    background: rgba(184,160,128,0.08); border: 1px solid rgba(184,160,128,0.15);
+    border-radius: 20px; padding: 3px 12px; font-size: 0.7rem; color: var(--accent); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .step-desc { color: var(--text-muted); margin-bottom: 18px; font-size: 0.88rem; line-height: 1.7; }
+
+  /* Progress */
+  .progress-bar { background: var(--surface2); border-radius: 6px; height: 8px; margin: 14px 0; overflow: hidden; }
+  .progress-bar .fill { background: linear-gradient(90deg, var(--accent), #a08cb8); height: 100%; transition: width 0.4s ease; border-radius: 6px; }
+  .progress-text { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; font-family: monospace; }
+
+  /* Batch cards */
+  .batch-card {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm); padding: 20px; margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .batch-card:hover { border-color: rgba(255,255,255,0.1); }
+  .batch-card .batch-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .batch-card .batch-title { font-weight: 600; font-size: 0.9rem; }
+  .batch-card .batch-cost { color: var(--orange); font-size: 0.82rem; font-family: monospace; font-weight: 600; }
+  .batch-card .batch-items { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; max-height: 300px; overflow-y: auto; }
+  .batch-card .batch-status { font-size: 0.82rem; margin-top: 10px; word-break: break-all; }
+  .batch-card .batch-status a { color: var(--accent); text-decoration: none; }
+  .batch-card .batch-status a:hover { text-decoration: underline; }
+
+  /* Tables */
+  .batch-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-bottom: 12px; }
+  .batch-table th {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border);
+    color: var(--text-muted); font-weight: 600; position: sticky; top: 0;
+    background: var(--surface2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  .batch-table td {
+    padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.03);
+    max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .batch-table tr:hover td { background: rgba(184,160,128,0.04); }
+  .batch-table input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+
+  /* Category colors */
+  .cat-track { color: var(--accent); } .cat-session { color: var(--green); }
+  .cat-speaker { color: var(--text); } .cat-event { color: var(--purple); }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3px; }
+  .tag.done { background: rgba(52,211,153,0.12); color: var(--green); }
+  .tag.running { background: rgba(184,160,128,0.12); color: var(--accent); animation: pulse 1.5s ease infinite; }
+  .tag.error { background: rgba(248,113,113,0.12); color: var(--red); }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+
+  .error-msg {
+    background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.2);
+    border-radius: var(--radius-sm); padding: 12px 16px; color: var(--red);
+    font-size: 0.82rem; margin-top: 10px; word-break: break-word;
+  }
+  .log-area {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 12px 16px; font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.75rem; max-height: 220px; overflow-y: auto;
+    color: var(--text-muted); margin-top: 14px; white-space: pre-wrap; line-height: 1.5;
+  }
+
+  /* Summary grid */
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  .summary-card {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm); padding: 20px; text-align: center;
+    transition: border-color 0.2s;
+  }
+  .summary-card:hover { border-color: rgba(255,255,255,0.1); }
+  .summary-card .num { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; }
+  .summary-card .lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Details */
+  details summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: 0.88rem; padding: 6px 0; user-select: none; }
+  details summary:hover { color: var(--accent-hover); }
+  details[open] summary { margin-bottom: 10px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 12px 40px; }
+    header { padding: 32px 16px 24px; }
+    .summary-grid { grid-template-columns: 1fr 1fr; }
+    .status-bar { flex-direction: column; gap: 10px; align-items: flex-start; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <h1><span>EthCC[9]</span> &rarr; Seed</h1>
+  <div class="chain-info">Chain 1155 &nbsp;&bull;&nbsp; Sofia Proxy 0x26F8...c6c &nbsp;&bull;&nbsp; MultiVault 0x6E35...e7e &nbsp;&bull;&nbsp; rpc.intuition.box</div>
+</header>
+
+<div class="container">
+
+<!-- How it works -->
+<div class="step" style="border-color:rgba(184,160,128,0.2);background:linear-gradient(135deg, rgba(184,160,128,0.04), rgba(160,140,184,0.02));">
+  <h2>&#128736; How this works</h2>
+  <div style="color:var(--text-muted);font-size:0.88rem;line-height:1.9;">
+    <p>Creates on-chain data for new EthCC sessions, speakers, tracks, and side events via the Sofia Proxy. Nothing happens until you click "Execute".</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
+      <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:14px;">
+        <div style="font-weight:700;font-size:0.82rem;margin-bottom:4px;">1. Pin &rarr; 2. Verify</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);">Free, no gas. Upload metadata to IPFS, then review every item with checkboxes.</div>
+      </div>
+      <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:14px;">
+        <div style="font-weight:700;font-size:0.82rem;margin-bottom:4px;">3. Atoms &rarr; 4. Triples</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);">On-chain via MetaMask. ~0.1 TRUST each. Existing items auto-skipped.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;font-size:0.78rem;">
+      <span><strong style="color:var(--green);">&#10003;</strong> Safe to interrupt &mdash; progress saved in localStorage</span>
+      <span><strong style="color:var(--green);">&#10003;</strong> No duplicates &mdash; existing atoms/triples auto-skipped</span>
+    </div>
+  </div>
+</div>
+
+<div class="connect-bar">
+  <button id="connectBtn" onclick="connectWallet()">Connect MetaMask</button>
+  <button class="secondary" onclick="importState()">Import State</button>
+  <button class="secondary" onclick="exportState()">Export State</button>
+</div>
+
+<div class="status-bar" id="statusBar" style="display:none">
+  <div><span class="label">Address: </span><span class="value" id="addrDisplay"></span></div>
+  <div><span class="label">Balance: </span><span class="value" id="balDisplay"></span></div>
+  <div><span class="label">Atom Cost: </span><span class="value" id="atomCostDisplay"></span></div>
+  <div><span class="label">Triple Cost: </span><span class="value" id="tripleCostDisplay"></span></div>
+</div>
+
+<!-- Diff Summary -->
+<div class="step" id="stepSummary">
+  <h2>Diff Summary <span class="badge">Read-only</span></h2>
+  <p class="step-desc">Automatic comparison of scraped data vs existing on-chain data. Nothing is created here &mdash; this is just an overview of what's new.</p>
+  <div id="summaryContent">Loading data...</div>
+</div>
+
+<!-- Step 1: Pin -->
+<div class="step" id="step1">
+  <h2>Step 1: Pin to IPFS <span class="badge">Free &mdash; no gas</span></h2>
+  <p class="step-desc">Upload metadata (names, descriptions) to IPFS via Intuition's GraphQL API. This does <strong>not</strong> create anything on-chain and costs nothing. Already-pinned items are skipped. Safe to run multiple times.</p>
+  <button onclick="pinAll()" id="pinBtn">Pin All New Entities</button>
+  <div class="progress-bar" id="pinProgress" style="display:none"><div class="fill" id="pinFill"></div></div>
+  <div class="progress-text" id="pinProgressText" style="display:none"></div>
+  <div class="log-area" id="pinLog" style="display:none"></div>
+</div>
+
+<!-- Step 2: Verify -->
+<div class="step" id="step2">
+  <h2>Step 2: Verify <span class="badge">Review before on-chain</span></h2>
+  <p class="step-desc">
+    <strong style="color:var(--orange)">Important:</strong> Review every atom and triple before going on-chain.
+    Uncheck anything you don't want to create. Items marked <span style="color:var(--orange)">[SIDE]</span> are side events.
+    Once you're satisfied, proceed to Step 3.
+    <br><br>
+    <strong>Atoms</strong> = individual entities (sessions, speakers, tracks).
+    <strong>Triples</strong> = relationships between atoms (e.g. "Speaker X &rarr; speaking at &rarr; Session Y").
+  </p>
+  <button onclick="renderVerification()" id="verifyBtn" disabled>Load Verification</button>
+  <div id="verifyAtoms" style="margin-top:16px"></div>
+  <div id="verifyTriples" style="margin-top:16px"></div>
+  <div id="verifySummary" style="margin-top:16px"></div>
+</div>
+
+<!-- Step 3: Create Atoms -->
+<div class="step" id="step3">
+  <h2>Step 3: Create Atoms <span class="badge">On-chain &mdash; costs TRUST</span></h2>
+  <p class="step-desc">
+    Creates atoms on-chain in batches of 100. Each batch = 1 MetaMask popup.
+    <strong>You approve each batch manually.</strong>
+    If an atom already exists, it's skipped automatically (no duplicate, no extra cost).
+    If a batch fails, click Retry &mdash; progress is saved.
+  </p>
+  <button onclick="prepareAtomBatches()" id="prepAtomsBtn" disabled>Prepare Atom Batches</button>
+  <div id="atomBatches" style="margin-top:16px"></div>
+</div>
+
+<!-- Step 4: Create Triples -->
+<div class="step" id="step4">
+  <h2>Step 4: Create Triples <span class="badge">On-chain &mdash; costs TRUST</span></h2>
+  <p class="step-desc">
+    Creates triples (relationships) in batches of 80. Same as Step 3: each batch = 1 MetaMask popup, you approve manually.
+    Triples link sessions to tracks (<em>has tag</em>), sessions to EthCC (<em>presented at</em>), and speakers to sessions (<em>speaking at</em>).
+  </p>
+  <button onclick="prepareTripleBatches()" id="prepTriplesBtn" disabled>Prepare Triple Batches</button>
+  <div id="tripleBatches" style="margin-top:16px"></div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+// ============================================================
+// Constants
+// ============================================================
+const CHAIN_ID = 1155;
+const CHAIN_HEX = '0x483';
+const RPC_URL = 'https://rpc.intuition.box/http';
+const MULTIVAULT = '0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e';
+const SOFIA_PROXY = '0x26F81d723Ad1648194FAA4b7E235105Fd1212c6c';
+const GQL_URL = 'https://mainnet.intuition.sh/v1/graphql';
+const EXPLORER = 'https://explorer.intuition.systems';
+const CURVE_ID = 1; // linear bonding curve
+
+const INTUITION_CHAIN = {
+  chainId: CHAIN_HEX, chainName: 'Intuition',
+  nativeCurrency: { name: 'Intuition', symbol: 'TRUST', decimals: 18 },
+  rpcUrls: [RPC_URL], blockExplorerUrls: [EXPLORER]
+};
+
+const EXISTING_PREDICATES = {
+  'has tag': '0x7ec36d201c842dc787b45cb5bb753bea4cf849be3908fb1b0a7d067c3c3cc1f5',
+  'speaking at': '0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37',
+  'presented at': '0xd565b68b86bbca8c77bfac6c6947ce96046ecf6d23c997c04cb10af7638ac6b6',
+};
+
+// MultiVault ABI — reads only
+const MULTIVAULT_ABI = [
+  'function getAtomCost() view returns (uint256)',
+  'function getTripleCost() view returns (uint256)',
+  'function calculateAtomId(bytes data) pure returns (bytes32)',
+  'function calculateTripleId(bytes32 subjectId, bytes32 predicateId, bytes32 objectId) pure returns (bytes32)',
+  'function isTermCreated(bytes32 id) view returns (bool)',
+];
+
+// Sofia Fee Proxy ABI — writes (createAtoms, createTriples) + fee calc
+const PROXY_ABI = [
+  'function createAtoms(address receiver, bytes[] data, uint256[] assets, uint256 curveId) payable returns (bytes32[])',
+  'function createTriples(address receiver, bytes32[] subjectIds, bytes32[] predicateIds, bytes32[] objectIds, uint256[] assets, uint256 curveId) payable returns (bytes32[])',
+  'function getTotalCreationCost(uint256 depositCount, uint256 totalDeposit, uint256 multiVaultCost) view returns (uint256)',
+  'function getAtomCost() view returns (uint256)',
+  'function getTripleCost() view returns (uint256)',
+];
+
+const ATOM_BATCH_SIZE = 100;
+const TRIPLE_BATCH_SIZE = 80;
+const PIN_DELAY = 300;
+
+// ============================================================
+// State
+// ============================================================
+let provider, signer, multiVault, proxy, walletAddress;
+let atomCost = 0n, tripleCost = 0n;
+let newSessions = [], newTracks = [], newSpeakers = {};
+let eventAtomId = null, graphData = {};
+
+let state = {
+  pinState: { tracks: {}, sessions: {}, speakers: {} },
+  atomIds: { tracks: {}, sessions: {}, speakers: {} },
+  tripleIds: []
+};
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function log(area, msg) {
+  const el = document.getElementById(area + 'Log');
+  if (el) { el.style.display = 'block'; el.textContent += msg + '\n'; el.scrollTop = el.scrollHeight; }
+  console.log(`[${area}]`, msg);
+}
+
+// ============================================================
+// Data Loading & Diff
+// ============================================================
+async function loadData() {
+  const [scrapedResp, existingResp, graphResp, speakersResp, sideResp] = await Promise.all([
+    fetch('../bdd/ethcc_scraped_sessions.json'),
+    fetch('../bdd/sessions.json'),
+    fetch('../bdd/intuition_graph.json'),
+    fetch('../bdd/speakers.json'),
+    fetch('../bdd/side_events.json'),
+  ]);
+  const scraped = await scrapedResp.json();
+  const existing = await existingResp.json();
+  graphData = await graphResp.json();
+  const speakersJson = await speakersResp.json();
+  const sideEvents = await sideResp.json();
+  const spkData = Array.isArray(speakersJson) ? speakersJson : (speakersJson.speakers || []);
+
+  const atomLabels = new Set(Object.values(graphData.atoms || {}));
+  const existingTitles = new Set(existing.sessions.map(s => s.title));
+  const existingTracks = new Set(Object.keys(graphData.trackAtomIds || {}));
+  const existingSpeakerNames = new Set(spkData.map(s => s.name));
+  for (const label of atomLabels) existingSpeakerNames.add(label);
+
+  // Find event atom
+  for (const [tid, label] of Object.entries(graphData.atoms || {})) {
+    if (label === 'EthCC[9]') { eventAtomId = tid; break; }
+  }
+
+  newSessions = [];
+  newTracks = [];
+  newSpeakers = {};
+  const trackSet = new Set();
+
+  // New EthCC sessions
+  for (const s of scraped.sessions) {
+    if (!s.title || existingTitles.has(s.title) || atomLabels.has(s.title)) continue;
+    newSessions.push(s);
+    const track = s.track || '';
+    if (track && !existingTracks.has(track) && !atomLabels.has(track)) trackSet.add(track);
+    for (const sp of (s.speakers || [])) {
+      if (sp.name && !existingSpeakerNames.has(sp.name)) newSpeakers[sp.name] = sp;
+    }
+  }
+
+  // Side events (all are new — filter out any already on-chain)
+  for (const ev of (sideEvents.events || [])) {
+    if (!ev.title || atomLabels.has(ev.title)) continue;
+    newSessions.push({ ...ev, isSideEvent: true });
+    const track = ev.track || '';
+    if (track && !existingTracks.has(track) && !atomLabels.has(track)) trackSet.add(track);
+  }
+
+  newTracks = [...trackSet].sort();
+
+  // Render summary
+  const ethccSessions = newSessions.filter(s => !s.isSideEvent);
+  const sideEventSessions = newSessions.filter(s => s.isSideEvent);
+  const totalAtoms = newTracks.length + newSessions.length + Object.keys(newSpeakers).length;
+  const tSpeaking = newSessions.reduce((a, s) => a + (s.speakers || []).length, 0);
+  // Side events: only presented at + has tag (no speakers). EthCC sessions: presented at + has tag + speaking at
+  const totalTriples = newSessions.length * 2 + tSpeaking;
+
+  document.getElementById('summaryContent').innerHTML = `
+    <div class="summary-grid">
+      <div class="summary-card"><div class="num cat-track">${newTracks.length}</div><div class="lbl">New Tracks</div></div>
+      <div class="summary-card"><div class="num cat-session">${ethccSessions.length}</div><div class="lbl">New EthCC Sessions</div></div>
+      <div class="summary-card"><div class="num" style="color:var(--orange)">${sideEventSessions.length}</div><div class="lbl">Side Events</div></div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="num cat-speaker">${Object.keys(newSpeakers).length}</div><div class="lbl">New Speakers</div></div>
+      <div class="summary-card"><div class="num" style="color:var(--accent)">${totalAtoms}</div><div class="lbl">Atoms to create</div></div>
+      <div class="summary-card"><div class="num" style="color:var(--purple)">${totalTriples}</div><div class="lbl">Triples to create</div></div>
+    </div>
+    <div style="text-align:center;margin-bottom:16px;font-size:1.1rem;">
+      Estimated cost: <strong style="color:var(--orange)">~${((totalAtoms + totalTriples) * 0.1).toFixed(0)} TRUST</strong>
+    </div>
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;">New tracks (${newTracks.length}): ${newTracks.join(', ') || 'none'}</summary>
+    </details>
+    <details style="margin-top:8px">
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;">New EthCC sessions (${ethccSessions.length})</summary>
+      <div style="max-height:300px;overflow-y:auto;font-size:0.8rem;margin-top:8px;">
+        ${ethccSessions.map(s => `<div style="padding:2px 0;border-bottom:1px solid var(--border)">[${s.date} ${s.startTime}] ${s.title} <span class="cat-track">${s.track}</span></div>`).join('')}
+      </div>
+    </details>
+    <details style="margin-top:8px">
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;">Side events (${sideEventSessions.length})</summary>
+      <div style="max-height:300px;overflow-y:auto;font-size:0.8rem;margin-top:8px;">
+        ${sideEventSessions.map(s => `<div style="padding:2px 0;border-bottom:1px solid var(--border)">[${s.date} ${s.startTime}] ${s.title} <span class="cat-track">${s.track}</span> <span style="color:var(--text-muted)">${s.organizer ? '— ' + s.organizer : ''}</span></div>`).join('')}
+      </div>
+    </details>
+    <details style="margin-top:8px">
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;">New speakers (${Object.keys(newSpeakers).length})</summary>
+      <div style="max-height:200px;overflow-y:auto;font-size:0.8rem;margin-top:8px;">
+        ${Object.values(newSpeakers).map(sp => `<div style="padding:2px 0">${sp.name} <span style="color:var(--text-muted)">${sp.organization || ''}</span></div>`).join('')}
+      </div>
+    </details>
+  `;
+}
+
+// ============================================================
+// Wallet Connection
+// ============================================================
+async function connectWallet() {
+  if (!window.ethereum) { alert('MetaMask not detected.'); return; }
+  try {
+    provider = new ethers.BrowserProvider(window.ethereum);
+    await provider.send('eth_requestAccounts', []);
+    try {
+      await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: CHAIN_HEX }] });
+    } catch (e) {
+      if (e.code === 4902) await window.ethereum.request({ method: 'wallet_addEthereumChain', params: [INTUITION_CHAIN] });
+      else throw e;
+    }
+    provider = new ethers.BrowserProvider(window.ethereum);
+    provider.pollingInterval = 30000;
+    signer = await provider.getSigner();
+    multiVault = new ethers.Contract(MULTIVAULT, MULTIVAULT_ABI, signer);
+    proxy = new ethers.Contract(SOFIA_PROXY, PROXY_ABI, signer);
+
+    const addr = await signer.getAddress();
+    walletAddress = addr;
+    const bal = await provider.getBalance(addr);
+    atomCost = await multiVault.getAtomCost();
+    tripleCost = await multiVault.getTripleCost();
+
+    document.getElementById('addrDisplay').textContent = addr.slice(0,6) + '...' + addr.slice(-4);
+    document.getElementById('balDisplay').textContent = parseFloat(ethers.formatEther(bal)).toFixed(4) + ' TRUST';
+    document.getElementById('atomCostDisplay').textContent = ethers.formatEther(atomCost) + ' TRUST';
+    document.getElementById('tripleCostDisplay').textContent = ethers.formatEther(tripleCost) + ' TRUST';
+    document.getElementById('statusBar').style.display = 'flex';
+    document.getElementById('connectBtn').textContent = addr.slice(0,6) + '...' + addr.slice(-4);
+    document.getElementById('connectBtn').disabled = true;
+  } catch (e) { alert('Connection failed: ' + e.message); }
+}
+
+// ============================================================
+// Custom tx.wait (avoid rate limits)
+// ============================================================
+async function waitForTx(tx) {
+  for (let i = 0; i < 120; i++) {
+    await sleep(3000);
+    const receipt = await provider.getTransactionReceipt(tx.hash);
+    if (receipt && receipt.blockNumber) return receipt;
+  }
+  throw new Error('TX not confirmed after 360s');
+}
+
+// ============================================================
+// IPFS Pinning
+// ============================================================
+async function pinThing(thing) {
+  const res = await fetch(GQL_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: `mutation { pinThing(thing: { name: ${JSON.stringify(thing.name)}, description: ${JSON.stringify(thing.description || '')}, image: "", url: "" }) { uri } }` })
+  });
+  const json = await res.json();
+  if (json.errors) throw new Error(JSON.stringify(json.errors));
+  return json.data.pinThing.uri;
+}
+
+async function pinPerson(person) {
+  const res = await fetch(GQL_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: `mutation { pinPerson(person: { name: ${JSON.stringify(person.name)}, description: ${JSON.stringify(person.description || '')}, image: "", url: "", email: "", identifier: ${JSON.stringify(person.identifier || '')} }) { uri } }` })
+  });
+  const json = await res.json();
+  if (json.errors) throw new Error(JSON.stringify(json.errors));
+  return json.data.pinPerson.uri;
+}
+
+async function pinAll() {
+  const logEl = document.getElementById('pinLog');
+  const bar = document.getElementById('pinProgress');
+  const fill = document.getElementById('pinFill');
+  const text = document.getElementById('pinProgressText');
+  logEl.style.display = 'block'; bar.style.display = 'block'; text.style.display = 'block';
+
+  const total = newTracks.length + newSessions.length + Object.keys(newSpeakers).length;
+  let done = 0;
+  const update = () => { const pct = Math.round((done/total)*100); fill.style.width = pct+'%'; text.textContent = `${done}/${total} (${pct}%)`; };
+
+  // Tracks
+  for (const track of newTracks) {
+    if (state.pinState.tracks[track]) { done++; update(); continue; }
+    try {
+      log('pin', `Pinning track: "${track}"...`);
+      state.pinState.tracks[track] = await pinThing({ name: track, description: `EthCC[9] track: ${track}` });
+      log('pin', '  -> ' + state.pinState.tracks[track]);
+      done++; update(); saveStateLocal(); await sleep(PIN_DELAY);
+    } catch (e) { log('pin', 'ERROR: ' + e.message); done++; update(); }
+  }
+
+  // Sessions
+  for (const s of newSessions) {
+    const key = s.id || s.title;
+    if (state.pinState.sessions[key]) { done++; update(); continue; }
+    try {
+      log('pin', `Pinning session: "${s.title.substring(0, 50)}..."...`);
+      state.pinState.sessions[key] = await pinThing({ name: s.title, description: s.description || '' });
+      log('pin', '  -> ' + state.pinState.sessions[key]);
+      done++; update(); saveStateLocal(); await sleep(PIN_DELAY);
+    } catch (e) { log('pin', 'ERROR: ' + e.message); done++; update(); }
+  }
+
+  // Speakers
+  for (const [name, sp] of Object.entries(newSpeakers)) {
+    if (state.pinState.speakers[name]) { done++; update(); continue; }
+    try {
+      log('pin', `Pinning speaker: "${name}"...`);
+      const slug = sp.slug || name.toLowerCase().replace(/ /g, '-');
+      state.pinState.speakers[name] = await pinPerson({ name, description: sp.organization || '', identifier: slug });
+      log('pin', '  -> ' + state.pinState.speakers[name]);
+      done++; update(); saveStateLocal(); await sleep(PIN_DELAY);
+    } catch (e) { log('pin', 'ERROR: ' + e.message); done++; update(); }
+  }
+
+  log('pin', '\n=== Pinning complete ===');
+  document.getElementById('verifyBtn').disabled = false;
+  saveStateLocal();
+}
+
+// ============================================================
+// Verification
+// ============================================================
+let excludedAtoms = new Set();   // keys to exclude
+let excludedTriples = new Set(); // indices to exclude
+
+function renderVerification() {
+  const atomEntries = getAllAtomEntries();
+  const tripleEntries = getAllTripleEntries();
+
+  // ── Atoms table ──
+  const atomsByType = { tracks: [], sessions: [], speakers: [] };
+  atomEntries.forEach((e, i) => { atomsByType[e.category]?.push({ ...e, idx: i }); });
+
+  const catLabel = c => c === 'tracks' ? 'Track' : c === 'sessions' ? 'Session' : 'Speaker';
+  const catClass = c => c === 'tracks' ? 'cat-track' : c === 'sessions' ? 'cat-session' : 'cat-speaker';
+
+  let atomRows = '';
+  let globalIdx = 0;
+  for (const cat of ['tracks', 'sessions', 'speakers']) {
+    for (const e of atomsByType[cat]) {
+      const checked = !excludedAtoms.has(e.key) ? 'checked' : '';
+      const isSide = e.isSideEvent ? ' <span style="color:var(--orange);font-size:0.7rem">[SIDE]</span>' : '';
+      atomRows += `<tr>
+        <td><input type="checkbox" ${checked} onchange="toggleAtom('${e.key.replace(/'/g, "\\'")}', this.checked)"></td>
+        <td style="color:var(--text-muted)">${++globalIdx}</td>
+        <td class="${catClass(cat)}">${catLabel(cat)}</td>
+        <td title="${e.label}">${e.label.substring(0, 60)}${isSide}</td>
+        <td style="color:var(--text-muted);font-family:monospace;font-size:0.7rem">${e.uri ? e.uri.substring(0, 20) + '...' : '—'}</td>
+      </tr>`;
+    }
+  }
+
+  document.getElementById('verifyAtoms').innerHTML = `
+    <details open>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;margin-bottom:8px;">
+        Atoms to create: <strong>${atomEntries.length}</strong>
+        <button class="secondary" style="margin-left:12px;padding:4px 10px;font-size:0.75rem" onclick="selectAllAtoms(true)">All</button>
+        <button class="secondary" style="padding:4px 10px;font-size:0.75rem" onclick="selectAllAtoms(false)">None</button>
+      </summary>
+      <div style="max-height:400px;overflow-y:auto;border:1px solid var(--border);border-radius:6px;">
+        <table class="batch-table">
+          <thead><tr><th></th><th>#</th><th>Type</th><th>Name</th><th>IPFS URI</th></tr></thead>
+          <tbody>${atomRows}</tbody>
+        </table>
+      </div>
+    </details>`;
+
+  // ── Triples table ──
+  const typeClass = t => t === 'presented at' ? 'cat-event' : t === 'has tag' ? 'cat-track' : 'cat-session';
+  let tripleRows = '';
+  tripleEntries.forEach((t, i) => {
+    const checked = !excludedTriples.has(i) ? 'checked' : '';
+    tripleRows += `<tr>
+      <td><input type="checkbox" ${checked} onchange="toggleTriple(${i}, this.checked)"></td>
+      <td style="color:var(--text-muted)">${i + 1}</td>
+      <td title="${t.subjectLabel}">${t.subjectLabel}</td>
+      <td class="${typeClass(t.predicateLabel)}">${t.predicateLabel}</td>
+      <td title="${t.objectLabel}">${t.objectLabel}</td>
+    </tr>`;
+  });
+
+  document.getElementById('verifyTriples').innerHTML = `
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:500;margin-bottom:8px;">
+        Triples to create: <strong>${tripleEntries.length}</strong>
+        <button class="secondary" style="margin-left:12px;padding:4px 10px;font-size:0.75rem" onclick="selectAllTriples(true)">All</button>
+        <button class="secondary" style="padding:4px 10px;font-size:0.75rem" onclick="selectAllTriples(false)">None</button>
+      </summary>
+      <div style="max-height:400px;overflow-y:auto;border:1px solid var(--border);border-radius:6px;">
+        <table class="batch-table">
+          <thead><tr><th></th><th>#</th><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead>
+          <tbody>${tripleRows}</tbody>
+        </table>
+      </div>
+    </details>`;
+
+  updateVerifySummary(atomEntries.length, tripleEntries.length);
+  document.getElementById('prepAtomsBtn').disabled = false;
+  document.getElementById('prepTriplesBtn').disabled = false;
+}
+
+function toggleAtom(key, checked) {
+  if (checked) excludedAtoms.delete(key); else excludedAtoms.add(key);
+  updateVerifySummary();
+}
+
+function toggleTriple(idx, checked) {
+  if (checked) excludedTriples.delete(idx); else excludedTriples.add(idx);
+  updateVerifySummary();
+}
+
+function selectAllAtoms(select) {
+  const entries = getAllAtomEntries();
+  if (select) { excludedAtoms.clear(); } else { entries.forEach(e => excludedAtoms.add(e.key)); }
+  renderVerification();
+}
+
+function selectAllTriples(select) {
+  const entries = getAllTripleEntries();
+  if (select) { excludedTriples.clear(); } else { entries.forEach((_, i) => excludedTriples.add(i)); }
+  renderVerification();
+}
+
+function updateVerifySummary() {
+  const totalAtoms = getAllAtomEntries().length;
+  const totalTriples = getAllTripleEntries().length;
+  const activeAtoms = totalAtoms - excludedAtoms.size;
+  const activeTriples = totalTriples - excludedTriples.size;
+  const cost = (activeAtoms + activeTriples) * 0.1;
+  document.getElementById('verifySummary').innerHTML = `
+    <div style="padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;text-align:center;">
+      <strong style="color:var(--accent)">${activeAtoms}</strong>/${totalAtoms} atoms &middot;
+      <strong style="color:var(--purple)">${activeTriples}</strong>/${totalTriples} triples &middot;
+      Estimated: <strong style="color:var(--orange)">~${cost.toFixed(0)} TRUST</strong>
+    </div>`;
+}
+
+// ============================================================
+// Atom Batches
+// ============================================================
+function getAllAtomEntries(filtered = false) {
+  const entries = [];
+  for (const track of newTracks) {
+    const uri = state.pinState.tracks[track];
+    if (uri) entries.push({ label: track, uri, category: 'tracks', key: track });
+  }
+  for (const s of newSessions) {
+    const key = s.id || s.title;
+    const uri = state.pinState.sessions[key];
+    if (uri) entries.push({ label: s.title.substring(0, 60), uri, category: 'sessions', key, isSideEvent: !!s.isSideEvent });
+  }
+  for (const [name, sp] of Object.entries(newSpeakers)) {
+    const uri = state.pinState.speakers[name];
+    if (uri) entries.push({ label: name, uri, category: 'speakers', key: name });
+  }
+  if (filtered) return entries.filter(e => !excludedAtoms.has(e.key));
+  return entries;
+}
+
+function prepareAtomBatches() {
+  const entries = getAllAtomEntries(true);
+  if (!entries.length) { alert('No atoms to create. Check verification step.'); return; }
+  const container = document.getElementById('atomBatches');
+  const totalCostAll = atomCost * BigInt(entries.length);
+  container.innerHTML = `<p style="color:var(--text-muted);margin-bottom:16px;">Total: <strong>${entries.length} atoms</strong> &middot; Max cost: <strong style="color:var(--orange)">${ethers.formatEther(totalCostAll)} TRUST</strong></p>`;
+
+  const batches = [];
+  for (let i = 0; i < entries.length; i += ATOM_BATCH_SIZE) batches.push(entries.slice(i, i + ATOM_BATCH_SIZE));
+
+  batches.forEach((batch, idx) => {
+    const cost = atomCost * BigInt(batch.length);
+    const catClass = e => e.category === 'tracks' ? 'cat-track' : e.category === 'sessions' ? 'cat-session' : 'cat-speaker';
+    const rows = batch.map((e, i) => `<tr><td style="color:var(--text-muted)">${idx*ATOM_BATCH_SIZE+i+1}</td><td class="${catClass(e)}">${e.category}</td><td title="${e.label}">${e.label}</td></tr>`).join('');
+    const card = document.createElement('div');
+    card.className = 'batch-card'; card.id = `atom-batch-${idx}`;
+    card.innerHTML = `<div class="batch-header"><span class="batch-title">Batch ${idx+1}/${batches.length} &middot; ${batch.length} atoms</span><span class="batch-cost">${ethers.formatEther(cost)} TRUST</span></div>
+      <div class="batch-items"><table class="batch-table"><thead><tr><th>#</th><th>Type</th><th>Name</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <button class="execute" onclick="executeAtomBatch(${idx})">Execute Batch ${idx+1}</button>
+      <div class="batch-status" id="atom-batch-status-${idx}"></div>`;
+    container.appendChild(card);
+  });
+  window._atomBatches = batches;
+}
+
+async function executeAtomBatch(idx) {
+  if (!proxy) { alert('Connect wallet first.'); return; }
+  const batch = window._atomBatches[idx];
+  const statusEl = document.getElementById(`atom-batch-status-${idx}`);
+  const btn = document.querySelector(`#atom-batch-${idx} button.execute`);
+  btn.disabled = true;
+
+  try {
+    const toCreate = [];
+    let skipped = 0;
+    for (let i = 0; i < batch.length; i++) {
+      const entry = batch[i];
+      statusEl.innerHTML = `<span class="tag running">Checking atom ${i+1}/${batch.length}...</span>`;
+      if (i > 0) await sleep(500);
+      const hexData = ethers.hexlify(ethers.toUtf8Bytes(entry.uri));
+      const atomId = await multiVault.calculateAtomId(hexData);
+      await sleep(300);
+      const exists = await multiVault.isTermCreated(atomId);
+      state.atomIds[entry.category][entry.key] = atomId;
+      if (exists) { skipped++; } else { toCreate.push({ ...entry, hexData }); }
+    }
+
+    if (!toCreate.length) {
+      saveStateLocal();
+      statusEl.innerHTML = `<span class="tag done">All ${batch.length} atoms already exist — skipped</span>`;
+      btn.textContent = 'Done (skipped)'; checkAllAtomsDone(); return;
+    }
+
+    // Calculate cost via Sofia Proxy (includes fees)
+    const n = BigInt(toCreate.length);
+    const atomDatas = toCreate.map(e => e.hexData);
+    const assets = toCreate.map(() => 0n); // no extra deposit, just creation cost
+    const multiVaultCost = atomCost * n;
+    const totalCost = await proxy.getTotalCreationCost(n, 0n, multiVaultCost);
+
+    statusEl.innerHTML = `<span class="tag running">Creating ${toCreate.length} atoms via Sofia Proxy (${skipped} skipped)... ${ethers.formatEther(totalCost)} TRUST — Confirm in MetaMask</span>`;
+
+    const tx = await proxy.createAtoms(walletAddress, atomDatas, assets, CURVE_ID, { value: totalCost });
+    statusEl.innerHTML = `<span class="tag running">TX sent!</span> <a href="${EXPLORER}/tx/${tx.hash}" target="_blank">${tx.hash.slice(0,14)}...</a>`;
+    const receipt = await waitForTx(tx);
+    saveStateLocal();
+    statusEl.innerHTML = `<span class="tag done">Block ${receipt.blockNumber}</span> <a href="${EXPLORER}/tx/${tx.hash}" target="_blank">${tx.hash.slice(0,14)}...</a> &middot; ${toCreate.length} created, ${skipped} skipped`;
+    btn.textContent = 'Done'; checkAllAtomsDone();
+  } catch (e) {
+    statusEl.innerHTML = `<div class="error-msg">${e.message}</div>`;
+    btn.disabled = false; btn.textContent = 'Retry Batch ' + (idx+1);
+  }
+}
+
+function checkAllAtomsDone() {
+  const done = window._atomBatches.every((_, i) => {
+    const el = document.getElementById(`atom-batch-status-${i}`);
+    return el && el.innerHTML.includes('tag done');
+  });
+  if (done) document.getElementById('prepTriplesBtn').disabled = false;
+}
+
+// ============================================================
+// Triple Batches
+// ============================================================
+function getAllTripleEntries(filtered = false) {
+  const triples = [];
+  const existingTrackAtoms = graphData.trackAtomIds || {};
+
+  for (const s of newSessions) {
+    const key = s.id || s.title;
+    // Skip sessions excluded from atoms
+    if (excludedAtoms.has(key)) continue;
+    const sessAtomId = state.atomIds.sessions[key];
+    if (!sessAtomId) continue;
+    const track = s.track || '';
+    const trackAtomId = state.atomIds.tracks[track] || existingTrackAtoms[track];
+
+    // presented at
+    if (eventAtomId) {
+      triples.push({ subjectId: sessAtomId, predicateId: EXISTING_PREDICATES['presented at'], objectId: eventAtomId,
+        subjectLabel: s.title.substring(0, 40), predicateLabel: 'presented at', objectLabel: 'EthCC[9]' });
+    }
+    // has tag
+    if (trackAtomId) {
+      triples.push({ subjectId: sessAtomId, predicateId: EXISTING_PREDICATES['has tag'], objectId: trackAtomId,
+        subjectLabel: s.title.substring(0, 40), predicateLabel: 'has tag', objectLabel: track });
+    }
+    // speaking at
+    for (const sp of (s.speakers || [])) {
+      if (excludedAtoms.has(sp.name)) continue;
+      let spkAtomId = state.atomIds.speakers[sp.name];
+      if (!spkAtomId) {
+        for (const [tid, label] of Object.entries(graphData.atoms || {})) {
+          if (label === sp.name) { spkAtomId = tid; break; }
+        }
+      }
+      if (spkAtomId) {
+        triples.push({ subjectId: spkAtomId, predicateId: EXISTING_PREDICATES['speaking at'], objectId: sessAtomId,
+          subjectLabel: sp.name, predicateLabel: 'speaking at', objectLabel: s.title.substring(0, 35) });
+      }
+    }
+  }
+  if (filtered) return triples.filter((_, i) => !excludedTriples.has(i));
+  return triples;
+}
+
+function prepareTripleBatches() {
+  const entries = getAllTripleEntries(true);
+  if (!entries.length) { alert('No triples to create. Check verification step.'); return; }
+  const container = document.getElementById('tripleBatches');
+  const totalCostAll = tripleCost * BigInt(entries.length);
+  const pres = entries.filter(e => e.predicateLabel === 'presented at').length;
+  const tag = entries.filter(e => e.predicateLabel === 'has tag').length;
+  const spk = entries.filter(e => e.predicateLabel === 'speaking at').length;
+
+  container.innerHTML = `<p style="color:var(--text-muted);margin-bottom:16px;">Total: <strong>${entries.length} triples</strong> &middot; Cost: <strong style="color:var(--orange)">${ethers.formatEther(totalCostAll)} TRUST</strong><br>
+    <span class="cat-event">${pres} presented at</span> &middot; <span class="cat-track">${tag} has tag</span> &middot; <span class="cat-session">${spk} speaking at</span></p>`;
+
+  const batches = [];
+  for (let i = 0; i < entries.length; i += TRIPLE_BATCH_SIZE) batches.push(entries.slice(i, i + TRIPLE_BATCH_SIZE));
+
+  batches.forEach((batch, idx) => {
+    const cost = tripleCost * BigInt(batch.length);
+    const typeClass = t => t === 'presented at' ? 'cat-event' : t === 'has tag' ? 'cat-track' : 'cat-session';
+    const rows = batch.map((e, i) => `<tr><td style="color:var(--text-muted)">${idx*TRIPLE_BATCH_SIZE+i+1}</td><td title="${e.subjectLabel}">${e.subjectLabel}</td><td class="${typeClass(e.predicateLabel)}">${e.predicateLabel}</td><td title="${e.objectLabel}">${e.objectLabel}</td></tr>`).join('');
+    const card = document.createElement('div');
+    card.className = 'batch-card'; card.id = `triple-batch-${idx}`;
+    card.innerHTML = `<div class="batch-header"><span class="batch-title">Batch ${idx+1}/${batches.length} &middot; ${batch.length} triples</span><span class="batch-cost">${ethers.formatEther(cost)} TRUST</span></div>
+      <div class="batch-items"><table class="batch-table"><thead><tr><th>#</th><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <button class="execute" onclick="executeTripleBatch(${idx})">Execute Batch ${idx+1}</button>
+      <div class="batch-status" id="triple-batch-status-${idx}"></div>`;
+    container.appendChild(card);
+  });
+  window._tripleBatches = batches;
+}
+
+async function executeTripleBatch(idx) {
+  if (!proxy) { alert('Connect wallet first.'); return; }
+  const batch = window._tripleBatches[idx];
+  const statusEl = document.getElementById(`triple-batch-status-${idx}`);
+  const btn = document.querySelector(`#triple-batch-${idx} button.execute`);
+  btn.disabled = true;
+
+  try {
+    // Check which triples already exist
+    const toCreate = [];
+    let skipped = 0;
+    for (let i = 0; i < batch.length; i++) {
+      const t = batch[i];
+      statusEl.innerHTML = `<span class="tag running">Checking triple ${i+1}/${batch.length}...</span>`;
+      if (i > 0) await sleep(300);
+      const tripleId = await multiVault.calculateTripleId(t.subjectId, t.predicateId, t.objectId);
+      const exists = await multiVault.isTermCreated(tripleId);
+      if (exists) { skipped++; } else { toCreate.push(t); }
+    }
+
+    if (!toCreate.length) {
+      saveStateLocal();
+      statusEl.innerHTML = `<span class="tag done">All ${batch.length} triples already exist — skipped</span>`;
+      btn.textContent = 'Done (skipped)'; return;
+    }
+
+    statusEl.innerHTML = `<span class="tag running">Calculating fees via Sofia Proxy...</span>`;
+    const n = BigInt(toCreate.length);
+    const subjectIds = toCreate.map(t => t.subjectId);
+    const predicateIds = toCreate.map(t => t.predicateId);
+    const objectIds = toCreate.map(t => t.objectId);
+    const assets = toCreate.map(() => 0n);
+    const multiVaultCost = tripleCost * n;
+    const totalCost = await proxy.getTotalCreationCost(n, 0n, multiVaultCost);
+
+    statusEl.innerHTML = `<span class="tag running">Creating ${toCreate.length} triples via Sofia Proxy (${skipped} skipped)... ${ethers.formatEther(totalCost)} TRUST — Confirm in MetaMask</span>`;
+    const tx = await proxy.createTriples(walletAddress, subjectIds, predicateIds, objectIds, assets, CURVE_ID, { value: totalCost });
+    statusEl.innerHTML = `<span class="tag running">TX sent!</span> <a href="${EXPLORER}/tx/${tx.hash}" target="_blank">${tx.hash.slice(0,14)}...</a>`;
+    const receipt = await waitForTx(tx);
+
+    for (const t of toCreate) {
+      state.tripleIds.push({ subject: t.subjectLabel, predicate: t.predicateLabel, object: t.objectLabel, txHash: tx.hash });
+    }
+    saveStateLocal();
+    statusEl.innerHTML = `<span class="tag done">Block ${receipt.blockNumber}</span> <a href="${EXPLORER}/tx/${tx.hash}" target="_blank">${tx.hash.slice(0,14)}...</a> &middot; ${toCreate.length} created, ${skipped} skipped`;
+    btn.textContent = 'Done';
+  } catch (e) {
+    statusEl.innerHTML = `<div class="error-msg">${e.message}</div>`;
+    btn.disabled = false; btn.textContent = 'Retry Batch ' + (idx+1);
+  }
+}
+
+// ============================================================
+// State persistence
+// ============================================================
+function saveStateLocal() {
+  try { localStorage.setItem('seed-new-state', JSON.stringify(state)); } catch {}
+}
+
+function loadStateLocal() {
+  try {
+    const raw = localStorage.getItem('seed-new-state');
+    if (raw) {
+      state = JSON.parse(raw);
+      for (const sub of ['tracks','sessions','speakers']) {
+        state.pinState[sub] ??= {};
+        state.atomIds[sub] ??= {};
+      }
+      state.tripleIds ??= [];
+      const pins = Object.values(state.pinState).reduce((a,v) => a + Object.keys(v).length, 0);
+      const atoms = Object.values(state.atomIds).reduce((a,v) => a + Object.keys(v).length, 0);
+      console.log(`Restored state: ${pins} pins, ${atoms} atoms, ${state.tripleIds.length} triples`);
+      if (pins > 0) document.getElementById('verifyBtn').disabled = false;
+      if (atoms > 0) {
+        document.getElementById('prepAtomsBtn').disabled = false;
+        document.getElementById('prepTriplesBtn').disabled = false;
+      }
+    }
+  } catch {}
+}
+
+function exportState() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'seed-new-state.json'; a.click();
+}
+
+function importState() {
+  const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+  input.onchange = async (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    state = JSON.parse(await file.text());
+    saveStateLocal();
+    document.getElementById('prepAtomsBtn').disabled = false;
+    if (Object.values(state.atomIds).some(v => Object.keys(v).length > 0))
+      document.getElementById('prepTriplesBtn').disabled = false;
+    alert('State imported.');
+  };
+  input.click();
+}
+
+// ============================================================
+// Init
+// ============================================================
+window.addEventListener('DOMContentLoaded', async () => {
+  loadStateLocal();
+  await loadData();
+});
+</script>
+</body>
+</html>

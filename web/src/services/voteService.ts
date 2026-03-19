@@ -1,9 +1,14 @@
 import topicGraph from "../../../bdd/web3_topics_graph.json";
-import { DEFAULT_DEPOSIT_PER_TRIPLE } from "../config/constants";
+import { DEFAULT_DEPOSIT_PER_TRIPLE, GQL_URL } from "../config/constants";
 import type { WalletConnection } from "./intuition";
 import { approveProxy, depositOnAtoms } from "./intuition";
 
 const TOPIC_ATOM_IDS = topicGraph.topicAtomIds as Record<string, string>;
+
+// Reverse lookup: atom term_id → topic id
+const ATOM_TO_TOPIC = new Map(
+  Object.entries(TOPIC_ATOM_IDS).map(([k, v]) => [v, k])
+);
 
 // ─── Types ───────────────────────────────────────────────────────
 
@@ -31,6 +36,46 @@ export function resolveTopicAtomIds(topicIds: string[]): {
     else missing.push(id);
   }
   return { resolved, missing };
+}
+
+// ─── Fetch user's on-chain positions for app topics ─────────────
+
+/**
+ * Query GraphQL for all topic atoms where the user has a position with shares > 0.
+ * Returns a Set of topic IDs (app-level) that the user has voted on.
+ */
+export async function fetchUserVotedTopics(address: string): Promise<Set<string>> {
+  const sanitized = address.toLowerCase();
+  const allAtomIds = Object.values(TOPIC_ATOM_IDS);
+  const voted = new Set<string>();
+
+  // Batch query (50 at a time to avoid timeouts)
+  for (let i = 0; i < allAtomIds.length; i += 50) {
+    const batch = allAtomIds.slice(i, i + 50);
+    const idsStr = batch.map((id) => `"${id}"`).join(",");
+    const query = `{
+      positions(where: {
+        account_id: { _ilike: "${sanitized}" }
+        term_id: { _in: [${idsStr}] }
+        shares: { _gt: "0" }
+      }) { term_id }
+    }`;
+
+    try {
+      const res = await fetch(GQL_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+      const json = await res.json();
+      for (const pos of json.data?.positions ?? []) {
+        const topicId = ATOM_TO_TOPIC.get(pos.term_id);
+        if (topicId) voted.add(topicId);
+      }
+    } catch { /* GraphQL failed — skip batch */ }
+  }
+
+  return voted;
 }
 
 // ─── Submit votes on-chain (deposit into atom vaults) ────────────

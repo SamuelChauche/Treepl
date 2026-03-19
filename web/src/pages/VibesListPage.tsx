@@ -28,7 +28,7 @@ const title: CSSProperties = { fontSize: 20, fontWeight: 700, flex: 1 };
 
 const heroBox: CSSProperties = {
   margin: "16px 16px 8px", padding: "20px 20px 16px",
-  background: `linear-gradient(135deg, rgba(206,162,253,0.15), rgba(166,175,107,0.1))`,
+  background: "#1a1520",
   borderRadius: R.lg, border: `1px solid rgba(206,162,253,0.2)`,
   textAlign: "center" as const,
 };
@@ -103,11 +103,15 @@ export default function VibesListPage() {
   const savedCart = useMemo(() => StorageService.loadCart(), []);
   const cartSessionIds = useMemo(() => [...savedCart].map(String), [savedCart]);
 
+  const votedTopicIds = useMemo(() => {
+    try { return JSON.parse(localStorage.getItem("ethcc-published-votes") ?? "[]") as string[]; }
+    catch { return []; }
+  }, []);
   const { matches: realMatches, loading } = useVibeMatches(
-    savedTopics, cartSessionIds, walletAddress
+    savedTopics, cartSessionIds, walletAddress, votedTopicIds
   );
 
-  const totalPossible = savedTopics.size + cartSessionIds.length;
+  const totalPossible = savedTopics.size + cartSessionIds.length + votedTopicIds.length;
 
   return (
     <div style={page}>

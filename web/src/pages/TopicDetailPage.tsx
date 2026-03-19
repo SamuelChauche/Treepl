@@ -4,7 +4,7 @@ import { C, R, glassSurface, FONT } from "../config/theme";
 import { allTopics, categories } from "../data/topics";
 import { Ic } from "../components/ui/Icons";
 import { Spark } from "../components/ui/Spark";
-import { fetchTrendingTopics, type TopicVaultData } from "../services/trendingService";
+import { fetchTrendingTopics, fetchTopicEvents, eventsToChartData, type TopicVaultData } from "../services/trendingService";
 
 const ICON_EMOJI: Record<string, string> = {
   "chart-line": "📊", image: "🖼️", layers: "🔗", shield: "🔒", brain: "🤖",
@@ -79,24 +79,21 @@ export default function TopicDetailPage() {
   }, [topic]);
 
   const [vaultData, setVaultData] = useState<TopicVaultData | null>(null);
-  useEffect(() => {
-    fetchTrendingTopics().then((data) => {
-      const match = data.find((d) => d.topicId === id);
-      if (match) setVaultData(match);
-    }).catch(() => {});
-  }, [id]);
+  const [chartData, setChartData] = useState<number[]>([]);
+  const [chartLoading, setChartLoading] = useState(true);
 
-  // Generate stable trend data
-  const trendData = useMemo(() => {
-    const pts: number[] = [];
-    let v = 40;
-    for (let i = 0; i < 20; i++) {
-      v += (Math.random() - 0.45) * 10;
-      v = Math.max(5, Math.min(95, v));
-      pts.push(v);
-    }
-    return pts;
-  }, []);
+  useEffect(() => {
+    if (!id) return;
+    setChartLoading(true);
+    Promise.all([
+      fetchTrendingTopics(),
+      fetchTopicEvents(id),
+    ]).then(([trending, events]) => {
+      const match = trending.find((d) => d.topicId === id);
+      if (match) setVaultData(match);
+      setChartData(eventsToChartData(events));
+    }).catch(() => {}).finally(() => setChartLoading(false));
+  }, [id]);
 
   if (!topic) {
     return (
@@ -161,7 +158,13 @@ export default function TopicDetailPage() {
         {/* Trend */}
         <div style={sectionTitle}>Trend</div>
         <div style={{ ...card, padding: "16px" }}>
-          <Spark data={trendData} color={color} h={40} />
+          {chartLoading ? (
+            <div style={{ height: 40, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: C.textTertiary }}>
+              Loading...
+            </div>
+          ) : (
+            <Spark data={chartData} color={color} h={40} emptyLabel="No activity yet" />
+          )}
         </div>
 
         {/* On-chain data */}

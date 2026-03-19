@@ -457,6 +457,12 @@ export default function CartPage() {
                       setPublishStatus(`Depositing on ${resolved.length} topics...`);
                       await depositOnAtoms(wallet, resolved.map((r) => r.atomId));
                     }
+                    // Mark topics as published on-chain
+                    const pubVotes: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]");
+                    for (const t of cartTopics) {
+                      if (!pubVotes.includes(t.id)) pubVotes.push(t.id);
+                    }
+                    localStorage.setItem(STORAGE_KEYS.PUBLISHED_VOTES, JSON.stringify(pubVotes));
                   }
 
                   // 3. Create attending triples (sessions)

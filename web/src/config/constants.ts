@@ -5,6 +5,7 @@ export const STORAGE_KEYS = {
   RATINGS: "ethcc-ratings-pending",
   TRANSFERS: "ethcc-trust-transfers",
   PUBLISHED_SESSIONS: "ethcc-published-sessions",
+  PUBLISHED_VOTES: "ethcc-published-votes",
 } as const;
 
 // ─── Session Type Colors ────────────────────────────────────────

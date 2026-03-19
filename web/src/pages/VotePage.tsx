@@ -5,9 +5,10 @@ import { categories, allTopics } from "../data/topics";
 import type { Web3Category } from "../types";
 import { useCart } from "../hooks/useCart";
 import { Spark } from "../components/ui/Spark";
+import { Ic } from "../components/ui/Icons";
 import { fetchTrendingTopics, fetchAllTopicEvents, type TopicVaultData } from "../services/trendingService";
 import { useWalletConnection } from "../hooks/useWalletConnection";
-import { resolveTopicAtomIds } from "../services/voteService";
+import { resolveTopicAtomIds, fetchUserVotedTopics } from "../services/voteService";
 import { CHAIN_CONFIG } from "../config/constants";
 
 // ─── Icon name → emoji mapping ───────────────────────
@@ -41,17 +42,6 @@ function getIconEmoji(iconName: string): string {
 
 // ─── Helpers ─────────────────────────────────────────
 
-function generateTrendData(): number[] {
-  const pts: number[] = [];
-  let v = 20 + Math.random() * 60;
-  for (let i = 0; i < 20; i++) {
-    v += (Math.random() - 0.45) * 10;
-    v = Math.max(5, Math.min(95, v));
-    pts.push(v);
-  }
-  return pts;
-}
-
 /** Format wei string to human-readable TRUST amount */
 function formatTrust(wei: string): string {
   const val = Number(BigInt(wei)) / 1e18;
@@ -63,6 +53,7 @@ function formatTrust(wei: string): string {
 }
 
 const VOTE_STORAGE_KEY = "ethcc-votes";
+const PUBLISHED_VOTES_KEY = "ethcc-published-votes";
 
 function loadVotes(): Set<string> {
   try {
@@ -74,6 +65,14 @@ function loadVotes(): Set<string> {
 
 function saveVotes(votes: Set<string>) {
   localStorage.setItem(VOTE_STORAGE_KEY, JSON.stringify([...votes]));
+}
+
+function loadPublishedVotes(): Set<string> {
+  try {
+    const raw = localStorage.getItem(PUBLISHED_VOTES_KEY);
+    if (raw) return new Set(JSON.parse(raw));
+  } catch { /* ignore */ }
+  return new Set();
 }
 
 // ─── Styles ──────────────────────────────────────────
@@ -188,19 +187,33 @@ const topicMeta: CSSProperties = {
 
 // voteCount inlined in topicMeta
 
-const supportBtn = (state: "support" | "supported" | "redeem"): CSSProperties => ({
-  padding: "6px 14px",
-  borderRadius: R.btn,
-  border: "none",
-  background: state === "redeem" ? C.errorLight : state === "supported" ? C.successLight : "#D790C7",
-  color: state === "redeem" ? C.error : state === "supported" ? C.success : "#0a0a0a",
-  fontSize: 12,
-  fontWeight: 600,
-  fontFamily: FONT,
-  cursor: "pointer",
-  whiteSpace: "nowrap",
-  flexShrink: 0,
-});
+const supportBtnStyle = (state: "support" | "pending" | "supported" | "redeem" | "redeeming"): CSSProperties => {
+  // Round button for + and supported
+  if (state === "support" || state === "supported") {
+    return {
+      width: 36, height: 36, minWidth: 36, minHeight: 36, borderRadius: 18,
+      border: "none", cursor: "pointer", padding: 0,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      flexShrink: 0, fontFamily: FONT,
+      background: state === "supported" ? C.successLight : C.surfaceGray,
+    };
+  }
+  // Pill button for pending, redeem, redeeming
+  return {
+    padding: "6px 14px",
+    borderRadius: R.btn,
+    border: "none",
+    background: state === "pending" ? C.flatLight : C.errorLight,
+    color: state === "pending" ? C.flat : C.error,
+    fontSize: 12,
+    fontWeight: 600,
+    fontFamily: FONT,
+    cursor: state === "redeeming" ? "wait" : "pointer",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
+    opacity: state === "redeeming" ? 0.5 : 1,
+  };
+};
 
 // Discover card styles
 const discoverCard: CSSProperties = {
@@ -281,8 +294,46 @@ export default function VotePage() {
   const [withdrawing, setWithdrawing] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("discover");
   const [userVotes, setUserVotes] = useState<Set<string>>(() => loadVotes());
+  const [publishedVotes, setPublishedVotes] = useState<Set<string>>(() => loadPublishedVotes());
   const [discoverIdx, setDiscoverIdx] = useState(0);
-  const { addToCart, removeFromCart } = useCart();
+  const { cart, addToCart, removeFromCart } = useCart();
+
+  // Sync userVotes with actual cart — remove stale votes not in cart
+  useEffect(() => {
+    setUserVotes((prev) => {
+      const cleaned = new Set<string>();
+      for (const id of prev) {
+        if (cart.has(id)) cleaned.add(id);
+      }
+      if (cleaned.size !== prev.size) {
+        saveVotes(cleaned);
+        return cleaned;
+      }
+      return prev;
+    });
+  }, [cart]);
+
+  // Reload published votes when page gets focus (coming back from CartPage)
+  useEffect(() => {
+    const handleFocus = () => setPublishedVotes(loadPublishedVotes());
+    window.addEventListener("focus", handleFocus);
+    return () => window.removeEventListener("focus", handleFocus);
+  }, []);
+
+  // Hydrate published votes from on-chain positions (GraphQL)
+  useEffect(() => {
+    const addr = wallet?.address ?? localStorage.getItem("ethcc-wallet-address");
+    if (!addr) return;
+    fetchUserVotedTopics(addr).then((onChain) => {
+      if (onChain.size === 0) return;
+      setPublishedVotes((prev) => {
+        const merged = new Set([...prev, ...onChain]);
+        // Persist to localStorage
+        localStorage.setItem(PUBLISHED_VOTES_KEY, JSON.stringify([...merged]));
+        return merged;
+      });
+    }).catch(() => {});
+  }, [wallet?.address]);
 
   // ─── Real Intuition data ───────────────────────────
   const [realTrending, setRealTrending] = useState<TopicVaultData[]>([]);
@@ -313,12 +364,7 @@ export default function VotePage() {
     saveVotes(userVotes);
   }, [userVotes]);
 
-  // Pre-generate trend data per topic (stable across renders)
-  const trendDataMap = useMemo(() => {
-    const m = new Map<string, number[]>();
-    allTopics.forEach((t) => m.set(t.id, generateTrendData()));
-    return m;
-  }, []);
+  // (mock sparklines removed — charts show real on-chain data only)
 
   // Simulated vote counts
   const voteCountMap = useMemo(() => {
@@ -350,42 +396,113 @@ export default function VotePage() {
     return [...allTopics].sort((a, b) => (voteCountMap.get(b.id) ?? 0) - (voteCountMap.get(a.id) ?? 0));
   }, [voteCountMap, hasRealData, realDataMap]);
 
-  // My voted topics
+  // My voted topics (actually in cart OR published on-chain)
   const myVotedTopics = useMemo(() => {
-    return allTopics.filter((t) => userVotes.has(t.id));
-  }, [userVotes]);
+    return allTopics.filter((t) => (userVotes.has(t.id) && cart.has(t.id)) || publishedVotes.has(t.id));
+  }, [userVotes, publishedVotes, cart]);
 
   // Unvoted for discover
   const unvotedTopics = useMemo(() => {
-    return allTopics.filter((t) => !userVotes.has(t.id));
-  }, [userVotes]);
+    return allTopics.filter((t) => !publishedVotes.has(t.id) && !(userVotes.has(t.id) && cart.has(t.id)));
+  }, [userVotes, publishedVotes, cart]);
 
   // Track "redeem" state per topic
   const [redeemState, setRedeemState] = useState<Set<string>>(new Set());
+  const [redeemingTopic, setRedeemingTopic] = useState<string | null>(null);
+
+  const removeVoteLocally = useCallback((topicId: string) => {
+    setUserVotes((prev) => { const next = new Set(prev); next.delete(topicId); return next; });
+    setPublishedVotes((prev) => {
+      const next = new Set(prev); next.delete(topicId);
+      localStorage.setItem(PUBLISHED_VOTES_KEY, JSON.stringify([...next]));
+      return next;
+    });
+    removeFromCart(topicId);
+    setRedeemState((prev) => { const next = new Set(prev); next.delete(topicId); return next; });
+  }, [removeFromCart]);
+
+  const handleRedeem = useCallback(async (topicId: string) => {
+    if (!wallet) { openWalletModal(); return; }
+    const { resolved } = resolveTopicAtomIds([topicId]);
+    if (resolved.length === 0) {
+      removeVoteLocally(topicId);
+      return;
+    }
+    const atomId = resolved[0].atomId;
+    setRedeemingTopic(topicId);
+    try {
+      const shares: bigint = await wallet.multiVault.maxRedeem(
+        wallet.address, atomId, CHAIN_CONFIG.CURVE_ID
+      );
+      if (shares === 0n) {
+        removeVoteLocally(topicId);
+        return;
+      }
+      const [expectedAssets] = await wallet.multiVault.previewRedeem(
+        atomId, CHAIN_CONFIG.CURVE_ID, shares
+      );
+      const minAssets = (expectedAssets * 95n) / 100n;
+      const tx = await wallet.multiVault.redeem(
+        wallet.address, atomId, CHAIN_CONFIG.CURVE_ID, shares, minAssets
+      );
+      await tx.wait();
+      removeVoteLocally(topicId);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "";
+      if (!msg.includes("user rejected")) {
+        console.warn("[Redeem] Failed:", msg);
+      }
+    } finally {
+      setRedeemingTopic(null);
+    }
+  }, [wallet, openWalletModal, removeVoteLocally]);
 
   const handleVoteClick = useCallback((topicId: string) => {
-    const supported = userVotes.has(topicId);
-    const inRedeem = redeemState.has(topicId);
+    const state = getVoteState(topicId);
 
-    if (!supported) {
-      // Support → add to cart (on-chain deposit happens at cart validation)
-      setUserVotes((prev) => { const next = new Set(prev); next.add(topicId); return next; });
-      addToCart(topicId);
-    } else if (!inRedeem) {
-      // Supported → show Redeem
-      setRedeemState((prev) => { const next = new Set(prev); next.add(topicId); return next; });
-    } else {
-      // Redeem → remove from votes + cart, clear redeem
-      setUserVotes((prev) => { const next = new Set(prev); next.delete(topicId); return next; });
-      removeFromCart(topicId);
-      setRedeemState((prev) => { const next = new Set(prev); next.delete(topicId); return next; });
+    switch (state) {
+      case "support":
+        // + → add to cart (on-chain deposit happens at cart validation)
+        setUserVotes((prev) => { const next = new Set(prev); next.add(topicId); return next; });
+        addToCart(topicId);
+        break;
+      case "pending":
+        // In cart → remove from cart
+        setUserVotes((prev) => { const next = new Set(prev); next.delete(topicId); return next; });
+        removeFromCart(topicId);
+        break;
+      case "supported":
+        // Supported → show Redeem
+        setRedeemState((prev) => { const next = new Set(prev); next.add(topicId); return next; });
+        break;
+      case "redeem":
+        // Redeem → call on-chain redeem via MetaMask
+        handleRedeem(topicId);
+        break;
+      default:
+        break;
     }
-  }, [userVotes, redeemState, addToCart, removeFromCart]);
+  }, [userVotes, redeemState, publishedVotes, redeemingTopic, cart, addToCart, removeFromCart, handleRedeem]);
+
+  const getVoteState = (topicId: string): "support" | "pending" | "supported" | "redeem" | "redeeming" => {
+    if (redeemingTopic === topicId) return "redeeming";
+    if (publishedVotes.has(topicId)) {
+      return redeemState.has(topicId) ? "redeem" : "supported";
+    }
+    // Only show "pending" if actually in cart
+    if (userVotes.has(topicId) && cart.has(topicId)) return "pending";
+    return "support";
+  };
 
   const getVoteLabel = (topicId: string) => {
-    if (!userVotes.has(topicId)) return "Support";
-    if (redeemState.has(topicId)) return "Redeem";
-    return "Supported";
+    const state = getVoteState(topicId);
+    switch (state) {
+      case "support": return "+";
+      case "pending": return "In cart";
+      case "supported": return "Supported";
+      case "redeem": return "Redeem";
+      case "redeeming": return "Redeeming...";
+    }
   };
 
   const handleSkip = () => setDiscoverIdx((i) => i + 1);
@@ -474,11 +591,10 @@ export default function VotePage() {
           )}
           {!loading && trendingTopics.map((topic) => {
             const cat = categoryMap.get(topic.id);
-            const supported = userVotes.has(topic.id);
             const rd = realDataMap.get(topic.id);
             const count = rd ? rd.supportCount : (voteCountMap.get(topic.id) ?? 0);
             const trustLabel = rd && BigInt(rd.supportAssets) > 0n ? ` · ${formatTrust(rd.supportAssets)} TRUST` : "";
-            const trend = realChartData.get(topic.id) ?? trendDataMap.get(topic.id) ?? [];
+            const trend = realChartData.get(topic.id) ?? [];
             return (
               <div key={topic.id} style={topicCard}>
                 {/* Row 1: icon + name + votes */}
@@ -493,15 +609,27 @@ export default function VotePage() {
                 </div>
                 {/* Row 2: spark + support */}
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{ flex: 1 }}>
+                  <div style={{ flex: 1, minWidth: 0, minHeight: 28 }}>
                     <Spark data={trend} color={cat?.color ?? C.primary} h={28} />
                   </div>
-                  <button
-                    style={supportBtn(!supported ? "support" : redeemState.has(topic.id) ? "redeem" : "supported")}
-                    onClick={() => handleVoteClick(topic.id)}
-                  >
-                    {getVoteLabel(topic.id)}
-                  </button>
+                  {(() => {
+                    const vs = getVoteState(topic.id);
+                    return (
+                      <button
+                        style={supportBtnStyle(vs)}
+                        onClick={() => handleVoteClick(topic.id)}
+                        disabled={vs === "redeeming"}
+                      >
+                        {vs === "support" ? (
+                          <Ic.Plus s={16} c={C.textSecondary} />
+                        ) : vs === "supported" ? (
+                          <Ic.Check s={16} c={C.success} />
+                        ) : (
+                          getVoteLabel(topic.id)
+                        )}
+                      </button>
+                    );
+                  })()}
                 </div>
               </div>
             );
@@ -528,6 +656,8 @@ export default function VotePage() {
               const cat = categoryMap.get(topic.id);
               const rd = realDataMap.get(topic.id);
               const hasOnChain = rd && rd.supportCount > 0;
+              const isPublished = publishedVotes.has(topic.id);
+              const isPending = userVotes.has(topic.id) && !isPublished;
               const perfUp = Math.random() > 0.3;
               const perfPct = (Math.random() * 40 + 2).toFixed(1);
               return (
@@ -548,62 +678,66 @@ export default function VotePage() {
                     <div style={topicName}>{topic.name}</div>
                     <div style={topicMeta}>
                       {cat?.name ?? "Other"}
+                      {isPending && " · In cart"}
                       {hasOnChain
                         ? ` · ${rd.supportCount} votes · ${formatTrust(rd.supportAssets)} TRUST`
                         : ""}
                     </div>
                   </div>
-                  <span style={perfBadge(perfUp)}>
-                    {perfUp ? "+" : "-"}{perfPct}%
-                  </span>
-                  <button
-                    style={{ ...withdrawBtn, opacity: withdrawing === topic.id ? 0.5 : 1 }}
-                    disabled={withdrawing === topic.id}
-                    onClick={async (e) => {
-                      e.stopPropagation();
-                      if (!wallet) { openWalletModal(); return; }
-                      const { resolved } = resolveTopicAtomIds([topic.id]);
-                      if (resolved.length === 0) {
-                        // No on-chain atom — just remove locally
-                        handleVoteClick(topic.id);
-                        return;
-                      }
-                      const atomId = resolved[0].atomId;
-                      setWithdrawing(topic.id);
-                      try {
-                        // Get max redeemable shares
-                        const shares: bigint = await wallet.multiVault.maxRedeem(
-                          wallet.address, atomId, CHAIN_CONFIG.CURVE_ID
-                        );
-                        if (shares === 0n) {
-                          // No on-chain position — just remove locally
-                          handleVoteClick(topic.id);
-                          return;
-                        }
-                        // Preview to get min assets (5% slippage)
-                        const [expectedAssets] = await wallet.multiVault.previewRedeem(
-                          atomId, CHAIN_CONFIG.CURVE_ID, shares
-                        );
-                        const minAssets = (expectedAssets * 95n) / 100n;
-                        // Redeem
-                        const tx = await wallet.multiVault.redeem(
-                          wallet.address, atomId, CHAIN_CONFIG.CURVE_ID, shares, minAssets
-                        );
-                        await tx.wait();
-                        // Remove from local state
-                        handleVoteClick(topic.id);
-                      } catch (err: unknown) {
-                        const msg = err instanceof Error ? err.message : "";
-                        if (!msg.includes("user rejected")) {
-                          console.warn("[Withdraw] Failed:", msg);
-                        }
-                      } finally {
-                        setWithdrawing(null);
-                      }
-                    }}
-                  >
-                    {withdrawing === topic.id ? "Withdrawing..." : "Withdraw"}
-                  </button>
+                  {isPublished && (
+                    <>
+                      <span style={perfBadge(perfUp)}>
+                        {perfUp ? "+" : "-"}{perfPct}%
+                      </span>
+                      <button
+                        style={{ ...withdrawBtn, opacity: withdrawing === topic.id ? 0.5 : 1 }}
+                        disabled={withdrawing === topic.id}
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          if (!wallet) { openWalletModal(); return; }
+                          const { resolved } = resolveTopicAtomIds([topic.id]);
+                          if (resolved.length === 0) {
+                            removeVoteLocally(topic.id);
+                            return;
+                          }
+                          const atomId = resolved[0].atomId;
+                          setWithdrawing(topic.id);
+                          try {
+                            const shares: bigint = await wallet.multiVault.maxRedeem(
+                              wallet.address, atomId, CHAIN_CONFIG.CURVE_ID
+                            );
+                            if (shares === 0n) {
+                              removeVoteLocally(topic.id);
+                              return;
+                            }
+                            const [expectedAssets] = await wallet.multiVault.previewRedeem(
+                              atomId, CHAIN_CONFIG.CURVE_ID, shares
+                            );
+                            const minAssets = (expectedAssets * 95n) / 100n;
+                            const tx = await wallet.multiVault.redeem(
+                              wallet.address, atomId, CHAIN_CONFIG.CURVE_ID, shares, minAssets
+                            );
+                            await tx.wait();
+                            removeVoteLocally(topic.id);
+                          } catch (err: unknown) {
+                            const msg = err instanceof Error ? err.message : "";
+                            if (!msg.includes("user rejected")) {
+                              console.warn("[Redeem] Failed:", msg);
+                            }
+                          } finally {
+                            setWithdrawing(null);
+                          }
+                        }}
+                      >
+                        {withdrawing === topic.id ? "Redeeming..." : "Redeem"}
+                      </button>
+                    </>
+                  )}
+                  {isPending && (
+                    <span style={{ fontSize: 11, color: C.flat, fontWeight: 600, flexShrink: 0 }}>
+                      Pending
+                    </span>
+                  )}
                 </div>
               );
             })
@@ -626,7 +760,7 @@ export default function VotePage() {
             (() => {
               const topic = unvotedTopics[discoverIdx];
               const cat = categoryMap.get(topic.id);
-              const trend = realChartData.get(topic.id) ?? trendDataMap.get(topic.id) ?? [];
+              const trend = realChartData.get(topic.id) ?? [];
               return (
                 <>
                   <div style={{

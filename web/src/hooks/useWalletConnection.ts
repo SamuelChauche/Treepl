@@ -17,6 +17,9 @@ const MULTIVAULT_ABI = [
   "function currentSharePrice(bytes32 id, uint256 curveId) view returns (uint256)",
 ];
 
+// Session-scoped guard to prevent chain-switch loops on mobile (page reloads)
+const CHAIN_SWITCH_KEY = "ethcc-chain-switch-done";
+
 /**
  * Hook that integrates AppKit (WalletConnect, MetaMask, Coinbase)
  * and produces a WalletConnection compatible with all existing services.
@@ -60,71 +63,62 @@ export function useWalletConnection() {
         provider.pollingInterval = 30000;
 
         // Ensure wallet is on Intuition chain (1155)
+        // Use sessionStorage guard to prevent chain-switch loops on mobile
+        let needsChainSwitch = false;
         try {
           const network = await provider.getNetwork();
-          if (Number(network.chainId) !== CHAIN_CONFIG.CHAIN_ID) {
+          needsChainSwitch = Number(network.chainId) !== CHAIN_CONFIG.CHAIN_ID;
+        } catch { /* getNetwork failed — try chain switch anyway */ needsChainSwitch = true; }
+
+        const alreadySwitched = sessionStorage.getItem(CHAIN_SWITCH_KEY) === address;
+        if (needsChainSwitch && !alreadySwitched) {
+          // Mark chain switch attempted BEFORE sending the request
+          // (on mobile, MetaMask deep link may reload the page)
+          sessionStorage.setItem(CHAIN_SWITCH_KEY, address);
+          try {
+            await provider.send("wallet_addEthereumChain", [
+              {
+                chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
+                chainName: CHAIN_CONFIG.CHAIN_NAME,
+                rpcUrls: [CHAIN_CONFIG.RPC_URL],
+                nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
+              },
+            ]);
+          } catch {
             try {
-              await provider.send("wallet_addEthereumChain", [
-                {
-                  chainId: CHAIN_CONFIG.CHAIN_ID_HEX,
-                  chainName: CHAIN_CONFIG.CHAIN_NAME,
-                  rpcUrls: [CHAIN_CONFIG.RPC_URL],
-                  nativeCurrency: CHAIN_CONFIG.NATIVE_CURRENCY,
-                },
-              ]);
-            } catch {
               await provider.send("wallet_switchEthereumChain", [
                 { chainId: CHAIN_CONFIG.CHAIN_ID_HEX },
               ]);
-            }
-            // Re-init provider after chain switch
-            const freshProvider = new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider);
-            freshProvider.pollingInterval = 30000;
-            const signer = await freshProvider.getSigner();
-            const addr = await signer.getAddress();
-
-            const proxy = new ethers.Contract(CHAIN_CONFIG.SOFIA_PROXY, SofiaFeeProxyAbi, signer);
-            const multiVault = new ethers.Contract(CHAIN_CONFIG.MULTIVAULT, MULTIVAULT_ABI, signer);
-            const conn: WalletConnection = { provider: freshProvider, signer, proxy, multiVault, address: addr, ethers };
-            setWallet(conn);
-            builtForRef.current = address;
-            localStorage.setItem("ethcc-wallet-address", addr);
-            setError("");
-            setLoading(false);
-            buildingRef.current = false;
-
-            try {
-              const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
-              const bal = await rpcProvider.getBalance(addr);
-              setBalance(ethers.formatEther(bal));
-            } catch { /* non-critical */ }
-            return;
+            } catch { /* already on chain or user rejected — continue */ }
           }
-        } catch { /* getNetwork failed — proceed anyway */ }
+        }
 
-        const signer = await provider.getSigner();
+        // Build provider (always re-init after potential chain switch)
+        const freshProvider = needsChainSwitch
+          ? new ethers.BrowserProvider(walletProvider as import("ethers").Eip1193Provider)
+          : provider;
+        if (needsChainSwitch) freshProvider.pollingInterval = 30000;
+
+        const signer = await freshProvider.getSigner();
         const addr = await signer.getAddress();
 
         const proxy = new ethers.Contract(CHAIN_CONFIG.SOFIA_PROXY, SofiaFeeProxyAbi, signer);
         const multiVault = new ethers.Contract(CHAIN_CONFIG.MULTIVAULT, MULTIVAULT_ABI, signer);
 
-        const conn: WalletConnection = { provider, signer, proxy, multiVault, address: addr, ethers };
+        const conn: WalletConnection = { provider: freshProvider, signer, proxy, multiVault, address: addr, ethers };
         setWallet(conn);
         builtForRef.current = address;
-
-        // Save address
         localStorage.setItem("ethcc-wallet-address", addr);
-
         setError("");
         setLoading(false);
         buildingRef.current = false;
 
-        // Fetch balance in background (non-blocking)
+        // Fetch balance in background (non-blocking) via RPC
         try {
           const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
           const bal = await rpcProvider.getBalance(addr);
           setBalance(ethers.formatEther(bal));
-        } catch { /* balance fetch failed, non-critical */ }
+        } catch { /* non-critical */ }
 
       } catch (e: unknown) {
         setError(e instanceof Error ? e.message : "Connection failed");
@@ -133,6 +127,28 @@ export function useWalletConnection() {
       }
     })();
   }, [isConnected, address, walletProvider]);
+
+  // Poll balance every 5s when connected and balance is 0 (waiting for $TRUST)
+  useEffect(() => {
+    if (!wallet || balance === null) return;
+    if (parseFloat(balance) > 0) return;
+
+    let cancelled = false;
+    const poll = async () => {
+      try {
+        const { ethers } = await import("ethers");
+        const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
+        const bal = await rpcProvider.getBalance(wallet.address);
+        if (!cancelled) {
+          const formatted = ethers.formatEther(bal);
+          setBalance(formatted);
+        }
+      } catch { /* ignore polling errors */ }
+    };
+
+    const interval = setInterval(poll, 5000);
+    return () => { cancelled = true; clearInterval(interval); };
+  }, [wallet, balance]);
 
   // Open the AppKit modal
   const connect = useCallback(() => {

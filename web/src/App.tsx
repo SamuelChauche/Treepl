@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, type CSSProperties } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { PhoneFrame } from "./components/ui/PhoneFrame";
 import { Nav5 } from "./components/ui/Nav5";
 import { useCart } from "./hooks/useCart";
@@ -42,15 +42,22 @@ export default function App() {
     // We let the router handle this via the index route
   }
 
+  const navigate = useNavigate();
+
   // ── Notification toast ──────────────────────────────────
-  const [toast, setToast] = useState<{ title: string; body: string } | null>(null);
+  const [toast, setToast] = useState<{ title: string; body: string; sessionId?: string } | null>(null);
 
-  const dismissToast = useCallback(() => setToast(null), []);
+  const dismissToast = useCallback(() => {
+    if (toast?.sessionId) {
+      navigate(`/rate/${toast.sessionId}`);
+    }
+    setToast(null);
+  }, [toast, navigate]);
 
-  // Auto-dismiss toast after 5s
+  // Auto-dismiss toast after 15s
   useEffect(() => {
     if (!toast) return;
-    const t = setTimeout(() => setToast(null), 5000);
+    const t = setTimeout(() => setToast(null), 15000);
     return () => clearTimeout(t);
   }, [toast]);
 
@@ -65,10 +72,11 @@ export default function App() {
     const allSessions = [testSession, ...sessions];
 
     const cleanup = startSessionNotifScheduler(allSessions, (session) => {
-      // In-app toast
+      // In-app toast — click navigates to rate page
       setToast({
         title: `How was "${session.title}"?`,
         body: "Tap to rate this session",
+        sessionId: session.id,
       });
 
       // Native notification (works when tab is not focused)

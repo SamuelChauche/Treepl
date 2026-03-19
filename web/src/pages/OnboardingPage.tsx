@@ -187,6 +187,18 @@ export default function OnboardingPage() {
     if (walletError) setTxError(walletError);
   }, [walletError]);
 
+  // Notify when $TRUST is received (balance goes from 0 to > 0)
+  const [trustNotified, setTrustNotified] = useState(false);
+  useEffect(() => {
+    if (trustNotified) return;
+    const bal = parseFloat(effectiveBalance ?? "0");
+    if (bal > 0 && walletState === "connected") {
+      setTrustNotified(true);
+      setTxStatus(`${bal.toFixed(4)} TRUST received!`);
+      setTimeout(() => setTxStatus(""), 3000);
+    }
+  }, [effectiveBalance, walletState, trustNotified]);
+
   // ── Vibe matches (for step 7 success screen) ─────────────────
   const { matches: vibeMatchesData, loading: vibeLoading } = useVibeMatches(
     selectedTracks,
@@ -474,7 +486,7 @@ export default function OnboardingPage() {
                   style={{
                     display: "flex", alignItems: "center", gap: 12, padding: 14,
                     borderRadius: R.lg, cursor: "pointer",
-                    background: checked ? `${ts.color}15` : C.surface,
+                    background: checked ? `${ts.color}15` : C.surfaceGray,
                     border: `1.5px solid ${checked ? ts.color : C.border}`,
                   }}
                 >

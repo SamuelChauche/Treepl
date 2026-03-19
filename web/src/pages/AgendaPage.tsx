@@ -122,20 +122,28 @@ export default function AgendaPage() {
 
   const allMyTopics = useMemo(() => new Set([...publishedTopics, ...pendingTopics]), [publishedTopics, pendingTopics]);
   const availableTopics = useMemo(() => trackNames.filter((t) => !allMyTopics.has(t)), [allMyTopics]);
+  // All non-published tracks for the modal (includes pending so user can toggle)
+  const modalTopics = useMemo(() => trackNames.filter((t) => !publishedTopics.has(t)), [publishedTopics]);
 
   const [showAddInterest, setShowAddInterest] = useState(false);
   const [selectedDay, setSelectedDay] = useState(dates[0] ?? "");
   const [selectedType, setSelectedType] = useState<string>("All");
   const [search, setSearch] = useState("");
 
-  const addInterest = (track: string) => {
+  const toggleInterest = (track: string) => {
     const next = new Set(pendingTopics);
-    next.add(track);
-    setPendingTopics(next);
-    localStorage.setItem("ethcc-pending-topics", JSON.stringify([...next]));
-    // Add all sessions of this track to cart so they go through checkout
-    sessions.filter((s) => s.track === track).forEach((s) => addToCart(s.id));
-    setShowAddInterest(false);
+    if (next.has(track)) {
+      // Remove interest
+      next.delete(track);
+      setPendingTopics(next);
+      localStorage.setItem("ethcc-pending-topics", JSON.stringify([...next]));
+    } else {
+      // Add interest only — sessions are NOT added to cart
+      next.add(track);
+      setPendingTopics(next);
+      localStorage.setItem("ethcc-pending-topics", JSON.stringify([...next]));
+    }
+    // Modal stays open
   };
 
   const filtered = useMemo(() => {
@@ -247,7 +255,7 @@ export default function AgendaPage() {
       {showAddInterest && (
         <div
           style={{
-            position: "fixed", inset: 0, zIndex: 100,
+            position: "absolute", inset: 0, zIndex: 100,
             background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
           }}
@@ -255,36 +263,44 @@ export default function AgendaPage() {
         >
           <div
             style={{
-              width: "100%", maxWidth: 390, padding: 24, paddingBottom: 32,
+              width: "100%", maxWidth: 390,
               background: C.background, borderRadius: "20px 20px 0 0",
               border: `1px solid ${C.border}`, borderBottom: "none",
-              maxHeight: "70vh", overflowY: "auto",
+              maxHeight: "70vh", fontFamily: FONT,
+              display: "flex", flexDirection: "column", overflow: "hidden",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-              <h3 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>Add Interest</h3>
-              <button
-                onClick={() => setShowAddInterest(false)}
-                style={{ width: 32, height: 32, borderRadius: 16, background: C.surfaceGray, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
-              >
-                <Ic.X s={16} c={C.textSecondary} />
-              </button>
+            {/* Fixed header */}
+            <div style={{ flexShrink: 0, padding: "24px 24px 0" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                <h3 style={{ fontSize: 18, fontWeight: 700, margin: 0, fontFamily: FONT }}>Add Interest</h3>
+                <button
+                  onClick={() => setShowAddInterest(false)}
+                  style={{ width: 32, height: 32, borderRadius: 16, background: C.surfaceGray, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                >
+                  <Ic.X s={16} c={C.textSecondary} />
+                </button>
+              </div>
+              <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: 16, fontFamily: FONT }}>
+                Select a topic to unlock its sessions. The interest will be added to your cart for on-chain validation.
+              </div>
             </div>
-            <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: 16 }}>
-              Select a topic to unlock its sessions. The interest will be added to your cart for on-chain validation.
-            </div>
+            {/* Scrollable list */}
+            <div style={{ flex: 1, overflowY: "auto", padding: "0 24px 32px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {availableTopics.map((track) => {
+              {modalTopics.map((track) => {
                 const ts = getTrackStyle(track);
                 const sessionCount = sessions.filter((s) => s.track === track).length;
+                const isSelected = pendingTopics.has(track);
                 return (
                   <div
                     key={track}
-                    onClick={() => addInterest(track)}
+                    onClick={() => toggleInterest(track)}
                     style={{
                       ...glassSurface, padding: 14, cursor: "pointer",
                       display: "flex", alignItems: "center", gap: 12,
+                      border: isSelected ? `1px solid ${C.success}44` : undefined,
                     }}
                   >
                     <div style={{
@@ -298,11 +314,18 @@ export default function AgendaPage() {
                       <div style={{ fontSize: 14, fontWeight: 600, color: C.textPrimary }}>{track}</div>
                       <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>{sessionCount} sessions</div>
                     </div>
-                    <Ic.Plus s={18} c={C.flat} />
+                    <div style={{
+                      width: 28, height: 28, borderRadius: 14, flexShrink: 0,
+                      background: isSelected ? C.successLight : C.surfaceGray,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      {isSelected ? <Ic.Check s={14} c={C.success} /> : <Ic.Plus s={14} c={C.textSecondary} />}
+                    </div>
                   </div>
                 );
               })}
             </div>
+            </div>{/* end scrollable list */}
           </div>
         </div>
       )}
@@ -395,15 +418,29 @@ export default function AgendaPage() {
                   if (!isPublished) toggleCart(s.id);
                 }}
                 style={{
-                  width: 36, height: 36, borderRadius: 18, border: "none", cursor: isPublished ? "default" : "pointer",
+                  ...(isPublished ? {
+                    width: 36, height: 36, minWidth: 36, minHeight: 36,
+                    borderRadius: 18, padding: 0,
+                  } : inCart ? {
+                    padding: "6px 14px", borderRadius: R.btn,
+                  } : {
+                    width: 36, height: 36, minWidth: 36, minHeight: 36,
+                    borderRadius: 18, padding: 0,
+                  }),
+                  border: "none",
+                  cursor: isPublished ? "default" : "pointer",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0, alignSelf: "center",
-                  background: inCart ? C.successLight : C.surfaceGray,
+                  background: isPublished ? C.successLight : inCart ? C.flatLight : C.surfaceGray,
                   transition: "background 0.2s",
+                  fontSize: 12, fontWeight: 600, fontFamily: FONT,
+                  color: C.flat, whiteSpace: "nowrap",
                 }}
               >
-                {inCart ? (
+                {isPublished ? (
                   <Ic.Check s={16} c={C.success} />
+                ) : inCart ? (
+                  "In cart"
                 ) : (
                   <Ic.Plus s={16} c={C.textSecondary} />
                 )}

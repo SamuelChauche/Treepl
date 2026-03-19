@@ -103,25 +103,7 @@ export default function InvitePage() {
           Send $TRUST
         </button>
 
-        {/* My QR Code */}
-        {walletAddr && (
-          <div style={{ ...glassSurface, marginTop: 20, padding: 24, display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-            <div style={sectionTitle}>My Wallet</div>
-            <div style={{ fontSize: 12, color: C.textSecondary, textAlign: "center" }}>
-              Share your address to receive $TRUST
-            </div>
-            <QRCodeSVG
-              value={walletAddr}
-              size={160}
-              bgColor="transparent"
-              fgColor="#ffffff"
-              level="M"
-            />
-            <div style={{ fontSize: 11, color: C.textTertiary, fontFamily: "monospace", textAlign: "center" }}>
-              {walletAddr.slice(0, 10)}...{walletAddr.slice(-8)}
-            </div>
-          </div>
-        )}
+        {/* My Wallet section removed */}
 
         {/* Info */}
         <div style={{ ...glassSurface, marginTop: 16, padding: 16 }}>

@@ -1,0 +1,223 @@
+{
+  "voteTriples": {
+    "_doc": "Triple term_ids for 'I --supports--> Topic' votes",
+    "subjectAtomId": "0x7ab197b346d386cd5926dbfeeb85dade42f113c7ed99ff2046a5123bb5cd016b",
+    "predicateAtomId": "0x01b226872092606d8e7fcdc72b29ca7efc6bc4aa628b2d4502851150616358a0",
+    "topicIdToTripleId": {}
+  },
+  "interestTriples": {
+    "_doc": "Triple term_ids for 'User --are interested by--> Track'",
+    "predicateAtomId": "0x0cdf92bb37466e0954a7ce69e39e5ead44b901cf0d889eeb20ec0f1f2da697e1",
+    "triples": [
+      {
+        "tripleTermId": "0x7512d1be6efb0be3db567718f576c6eb193c5eb17ec9d158987fb54fcd31b862",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "Core Protocol",
+        "objectAtomId": "0x24a3480abc66ae94bba8bf4b8952ac6784a7e539ed440ac3901cb3142e9108bf"
+      },
+      {
+        "tripleTermId": "0x53f91ed2a4dc3b7d47dd1dd8ed3178f4baba0f97e91bf6ed3e4b9f900102c9c8",
+        "subjectLabel": "0xb1f593221a45c2dd0b6a6d11f7f50f87796b143c",
+        "subjectAtomId": "0x613405bc26f3bb7b41ebf681414a860e3cf87b06f2a1fc1136ce668854458103",
+        "objectLabel": "Built on Ethereum",
+        "objectAtomId": "0x2dde4c9f1365a17450ca4d651a7c3d3752ccc63ed6e9f4492b8a635c06dbc985"
+      },
+      {
+        "tripleTermId": "0x3f9bcfb248236dee5d20ae928daa6de07265abd71f9b96fd265530379689cf88",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "Cypherpunk & Privacy",
+        "objectAtomId": "0x6bbbb75ab72b3be504b59c7c5728bbf0212368a5456249843cd11ce1e124a019"
+      },
+      {
+        "tripleTermId": "0x6de565ce69f626af2830556a56e8651759f8e8dce9df5f7fbaef2ad6ee9d3b4d",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "Layer 2s",
+        "objectAtomId": "0x77c6ad9f79a11f242cf7a8d6f4a3e5f8e9c35cab04708198a4c2af1ab71da98a"
+      },
+      {
+        "tripleTermId": "0x9a799c12e4937f9600b70201a9f00bd6a73cb27d04294e12410e447c99c1e519",
+        "subjectLabel": "0xb813667d42a0ecf3c00aff56f6a993f363fd7050",
+        "subjectAtomId": "0x9a0daedba6bb1cc0c2080dafe302ed41c9219f3417e27e294536afc281a512e7",
+        "objectLabel": "Block Fighters",
+        "objectAtomId": "0x87a08a709d41f43a242db8db9e1f7c4956d58688a6d5d07f85b3adc4eaf1fe5e"
+      },
+      {
+        "tripleTermId": "0xdd0909a1c75fd64c3e4dd0476c1e09a79ea4f8575ecebdce37bc8232743690e6",
+        "subjectLabel": "0xb813667d42a0ecf3c00aff56f6a993f363fd7050",
+        "subjectAtomId": "0x9a0daedba6bb1cc0c2080dafe302ed41c9219f3417e27e294536afc281a512e7",
+        "objectLabel": "Applied cryptography",
+        "objectAtomId": "0xa294407354c71d4ad9fd5088726a36a6e3bebc3be70f2b968cec0d601e9a8a7f"
+      },
+      {
+        "tripleTermId": "0x41d0083bb9310cc716252bf744a7e8a07610119bd3d2410d53fc6ed379971183",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "Product & Marketers",
+        "objectAtomId": "0xd3b79740eb2ab4ba95dd6145aa303196ed89cca32a89f88361938de6f962c81f"
+      },
+      {
+        "tripleTermId": "0x8d9c3097601ef0d12528039a03440a41ca1c84d4c2925f0aab36f48baae77022",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "RWA Tokenisation",
+        "objectAtomId": "0xdf1b7a70c58270ea101372e5026a6c483b20c8be7bb80684fd5b6c832c510eeb"
+      },
+      {
+        "tripleTermId": "0x880a346546d063f7b137790d6a73af607f8e2c8efb08d62b0affa7b9b0bf87bb",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "Research",
+        "objectAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "tripleTermId": "0xd6837ef8b8065054899327b82cb920dd139eab5d93a175aae35c16f642b00c4c",
+        "subjectLabel": "0xcd62c554bdef0501158bd6513e0654cd3cc8ae88",
+        "subjectAtomId": "0xaeca07b42b39db5e19849d958c2e4d5ccbaaa42bd0c2daf733581339dfd516ee",
+        "objectLabel": "Research",
+        "objectAtomId": "0xe164fa08db1c673380211f9e2afb036b4ecc019b96c3a0d2cb82679aa83723dc"
+      },
+      {
+        "tripleTermId": "0xf6782f6f68def03f9823c309e6eda77795da70352b0167229e7a2f1d35539394",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "AI Agents and Automation",
+        "objectAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      },
+      {
+        "tripleTermId": "0xa70bdbb86d553f88bcfe9d307eda34acf73c8a6f1b1a1c5b97803420a00ff994",
+        "subjectLabel": "0xb1f593221a45c2dd0b6a6d11f7f50f87796b143c",
+        "subjectAtomId": "0x613405bc26f3bb7b41ebf681414a860e3cf87b06f2a1fc1136ce668854458103",
+        "objectLabel": "AI Agents and Automation",
+        "objectAtomId": "0xf3cc343ac2af82d0490e23e39e2e1fc29f279e26aee49bd95914260720e6d671"
+      }
+    ]
+  },
+  "attendingTriples": {
+    "_doc": "Triple term_ids for 'User --attending--> Session'",
+    "predicateAtomId": "0x8e03485341c3e557be0bf07dcbc9170add35fd436024cf280329c5ceb5a65863",
+    "triples": [
+      {
+        "tripleTermId": "0x0c4a301befbac0e031063a6f01c4e14a2c3b4c9e48dda943d93a093d5ee0b500",
+        "subjectLabel": "0xb813667d42a0ecf3c00aff56f6a993f363fd7050",
+        "subjectAtomId": "0x9a0daedba6bb1cc0c2080dafe302ed41c9219f3417e27e294536afc281a512e7",
+        "objectLabel": "Building the Financial Layer 1 for Trillions Onchain",
+        "objectAtomId": "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e"
+      },
+      {
+        "tripleTermId": "0x51d3bd4fdefb8768511cbbdeec163eddfe8521e6252b00ee8a12250c80504d66",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "Building the Financial Layer 1 for Trillions Onchain",
+        "objectAtomId": "0x24ea41ef139142825cd11f3b91ad13df31bb149fc6a4ef278f0d103d32b8244e"
+      },
+      {
+        "tripleTermId": "0x7bd97faffc6f6389bd12ccf494a13846307d05df0ea6543d5dc0f43b14c0a348",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "What's Next for DeFi UX: Behavior-based Systems for the RWA Era",
+        "objectAtomId": "0x311ab3a6a8eb1582a49666478a12ada66747336de5fd013cc1bfbe889d029f7b"
+      },
+      {
+        "tripleTermId": "0x870fcaffba4fafe8b07696fa3cb390791efab4430838245a8df762443d454bc3",
+        "subjectLabel": "0xb1f593221a45c2dd0b6a6d11f7f50f87796b143c",
+        "subjectAtomId": "0x613405bc26f3bb7b41ebf681414a860e3cf87b06f2a1fc1136ce668854458103",
+        "objectLabel": "Forget Private AMMs: Scaling DeFi Back Onchain with Parallel AMM",
+        "objectAtomId": "0x49587f559ec38b398d3b5cfd9a21ea29e38aabfc2ba9d45c442eb621c3972293"
+      },
+      {
+        "tripleTermId": "0xfcee2454f3e59c98d7191ba57fe1bc6695a4fc8a51d765dee923c76e71281de1",
+        "subjectLabel": "0xb813667d42a0ecf3c00aff56f6a993f363fd7050",
+        "subjectAtomId": "0x9a0daedba6bb1cc0c2080dafe302ed41c9219f3417e27e294536afc281a512e7",
+        "objectLabel": "Quantum dilema",
+        "objectAtomId": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837"
+      },
+      {
+        "tripleTermId": "0x1de68d4d0c8fd56749bf272c04cd4f99f796230ff15e892c627ff387b0818cce",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "The Sovereignty Stack: Towards Currency Resilience in DeFi",
+        "objectAtomId": "0x5b66afd4598f94a7e18cb57d70df71215f32260539d25a18df182a7bfa56fbca"
+      },
+      {
+        "tripleTermId": "0xda53a98de5ab8c96975755a08302613ad1d05ae120ad8bfb45155a265ed9e8c4",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "From MEV-Boost to ePBS: The Protocolization of Proposer-Builder Separation",
+        "objectAtomId": "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec"
+      },
+      {
+        "tripleTermId": "0xcc3f75e3441f630d79441374ddfd830acb3e1210efe1c34988b0cf8abb1365b1",
+        "subjectLabel": "0xcd62c554bdef0501158bd6513e0654cd3cc8ae88",
+        "subjectAtomId": "0xaeca07b42b39db5e19849d958c2e4d5ccbaaa42bd0c2daf733581339dfd516ee",
+        "objectLabel": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+        "objectAtomId": "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e"
+      },
+      {
+        "tripleTermId": "0x97a2b1865e3bd65986bc5618e788e76762d8bbf7ab35f231f9a5b0f6230e6086",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "Credit for the Machine Age: Why DeFi's Missing Primitive Isn't Intelligence",
+        "objectAtomId": "0xb1e076a1e8fcaab83aa84b3d0afd0bb23170dbec0b764df31320eea3e9fd143e"
+      },
+      {
+        "tripleTermId": "0x6cdb59e7a39b8280686be15bb9ed11df0009d4cd045f93983af21880a65b6fa1",
+        "subjectLabel": "0xb1f593221a45c2dd0b6a6d11f7f50f87796b143c",
+        "subjectAtomId": "0x613405bc26f3bb7b41ebf681414a860e3cf87b06f2a1fc1136ce668854458103",
+        "objectLabel": "Web3 Is Alive: The Human Layer in Action (Live Demo)",
+        "objectAtomId": "0xbf83a9762166b9a1c4bc3656c992d4802ebc15a8198a91436143d5a5e39186f7"
+      },
+      {
+        "tripleTermId": "0xf45a6dc9d169cacae9f2e469531e2f4b4a8c4f21178647ef966d798da2aff186",
+        "subjectLabel": "0xb813667d42a0ecf3c00aff56f6a993f363fd7050",
+        "subjectAtomId": "0x9a0daedba6bb1cc0c2080dafe302ed41c9219f3417e27e294536afc281a512e7",
+        "objectLabel": "There is such a thing as a free lunch - the deep fake refund economy",
+        "objectAtomId": "0xdbccf25f01f4ecb35935344584481d075de82304c27917f83d1c343c6e18f218"
+      },
+      {
+        "tripleTermId": "0x748516f592e64eac9ba03b6731a49c7d196ec90dd538000e48542b4ea2740797",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "Make Privacy Sexy: From Cypherpunk to Consumer",
+        "objectAtomId": "0xe61cc4248d831ce59cafb261c3c7cf5a81d7bab3284d64334e313710e6242dcb"
+      },
+      {
+        "tripleTermId": "0x90c7f2be628f65f64b0f11521994b6ef56b2522b01e33d8edb07943b65f49d11",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "Keeping your users' private parts private",
+        "objectAtomId": "0xef02a9de1537129b60be4a56228a44d6a08e28561e4261c7f5e61f71689e7239"
+      },
+      {
+        "tripleTermId": "0xb48677a826378aec29ee049bad15bb1486c5f4349e5abff7e39ebdbf69ad797d",
+        "subjectLabel": "0x077b59a3751cd6682534c8203aab29113876af01",
+        "subjectAtomId": "0x59be29679f934efb5ad04c8273d548106cf4e6092295e79edb70251b1f220600",
+        "objectLabel": "DeFi's hidden risk stack",
+        "objectAtomId": "0xf6dbe2e54bb152a38d47de4d20e5d38d021160233dab4530624f4586eaba35b5"
+      },
+      {
+        "tripleTermId": "0xc9971815e0d21679fba085304d8e80f44472e256d2fda95d0ba19fa3066b3740",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "Autonomous On-Chain Intelligence: How AI Agents Will Transform Web3 User Behavior & Payments",
+        "objectAtomId": "0x15d3f9230092fd696e81c4a26a23ae6e15304c408752ab6d37473400cc5af858"
+      },
+      {
+        "tripleTermId": "0xbdf5bccae70dc27039415b9ef897c6616f2541f06ec988a614045660edaee98c",
+        "subjectLabel": "0xcafad1c2986719ab86405069ce2c2a95c0f1a10b",
+        "subjectAtomId": "0xde7ae9799661d16be973814b8507cad3148d4c3f349ac533fc218d542b014726",
+        "objectLabel": "The road to post-quantum Ethereum",
+        "objectAtomId": "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda"
+      },
+      {
+        "tripleTermId": "0xd3eccb877ad43052757e551d86d8ecfcff342724d5873097cdfccd1d8105d327",
+        "subjectLabel": "0xcd62c554bdef0501158bd6513e0654cd3cc8ae88",
+        "subjectAtomId": "0xaeca07b42b39db5e19849d958c2e4d5ccbaaa42bd0c2daf733581339dfd516ee",
+        "objectLabel": "The road to post-quantum Ethereum",
+        "objectAtomId": "0x613801bca2de9e5f3c66c56f128aa6e1eebd7db1687042e025b1c36140a26eda"
+      }
+    ]
+  }
+}

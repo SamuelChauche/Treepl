@@ -1,0 +1,1727 @@
+[
+  {
+    "name": "0xAlex",
+    "organization": "Kleros",
+    "slug": "0xalex"
+  },
+  {
+    "name": "0xPenryn",
+    "organization": "World Foundation",
+    "slug": "0xpenryn"
+  },
+  {
+    "name": "0xSybil",
+    "organization": "Flashbots",
+    "slug": "0xsybil"
+  },
+  {
+    "name": "1sla.eth",
+    "organization": "Zuitzerland",
+    "slug": "1slaeth"
+  },
+  {
+    "name": "AKAKI MAMAGEISHVILI",
+    "organization": "Offchain Labs",
+    "slug": "akaki-mamageishvili"
+  },
+  {
+    "name": "Adrian Brink",
+    "organization": "Anoma",
+    "slug": "adrian-brink"
+  },
+  {
+    "name": "Alan Li",
+    "organization": "Brevis",
+    "slug": "alan-li"
+  },
+  {
+    "name": "Alberto Fernandez",
+    "organization": "Lid",
+    "slug": "alberto-fernandez"
+  },
+  {
+    "name": "Alec Novella",
+    "organization": "Sherlock",
+    "slug": "alec-novella"
+  },
+  {
+    "name": "Alejandro Ranchal-Pedrosa",
+    "organization": "SEI Labs",
+    "slug": "alejandro-ranchal-pedrosa"
+  },
+  {
+    "name": "Alex Cutler",
+    "organization": "Aerodrome Finance / Dromos Labs",
+    "slug": "alex-cutler"
+  },
+  {
+    "name": "Alexander",
+    "organization": "Miden",
+    "slug": "alexander"
+  },
+  {
+    "name": "Alexander Müller",
+    "organization": "Sprinter",
+    "slug": "alexander-muller"
+  },
+  {
+    "name": "Alice",
+    "organization": "Arrays.org",
+    "slug": "alice"
+  },
+  {
+    "name": "AliceAndBob",
+    "organization": "Certora",
+    "slug": "aliceandbob"
+  },
+  {
+    "name": "Alina Tielnova",
+    "organization": "Everstake",
+    "slug": "alina-tielnova"
+  },
+  {
+    "name": "Alisia Painter",
+    "organization": "Botanix",
+    "slug": "alisia-painter"
+  },
+  {
+    "name": "Ambre Soubiran",
+    "organization": "Kaiko",
+    "slug": "ambre-soubiran"
+  },
+  {
+    "name": "Ambroise Helaine",
+    "organization": "Bybit",
+    "slug": "ambroise-helaine"
+  },
+  {
+    "name": "Ameen",
+    "organization": "0xbow.io",
+    "slug": "ameen"
+  },
+  {
+    "name": "Ami Nagata",
+    "organization": "Zodia Custody",
+    "slug": "ami-nagata"
+  },
+  {
+    "name": "Amxx",
+    "organization": "OpenZeppelin",
+    "slug": "amxx"
+  },
+  {
+    "name": "Andrea Canidio",
+    "organization": "Independent researcher",
+    "slug": "andrea-canidio"
+  },
+  {
+    "name": "Andreas Melhede",
+    "organization": "Elata Biosciences",
+    "slug": "andreas-melhede"
+  },
+  {
+    "name": "Andrej Berlin",
+    "organization": "Deep Work",
+    "slug": "andrej-berlin"
+  },
+  {
+    "name": "Andres Junge",
+    "organization": "Anyenk",
+    "slug": "andres-junge"
+  },
+  {
+    "name": "Andrew O'Neill",
+    "organization": "S&P Global Ratings",
+    "slug": "andrew-oneill"
+  },
+  {
+    "name": "Andrey Ivasko",
+    "organization": "researcher",
+    "slug": "andrey-ivasko"
+  },
+  {
+    "name": "Andrii Bondar",
+    "organization": "Matter Labs (zkSync)",
+    "slug": "andrii-bondar"
+  },
+  {
+    "name": "Andy M. Lee",
+    "organization": "Mamori",
+    "slug": "andy-m-lee"
+  },
+  {
+    "name": "Angela Kreitenweis",
+    "organization": "Token Engineering Academy",
+    "slug": "angela-kreitenweis"
+  },
+  {
+    "name": "Anne-Grace Kleczewski",
+    "organization": "MME Legal",
+    "slug": "anne-grace-kleczewski"
+  },
+  {
+    "name": "Anne-Lorinne Mognetti",
+    "organization": "MME Legal",
+    "slug": "anne-lorinne-mognetti"
+  },
+  {
+    "name": "Anthony Caravello",
+    "organization": "Shutter Network",
+    "slug": "anthony-caravello"
+  },
+  {
+    "name": "Anthurine",
+    "organization": "EthStorage",
+    "slug": "anthurine"
+  },
+  {
+    "name": "Antonio Sanso",
+    "organization": "Ethereum Foundation",
+    "slug": "antonio-sanso"
+  },
+  {
+    "name": "Anya",
+    "organization": "GK8 by Galaxy",
+    "slug": "anya"
+  },
+  {
+    "name": "Aouatef",
+    "organization": "RadicalxChange Foundation",
+    "slug": "aouatef"
+  },
+  {
+    "name": "Arman Sarhaddar",
+    "organization": "ivault",
+    "slug": "arman-sarhaddar"
+  },
+  {
+    "name": "Artem Sinyakin",
+    "organization": "OAK Research",
+    "slug": "artem-sinyakin"
+  },
+  {
+    "name": "Arthur Breitman",
+    "organization": "Tezos",
+    "slug": "arthur-breitman"
+  },
+  {
+    "name": "Audrey Akwenye",
+    "organization": "Creda Network",
+    "slug": "audrey-akwenye"
+  },
+  {
+    "name": "Aurelie Dhellemmes",
+    "organization": "Digital Asset | Canton",
+    "slug": "aurelie-dhellemmes"
+  },
+  {
+    "name": "Aurélie Boss",
+    "organization": "Médecins Sans Frontières",
+    "slug": "aurelie-boss"
+  },
+  {
+    "name": "Barnabé Monnot",
+    "organization": "Ethereum Foundation",
+    "slug": "barnabe-monnot"
+  },
+  {
+    "name": "Belma Gutlic",
+    "organization": "Independent ",
+    "slug": "belma-gutlic"
+  },
+  {
+    "name": "Ben Fisch",
+    "organization": "Espresso Systems",
+    "slug": "ben-fisch"
+  },
+  {
+    "name": "Bhaji Illuminati",
+    "organization": "Centrifuge",
+    "slug": "bhaji-illuminati"
+  },
+  {
+    "name": "Bianca Buzea",
+    "organization": "Chronicle",
+    "slug": "bianca-buzea"
+  },
+  {
+    "name": "Binji ",
+    "organization": "Ethereum Foundation",
+    "slug": "binji"
+  },
+  {
+    "name": "BlockShane",
+    "organization": "Sigma Prime",
+    "slug": "blockshane"
+  },
+  {
+    "name": "Bob Summerwill",
+    "organization": "STRATO",
+    "slug": "bob-summerwill"
+  },
+  {
+    "name": "Brenda Loya",
+    "organization": "Tellor",
+    "slug": "brenda-loya"
+  },
+  {
+    "name": "CPerezz",
+    "organization": "Ethereum Foundation",
+    "slug": "cperezz"
+  },
+  {
+    "name": "Cactus Raazi",
+    "organization": "PENNY by B2C2",
+    "slug": "cactus-raazi"
+  },
+  {
+    "name": "Charles Guillemet",
+    "organization": "Ledger",
+    "slug": "charles-guillemet"
+  },
+  {
+    "name": "Chase Manning",
+    "organization": "Bounce Tech",
+    "slug": "chase-manning"
+  },
+  {
+    "name": "Chris McCabe",
+    "organization": "Session",
+    "slug": "chris-mccabe"
+  },
+  {
+    "name": "Christina Frankopan",
+    "organization": "Lazard",
+    "slug": "christina-frankopan"
+  },
+  {
+    "name": "Christine Moy",
+    "organization": "Apollo",
+    "slug": "christine-moy"
+  },
+  {
+    "name": "Christoph Schlegel",
+    "organization": "Flashbots",
+    "slug": "christoph-schlegel"
+  },
+  {
+    "name": "Chunda McCain",
+    "organization": "Paxos Labs ",
+    "slug": "chunda-mccain"
+  },
+  {
+    "name": "Claire Balva",
+    "organization": "Adan",
+    "slug": "claire-balva"
+  },
+  {
+    "name": "Clement Lesaege",
+    "organization": "Kleros; Seer",
+    "slug": "clement-lesaege"
+  },
+  {
+    "name": "Conor",
+    "organization": "Nethermind",
+    "slug": "conor"
+  },
+  {
+    "name": "Corinne Powers",
+    "organization": "Gadget Capital",
+    "slug": "corinne-powers"
+  },
+  {
+    "name": "Costanza",
+    "organization": "Safe Labs",
+    "slug": "costanza"
+  },
+  {
+    "name": "Cotabe",
+    "organization": "Giveth",
+    "slug": "cotabe"
+  },
+  {
+    "name": "Cyrille Brière",
+    "organization": "f(x) Protocol",
+    "slug": "cyrille-briere"
+  },
+  {
+    "name": "DMH",
+    "organization": "Fluid",
+    "slug": "dmh"
+  },
+  {
+    "name": "Dan Ligocky",
+    "organization": "Duct Tape / ETHPrague",
+    "slug": "dan-ligocky"
+  },
+  {
+    "name": "Dana Condrea",
+    "organization": "ZKWhistleblower",
+    "slug": "dana-condrea"
+  },
+  {
+    "name": "Daniel  Von Fange",
+    "organization": "Monad Foundation",
+    "slug": "daniel-von-fange"
+  },
+  {
+    "name": "Daosasha",
+    "organization": "1Inch",
+    "slug": "daosasha"
+  },
+  {
+    "name": "Darius Moukhtarzade",
+    "organization": "21shares",
+    "slug": "darius-moukhtarzade"
+  },
+  {
+    "name": "David  Leonardi",
+    "organization": "Nethermind",
+    "slug": "david-leonardi"
+  },
+  {
+    "name": "David Mühlbacher",
+    "organization": "Stereum Services FlexCo",
+    "slug": "david-muhlbacher"
+  },
+  {
+    "name": "David Pearce",
+    "organization": "ConsenSys",
+    "slug": "david-pearce"
+  },
+  {
+    "name": "Dayan Brunie",
+    "organization": "Consensys",
+    "slug": "dayan-brunie"
+  },
+  {
+    "name": "Declan Fox",
+    "organization": "Linea",
+    "slug": "declan-fox"
+  },
+  {
+    "name": "Denitza Valjavec",
+    "organization": "Propy",
+    "slug": "denitza-valjavec"
+  },
+  {
+    "name": "Derek Sorensen",
+    "organization": "Ethereum Foundation",
+    "slug": "derek-sorensen"
+  },
+  {
+    "name": "Devansh Mehta",
+    "organization": "Ethereum Foundation",
+    "slug": "devansh-mehta"
+  },
+  {
+    "name": "Devon Martens",
+    "organization": "blocksight.dev & AMGI Studios",
+    "slug": "devon-martens"
+  },
+  {
+    "name": "Dima Gusakov",
+    "organization": "Lido",
+    "slug": "dima-gusakov"
+  },
+  {
+    "name": "Doo Wan Nam",
+    "organization": "Compound Foundation",
+    "slug": "doo-wan-nam"
+  },
+  {
+    "name": "Dyma Budorin",
+    "organization": "Hacken",
+    "slug": "dyma-budorin"
+  },
+  {
+    "name": "E.G.",
+    "organization": "Infura/DIN",
+    "slug": "eg"
+  },
+  {
+    "name": "Ece Orsel",
+    "organization": "Hacken",
+    "slug": "ece-orsel"
+  },
+  {
+    "name": "Ed Felten",
+    "organization": "Offchain Labs",
+    "slug": "ed-felten"
+  },
+  {
+    "name": "Ekleen Kaur",
+    "organization": "Amazon Web Services",
+    "slug": "ekleen-kaur"
+  },
+  {
+    "name": "Elo",
+    "organization": "Cr3dentials",
+    "slug": "elo"
+  },
+  {
+    "name": "Emilie-Alice Fabrizi",
+    "organization": "The Good token Society",
+    "slug": "emilie-alice-fabrizi"
+  },
+  {
+    "name": "Emilio Frangella",
+    "organization": "Aave Labs",
+    "slug": "emilio-frangella"
+  },
+  {
+    "name": "Eric Zhong",
+    "organization": "Uniswap Labs",
+    "slug": "eric-zhong"
+  },
+  {
+    "name": "Erick  Zhang",
+    "organization": "Nomad Capital; Buidlpad",
+    "slug": "erick-zhang"
+  },
+  {
+    "name": "Ernesto García",
+    "organization": "OpenZeppelin",
+    "slug": "ernesto-garcia"
+  },
+  {
+    "name": "Ernesto Olmedo Pereira",
+    "organization": "Qivalis",
+    "slug": "ernesto-olmedo-pereira"
+  },
+  {
+    "name": "Eugene Joo",
+    "organization": "Wasder",
+    "slug": "eugene-joo"
+  },
+  {
+    "name": "Everton Fraga",
+    "organization": "AWS",
+    "slug": "everton-fraga"
+  },
+  {
+    "name": "Faustine Fleuret",
+    "organization": "Morpho",
+    "slug": "faustine-fleuret"
+  },
+  {
+    "name": "Federico Ast",
+    "organization": "Kleros",
+    "slug": "federico-ast"
+  },
+  {
+    "name": "Filip  Rezabek",
+    "organization": "SpaceComputer",
+    "slug": "filip-rezabek"
+  },
+  {
+    "name": "Fisher Yu",
+    "organization": "Babylon",
+    "slug": "fisher-yu"
+  },
+  {
+    "name": "Flavien Defraire",
+    "organization": "Blockchain Game Alliance",
+    "slug": "flavien-defraire"
+  },
+  {
+    "name": "Florian  Glatz",
+    "organization": "EEI",
+    "slug": "florian-glatz"
+  },
+  {
+    "name": "Fredrik Haga",
+    "organization": "Dune",
+    "slug": "fredrik-haga"
+  },
+  {
+    "name": "Friederike Ernst",
+    "organization": "Gnosis",
+    "slug": "friederike-ernst"
+  },
+  {
+    "name": "Gajinder Singh",
+    "organization": "Zeam",
+    "slug": "gajinder-singh"
+  },
+  {
+    "name": "Gauthier  Vila",
+    "organization": "Zyfai",
+    "slug": "gauthier-vila"
+  },
+  {
+    "name": "Gio",
+    "organization": "Parity Technologies",
+    "slug": "gio"
+  },
+  {
+    "name": "Giveth Jake",
+    "organization": "Giveth",
+    "slug": "giveth-jake"
+  },
+  {
+    "name": "Gori",
+    "organization": "Wonderland",
+    "slug": "gori"
+  },
+  {
+    "name": "Grace Rachmany",
+    "organization": "DAO Leadership  ",
+    "slug": "grace-rachmany"
+  },
+  {
+    "name": "Greg Swirski",
+    "organization": "Reilabs",
+    "slug": "greg-swirski"
+  },
+  {
+    "name": "Griff",
+    "organization": "TheDAO & Giveth",
+    "slug": "griff"
+  },
+  {
+    "name": "Gwen",
+    "organization": "independant",
+    "slug": "gwen"
+  },
+  {
+    "name": "Gísli Kristjánsson",
+    "organization": "Monerium",
+    "slug": "gisli-kristjansson"
+  },
+  {
+    "name": "Han",
+    "organization": "Ethereum Foundation",
+    "slug": "han"
+  },
+  {
+    "name": "Harry Horsfall",
+    "organization": "Flight3 ",
+    "slug": "harry-horsfall"
+  },
+  {
+    "name": "Hayat Outahar",
+    "organization": "European Institute of Technoprospective",
+    "slug": "hayat-outahar"
+  },
+  {
+    "name": "He Who Remains",
+    "organization": "Swarms",
+    "slug": "he-who-remains"
+  },
+  {
+    "name": "Henri Lieutaud",
+    "organization": "Starknet foundation",
+    "slug": "henri-lieutaud"
+  },
+  {
+    "name": "Hester Bruikman",
+    "organization": "Ethereum Foundation",
+    "slug": "hester-bruikman"
+  },
+  {
+    "name": "Himanshu  Tyagi",
+    "organization": "Sentient",
+    "slug": "himanshu-tyagi"
+  },
+  {
+    "name": "Hong Kim",
+    "organization": "Bitwise Asset Management",
+    "slug": "hong-kim"
+  },
+  {
+    "name": "IVa",
+    "organization": "Lumis",
+    "slug": "iva"
+  },
+  {
+    "name": "Ignacio Presas",
+    "organization": "Opsek",
+    "slug": "ignacio-presas"
+  },
+  {
+    "name": "Izzy",
+    "organization": "Lido",
+    "slug": "izzy"
+  },
+  {
+    "name": "Jack O'Holleran",
+    "organization": "SKALE Labs ",
+    "slug": "jack-oholleran"
+  },
+  {
+    "name": "Jack Spallone ",
+    "organization": "Memory Protocol",
+    "slug": "jack-spallone"
+  },
+  {
+    "name": "Jacques-André Fines Schlumberger",
+    "organization": "Blockchain for Good",
+    "slug": "jacques-andre-fines-schlumberger"
+  },
+  {
+    "name": "Jake O",
+    "organization": "BitGo",
+    "slug": "jake-o"
+  },
+  {
+    "name": "James Wo",
+    "organization": "Digital Finance Group (DFG)",
+    "slug": "james-wo"
+  },
+  {
+    "name": "Jan Gorzny",
+    "organization": "Zircuit",
+    "slug": "jan-gorzny"
+  },
+  {
+    "name": "Jan Setina",
+    "organization": "Trezor",
+    "slug": "jan-setina"
+  },
+  {
+    "name": "Jared Arms",
+    "organization": "エーアイ.コム",
+    "slug": "jared-arms"
+  },
+  {
+    "name": "Jean-Marc Stenger",
+    "organization": "Societe Generale-FORGE (SG-FORGE)",
+    "slug": "jean-marc-stenger"
+  },
+  {
+    "name": "Jerome  de Tychey",
+    "organization": "Ethereum France",
+    "slug": "jerome-de-tychey"
+  },
+  {
+    "name": "Jihoon Song",
+    "organization": "Ethereum Foundation",
+    "slug": "jihoon-song"
+  },
+  {
+    "name": "Jistro",
+    "organization": "EVVM.org",
+    "slug": "jistro"
+  },
+  {
+    "name": "Joan  Alavedra",
+    "organization": "Openfort",
+    "slug": "joan-alavedra"
+  },
+  {
+    "name": "Johann Eid",
+    "organization": "Chainlink Labs",
+    "slug": "johann-eid"
+  },
+  {
+    "name": "Johannes Kern",
+    "organization": "Frankencoin Association",
+    "slug": "johannes-kern"
+  },
+  {
+    "name": "Johnnatan Messias",
+    "organization": "Max Planck Institute for Software Systems (MPI-SWS)",
+    "slug": "johnnatan-messias"
+  },
+  {
+    "name": "Jon Stephens",
+    "organization": "Veridise",
+    "slug": "jon-stephens"
+  },
+  {
+    "name": "Jonathan Han",
+    "organization": "Euler Labs",
+    "slug": "jonathan-han"
+  },
+  {
+    "name": "Jonathan Meyer",
+    "organization": "Ethstaker",
+    "slug": "jonathan-meyer"
+  },
+  {
+    "name": "Jonathan Passerat-Palmbach",
+    "organization": "Imperial College London / Flashbots",
+    "slug": "jonathan-passerat-palmbach"
+  },
+  {
+    "name": "Jonjon Clark",
+    "organization": "Envio",
+    "slug": "jonjon-clark"
+  },
+  {
+    "name": "Jordan Jefferson",
+    "organization": "DogeOS",
+    "slug": "jordan-jefferson"
+  },
+  {
+    "name": "Jordi Baylina",
+    "organization": "ZisK",
+    "slug": "jordi-baylina"
+  },
+  {
+    "name": "Jork Leonhardt",
+    "organization": "colibri.stateless",
+    "slug": "jork-leonhardt"
+  },
+  {
+    "name": "Josef Jelacic",
+    "organization": "Own",
+    "slug": "josef-jelacic"
+  },
+  {
+    "name": "Joshua Foster",
+    "organization": "Quicknode",
+    "slug": "joshua-foster"
+  },
+  {
+    "name": "Juan David Mendieta",
+    "organization": "Keyrock",
+    "slug": "juan-david-mendieta"
+  },
+  {
+    "name": "Julian Grigo",
+    "organization": "Safe",
+    "slug": "julian-grigo"
+  },
+  {
+    "name": "Julie Bader",
+    "organization": "De Gaulle Fleurance",
+    "slug": "julie-bader"
+  },
+  {
+    "name": "Julio M Cruz",
+    "organization": "zkNexus",
+    "slug": "julio-m-cruz"
+  },
+  {
+    "name": "Just a guy",
+    "organization": "Ethereum Foundation",
+    "slug": "just-a-guy"
+  },
+  {
+    "name": "Justin Drake",
+    "organization": "Ethereum Foundation",
+    "slug": "justin-drake"
+  },
+  {
+    "name": "Justin Kugel",
+    "organization": "World Liberty Financial",
+    "slug": "justin-kugel"
+  },
+  {
+    "name": "Justin Sun",
+    "organization": "TRON",
+    "slug": "justin-sun"
+  },
+  {
+    "name": "Justina Švitraitė",
+    "organization": "Deep Work",
+    "slug": "justina-svitraite"
+  },
+  {
+    "name": "Kaloyan Kosev",
+    "organization": "ambire.com / goodmorning.dev",
+    "slug": "kaloyan-kosev"
+  },
+  {
+    "name": "Karl Floersch",
+    "organization": "Optimism",
+    "slug": "karl-floersch"
+  },
+  {
+    "name": "Kasra Khosravi",
+    "organization": "Goldsky (and also erpc open-source)",
+    "slug": "kasra-khosravi"
+  },
+  {
+    "name": "Kayden Moroz Liebl",
+    "organization": "https://github.com/ReamLabs/ream",
+    "slug": "kayden-moroz-liebl"
+  },
+  {
+    "name": "Kelly Roegies",
+    "organization": "European Aluminium",
+    "slug": "kelly-roegies"
+  },
+  {
+    "name": "Ken Smith",
+    "organization": "NextBlock Solutions",
+    "slug": "ken-smith"
+  },
+  {
+    "name": "Kevin Jones",
+    "organization": "BuidlGuidl / Edge & Node",
+    "slug": "kevin-jones"
+  },
+  {
+    "name": "Kevin Weaver",
+    "organization": "Optimism",
+    "slug": "kevin-weaver"
+  },
+  {
+    "name": "Kirk Baird",
+    "organization": "Sigma Prime",
+    "slug": "kirk-baird"
+  },
+  {
+    "name": "Kite Liu",
+    "organization": "Uniswap Labs",
+    "slug": "kite-liu"
+  },
+  {
+    "name": "Kolby Moroz Liebl",
+    "organization": "Offchain Labs",
+    "slug": "kolby-moroz-liebl"
+  },
+  {
+    "name": "Kris Paruch",
+    "organization": "Token Engineering Labs",
+    "slug": "kris-paruch"
+  },
+  {
+    "name": "Krzysztof Gogol",
+    "organization": "DeFiAM.xyz",
+    "slug": "krzysztof-gogol"
+  },
+  {
+    "name": "Krzysztof Paruch",
+    "organization": "Token Engineering Labs GmbH",
+    "slug": "krzysztof-paruch"
+  },
+  {
+    "name": "Kubi Mensah",
+    "organization": "Gattaca",
+    "slug": "kubi-mensah"
+  },
+  {
+    "name": "Ladislaus von Daniels",
+    "organization": "Ethereum Foundation",
+    "slug": "ladislaus-von-daniels"
+  },
+  {
+    "name": "Lamboshi",
+    "organization": "EthStaker",
+    "slug": "lamboshi"
+  },
+  {
+    "name": "Laszlo Szabo",
+    "organization": "Kiln",
+    "slug": "laszlo-szabo"
+  },
+  {
+    "name": "Lauren Luz",
+    "organization": "Giveth",
+    "slug": "lauren-luz"
+  },
+  {
+    "name": "Laurence Day",
+    "organization": "Wildcat Labs",
+    "slug": "laurence-day"
+  },
+  {
+    "name": "Leo",
+    "organization": "MigaLabs",
+    "slug": "leo"
+  },
+  {
+    "name": "Leo Fan",
+    "organization": "Cysic",
+    "slug": "leo-fan"
+  },
+  {
+    "name": "Lera",
+    "organization": "Wonderland ",
+    "slug": "lera"
+  },
+  {
+    "name": "Lioba Heimbach",
+    "organization": "Category Labs",
+    "slug": "lioba-heimbach"
+  },
+  {
+    "name": "Liz Steininger",
+    "organization": "Least Authority",
+    "slug": "liz-steininger"
+  },
+  {
+    "name": "Lola Rigaut-Luczak",
+    "organization": "Placeholder Network",
+    "slug": "lola-rigaut-luczak"
+  },
+  {
+    "name": "Louie O'Connor",
+    "organization": "Ethereum Foundation",
+    "slug": "louie-oconnor"
+  },
+  {
+    "name": "Louis Marquenet",
+    "organization": "Opsek",
+    "slug": "louis-marquenet"
+  },
+  {
+    "name": "Luca Jouglen",
+    "organization": "Blockchain For Good",
+    "slug": "luca-jouglen"
+  },
+  {
+    "name": "Luca Winter",
+    "organization": "Serenita",
+    "slug": "luca-winter"
+  },
+  {
+    "name": "Luis Correia",
+    "organization": "Flashbots",
+    "slug": "luis-correia"
+  },
+  {
+    "name": "MB Richardson",
+    "organization": "Bancor Protocol",
+    "slug": "mb-richardson"
+  },
+  {
+    "name": "Marcin Kazmierczak",
+    "organization": "RedStone",
+    "slug": "marcin-kazmierczak"
+  },
+  {
+    "name": "Mariia Yatskovska",
+    "organization": "CoW DAO",
+    "slug": "mariia-yatskovska"
+  },
+  {
+    "name": "Marina Markezic",
+    "organization": "European Crypto Initiative",
+    "slug": "marina-markezic"
+  },
+  {
+    "name": "Mario Stephan",
+    "organization": "CIVIC",
+    "slug": "mario-stephan"
+  },
+  {
+    "name": "Marius van der Wijden",
+    "organization": "Ethereum Foun",
+    "slug": "marius-van-der-wijden"
+  },
+  {
+    "name": "Mark Ballandies",
+    "organization": "UZH Blockchain Center",
+    "slug": "mark-ballandies"
+  },
+  {
+    "name": "Martin Bruncko",
+    "organization": "Schuman Financial",
+    "slug": "martin-bruncko"
+  },
+  {
+    "name": "Martin Hansen",
+    "organization": "Ethereum Foundation",
+    "slug": "martin-hansen"
+  },
+  {
+    "name": "Martin Leclercq",
+    "organization": "iExec",
+    "slug": "martin-leclercq"
+  },
+  {
+    "name": "Matt Pearring",
+    "organization": "Offchain Labs",
+    "slug": "matt-pearring"
+  },
+  {
+    "name": "Maude",
+    "organization": "Blockchain Game Alliance",
+    "slug": "maude"
+  },
+  {
+    "name": "Max Lomu",
+    "organization": "Arbitrum",
+    "slug": "max-lomu"
+  },
+  {
+    "name": "Meinhard Benn",
+    "organization": "Freedom Browser",
+    "slug": "meinhard-benn"
+  },
+  {
+    "name": "Mende",
+    "organization": "Bonuz Inc.",
+    "slug": "mende"
+  },
+  {
+    "name": "Merlin Egalite",
+    "organization": "Morpho",
+    "slug": "merlin-egalite"
+  },
+  {
+    "name": "Michael  Heinrich",
+    "organization": "Zero Gravity Labs (0g.ai)",
+    "slug": "michael-heinrich"
+  },
+  {
+    "name": "Michael Noble",
+    "organization": "Parity Technologies",
+    "slug": "michael-noble"
+  },
+  {
+    "name": "Mike McCabe",
+    "organization": "0xbow",
+    "slug": "mike-mccabe"
+  },
+  {
+    "name": "Mohsen Ahmadvand",
+    "organization": "Zircuit",
+    "slug": "mohsen-ahmadvand"
+  },
+  {
+    "name": "Mona El Isa",
+    "organization": "Avantgarde Finance",
+    "slug": "mona-el-isa"
+  },
+  {
+    "name": "Mooly Sagiv",
+    "organization": "Certora",
+    "slug": "mooly-sagiv"
+  },
+  {
+    "name": "Murat Ögat",
+    "organization": "Aktionariat",
+    "slug": "murat-ogat"
+  },
+  {
+    "name": "Mylène",
+    "organization": "PE&D",
+    "slug": "mylene"
+  },
+  {
+    "name": "Nadia Ivanova-banda",
+    "organization": "Ambire",
+    "slug": "nadia-ivanova-banda"
+  },
+  {
+    "name": "Nahim Terrazas",
+    "organization": "OpenZeppelin",
+    "slug": "nahim-terrazas"
+  },
+  {
+    "name": "Nassim Alexandre",
+    "organization": "BELEM CAPITAL AND ROCKAWAYX",
+    "slug": "nassim-alexandre"
+  },
+  {
+    "name": "Nicolas  Consigny",
+    "organization": "Ethereum Foundation",
+    "slug": "nicolas-consigny"
+  },
+  {
+    "name": "Nicolas Assouad",
+    "organization": "Spiko",
+    "slug": "nicolas-assouad"
+  },
+  {
+    "name": "Nischal Sharma",
+    "organization": "Enscribe",
+    "slug": "nischal-sharma"
+  },
+  {
+    "name": "Noid",
+    "organization": "Kraken",
+    "slug": "noid"
+  },
+  {
+    "name": "Norbert Vadas",
+    "organization": "Zenith",
+    "slug": "norbert-vadas"
+  },
+  {
+    "name": "Oisín Kyne",
+    "organization": "Obol",
+    "slug": "oisin-kyne"
+  },
+  {
+    "name": "Oleg Lodygensky",
+    "organization": "CAFE",
+    "slug": "oleg-lodygensky"
+  },
+  {
+    "name": "Olivier Desenfans",
+    "organization": "Aleph Cloud",
+    "slug": "olivier-desenfans"
+  },
+  {
+    "name": "Ophelia Snyder",
+    "organization": "21shares",
+    "slug": "ophelia-snyder"
+  },
+  {
+    "name": "Ottdogg",
+    "organization": "Loeb & Loeb",
+    "slug": "ottdogg"
+  },
+  {
+    "name": "Otto Jacobsson",
+    "organization": "YAP Global",
+    "slug": "otto-jacobsson"
+  },
+  {
+    "name": "OxFlint_",
+    "organization": "Certora",
+    "slug": "oxflint"
+  },
+  {
+    "name": "PBJ",
+    "organization": "Perpl",
+    "slug": "pbj"
+  },
+  {
+    "name": "Pablo Sabbatella",
+    "organization": "Opsek / SEAL",
+    "slug": "pablo-sabbatella"
+  },
+  {
+    "name": "Pablo Veyrat",
+    "organization": "Merkl",
+    "slug": "pablo-veyrat"
+  },
+  {
+    "name": "Pamina Georgiev",
+    "organization": "Certora",
+    "slug": "pamina-georgiev"
+  },
+  {
+    "name": "Patricio Worthalter",
+    "organization": "POAP",
+    "slug": "patricio-worthalter"
+  },
+  {
+    "name": "Patrick Hansen",
+    "organization": "Circle",
+    "slug": "patrick-hansen"
+  },
+  {
+    "name": "Paul Brody",
+    "organization": "Nightfall Networks",
+    "slug": "paul-brody"
+  },
+  {
+    "name": "Paul Schoenfelder",
+    "organization": "Miden",
+    "slug": "paul-schoenfelder"
+  },
+  {
+    "name": "Pauline Shangett",
+    "organization": "ChangeNOW",
+    "slug": "pauline-shangett"
+  },
+  {
+    "name": "Pedro Gomes",
+    "organization": "WalletConnect",
+    "slug": "pedro-gomes"
+  },
+  {
+    "name": "Petar Atanasovski",
+    "organization": "Curvy",
+    "slug": "petar-atanasovski"
+  },
+  {
+    "name": "Peter Us",
+    "organization": "Oasis Network - Founding Engineer",
+    "slug": "peter-us"
+  },
+  {
+    "name": "Pierre Noro",
+    "organization": "Blockchain for Good",
+    "slug": "pierre-noro"
+  },
+  {
+    "name": "Pol Lanski",
+    "organization": "Dappnode",
+    "slug": "pol-lanski"
+  },
+  {
+    "name": "Prabal Banerjee",
+    "organization": "Avail",
+    "slug": "prabal-banerjee"
+  },
+  {
+    "name": "Pranay Valson",
+    "organization": "Covalenthq.com",
+    "slug": "pranay-valson"
+  },
+  {
+    "name": "Praneeth Srikanti",
+    "organization": "Ethereal Ventures",
+    "slug": "praneeth-srikanti"
+  },
+  {
+    "name": "Qi Zhou",
+    "organization": "QuarkChain",
+    "slug": "qi-zhou"
+  },
+  {
+    "name": "Raza Zaidi",
+    "organization": "Scroll",
+    "slug": "raza-zaidi"
+  },
+  {
+    "name": "RealDennisO",
+    "organization": "Ascend",
+    "slug": "realdenniso"
+  },
+  {
+    "name": "Rebecca Liao",
+    "organization": "Saga",
+    "slug": "rebecca-liao"
+  },
+  {
+    "name": "Redwan Meslem",
+    "organization": "Enterprise Ethereum Alliance",
+    "slug": "redwan-meslem"
+  },
+  {
+    "name": "Reka Medvecz",
+    "organization": "Boundless",
+    "slug": "reka-medvecz"
+  },
+  {
+    "name": "Rene Reinsberg",
+    "organization": "Celo Foundation",
+    "slug": "rene-reinsberg"
+  },
+  {
+    "name": "Reno",
+    "organization": "ZKNOX",
+    "slug": "reno"
+  },
+  {
+    "name": "Richard Meissner",
+    "organization": "Safe Research",
+    "slug": "richard-meissner"
+  },
+  {
+    "name": "Robert Koschig",
+    "organization": "1kx Crypto Investments",
+    "slug": "robert-koschig"
+  },
+  {
+    "name": "Romain Menetrier",
+    "organization": "Dowgo",
+    "slug": "romain-menetrier"
+  },
+  {
+    "name": "Ryan Sauge",
+    "organization": "Taurus",
+    "slug": "ryan-sauge"
+  },
+  {
+    "name": "Rémi",
+    "organization": "Lagoon.finance",
+    "slug": "remi"
+  },
+  {
+    "name": "SEVEN",
+    "organization": "Nazare Ventures",
+    "slug": "seven"
+  },
+  {
+    "name": "Sajida",
+    "organization": "Optimum",
+    "slug": "sajida"
+  },
+  {
+    "name": "Sam MacPherson",
+    "organization": "Spark",
+    "slug": "sam-macpherson"
+  },
+  {
+    "name": "Sam Reeves",
+    "organization": "Secure Data Research, LLC",
+    "slug": "sam-reeves"
+  },
+  {
+    "name": "Sarah Hicks",
+    "organization": "Olympix",
+    "slug": "sarah-hicks"
+  },
+  {
+    "name": "Satya",
+    "organization": "Consensys",
+    "slug": "satya"
+  },
+  {
+    "name": "Sebastian Widmann",
+    "organization": "Komainu",
+    "slug": "sebastian-widmann"
+  },
+  {
+    "name": "Sebastien Borget",
+    "organization": "The Sandbox / SANDchain",
+    "slug": "sebastien-borget"
+  },
+  {
+    "name": "Sejal",
+    "organization": "Protocol labs Filecoin Impact Fund (PLFIF) ",
+    "slug": "sejal"
+  },
+  {
+    "name": "Seth For Privacy",
+    "organization": "Cake Wallet",
+    "slug": "seth-for-privacy"
+  },
+  {
+    "name": "Simon  Polrot",
+    "organization": "EEI",
+    "slug": "simon-polrot"
+  },
+  {
+    "name": "Simon Masson",
+    "organization": "ZKNox",
+    "slug": "simon-masson"
+  },
+  {
+    "name": "Simona Pop",
+    "organization": "Angel Investor & Advisor at Large",
+    "slug": "simona-pop"
+  },
+  {
+    "name": "Sitara Jabeen",
+    "organization": "Médecins Sans Frontières",
+    "slug": "sitara-jabeen"
+  },
+  {
+    "name": "Skeletor Spaceman",
+    "organization": "Wonderland",
+    "slug": "skeletor-spaceman"
+  },
+  {
+    "name": "Slobodan Lukovic",
+    "organization": "Ponos Technology",
+    "slug": "slobodan-lukovic"
+  },
+  {
+    "name": "Stani  Kulechov",
+    "organization": "Aave Labs",
+    "slug": "stani-kulechov"
+  },
+  {
+    "name": "Stanislas de Maistre",
+    "organization": "Belem Capital",
+    "slug": "stanislas-de-maistre"
+  },
+  {
+    "name": "Stefan  Kobrc",
+    "organization": "Rocklogic Gmbh",
+    "slug": "stefan-kobrc"
+  },
+  {
+    "name": "Stefan Loesch",
+    "organization": "Topaze Blue",
+    "slug": "stefan-loesch"
+  },
+  {
+    "name": "Stefano De Angelis",
+    "organization": "Nethermind",
+    "slug": "stefano-de-angelis"
+  },
+  {
+    "name": "Steffen Kux",
+    "organization": "corpus.core GmbH / colibri.stateless",
+    "slug": "steffen-kux"
+  },
+  {
+    "name": "Stepan Nilov",
+    "organization": "Tangem",
+    "slug": "stepan-nilov"
+  },
+  {
+    "name": "Stephan Duan",
+    "organization": "ZKM",
+    "slug": "stephan-duan"
+  },
+  {
+    "name": "Sterling Barnett",
+    "organization": "Circle",
+    "slug": "sterling-barnett"
+  },
+  {
+    "name": "Strausses",
+    "organization": "Immunefi",
+    "slug": "strausses"
+  },
+  {
+    "name": "Stéphane Tetsing",
+    "organization": "Remix Labs",
+    "slug": "stephane-tetsing"
+  },
+  {
+    "name": "Suhyeon Lee",
+    "organization": "Tokamak Network / Hashed Open Research",
+    "slug": "suhyeon-lee"
+  },
+  {
+    "name": "Suji",
+    "organization": "Mask Network",
+    "slug": "suji"
+  },
+  {
+    "name": "Suki Yang",
+    "organization": "Icon Trading",
+    "slug": "suki-yang"
+  },
+  {
+    "name": "Sylvain Prigent",
+    "organization": "SG Forge",
+    "slug": "sylvain-prigent"
+  },
+  {
+    "name": "Terence Tsao",
+    "organization": "offchain labs",
+    "slug": "terence-tsao"
+  },
+  {
+    "name": "Tiago Santana",
+    "organization": "Floors Finance",
+    "slug": "tiago-santana"
+  },
+  {
+    "name": "Tom David",
+    "organization": "iExec",
+    "slug": "tom-david"
+  },
+  {
+    "name": "Tom Trowbridge",
+    "organization": "Fluence",
+    "slug": "tom-trowbridge"
+  },
+  {
+    "name": "Tomasz Stanczak",
+    "organization": "Nethermind",
+    "slug": "tomasz-stanczak"
+  },
+  {
+    "name": "Tomer Ganor",
+    "organization": "Certota",
+    "slug": "tomer-ganor"
+  },
+  {
+    "name": "Tomer Weller",
+    "organization": "Stellar Development Foundation",
+    "slug": "tomer-weller"
+  },
+  {
+    "name": "Toni Wahrstaetter",
+    "organization": "Ethereum Foundation",
+    "slug": "toni-wahrstaetter"
+  },
+  {
+    "name": "Toufic Batrice",
+    "organization": "SpaceComputer",
+    "slug": "toufic-batrice"
+  },
+  {
+    "name": "Tümay Tuzcu",
+    "organization": "Cambrian",
+    "slug": "tumay-tuzcu"
+  },
+  {
+    "name": "Vabuk",
+    "organization": "Max Planck Institute for Software Systems (MPI-SWS)",
+    "slug": "vabuk"
+  },
+  {
+    "name": "Val  Gui ",
+    "organization": "xStocks ",
+    "slug": "val-gui"
+  },
+  {
+    "name": "Vasily Sidorov",
+    "organization": "GAIB",
+    "slug": "vasily-sidorov"
+  },
+  {
+    "name": "Victor Chiea",
+    "organization": "Latitude.sh",
+    "slug": "victor-chiea"
+  },
+  {
+    "name": "Victoria CALMON",
+    "organization": "Kaiko",
+    "slug": "victoria-calmon"
+  },
+  {
+    "name": "Vincent",
+    "organization": "Redbelly Network / The University of Sydney",
+    "slug": "vincent"
+  },
+  {
+    "name": "Vladimir Novakowski",
+    "organization": "Lighter",
+    "slug": "vladimir-novakowski"
+  },
+  {
+    "name": "Wesley Crook",
+    "organization": "FP Block",
+    "slug": "wesley-crook"
+  },
+  {
+    "name": "Will Papper",
+    "organization": "Syndicate",
+    "slug": "will-papper"
+  },
+  {
+    "name": "William",
+    "organization": "Ethereum Market Research Center",
+    "slug": "william"
+  },
+  {
+    "name": "William George",
+    "organization": "Kleros Cooperative",
+    "slug": "william-george"
+  },
+  {
+    "name": "Wish Wu",
+    "organization": "Pharos Network",
+    "slug": "wish-wu"
+  },
+  {
+    "name": "Wolfgang Vitale",
+    "organization": "Bitcoin Suisse AG",
+    "slug": "wolfgang-vitale"
+  },
+  {
+    "name": "Xavier Lavayssière",
+    "organization": "XVLV",
+    "slug": "xavier-lavayssiere"
+  },
+  {
+    "name": "Xiangru Ma",
+    "organization": "Crystality",
+    "slug": "xiangru-ma"
+  },
+  {
+    "name": "Yanis Meziane",
+    "organization": "Ethereum Foundation",
+    "slug": "yanis-meziane"
+  },
+  {
+    "name": "Yaniv Tal",
+    "organization": "Geo",
+    "slug": "yaniv-tal"
+  },
+  {
+    "name": "Yegor Golovnia",
+    "organization": "TheDAO Security Fund, Giveth",
+    "slug": "yegor-golovnia"
+  },
+  {
+    "name": "Yeho Hwang",
+    "organization": "Ondo Finance",
+    "slug": "yeho-hwang"
+  },
+  {
+    "name": "Yi Sun",
+    "organization": "Axiom",
+    "slug": "yi-sun"
+  },
+  {
+    "name": "Yoichi Hirai",
+    "organization": "zkSecurity",
+    "slug": "yoichi-hirai"
+  },
+  {
+    "name": "Yorick Downe",
+    "organization": "Ethstaker",
+    "slug": "yorick-downe"
+  },
+  {
+    "name": "Yu  Hu",
+    "organization": "Kaito AI",
+    "slug": "yu-hu"
+  },
+  {
+    "name": "Zach Pandl",
+    "organization": "Grayscale",
+    "slug": "zach-pandl"
+  },
+  {
+    "name": "Zeptimus",
+    "organization": "Giveth",
+    "slug": "zeptimus"
+  },
+  {
+    "name": "Zuz",
+    "organization": "Leadership Coaching | Zuza Zuber",
+    "slug": "zuz"
+  },
+  {
+    "name": "agaperste",
+    "organization": "Bridge",
+    "slug": "agaperste"
+  },
+  {
+    "name": "albicodes",
+    "organization": "Flashbots X",
+    "slug": "albicodes"
+  },
+  {
+    "name": "ariutokintumi",
+    "organization": "EVVM.org",
+    "slug": "ariutokintumi"
+  },
+  {
+    "name": "btchip",
+    "organization": "zknox",
+    "slug": "btchip"
+  },
+  {
+    "name": "cheeky-gorilla",
+    "organization": "Protocol Guild",
+    "slug": "cheeky-gorilla"
+  },
+  {
+    "name": "dee_centralized",
+    "organization": "WalletConnect",
+    "slug": "deecentralized"
+  },
+  {
+    "name": "definikola",
+    "organization": "Block Analitica",
+    "slug": "definikola"
+  },
+  {
+    "name": "hildobby",
+    "organization": "Dragonfly",
+    "slug": "hildobby"
+  },
+  {
+    "name": "jacobc.eth",
+    "organization": "CoinFello",
+    "slug": "jacobceth"
+  },
+  {
+    "name": "nisedo",
+    "organization": "Trail of Bits",
+    "slug": "nisedo"
+  },
+  {
+    "name": "oskarth",
+    "organization": "IPTF at Ethereum Foundation",
+    "slug": "oskarth"
+  },
+  {
+    "name": "shealtielanz",
+    "organization": "Sigma Prime",
+    "slug": "shealtielanz"
+  },
+  {
+    "name": "wei3erHase",
+    "organization": "Wonderland",
+    "slug": "wei3erhase"
+  },
+  {
+    "name": "zk_evm",
+    "organization": "Linea",
+    "slug": "zkevm"
+  }
+]

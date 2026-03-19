@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { C, R, glassSurface, btnPill, FONT, getTrackStyle, TYPE_COLORS } from "../config/theme";
 import { sessions } from "../data";
@@ -169,21 +169,27 @@ export default function SessionDetailPage() {
     getReplayUrl(session.id).then((url) => setReplayUrl(url));
   }, [session.id]);
 
-  // ── Want replay ────────────────────────────────────
-  const [wantReplay, setWantReplay] = useState(() => {
+  // ── Notify replay ──────────────────────────────────
+  const [notifyReplay, setNotifyReplay] = useState(() => {
     const replays = JSON.parse(localStorage.getItem("ethcc-want-replay") ?? "[]") as string[];
     return replays.includes(session.id);
   });
+  const [showNotifyBubble, setShowNotifyBubble] = useState(false);
 
-  const toggleWantReplay = () => {
+  const toggleNotifyReplay = useCallback(() => {
     const replays = JSON.parse(localStorage.getItem("ethcc-want-replay") ?? "[]") as string[];
-    if (wantReplay) {
+    if (notifyReplay) {
       localStorage.setItem("ethcc-want-replay", JSON.stringify(replays.filter((id: string) => id !== session.id)));
+      setNotifyReplay(false);
+      setShowNotifyBubble(false);
     } else {
       localStorage.setItem("ethcc-want-replay", JSON.stringify([...replays, session.id]));
+      setNotifyReplay(true);
+      setShowNotifyBubble(true);
+      setTimeout(() => setShowNotifyBubble(false), 3000);
     }
-    setWantReplay(!wantReplay);
-  };
+  }, [notifyReplay, session.id]);
+
   const interestedCount = 12 + hashNum(session.id, 80);
   const trendPct = 3 + hashNum(session.id + "t", 25);
   const trendUp = hashNum(session.id + "dir", 2) === 1;
@@ -198,15 +204,27 @@ export default function SessionDetailPage() {
           <Ic.Back s={22} c={C.textPrimary} />
         </button>
         <span style={{ fontSize: 16, fontWeight: 600 }}>Details</span>
-        <button
-          style={{
-            ...navBtn,
-            background: inCart ? C.errorLight : "rgba(255,255,255,0.06)",
-          }}
-          onClick={() => toggleCart(session.id)}
-        >
-          <Ic.Heart s={20} c={inCart ? C.error : C.textSecondary} f={inCart} />
-        </button>
+        <div style={{ position: "relative" }}>
+          <button
+            style={{
+              ...navBtn,
+              background: notifyReplay ? C.flatLight : "rgba(255,255,255,0.06)",
+            }}
+            onClick={toggleNotifyReplay}
+          >
+            <Ic.Bell s={20} c={notifyReplay ? C.flat : C.textSecondary} />
+          </button>
+          {showNotifyBubble && (
+            <div style={{
+              position: "absolute", top: 48, right: 0, width: 220,
+              padding: 12, borderRadius: R.lg, background: C.surfaceGray,
+              border: `1px solid ${C.border}`, fontSize: 12, color: C.textSecondary,
+              fontFamily: FONT, zIndex: 10, boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+            }}>
+              You'll receive a notification when the replay is available.
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Scrollable content */}
@@ -414,9 +432,9 @@ export default function SessionDetailPage() {
         {/* When on-chain ratings are available, display rating distribution here */}
       </div>
 
-      {/* Replay / Want to watch */}
-      <div style={{ padding: "0 20px", marginBottom: 24 }}>
-        {replayUrl ? (
+      {/* Replay link (shown when available) */}
+      {replayUrl && (
+        <div style={{ padding: "0 20px", marginBottom: 24 }}>
           <a
             href={replayUrl}
             target="_blank"
@@ -439,32 +457,8 @@ export default function SessionDetailPage() {
             </div>
             <Ic.Right s={16} c={C.success} />
           </a>
-        ) : (
-          <button
-            onClick={toggleWantReplay}
-            style={{
-              width: "100%", padding: 14, borderRadius: R.lg,
-              border: wantReplay ? `1px solid ${C.flat}` : `1px solid ${C.border}`,
-              background: wantReplay ? C.flatLight : C.surfaceGray,
-              cursor: "pointer", display: "flex", alignItems: "center", gap: 12,
-              fontFamily: FONT,
-            }}
-          >
-            <span style={{ fontSize: 20 }}>{wantReplay ? "📺" : "👀"}</span>
-            <div style={{ flex: 1, textAlign: "left" }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: wantReplay ? C.flat : C.textPrimary }}>
-                {wantReplay ? "Replay requested!" : "Want to watch the replay?"}
-              </div>
-              <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>
-                {wantReplay
-                  ? "We'll notify you when it's available"
-                  : "Get notified when the replay is published"}
-              </div>
-            </div>
-            {wantReplay && <Ic.Check s={18} c={C.flat} />}
-          </button>
-        )}
-      </div>
+        </div>
+      )}
 
       </div>{/* end scrollable content */}
 

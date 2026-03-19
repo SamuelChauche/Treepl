@@ -13,6 +13,7 @@ import {
   connectEmbeddedWallet,
   markBackupDone,
 } from "../services/embeddedWallet";
+import { STORAGE_KEYS } from "../config/constants";
 
 // ─── Styles ─────────────────────────────────────────────────────
 const page: CSSProperties = {
@@ -154,6 +155,7 @@ const sessionRow: CSSProperties = {
 export default function HomePage() {
   const navigate = useNavigate();
   const { cart, toggleCart } = useCart();
+  const publishedSessions: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]");
 
   const [walletAddress, setWalletAddress] = useState<string>(() =>
     localStorage.getItem("ethcc-wallet-address") ?? ""
@@ -486,7 +488,8 @@ export default function HomePage() {
       >
         {todaySessions.map((s) => {
           const ts = getTrackStyle(s.track);
-          const inCart = cart.has(s.id);
+          const isPublished = publishedSessions.includes(s.id);
+          const inCart = isPublished || cart.has(s.id);
           return (
             <div
               key={s.id}
@@ -522,27 +525,35 @@ export default function HomePage() {
                   {s.startTime} &ndash; {s.endTime}
                 </div>
               </div>
-              {/* Cart toggle */}
+              {/* Cart toggle — same states as Agenda: +, In cart, Published */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  toggleCart(s.id);
+                  if (!isPublished) toggleCart(s.id);
                 }}
                 style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 10,
+                  ...(isPublished ? {
+                    width: 32, height: 32, borderRadius: 16, padding: 0,
+                  } : inCart ? {
+                    padding: "4px 10px", borderRadius: R.btn,
+                  } : {
+                    width: 32, height: 32, borderRadius: 16, padding: 0,
+                  }),
                   border: "none",
-                  cursor: "pointer",
+                  cursor: isPublished ? "default" : "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   flexShrink: 0,
-                  background: inCart ? C.successLight : "rgba(255,255,255,0.06)",
+                  background: isPublished ? C.successLight : inCart ? C.flatLight : "rgba(255,255,255,0.06)",
+                  fontSize: 11, fontWeight: 600, fontFamily: FONT,
+                  color: C.flat, whiteSpace: "nowrap",
                 }}
               >
-                {inCart ? (
+                {isPublished ? (
                   <Ic.Check s={14} c={C.success} />
+                ) : inCart ? (
+                  "In cart"
                 ) : (
                   <Ic.Plus s={14} c={C.textSecondary} />
                 )}
