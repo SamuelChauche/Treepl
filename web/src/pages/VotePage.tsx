@@ -9,6 +9,7 @@ import { Ic } from "../components/ui/Icons";
 import { fetchTrendingTopics, fetchAllTopicEvents, type TopicVaultData } from "../services/trendingService";
 import { useWalletConnection } from "../hooks/useWalletConnection";
 import { resolveTopicAtomIds, fetchUserVotedTopics } from "../services/voteService";
+import { TopicCard } from "../components/vote/TopicCard";
 import { CHAIN_CONFIG } from "../config/constants";
 
 // ─── Icon name → emoji mapping ───────────────────────
@@ -589,51 +590,19 @@ export default function VotePage() {
               Loading on-chain data...
             </div>
           )}
-          {!loading && trendingTopics.map((topic) => {
-            const cat = categoryMap.get(topic.id);
-            const rd = realDataMap.get(topic.id);
-            const count = rd ? rd.supportCount : (voteCountMap.get(topic.id) ?? 0);
-            const trustLabel = rd && BigInt(rd.supportAssets) > 0n ? ` · ${formatTrust(rd.supportAssets)} TRUST` : "";
-            const trend = realChartData.get(topic.id) ?? [];
-            return (
-              <div key={topic.id} style={topicCard}>
-                {/* Row 1: icon + name + votes */}
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                  <div style={{ ...topicIcon, background: cat ? `${cat.color}22` : C.primaryLight }}>
-                    {getIconEmoji(cat?.icon ?? "")}
-                  </div>
-                  <div style={topicInfo}>
-                    <div style={topicName}>{topic.name}</div>
-                    <div style={topicMeta}>{cat?.name ?? "Other"} &middot; {count} votes{trustLabel}</div>
-                  </div>
-                </div>
-                {/* Row 2: spark + support */}
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{ flex: 1, minWidth: 0, minHeight: 28 }}>
-                    <Spark data={trend} color={cat?.color ?? C.primary} h={28} />
-                  </div>
-                  {(() => {
-                    const vs = getVoteState(topic.id);
-                    return (
-                      <button
-                        style={supportBtnStyle(vs)}
-                        onClick={() => handleVoteClick(topic.id)}
-                        disabled={vs === "redeeming"}
-                      >
-                        {vs === "support" ? (
-                          <Ic.Plus s={16} c={C.textSecondary} />
-                        ) : vs === "supported" ? (
-                          <Ic.Check s={16} c={C.success} />
-                        ) : (
-                          getVoteLabel(topic.id)
-                        )}
-                      </button>
-                    );
-                  })()}
-                </div>
-              </div>
-            );
-          })}
+          {!loading && trendingTopics.map((topic) => (
+            <TopicCard
+              key={topic.id}
+              topic={topic}
+              category={categoryMap.get(topic.id)}
+              realData={realDataMap.get(topic.id)}
+              mockVoteCount={voteCountMap.get(topic.id) ?? 0}
+              chartData={realChartData.get(topic.id) ?? []}
+              voteState={getVoteState(topic.id)}
+              voteLabel={getVoteLabel(topic.id)}
+              onVoteClick={() => handleVoteClick(topic.id)}
+            />
+          ))}
         </div>
       )}
 

@@ -1,66 +1,61 @@
-import { Link } from "react-router-dom";
+import { getTrackStyle, TYPE_COLORS, C } from "../../config/theme";
 import type { Session } from "../../types";
-import { getTypeCssColor } from "../../config/constants";
+import styles from "./SessionCard.module.css";
 
-export function SessionCard({
-  session,
-  index,
-  selected,
-  onSelect,
-}: {
+interface Props {
   session: Session;
-  index: number;
-  selected: boolean;
-  onSelect: (id: string) => void;
-}) {
-  const borderColor = getTypeCssColor(session.type);
+  onClick?: () => void;
+  /** Slot for right-side action (cart button, etc.) */
+  action?: React.ReactNode;
+  /** Show as locked (pending interest) */
+  locked?: boolean;
+}
 
-  return (
-    <article
-      className={`session-card ${selected ? "session-card-selected" : ""}`}
-      style={{
-        animationDelay: `${Math.min(index * 40, 400)}ms`,
-        ...(selected ? { borderColor } : {}),
-      }}
-      onClick={() => onSelect(session.id)}
-    >
-      <div className="card-accent" data-type={session.type} />
-      <div className="card-body">
-        <div className="card-top">
-          <span className="card-type" data-type={session.type}>
-            {session.type}
-          </span>
-          <span className="card-stage">{session.stage}</span>
+export function SessionCard({ session, onClick, action, locked }: Props) {
+  const ts = getTrackStyle(session.track);
+  const speakerLine = session.speakers.map((sp) => sp.name).join(", ");
+
+  if (locked) {
+    return (
+      <div className={styles.card} style={{ opacity: 0.5, cursor: "default" }}>
+        <div className={styles.icon} style={{ background: `${ts.color}22` }}>
+          🔒
         </div>
-        <h3 className="card-title">{session.title}</h3>
-        {session.description && (
-          <p className="card-desc">{session.description}</p>
-        )}
-        <div className="card-footer">
-          <span className="card-time">
-            {session.startTime} – {session.endTime}
-          </span>
-          <span className="card-track">{session.track}</span>
-          {session.speakers.length > 0 && (
-            <div className="card-speakers">
-              {session.speakers.map((sp) => (
-                <Link
-                  key={sp.slug}
-                  to={`/speaker/${sp.slug}`}
-                  className="card-speaker"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <span className="card-speaker-dot" />
-                  {sp.name}
-                  {sp.organization && (
-                    <span className="speaker-org"> · {sp.organization}</span>
-                  )}
-                </Link>
-              ))}
-            </div>
-          )}
+        <div className={styles.content}>
+          <div className={styles.lockedTitle}>Session locked</div>
+          <div className={styles.lockedDesc}>Validate the tx to see this event</div>
+          <div className={styles.tags}>
+            <span className={styles.tag} style={{ background: `${ts.color}22`, color: ts.color }}>
+              {session.track}
+            </span>
+          </div>
         </div>
       </div>
-    </article>
+    );
+  }
+
+  return (
+    <div className={styles.card} onClick={onClick}>
+      <div className={styles.accentBar} style={{ background: ts.color }} />
+      <div className={styles.icon} style={{ background: `${ts.color}22` }}>
+        {ts.icon}
+      </div>
+      <div className={styles.content}>
+        <div className={styles.title}>{session.title}</div>
+        {speakerLine && <div className={styles.speakers}>{speakerLine}</div>}
+        <div className={styles.time}>
+          {session.startTime} - {session.endTime} &middot; {session.stage}
+        </div>
+        <div className={styles.tags}>
+          <span className={styles.tag} style={{ background: `${ts.color}22`, color: ts.color }}>
+            {session.track}
+          </span>
+          <span className={styles.tag} style={{ background: `${TYPE_COLORS[session.type] ?? C.primary}22`, color: TYPE_COLORS[session.type] ?? C.primary }}>
+            {session.type}
+          </span>
+        </div>
+      </div>
+      {action}
+    </div>
   );
 }

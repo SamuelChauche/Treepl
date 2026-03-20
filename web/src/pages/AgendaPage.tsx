@@ -6,6 +6,8 @@ import { Ic } from "../components/ui/Icons";
 import { useCart } from "../hooks/useCart";
 import { StorageService } from "../services/StorageService";
 import { STORAGE_KEYS } from "../config/constants";
+import { SessionCard } from "../components/session/SessionCard";
+import { CartToggleButton } from "../components/shared";
 
 // ─── Helpers ──────────────────────────────────────────
 
@@ -347,105 +349,23 @@ export default function AgendaPage() {
           const inCart = isPublished || cart.has(s.id);
           const speakerLine = s.speakers.map((sp) => sp.name).join(", ");
 
-          // Locked card — session from a pending (unpublished) interest
           if (isLocked) {
-            return (
-              <div key={s.id} style={{ ...cardWrap, opacity: 0.5, cursor: "default" }}>
-                <div style={{ ...trackIcon, background: `${ts.color}22` }}>
-                  🔒
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: C.textTertiary, marginBottom: 4 }}>
-                    Session locked
-                  </div>
-                  <div style={{ fontSize: 12, color: C.textTertiary }}>
-                    Validate the tx to see this event
-                  </div>
-                  <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
-                    <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: R.sm, background: `${ts.color}22`, color: ts.color }}>
-                      {s.track}
-                    </span>
-                  </div>
-                </div>
-                <div style={{
-                  width: 36, height: 36, borderRadius: 18,
-                  background: C.surfaceGray, display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <Ic.Clock s={14} c={C.textTertiary} />
-                </div>
-              </div>
-            );
+            return <SessionCard key={s.id} session={s} locked />;
           }
 
+          const cartState = isPublished ? "published" : inCart ? "incart" : "default";
           return (
-            <div
+            <SessionCard
               key={s.id}
-              style={cardWrap}
+              session={s}
               onClick={() => navigate(`/session/${s.id}`)}
-            >
-              {/* Track icon */}
-              <div style={{ ...trackIcon, background: `${ts.color}22` }}>
-                {ts.icon}
-              </div>
-
-              {/* Content */}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", color: C.textPrimary }}>
-                  {s.title}
-                </div>
-                {speakerLine && (
-                  <div style={{ fontSize: 12, color: C.textSecondary, marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {speakerLine}
-                  </div>
-                )}
-                <div style={{ fontSize: 12, color: C.textTertiary, marginBottom: 6, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                  {s.startTime} - {s.endTime} &middot; {s.stage}
-                </div>
-                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                  <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: R.sm, background: `${ts.color}22`, color: ts.color }}>
-                    {s.track}
-                  </span>
-                  <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: R.sm, background: `${TYPE_COLORS[s.type] ?? C.primary}22`, color: TYPE_COLORS[s.type] ?? C.primary }}>
-                    {s.type}
-                  </span>
-                </div>
-              </div>
-
-              {/* Cart toggle */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (!isPublished) toggleCart(s.id);
-                }}
-                style={{
-                  ...(isPublished ? {
-                    width: 36, height: 36, minWidth: 36, minHeight: 36,
-                    borderRadius: 18, padding: 0,
-                  } : inCart ? {
-                    padding: "6px 14px", borderRadius: R.btn,
-                  } : {
-                    width: 36, height: 36, minWidth: 36, minHeight: 36,
-                    borderRadius: 18, padding: 0,
-                  }),
-                  border: "none",
-                  cursor: isPublished ? "default" : "pointer",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, alignSelf: "center",
-                  background: isPublished ? C.successLight : inCart ? C.flatLight : C.surfaceGray,
-                  transition: "background 0.2s",
-                  fontSize: 12, fontWeight: 600, fontFamily: FONT,
-                  color: C.flat, whiteSpace: "nowrap",
-                }}
-              >
-                {isPublished ? (
-                  <Ic.Check s={16} c={C.success} />
-                ) : inCart ? (
-                  "In cart"
-                ) : (
-                  <Ic.Plus s={16} c={C.textSecondary} />
-                )}
-              </button>
-            </div>
+              action={
+                <CartToggleButton
+                  state={cartState}
+                  onClick={() => { if (!isPublished) toggleCart(s.id); }}
+                />
+              }
+            />
           );
         })}
       </div>

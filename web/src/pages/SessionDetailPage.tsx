@@ -4,6 +4,7 @@ import { C, R, glassSurface, btnPill, FONT, getTrackStyle, TYPE_COLORS } from ".
 import { sessions } from "../data";
 import { Ic } from "../components/ui/Icons";
 import { getReplayUrl } from "../services/replayService";
+import { PageHeader } from "../components/shared";
 
 import { useCart } from "../hooks/useCart";
 import { Spark } from "../components/ui/Spark";
