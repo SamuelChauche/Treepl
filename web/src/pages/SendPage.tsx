@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glassSurface, btnPill, FONT } from "../config/theme";
-import { QRCodeSVG } from "qrcode.react";
 import { connectWallet } from "../services/intuition";
 import type { WalletConnection } from "../services/intuition";
+import { QrDisplay } from "../components/shared/QrDisplay";
 
 
 // ─── Styles ──────────────────────────────────────────
@@ -67,14 +67,7 @@ const tabBtn = (active: boolean): CSSProperties => ({
 });
 
 // QR Styles
-const qrBox: CSSProperties = {
-  ...glassSurface,
-  padding: 24,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: 16,
-};
+// qrBox removed — now using QrDisplay component
 
 const infoRow: CSSProperties = {
   display: "flex",
@@ -370,42 +363,7 @@ export default function SendPage() {
       <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "0 16px 80px" }}>
 
       {/* ─── QR Code Mode ────────────────── */}
-      {mode === "qr" && (
-        <>
-          <div style={qrBox}>
-            <div style={{ fontSize: 13, color: C.textSecondary, marginBottom: 4 }}>
-              Scan to send me $TRUST
-            </div>
-            <QRCodeSVG
-              value={walletAddr || "https://ethcc.io"}
-              size={200}
-              bgColor="transparent"
-              fgColor="#ffffff"
-              level="M"
-            />
-            <div style={{ fontSize: 11, color: C.textTertiary, fontFamily: "monospace", textAlign: "center" }}>
-              {walletAddr ? `${walletAddr.slice(0, 10)}...${walletAddr.slice(-8)}` : "Connect your wallet"}
-            </div>
-          </div>
-
-          <div style={{ ...glassSurface, marginTop: 16, padding: 16 }}>
-            <div style={infoRow}>
-              <span style={infoLabel}>Network</span>
-              <span style={infoValue}>Intuition (Chain 1155)</span>
-            </div>
-            <div style={infoRow}>
-              <span style={infoLabel}>Token</span>
-              <span style={infoValue}>$TRUST</span>
-            </div>
-            <div style={{ ...infoRow, borderBottom: "none" }}>
-              <span style={infoLabel}>Status</span>
-              <span style={{ ...infoValue, color: walletAddr ? C.success : C.textTertiary }}>
-                {walletAddr ? "Ready to receive" : "Wallet not connected"}
-              </span>
-            </div>
-          </div>
-        </>
-      )}
+      {mode === "qr" && <QrDisplay address={walletAddr} />}
 
       {/* ─── Scan & Send Mode ────────────── */}
       {mode === "scan" && (

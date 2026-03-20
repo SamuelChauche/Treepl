@@ -61,8 +61,6 @@ const APP_URL = "https://samuelchauche.github.io/Treepl/";
 
 export default function InvitePage() {
   const navigate = useNavigate();
-  const walletAddr = localStorage.getItem("ethcc-wallet-address") ?? "";
-
   return (
     <div style={page}>
       {/* Header */}

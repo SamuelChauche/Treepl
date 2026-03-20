@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>32 Speaking At</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<style>body{font-family:monospace;background:#111;color:#eee;padding:20px;} button{padding:10px 20px;margin:5px;cursor:pointer;border:none;border-radius:6px;font-size:14px;} .go{background:#34d399;color:#111;} pre{background:#1a1a1a;padding:12px;border-radius:8px;max-height:600px;overflow-y:auto;font-size:12px;line-height:1.6;}</style>
+</head><body>
+<h2>32 speaking at triples (all IDs pre-resolved)</h2>
+<button class="go" onclick="run()">Connect & Create All</button>
+<pre id="log">Ready.\n</pre>
+<script>
+const SOFIA='0x26F81d723Ad1648194FAA4b7E235105Fd1212c6c';
+const MV='0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e';
+const ABI=['function createTriples(address receiver,bytes32[] subjectIds,bytes32[] predicateIds,bytes32[] objectIds,uint256[] assets,uint256 curveId) payable returns(bytes32[])','function getTotalCreationCost(uint256 depositCount,uint256 totalDeposit,uint256 multiVaultCost) view returns(uint256)','function getTripleCost() view returns(uint256)'];
+const MVABI=['function approve(address sender,uint8 approvalType)'];
+const DEPOSIT=100000000000000000n;
+const log=m=>{const el=document.getElementById('log');el.textContent+=m+'\n';el.scrollTop=el.scrollHeight;};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+async function run(){
+  log('Loading triples...');
+  const resp=await fetch('../bdd/final_speaking_at.json');
+  const triples=await resp.json();
+  log(`${triples.length} triples loaded`);
+
+  log('Connecting...');
+  const p=new ethers.BrowserProvider(window.ethereum);
+  await p.send('eth_requestAccounts',[]);
+  try{await window.ethereum.request({method:'wallet_switchEthereumChain',params:[{chainId:'0x483'}]})}catch(e){if(e.code===4902)await window.ethereum.request({method:'wallet_addEthereumChain',params:[{chainId:'0x483',chainName:'Intuition',nativeCurrency:{name:'TRUST',symbol:'TRUST',decimals:18},rpcUrls:['https://rpc.intuition.systems/http']}]})}
+  const provider=new ethers.BrowserProvider(window.ethereum);
+  provider.pollingInterval=30000;
+  const signer=await provider.getSigner();
+  const addr=await signer.getAddress();
+  const proxy=new ethers.Contract(SOFIA,ABI,signer);
+  const mv=new ethers.Contract(MV,MVABI,signer);
+  const tripleCost=await proxy.getTripleCost();
+  log(`Connected: ${addr}, triple cost: ${ethers.formatEther(tripleCost)}`);
+
+  try{const tx=await mv.approve(SOFIA,1);await tx.wait();log('Proxy approved');}catch(e){log('Approve skipped');}
+
+  // Send one by one to avoid TripleExists batch failures
+  let created=0,exists=0,failed=0;
+  for(let i=0;i<triples.length;i++){
+    const t=triples[i];
+    log(`\n[${i+1}/${triples.length}] ${t.speaker} → ${t.session}`);
+    try{
+      const cost=await proxy.getTotalCreationCost(1n,DEPOSIT,(tripleCost+DEPOSIT));
+      const tx=await proxy.createTriples(addr,[t.subjectId],['0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37'],[t.objectId],[DEPOSIT],1,{value:cost});
+      log(`  TX: ${tx.hash.slice(0,14)}...`);
+      for(let j=0;j<120;j++){await sleep(3000);const r=await provider.getTransactionReceipt(tx.hash);if(r&&r.blockNumber){if(r.status===0){log('  ✗ REVERTED');failed++;}else{log(`  ✓ block ${r.blockNumber}`);created++;}break;}}
+    }catch(e){
+      if(e.message?.includes('TripleExists')||e.message?.includes('22319959')){log('  ✓ already exists');exists++;}
+      else if(e.message?.includes('AtomDoesNotExist')||e.message?.includes('4762af7d')){log(`  ✗ AtomDoesNotExist — subjectId: ${t.subjectId.slice(0,14)}... objectId: ${t.objectId.slice(0,14)}...`);failed++;}
+      else{log(`  ✗ ${e.message?.slice(0,80)}`);failed++;}
+    }
+  }
+  log(`\n=== DONE: ${created} created, ${exists} already exist, ${failed} failed ===`);
+}
+</script></body></html>

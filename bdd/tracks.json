@@ -1,18 +1,33 @@
 {
-  "totalTracks": 17,
+  "totalTracks": 23,
   "tracks": [
     {
       "name": "AI Agents and Automation",
       "sector": "AI & Automation",
-      "sessionCount": 5,
-      "speakerCount": 4,
+      "sessionCount": 18,
+      "speakerCount": 19,
       "sessionTypes": [
         "Talk",
         "Workshop"
       ],
       "speakers": [
+        "Audrey Akwenye",
+        "Conor",
+        "Dayan Brunie",
         "Devon Martens",
+        "E.G.",
+        "Gori",
+        "He Who Remains",
+        "Himanshu  Tyagi",
+        "Jared Arms",
+        "Justin Sun",
+        "Michael  Heinrich",
         "Michael  Wu",
+        "Mooly Sagiv",
+        "Pol Lanski",
+        "Rebecca Liao",
+        "Satya",
+        "Skeletor Spaceman",
         "Stéphane Tetsing",
         "jacobc.eth"
       ]
@@ -20,86 +35,146 @@
     {
       "name": "Applied cryptography",
       "sector": "Applied Cryptography",
-      "sessionCount": 3,
-      "speakerCount": 3,
+      "sessionCount": 10,
+      "speakerCount": 12,
       "sessionTypes": [
-        "Talk"
+        "Talk",
+        "Workshop"
       ],
       "speakers": [
+        "Alexander",
+        "Andrey Ivasko",
+        "Antonio Sanso",
         "Eugene Joo",
+        "Filip  Rezabek",
         "Mohsen Ahmadvand",
-        "Praneeth Srikanti"
+        "Praneeth Srikanti",
+        "Simon Masson",
+        "Toufic Batrice",
+        "Yanis Meziane",
+        "Yi Sun",
+        "zk_evm"
       ]
     },
     {
       "name": "Block Fighters",
       "sector": "Industry Debate",
-      "sessionCount": 4,
-      "speakerCount": 9,
+      "sessionCount": 8,
+      "speakerCount": 13,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
+        "Ameen",
         "Christina Frankopan",
         "Grace Rachmany",
         "Griff",
         "Izzy",
         "Jerome  de Tychey",
         "Justin Drake",
+        "Nicolas  Consigny",
         "Paul Brody",
         "Reno",
+        "Xavier Lavayssière",
+        "Zach Pandl",
         "btchip"
       ]
     },
     {
       "name": "Breakout sessions",
       "sector": "Workshop / Education",
-      "sessionCount": 2,
-      "speakerCount": 5,
+      "sessionCount": 7,
+      "speakerCount": 26,
       "sessionTypes": [
         "Workshop"
       ],
       "speakers": [
+        "Aouatef",
+        "Aurélie Boss",
         "Christina Frankopan",
+        "Cotabe",
+        "Emilie-Alice Fabrizi",
+        "Flavien Defraire",
+        "Giveth Jake",
+        "Griff",
+        "Ignacio Presas",
+        "Jacques-André Fines Schlumberger",
         "Krzysztof Paruch",
+        "Lauren Luz",
+        "Louis Marquenet",
+        "Luca Jouglen",
         "MB Richardson",
         "Marina Markezic",
-        "Mark Ballandies"
+        "Mario Stephan",
+        "Mark Ballandies",
+        "Maude",
+        "Mylène"
       ]
+    },
+    {
+      "name": "Builders & Hackathons",
+      "sector": "Builder / Dev",
+      "sessionCount": 7,
+      "speakerCount": 0,
+      "sessionTypes": [
+        "Side Event"
+      ],
+      "speakers": []
     },
     {
       "name": "Built on Ethereum",
       "sector": "Ethereum Ecosystem / dApps",
-      "sessionCount": 5,
-      "speakerCount": 5,
+      "sessionCount": 20,
+      "speakerCount": 18,
       "sessionTypes": [
         "Demo",
         "Talk"
       ],
       "speakers": [
+        "0xAlex",
+        "Alberto Fernandez",
+        "Andreas Melhede",
+        "Arman Sarhaddar",
+        "Fisher Yu",
+        "Greg Swirski",
+        "Jack Spallone ",
+        "Julio M Cruz",
         "Kasra Khosravi",
         "Kevin Jones",
         "Max Lomu",
         "Mende",
+        "Murat Ögat",
+        "Nischal Sharma",
+        "Noid",
+        "Ryan Sauge",
+        "Tümay Tuzcu",
         "Xiangru Ma"
       ]
     },
     {
       "name": "Core Protocol",
       "sector": "Ethereum Core Protocol",
-      "sessionCount": 10,
-      "speakerCount": 9,
+      "sessionCount": 16,
+      "speakerCount": 17,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
         "Amxx",
         "Arthur Breitman",
+        "Clement Lesaege",
+        "Daniel  Von Fange",
+        "Devansh Mehta",
+        "Gajinder Singh",
         "Han",
         "Kaloyan Kosev",
+        "Kayden Moroz Liebl",
+        "Kolby Moroz Liebl",
         "Martin Hansen",
         "Oisín Kyne",
+        "Steffen Kux",
         "Stephan Duan",
+        "Toni Wahrstaetter",
         "cheeky-gorilla",
         "terence tsao"
       ]
@@ -107,176 +182,395 @@
     {
       "name": "Cypherpunk & Privacy",
       "sector": "Privacy / Cryptography",
-      "sessionCount": 6,
-      "speakerCount": 6,
+      "sessionCount": 25,
+      "speakerCount": 25,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
+        "1sla.eth",
         "Adrian Brink",
         "Andrii Bondar",
+        "Anthurine",
         "Belma Gutlic",
+        "Brenda Loya",
+        "Chris McCabe",
+        "Costanza",
+        "Dana Condrea",
         "Doo Wan Nam",
+        "Elo",
+        "Ernesto García",
+        "Hayat Outahar",
+        "IVa",
         "Joan  Alavedra",
-        "Reno"
+        "Liz Steininger",
+        "Martin Leclercq",
+        "Meinhard Benn",
+        "Mike McCabe",
+        "Ottdogg"
       ]
     },
     {
       "name": "DeFi",
       "sector": "Decentralized Finance",
+      "sessionCount": 36,
+      "speakerCount": 36,
+      "sessionTypes": [
+        "Talk"
+      ],
+      "speakers": [
+        "Alex Cutler",
+        "Alexander Müller",
+        "Alina Tielnova",
+        "Alisia Painter",
+        "Ambre Soubiran",
+        "Ami Nagata",
+        "Andrew O'Neill",
+        "Corinne Powers",
+        "Cyrille Brière",
+        "Daosasha",
+        "Eric Zhong",
+        "Izzy",
+        "Jack O'Holleran",
+        "Jake O",
+        "James Wo",
+        "Johann Eid",
+        "Josef Jelacic",
+        "Juan David Mendieta",
+        "Julien Bouteloup",
+        "Kite Liu"
+      ]
+    },
+    {
+      "name": "EthStaker",
+      "sector": "Staking / Validators",
       "sessionCount": 14,
       "speakerCount": 14,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
-        "Alexander Müller",
-        "Alisia Painter",
-        "Ambre Soubiran",
-        "Ami Nagata",
-        "Andrew O'Neill",
-        "Eric Zhong",
-        "Juan David Mendieta",
-        "Julien Bouteloup",
-        "Kite Liu",
-        "Marcin Kazmierczak",
-        "Mariia Yatskovska",
-        "Sam MacPherson",
-        "Suki Yang",
-        "definikola"
+        "BlockShane",
+        "Dima Gusakov",
+        "Jerome  de Tychey",
+        "Jihoon Song",
+        "Jonathan Meyer",
+        "Justin Drake",
+        "Ken Smith",
+        "Ladislaus von Daniels",
+        "Lamboshi",
+        "Leo",
+        "Luca Winter",
+        "Marius van der Wijden",
+        "Terence Tsao",
+        "Yorick Downe"
       ]
     },
     {
-      "name": "EthStaker",
-      "sector": "Staking / Validators",
-      "sessionCount": 1,
+      "name": "Investor & Fundraising",
+      "sector": "Investment / VC",
+      "sessionCount": 11,
       "speakerCount": 0,
       "sessionTypes": [
-        "Talk"
+        "Side Event"
       ],
       "speakers": []
     },
     {
       "name": "Layer 2s",
       "sector": "Layer 2 Scaling",
-      "sessionCount": 5,
-      "speakerCount": 5,
+      "sessionCount": 17,
+      "speakerCount": 17,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
         "AKAKI MAMAGEISHVILI",
         "Barnabé Monnot",
+        "Ben Fisch",
+        "David  Leonardi",
+        "Declan Fox",
         "Ed Felten",
         "Friederike Ernst",
+        "Gajinder Singh",
+        "Henri Lieutaud",
+        "Jordi Baylina",
+        "Karl Floersch",
+        "Kevin Weaver",
+        "Krzysztof Gogol",
+        "Matt Pearring",
+        "Nahim Terrazas",
+        "Wesley Crook",
         "Will Papper"
       ]
     },
     {
+      "name": "Networking & Social",
+      "sector": "Networking / Social",
+      "sessionCount": 24,
+      "speakerCount": 0,
+      "sessionTypes": [
+        "Side Event"
+      ],
+      "speakers": []
+    },
+    {
       "name": "Product & Marketers",
       "sector": "Product / Marketing",
-      "sessionCount": 3,
-      "speakerCount": 3,
+      "sessionCount": 19,
+      "speakerCount": 20,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
+        "Alec Novella",
+        "Alice",
+        "Anthony Caravello",
+        "Artem Sinyakin",
+        "Binji ",
+        "Dan Ligocky",
         "Darius Moukhtarzade",
         "Erick  Zhang",
-        "Jan Setina"
+        "Harry Horsfall",
+        "Jan Setina",
+        "Kelly Roegies",
+        "Lera",
+        "Louie O'Connor",
+        "Nadia Ivanova-banda",
+        "Reka Medvecz",
+        "Stepan Nilov",
+        "Victoria CALMON",
+        "Yu  Hu",
+        "Zuz",
+        "dee_centralized"
       ]
     },
     {
       "name": "RWA Tokenisation",
       "sector": "Real World Assets / Tokenization",
-      "sessionCount": 4,
-      "speakerCount": 5,
+      "sessionCount": 17,
+      "speakerCount": 17,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
+        "Anya",
         "Bhaji Illuminati",
         "Christine Moy",
+        "Chunda McCain",
+        "Denitza Valjavec",
         "Emilio Frangella",
+        "Fredrik Haga",
+        "Jonathan Han",
+        "Norbert Vadas",
+        "Pauline Shangett",
+        "Romain Menetrier",
+        "Tomer Weller",
+        "Val  Gui ",
+        "Vasily Sidorov",
         "Wish Wu",
-        "Yeho Hwang"
+        "Yeho Hwang",
+        "Zach Pandl"
+      ]
+    },
+    {
+      "name": "Regulation & Compliance",
+      "sector": "Regulation / Legal",
+      "sessionCount": 9,
+      "speakerCount": 14,
+      "sessionTypes": [
+        "Talk"
+      ],
+      "speakers": [
+        "Ambroise Helaine",
+        "Anne-Grace Kleczewski",
+        "Anne-Lorinne Mognetti",
+        "Claire Balva",
+        "Faustine Fleuret",
+        "Federico Ast",
+        "Florian  Glatz",
+        "Josef Jelacic",
+        "Marina Markezic",
+        "Ophelia Snyder",
+        "RealDennisO",
+        "Redwan Meslem",
+        "Sebastian Widmann",
+        "Simon  Polrot"
       ]
     },
     {
       "name": "Research",
       "sector": "Blockchain Research",
-      "sessionCount": 7,
-      "speakerCount": 7,
+      "sessionCount": 24,
+      "speakerCount": 28,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
+        "0xSybil",
+        "Alejandro Ranchal-Pedrosa",
         "Andrea Canidio",
+        "Andres Junge",
+        "Christoph Schlegel",
+        "David Mühlbacher",
+        "Derek Sorensen",
+        "Ekleen Kaur",
+        "Everton Fraga",
+        "Jan Gorzny",
+        "Jistro",
         "Jonathan Passerat-Palmbach",
+        "Jonjon Clark",
+        "Kubi Mensah",
         "Leo Fan",
         "Lioba Heimbach",
-        "Vabuk",
-        "Vincent",
-        "Wolfgang Vitale"
+        "Luis Correia",
+        "Pranay Valson",
+        "Qi Zhou",
+        "Sajida"
       ]
     },
     {
       "name": "Security",
       "sector": "Blockchain Security",
-      "sessionCount": 5,
-      "speakerCount": 5,
+      "sessionCount": 24,
+      "speakerCount": 25,
       "sessionTypes": [
-        "Talk"
+        "Talk",
+        "Workshop"
       ],
       "speakers": [
         "AliceAndBob",
+        "Andy M. Lee",
         "Bianca Buzea",
+        "Charles Guillemet",
+        "Chase Manning",
+        "Dyma Budorin",
+        "Ece Orsel",
+        "Gio",
+        "Griff",
+        "Hester Bruikman",
+        "Jon Stephens",
+        "Jork Leonhardt",
+        "Kirk Baird",
+        "Michael Noble",
+        "Oleg Lodygensky",
         "OxFlint_",
+        "Pamina Georgiev",
         "Richard Meissner",
-        "Sarah Hicks"
+        "Sarah Hicks",
+        "Strausses"
       ]
+    },
+    {
+      "name": "Sport & Wellness",
+      "sector": "Sport / Wellness",
+      "sessionCount": 4,
+      "speakerCount": 0,
+      "sessionTypes": [
+        "Side Event"
+      ],
+      "speakers": []
     },
     {
       "name": "Stablecoins & Global Payments",
       "sector": "Payments / Stablecoins",
-      "sessionCount": 3,
-      "speakerCount": 4,
+      "sessionCount": 15,
+      "speakerCount": 17,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
+        "Cactus Raazi",
+        "DMH",
+        "Ernesto Olmedo Pereira",
+        "Gísli Kristjánsson",
+        "Johannes Kern",
+        "Jordan Jefferson",
         "Julian Grigo",
         "Julie Bader",
+        "Justin Kugel",
+        "Martin Bruncko",
+        "Patrick Hansen",
+        "Pedro Gomes",
         "Raza Zaidi",
-        "Sylvain Prigent"
+        "Sterling Barnett",
+        "Sylvain Prigent",
+        "agaperste",
+        "wei3erHase"
+      ]
+    },
+    {
+      "name": "TERSE",
+      "sector": "Token Engineering / Research",
+      "sessionCount": 8,
+      "speakerCount": 11,
+      "sessionTypes": [
+        "Talk"
+      ],
+      "speakers": [
+        "Alejandro Ranchal-Pedrosa",
+        "Angela Kreitenweis",
+        "Kris Paruch",
+        "Krzysztof Gogol",
+        "MB Richardson",
+        "Mark Ballandies",
+        "Robert Koschig",
+        "Stefan Loesch",
+        "Suhyeon Lee",
+        "Tiago Santana",
+        "William George"
       ]
     },
     {
       "name": "The Unexpected",
       "sector": "Innovation / Cross-domain",
-      "sessionCount": 5,
-      "speakerCount": 5,
+      "sessionCount": 21,
+      "speakerCount": 23,
       "sessionTypes": [
-        "Talk"
+        "Talk",
+        "Workshop"
       ],
       "speakers": [
+        "Andrej Berlin",
         "Bob Summerwill",
         "Gwen",
         "Hong Kim",
+        "Jean-Marc Stenger",
+        "Jerome  de Tychey",
+        "Joshua Foster",
+        "Just a guy",
+        "Justina Švitraitė",
+        "Lola Rigaut-Luczak",
+        "Nicolas  Consigny",
+        "Nicolas Assouad",
+        "Otto Jacobsson",
+        "Patricio Worthalter",
+        "SEVEN",
+        "Sebastien Borget",
+        "Simona Pop",
+        "Tom Trowbridge",
         "Tomasz Stanczak",
-        "Yaniv Tal"
+        "Victor Chiea"
       ]
     },
     {
       "name": "Zero Tech & TEE",
       "sector": "Zero Knowledge / TEE",
-      "sessionCount": 1,
-      "speakerCount": 1,
+      "sessionCount": 9,
+      "speakerCount": 9,
       "sessionTypes": [
         "Talk"
       ],
       "speakers": [
-        "0xPenryn"
+        "0xPenryn",
+        "Alan Li",
+        "David Pearce",
+        "Olivier Desenfans",
+        "Paul Schoenfelder",
+        "Peter Us",
+        "Slobodan Lukovic",
+        "Tom David",
+        "albicodes"
       ]
     }
   ]

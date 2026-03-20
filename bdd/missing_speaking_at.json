@@ -1,0 +1,1332 @@
+[
+  {
+    "subjectId": "0x5dc652326ce13a00740d2a0d8c54a8d82395f0e94c30f2070c182bf6445d2fc5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b",
+    "subjectLabel": "Christina Frankopan",
+    "objectLabel": "Canton Network: sleeping giant?"
+  },
+  {
+    "subjectId": "0x608689773d70fb975c829f9ff8dcf62f10e2391485db7afa97a2c827cfbab218",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b",
+    "subjectLabel": "Paul Brody",
+    "objectLabel": "Canton Network: sleeping giant?"
+  },
+  {
+    "subjectId": "0xc28bd778bdcf00633daf12d1af9cb9b9d798a00a30b942eb93c276178f6ee844",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf80cfb0574ee3e3c942bbbe6f399fc0e10b959d12e574b98233916a72fa98954",
+    "subjectLabel": "Zach Pandl",
+    "objectLabel": "Investing for the tokenization revolutio"
+  },
+  {
+    "subjectId": "0x5dc652326ce13a00740d2a0d8c54a8d82395f0e94c30f2070c182bf6445d2fc5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae",
+    "subjectLabel": "Christina Frankopan",
+    "objectLabel": "Legal & Compliance"
+  },
+  {
+    "subjectId": "0x173db2e5f77a8077ea9bee62c5bc3584d218a59d3d51ffc841b271046bc6fa65",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x700af2eb07388c8fd6e25e811975580d57953fc3c250dbc2ab1cf123e0c840ae",
+    "subjectLabel": "Marina Markezic",
+    "objectLabel": "Legal & Compliance"
+  },
+  {
+    "subjectId": "0x0f29d0ea09515c2f8f1ac6e5ef26bd855c329c2fd20b460f60a3527e51795afb",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x78822a96e5fd79e5f6179fbf32f7d1539a6cd332ed7c0277787567c6792f9a3e",
+    "subjectLabel": "Alejandro Ranchal-Pedrosa",
+    "objectLabel": "Sedna: How users can enforce affordable "
+  },
+  {
+    "subjectId": "0x98be264c57baf490c265e39d99fc1af935801711189198f57d4a2d372eaf1c91",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9d70d29bfba389ce2ae5c843d371735f2a953041d8c1832e9faa3ec85c5acaec",
+    "subjectLabel": "Terence Tsao",
+    "objectLabel": "From MEV-Boost to ePBS: The Protocolizat"
+  },
+  {
+    "subjectId": "0xe209086685c12e76eb0b705e92ea2e3053cbc66cb3280433e376fca8972aac4d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42",
+    "subjectLabel": "btchip",
+    "objectLabel": "ETH issuance clash"
+  },
+  {
+    "subjectId": "0x10f8dd42cd76776436900fdb73601507d2d06a9c86853d769700103d2f8af458",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc45423707de72b3bf832b7ad5f201e272b0e91a442e3a7b50564afd1c1baad42",
+    "subjectLabel": "Jerome  de Tychey",
+    "objectLabel": "ETH issuance clash"
+  },
+  {
+    "subjectId": "0xe209086685c12e76eb0b705e92ea2e3053cbc66cb3280433e376fca8972aac4d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x5a25d14b408e1ad97660fdbe66b826401e4116b9e6d3f5e6eb53287435ec0837",
+    "subjectLabel": "btchip",
+    "objectLabel": "Quantum dilema"
+  },
+  {
+    "subjectId": "0x69ae90e8fe1c35eb3d2f8322adc5ed53047d386f2c4a2322a29479f220e8b1a8",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5",
+    "subjectLabel": "Angela Kreitenweis",
+    "objectLabel": "Token Engineering"
+  },
+  {
+    "subjectId": "0x5dc652326ce13a00740d2a0d8c54a8d82395f0e94c30f2070c182bf6445d2fc5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x34cf422a59bc9216376f6b241d9a8498f597125ec3fb42f2411436fb436025f0",
+    "subjectLabel": "Christina Frankopan",
+    "objectLabel": "DAOs: Fail or success"
+  },
+  {
+    "subjectId": "0x5583ed10d04e65bb32ee7e78a99f4d6161c481a71e10bfb4b07665aacacd7db5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x308f18efc690da079f25788c9be0f19bd5a2d5b07da4915330d6814cd8873b91",
+    "subjectLabel": "Stepan Nilov",
+    "objectLabel": "The Hardware Barrier: How to Onboard Nex"
+  },
+  {
+    "subjectId": "0x4ec55de17ac549f4747541167eface8e786ba8b2ebdf0c173db2bb98091ee6ea",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x56f8b2b4c56f002c42f5fccbf12a00bf0375ac010083825c120b030693bd84bf",
+    "subjectLabel": "SEVEN",
+    "objectLabel": "The Token Trap: Decentralization\u2019s Krypt"
+  },
+  {
+    "subjectId": "0x396ce76b585eedace81ca8ebe1283aa5dacd165c05b1aab8c4089ba70b6a90aa",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x78e0f5a5a5447cdac976d42fda420b95875e481c263a69637deaefb84c5064aa",
+    "subjectLabel": "Ophelia Snyder",
+    "objectLabel": "Regulation as Infrastructure: Building T"
+  },
+  {
+    "subjectId": "0x0f8f8b99ad88086e941d6cf1472dcd10a952d9538bf631d9c59e8a9c6eb51e48",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcd2ed82473e282193d2dd7c535fe72fa14c1cf385faf5a2942164f759c4ad7ff",
+    "subjectLabel": "nisedo",
+    "objectLabel": "Uniswap v4 Hooks: A Security Guide for B"
+  },
+  {
+    "subjectId": "0x8ad5bfac9cadb3555ee65e4434cab193e07a06fd0c48c0a0b78cc4d8414b6827",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x48eeb1c40450b9d512b950dfaf7dbb3504819e291b1fd4eacf6516f61d3bbba3",
+    "subjectLabel": "Andreas Melhede",
+    "objectLabel": "How Elata Is Building the Internet of Br"
+  },
+  {
+    "subjectId": "0x93ce5f8f95d55d6f30bcb8e318d65ef1f712884d20aebd0e3e4a0076bd43f38b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x50540483aaa4cfcf02efb5c6e6cf48d7fde29c04d568a87bca3f95d1bb41ecf7",
+    "subjectLabel": "Chris McCabe",
+    "objectLabel": "Centralised Messaging Can\u2019t Keep You Saf"
+  },
+  {
+    "subjectId": "0x6391456f1715b4ed75bcbaf9a08b459c0321eaf82e4b4176203d8b51b034af46",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xa9b80fcb13e2b44a4dc2e193aa807b8b0a077df1fd65a95f30512564670d5bed",
+    "subjectLabel": "Derek Sorensen",
+    "objectLabel": "Safely Snarkifying Ethereum: Formal Veri"
+  },
+  {
+    "subjectId": "0x139f57485331ac0482b896cdc6c72bc0a534f4577b538ec4ccb22344b13aeb24",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xed8105af0fdda28642cc29848cf3a8c27c253a56d2670f84825263310f86fe08",
+    "subjectLabel": "Nicolas  Consigny",
+    "objectLabel": "Kohaku, reclaiming the original vision"
+  },
+  {
+    "subjectId": "0xe25e4e6bda562fdf3a1ecb071dd64bd38d96678eab0bc67615ef4588768e3927",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xed8105af0fdda28642cc29848cf3a8c27c253a56d2670f84825263310f86fe08",
+    "subjectLabel": "Just a guy",
+    "objectLabel": "Kohaku, reclaiming the original vision"
+  },
+  {
+    "subjectId": "0x38b9cffc22c9448adb7b4ae1eff68e5c008e3a3ab7ede0d8fccc10a29a246a05",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xeabe3200406bc0394ba1357e1dbedb6610937ae241c8d2d719cf0e24c55a9363",
+    "subjectLabel": "Simon Masson",
+    "objectLabel": "Future-Proof Your Treasury: Post quantum"
+  },
+  {
+    "subjectId": "0x168cb933af6e8a53dbb150ef29c3258b2fa35b657f91ac5df2d435eb2ac34caa",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc8b2c4cf3c970a4be403a909f3ea52ff92655932c216ef487271ab28ed9bc989",
+    "subjectLabel": "Suji",
+    "objectLabel": "Cypherpunk and Decentralized Social "
+  },
+  {
+    "subjectId": "0x93fae51a246285375450275993b79eb5cff3447489dcae3baafbfa733a839c37",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xebf9a62b7060d2faa48297437cfba555ba2e61a0ef81083823534ab227660305",
+    "subjectLabel": "Ignacio Presas",
+    "objectLabel": "Rekt Anonymous"
+  },
+  {
+    "subjectId": "0x2efa141afbcc373f8f0b61869e676a545cef61d1e29c027959cc912ef88e4a6d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x632a5b251c1f39a96041948cf8703baf442a2b81b8a2493972b2467383b0c903",
+    "subjectLabel": "Marius van der Wijden",
+    "objectLabel": "L1/L2 Scaling Roadmap"
+  },
+  {
+    "subjectId": "0xe935e5eae2df1c5594d00a3dc8260f90e1366e2e4238da3c9a44a03f55d41146",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc71bdc7731579a1a57613a13565f3cf2f53445880e7fede05619ce9e33d637d6",
+    "subjectLabel": "ariutokintumi",
+    "objectLabel": "Virtual Blockchains, the future of Ether"
+  },
+  {
+    "subjectId": "0xb48f3e417828d1507edc7c35a4f9055941255b374281d84a3bbad13f645804ec",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc71bdc7731579a1a57613a13565f3cf2f53445880e7fede05619ce9e33d637d6",
+    "subjectLabel": "Jistro",
+    "objectLabel": "Virtual Blockchains, the future of Ether"
+  },
+  {
+    "subjectId": "0xcc085c0e6cdf03634ae041781a3203d88e3851ed8a6d0eb871550ceb304ffae4",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x8f9053f6b7e39563e14d11cff97aa2ad45a54d945b60fb17eee0e23b5e875463",
+    "subjectLabel": "Vladimir Novakowski",
+    "objectLabel": "The future of verifiable finance"
+  },
+  {
+    "subjectId": "0x918c9056bd743396327a231e4025cf4328dd65b5f860b1e9d08ad5b904e08246",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe8ab32329fcc6087a5e5d03ae80f96d9604e5ec49cbfd2cd3013d3ae2e31207a",
+    "subjectLabel": "Toni Wahrstaetter",
+    "objectLabel": "From 30M to 300M: The Engineering Behind"
+  },
+  {
+    "subjectId": "0x715e50f0da7562d749395683dc13acb0098b8653ce50e4467fbd3801ae9de93e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1db0de060f9b7fb3a082be344c8445191836618d299544e29d3629ae65d5df54",
+    "subjectLabel": "Sam Reeves",
+    "objectLabel": "Scientific Calculations on EVM"
+  },
+  {
+    "subjectId": "0x8ec4f6bbf16aca43f256b25ccc6e15cdf226471b4a324fa3b7d107003ba1c54d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf3cfd8a1a7910939f99b2d3f6363d0e0031873ad88dfc90a0360c950a2942edc",
+    "subjectLabel": "Cactus Raazi",
+    "objectLabel": "Building Corridors to Power Stablecoin F"
+  },
+  {
+    "subjectId": "0x417c22f778f28a3e5c8a6cdcc9fcb8a2c4ee39565ce7fee7c14452c910bf99cd",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x91951102298a285f3fae0cf4c54386160714a94ba11f2d8e33cbf8dcc6457d8a",
+    "subjectLabel": "Nadia Ivanova-banda",
+    "objectLabel": "How to do Web3 marketing without actuall"
+  },
+  {
+    "subjectId": "0xa09d5c0e0119357ec90ca67cb90b9641a10d2e63790022064fd9cb4a4a5311c3",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9d08224088034385be81257cacca7609689295d01e17b4cafecaf5b7f283cdd8",
+    "subjectLabel": "Jon Stephens",
+    "objectLabel": "Proactive On Chain Fuzzing: Testing Prot"
+  },
+  {
+    "subjectId": "0x6d2af774c26658f441b5f39f5a00faa8f3e76ad262a8e8ed1f2b23d659ae49dd",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcae70ffe7940c6c518d8e98523f2c004249ae797e709c750885bcf40de76c760",
+    "subjectLabel": "Satya",
+    "objectLabel": "Learn to Build Verifiable, Trust-Minimiz"
+  },
+  {
+    "subjectId": "0xc28bd778bdcf00633daf12d1af9cb9b9d798a00a30b942eb93c276178f6ee844",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x183e8fb177f7e56141726b45fb54cb1acc4aa763b52344329db91c91410880fe",
+    "subjectLabel": "Zach Pandl",
+    "objectLabel": "Ethereum Treasury Company VS ETF "
+  },
+  {
+    "subjectId": "0x93efc0edb4f5eb97b20f843138a20bd28a8ca439d5aa0bdd9e2770ea2ff0cf0d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x2320a0038bd16ba0811a9dab48fada2e2345475327eac931e45e6247a533f3b3",
+    "subjectLabel": "Kolby Moroz Liebl",
+    "objectLabel": "Making Ethereum Post Quantum"
+  },
+  {
+    "subjectId": "0x485cf963826524c810f118adf6e24a05811d1881d53cdeee04abb49e774f3a67",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf602e118bea9477326095c39c3f36d1f01d41e1d222d091c2c65dbe130cc50d9",
+    "subjectLabel": "Audrey Akwenye",
+    "objectLabel": "Reputation Based Lending using decentral"
+  },
+  {
+    "subjectId": "0xeaaa53fd1ef86de75fffba7f7e2bf8b8d0e0f6e43d6ed443c4246c3e1b0af780",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x03603254a6c709776e6cf09830e46330a10414a8fbc5022bba406199de0f5aa5",
+    "subjectLabel": "Merlin Egalite",
+    "objectLabel": "Rate Discovery: The Key to Fixed-Rate On"
+  },
+  {
+    "subjectId": "0xdda2fb3d2c97edf056c2bf53e33d9bc6776cc600b23685d62bf9dab2db562558",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x664fdac3892c9596ab86bc5f62bd20651f62c34d70b4647432779bc4664b5475",
+    "subjectLabel": "Stefan Loesch",
+    "objectLabel": "Making Arbitrage Work"
+  },
+  {
+    "subjectId": "0x2e50f03c720e658267a68d2a56008d5689d3bef2ae987079c1bfd52df21f70ee",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x4135c02cbced6bbd84128f26466f1bae90363f389d06402154c41ebae5775b19",
+    "subjectLabel": "Laurence Day",
+    "objectLabel": "Wildcat V2.5: A Teaser"
+  },
+  {
+    "subjectId": "0xf28cfff6a68ec07e817ec0fa50df8de2428c8076f834e55cde6fa14633b1e8cf",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xaab8572676599325b3fc87b54dc5dfb8e122f20d46cd04c30a4b963f21abf34a",
+    "subjectLabel": "Clement Lesaege",
+    "objectLabel": "Validator Redirected Revenue"
+  },
+  {
+    "subjectId": "0x57bee2d9e08a40d38f5d9e2f704c4653091d37100f6545cba549aed11be15b36",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xef6a3b1e93758c5f5f30c522233468371e2b01831e255977023c52e5f20594ee",
+    "subjectLabel": "Cyrille Bri\u00e8re",
+    "objectLabel": "Blockchain trilemma cracked: what about "
+  },
+  {
+    "subjectId": "0x83fb9771a9798b6c98e5cd5081353fef59e72e6b2e1b372367b87dd207fb63db",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x2d192f5873d8557a4257581e88a58a21934236f050a0e42b4a545cdac2cb8d04",
+    "subjectLabel": "Elo",
+    "objectLabel": "Increasing Global Access to Credit Using"
+  },
+  {
+    "subjectId": "0xc2814e2ee53392646f455d87721576e80b939a74f91561f78714c07de2e909ab",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xd28ebe150324066b36208be43d10b044690f4ef63471e61635c4017d8673e7ee",
+    "subjectLabel": "Anthurine",
+    "objectLabel": "Introducing web3:// \u2013 Transforming the E"
+  },
+  {
+    "subjectId": "0x95e826d6b56f8cfd59cbdb0bb03271fab1b923ce3f222823ab7448c2cfe70655",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0262ec8bc7ed7e48d711f627c2f13d89d88ea7719d90a0b971d458146f3ae200",
+    "subjectLabel": "Skeletor Spaceman",
+    "objectLabel": "How to be an AI demigod and not get rekt"
+  },
+  {
+    "subjectId": "0xd2c78bbf20cbe02152a9d64fa537648beb98253671a8bb50ac0705abcb69368f",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0262ec8bc7ed7e48d711f627c2f13d89d88ea7719d90a0b971d458146f3ae200",
+    "subjectLabel": "Gori",
+    "objectLabel": "How to be an AI demigod and not get rekt"
+  },
+  {
+    "subjectId": "0x141acf0d109e98008300528d761ba8643f03059533fc084240e6deb015419e0d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xa57b7e9570450df315c7419672c0787d55d56acb23cc321277c4343258fe53e8",
+    "subjectLabel": "Andres Junge",
+    "objectLabel": "Trustless Smart Account Recovery: Beyond"
+  },
+  {
+    "subjectId": "0x64b1341af2a25651d3c6b21bdf865f64a58ec4c4f3c90357c0121b3aef8e31f8",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9a022696f253c6997359830586e1d3b6fb8bf38c8bae29d34a304d28f08d3c3b",
+    "subjectLabel": "William",
+    "objectLabel": "Reframing How we Value Ethereum"
+  },
+  {
+    "subjectId": "0xff92661ed0febd29f6baf2f7a6352925919bca934dc48c8bf40eaf8817a706e5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb3b28a12fad3ba0839c0b1acc5bb7a76e0d93c4e7981addfb558447c35fdd5df",
+    "subjectLabel": "Stefano De Angelis",
+    "objectLabel": "Rethinking PeerDAS: Transparent, Post-Qu"
+  },
+  {
+    "subjectId": "0x5edf0c084217646bec635fa7ac647588bb7c6168b46c17af12e365435bfa32e0",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x01fbee606d29ded44c1cd1705acbc30027b288266ad01ec02f582f0f300105c8",
+    "subjectLabel": "Johannes Kern",
+    "objectLabel": "Beyond Payments: The Store-of-Value Case"
+  },
+  {
+    "subjectId": "0x8bf60c727f5e51c70804b1ad47351b0c58fc797245d1331dcc6e42c3bfb72fd6",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe69bb592dce0782519046dc375460c20bb360795f32a3f123f06bc41340f7993",
+    "subjectLabel": "G\u00edsli Kristj\u00e1nsson",
+    "objectLabel": "Solving the liquidity problem of a euro "
+  },
+  {
+    "subjectId": "0x47878d76dbe480f784e31b07ef42a30a3ee70f3faef8d9965d2f40d75fb0965e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x66a36cdc371540a65ca8a22e0f4e502e5c07cad7a7001f1bc36a41d9d044be19",
+    "subjectLabel": "Jihoon Song",
+    "objectLabel": "FOCIL: Past, Present and Future"
+  },
+  {
+    "subjectId": "0x5ebf58e77f2acfb112c2d7a124f77ed3e7130823760a5fd31cf660defa71a8a7",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x43cb3be9010d3620d18732790c0eed8167b85db9ab575eee02c66a93ab093934",
+    "subjectLabel": "Daniel  Von Fange",
+    "objectLabel": "Asynchronous Execution in Practice"
+  },
+  {
+    "subjectId": "0xfe81e8bcfa97db941df7fa33d45add27a5d750d43aebf053a2f3f79d88cda0ec",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x4dc873e59ecd7190d8356b702ee984861fc7227314dd8de9ec448b83a9616de4",
+    "subjectLabel": "Anya",
+    "objectLabel": "Tokenized Funds in Europe: The 3 Decisio"
+  },
+  {
+    "subjectId": "0xc65048a9272a1bf8d5e10f78da753fb07c2ad7eeed48d30afadd294a160a8205",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe29966d7a6c0c88d26c864930ba1e02dc287b8468a3d64f35b618bc4eb1f43e2",
+    "subjectLabel": "DMH",
+    "objectLabel": "Liquidity Layer for the Stablecoin Econo"
+  },
+  {
+    "subjectId": "0xc7c4de981d258e14a38064b9cbd72e4e6879bc8de48e744aeec668c3a9eddab7",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3d2b20e7e6d336ffa06f676076e2b0e6dbb47c4fcdc546942a87feabc8e8474a",
+    "subjectLabel": "Greg Swirski",
+    "objectLabel": "Keccacheck: towards a SNARK friendly Kec"
+  },
+  {
+    "subjectId": "0x71c9ba3a6f8ee3434b69844051b7eb3de9ab3d4b61d2ecf483c5df8de4e42117",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xdad509a15d68eb36b4c920e4b44ae142523e2a4a0071f325e8b4c399b460c5ca",
+    "subjectLabel": "Jork Leonhardt",
+    "objectLabel": "Stateless Clients: Verifying Blockchain "
+  },
+  {
+    "subjectId": "0x9ea35d5bf442ac6de321f88cf235a0e4075976625da3fcdb87dd63ab79587e90",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x4b636f1ce9de443e4ba7a07d7439a5b1e7cdb7c6a631a28a05a4886dbb470975",
+    "subjectLabel": "Yu  Hu",
+    "objectLabel": "Building the Verifiable Attention Econom"
+  },
+  {
+    "subjectId": "0xc7e6b4ac5923d9d93bfaf9f51b4ba69273a6be8db60d81f0fd8767c665c9401d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xa5ee0c64504b890afdc1f627c0cd487cac67a244f8a2413d2b853b281571bcf4",
+    "subjectLabel": "Lauren Luz",
+    "objectLabel": "Regenerative Finance"
+  },
+  {
+    "subjectId": "0x2a5e536f1415d6be57f788924f67053ae905b5631132dbbf64d3d259052c8a12",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xa5ee0c64504b890afdc1f627c0cd487cac67a244f8a2413d2b853b281571bcf4",
+    "subjectLabel": "Zeptimus",
+    "objectLabel": "Regenerative Finance"
+  },
+  {
+    "subjectId": "0xe64a21035d45b0ffcec548c684328260b929b577d10722bf484bc2577c5c4f92",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xa5ee0c64504b890afdc1f627c0cd487cac67a244f8a2413d2b853b281571bcf4",
+    "subjectLabel": "Yegor Golovnia",
+    "objectLabel": "Regenerative Finance"
+  },
+  {
+    "subjectId": "0xb735cde35209500b775d643e46293493f15a8d135322ca66ad482727dbd3323b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3554a8f2c117f2e86dcc77cbd7bb924d9907aa039dcbb54de2dde5750b9c5d37",
+    "subjectLabel": "Declan Fox",
+    "objectLabel": "Public Chains, Private Guarantees: Desig"
+  },
+  {
+    "subjectId": "0x3ab7bcb0fe1fff6703fd689e089015e31a243c172c58e6f0466834814db42af6",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcae5bed2eb09bad912d6274d59c3b526ba147175a882e3638b6019e0c2210d27",
+    "subjectLabel": "T\u00fcmay Tuzcu",
+    "objectLabel": "You are not alone"
+  },
+  {
+    "subjectId": "0x50bf5214d7477db02bb8c7d6054e92a5c22fcf072227b8a5b440ebc16179685a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb8c230b7c24d0876decbbacf992b0a3c819135be40164e7d2f4a789b3848dcab",
+    "subjectLabel": "Strausses",
+    "objectLabel": "Million-Dollar Bugs, Zero Names"
+  },
+  {
+    "subjectId": "0x969bc09b5b9107f9ac1d0ef95e90a6c732ad26fac8cf518884f2a632fd486fc2",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x076ed23bd0f50fa770a7f90b7f827c3c6a362b995d4f1ed567ce76d1742ecb47",
+    "subjectLabel": "Anthony Caravello",
+    "objectLabel": "Turning an EIP Into a Rallying Point for"
+  },
+  {
+    "subjectId": "0x012e1efe4e8f2cf8a4a34704144f78d06a2e3ae6e626d262e1d820e725cb23c7",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb508cc4a15a549d194de96c314b4239cc31ff0a21221b844bbea8e7142b934bf",
+    "subjectLabel": "Ladislaus von Daniels",
+    "objectLabel": "ZK Attesting"
+  },
+  {
+    "subjectId": "0x570ca2c6a15c8a29aa49aaf0949a5e26ea22edd2bfa1c4bb5ea24d9f0aa43b7d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb6db567c59f4be04b4282017882b0d6c53b8e707c20c428a5f206204001aeb1f",
+    "subjectLabel": "Ryan Sauge",
+    "objectLabel": "CMTAT: Engineering a Security Token on E"
+  },
+  {
+    "subjectId": "0xcb8f5296026914a913ee43812b75c224631c10c6f108a7ab38a55e8f10973675",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc94be0560145b578f34448ff610b8a5d02846c0b97bb31313bff81cfce80b54f",
+    "subjectLabel": "He Who Remains",
+    "objectLabel": "The Future of the Agent Economy: How Pro"
+  },
+  {
+    "subjectId": "0x76c947bf12fdd0717c2f04223d7c94ba4886391d1ed8ec8503ebc97e3e6b3c25",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xd4200e95b1520369d492b065929aef5a5c3fd1aaa76152a4959b6bb7acfea798",
+    "subjectLabel": "David  Leonardi",
+    "objectLabel": "Synchronously composable L2s today, not "
+  },
+  {
+    "subjectId": "0x5e5759c7d72b0e50297b9178248d363424302a41acf8e26bca060827e38617f1",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1fea22affe71611fddea86266d69e0157bb57c77452ec28a5296eee2392f35b6",
+    "subjectLabel": "Reka Medvecz",
+    "objectLabel": "Privacy Won't Market Itself"
+  },
+  {
+    "subjectId": "0xd2115d109554bef15646e27d6da451035594e3be31fd18dd765a028e78377637",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x5a8965fd08ac40c5788d8cf9b630f7ebf2306463213e6f7124b76b50591c2a20",
+    "subjectLabel": "Hester Bruikman",
+    "objectLabel": "Trillion Dollar Security (1TS) for Ether"
+  },
+  {
+    "subjectId": "0x7cc90796c8b1dbd50ece1065e2bcd5e7c4b87225c52cef013e4b4484732143cb",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9e324393d4bceddd621d0df8559a099734c181f3a06aa69b582e1bef638630d1",
+    "subjectLabel": "Olivier Desenfans",
+    "objectLabel": "Aleph Cloud v2: how to decentralize AWS"
+  },
+  {
+    "subjectId": "0xffef4560552d7fe9b214f6ceaa38953860453608ac9308008aa7cb6dde4b76de",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x5d10cf09f7164790f881dc13cfd14c1661d302703b0d47e0ac2f62da07b8499b",
+    "subjectLabel": "Alan Li",
+    "objectLabel": "Pico Prism 2.0: Real-Time zk Proving at "
+  },
+  {
+    "subjectId": "0x15a1c5347f45c327f339262910d84a500b1e7a093ba04bae2461d62562bdf71e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb96f888671caf36d51d2569526623df922fa156de83cbd2d94dbf93b3f0f0617",
+    "subjectLabel": "Sebastian Widmann",
+    "objectLabel": "Unlocking DeFi for institutions with cle"
+  },
+  {
+    "subjectId": "0x79237c84200ff58280e15d1d9e716d4dbfe0a1764d11216a3cd9e319cef7eebb",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x2e4039299f979cd78bc606f3685da4f91b8924d97552f361ac04dc0a93e1f2fb",
+    "subjectLabel": "Leo",
+    "objectLabel": "The first 100 days of Fusaka and the fut"
+  },
+  {
+    "subjectId": "0x72463814666c1c930c6c1a28c3d208def50820c698921c822d38743909aae552",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1d60fd018b30ece9a779d5e2ae953cc33d8f4446bd0e27617aff8032da354703",
+    "subjectLabel": "R\u00e9mi",
+    "objectLabel": "What did we learn in 2025 about DeFi ris"
+  },
+  {
+    "subjectId": "0x204c539e79a5183dbe771a4700a86d7bafe17a929fb8e7eb42d2d890c2aed50d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf4adffebf573c60b982c0a66ae7e9eeaa4e816028525d0ec1ffc6a95c9c1bbfe",
+    "subjectLabel": "Kubi Mensah",
+    "objectLabel": "Blockspace: The First Ordinal Commodity"
+  },
+  {
+    "subjectId": "0xce438d3185af9c7641b0e6c204a4054492f5d9b317bb9d5c62a980588994cd3a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xdd47a25b707bff30235d3915b31ecb4fa8fead2aacb0770c9566d019102bcc30",
+    "subjectLabel": "1sla.eth",
+    "objectLabel": "building a d/combinator "
+  },
+  {
+    "subjectId": "0x29d001d792240ee7c91cca8c3898112cfacf1cbd92b3abebe06db8c74e83eb49",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3ab523cb7d81be5896dab10424493556c1c9576b35bd6469f84a6b9b33656d67",
+    "subjectLabel": "Faustine Fleuret",
+    "objectLabel": "When regulation meets vision: what the E"
+  },
+  {
+    "subjectId": "0x3e03e8ad6a80df05e8c7c29a1359b2b8a53c5edaa54e197f39ff4dffc6e945d3",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xbd97ba4dbaffd5ac3839dbf8bd8781998e6693f2f41fd4da20a1a8575de81b0e",
+    "subjectLabel": "Karl Floersch",
+    "objectLabel": "Technical Priorities in Ethereum\u2019s Enter"
+  },
+  {
+    "subjectId": "0x80169123b67b9f121896628c378f7e2700bf8eed45012380d88d49ad01ac54b6",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xaddcc0b454d4f62a2891237bf8e6ee477e95a92bcbc3484d4de7944b520ac201",
+    "subjectLabel": "Christoph Schlegel",
+    "objectLabel": "Competition through Spam on L2s"
+  },
+  {
+    "subjectId": "0xb2f279e3b8077983a52566280d2f73c0ae6f133be73dedad723f178b4a078048",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x8e6381e80d75bf1cc3ed320e93be33e5d8a3e28e9758726c0304b93c213c1298",
+    "subjectLabel": "Claire Balva",
+    "objectLabel": "What's crypto lobbying ?"
+  },
+  {
+    "subjectId": "0xc448cc7d0d06f0552c2b16a0892ef2af04e07e955137f4be69cb3f52ab00823e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x8205a2ed75c1f96d65b3b7ac4efb52e957cd4443ef4da963bbab1ee4d71f1ca6",
+    "subjectLabel": "hildobby",
+    "objectLabel": "Bridges/Interop data unleashed"
+  },
+  {
+    "subjectId": "0x93fae51a246285375450275993b79eb5cff3447489dcae3baafbfa733a839c37",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x57a3de0e009f42a7c18b673a0808fb1bd2cb450171328754650cc2090a9038e7",
+    "subjectLabel": "Ignacio Presas",
+    "objectLabel": "Physical & Operational Security 101"
+  },
+  {
+    "subjectId": "0xb867e5c0648420af339eee2bc41d9e3b01c8c80dff9049056e6c4112a0cbc176",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0372ca304af581bc256b6a716b31631864bba72fc3968d37f742f73fe4f3db8b",
+    "subjectLabel": "Jonjon Clark",
+    "objectLabel": "From x*y=k to Ticks: Seeing Concentrated"
+  },
+  {
+    "subjectId": "0xa07bc73a85745530efbf07962fe637ba5f9ff951363e8196086793991ce6d8ae",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xa408e317361c124f749a9fa076e53d593ce47dc7f4ac6fd305bdf60c6985b878",
+    "subjectLabel": "Dyma Budorin",
+    "objectLabel": "Security Is Infrastructure: Designing Re"
+  },
+  {
+    "subjectId": "0x76a1c1eea9509f32a8ac052799430badd5abbdc4e8e331862d5f5de0daf0912e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x4442fcc4cea92796ad770a01828eadceac3be79ba588666ccfb9a723999643f0",
+    "subjectLabel": "Henri Lieutaud",
+    "objectLabel": "Proofs as a smart contract primitives"
+  },
+  {
+    "subjectId": "0xe90d1bf2538ce65e981b007ef18c4c8ed540ad34fc1a14e3ffc7d2b9165ab83b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x6203a1cac838dd52fb210ed9a26c4aa39577ed3bdcfbbb8d69d0578a22740dcd",
+    "subjectLabel": "Alex Cutler",
+    "objectLabel": "The MetaDEX Thesis: Rewriting the Rules "
+  },
+  {
+    "subjectId": "0x559fe2e08a47e683783db6373eb38f0b1571278457f41e83554f54b3dc5dfd88",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x916c80925e4ce2587b649dc489de1989c91ad6b62ec22aadd7ffe7fc8515b589",
+    "subjectLabel": "Suhyeon Lee",
+    "objectLabel": "Economic Security in Optimistic-Style Ch"
+  },
+  {
+    "subjectId": "0x57e91a2266acf141429462366845f12a7e89f0b1fe6be34d7bcbc135595f9c3a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe0bbc6c2f621182feb226de115468c0527e3bf68e755475f4ac0bd4559273ae0",
+    "subjectLabel": "Anne-Grace Kleczewski",
+    "objectLabel": " Behind Every Stablecoin Is a Lawyer Cry"
+  },
+  {
+    "subjectId": "0xaac33cd8dca1f98cfb4230a27a4490c8639df1d8bb76f58ba304c96f695a0b89",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe0bbc6c2f621182feb226de115468c0527e3bf68e755475f4ac0bd4559273ae0",
+    "subjectLabel": "Anne-Lorinne Mognetti",
+    "objectLabel": " Behind Every Stablecoin Is a Lawyer Cry"
+  },
+  {
+    "subjectId": "0x8d90fa1993ea0894f2d64fd2868a7a1732c205c03f9194b715f8bc0cede01999",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x54fe205b61413663e138ba23c5abf6fed784d0ecff8571ebd17e19a22024ce57",
+    "subjectLabel": "Michael  Heinrich",
+    "objectLabel": "Why Verification Should be a 1st Class C"
+  },
+  {
+    "subjectId": "0xee441dbc59df61630b364c5bb3c6a44532f0052f72f3e314f2bb2eabdb22e14a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x99fad0c46102c592eaf406bd40e84a1058b8168f54bad6a31352c4d167cf5488",
+    "subjectLabel": "Stani  Kulechov",
+    "objectLabel": "From Scarcity to Abundance: Financing th"
+  },
+  {
+    "subjectId": "0xf8563bd8480aca2ab8fb6dfc64deeb6769353928f3737f8cca209084bfb15cef",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xea4ed3556fc43f4cad05670fdcc3d40587aa726241281b882b761bbfe4028365",
+    "subjectLabel": "Arman Sarhaddar",
+    "objectLabel": "Consumer RWA: Tokenizing Everyday Items "
+  },
+  {
+    "subjectId": "0x7046e31f53267f7f47a154291cabafe8253442c4ec8ba5ad7b5b4039d4834f79",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x970b41a8a343621342063fb3fb11a9c5d641d26f042fd37f568821491487eb70",
+    "subjectLabel": "Alice",
+    "objectLabel": "From Experiments to Adoption: Why AI Age"
+  },
+  {
+    "subjectId": "0x51595479b591cae23e6cdde42132f6ffbf43b8a51264c2f0b0d8fb098920c2fd",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x4209156bcbeb6bd6c3ebe809f6912f9233c2173d3284fd7eb627fff78ebf4d3c",
+    "subjectLabel": "Simona Pop",
+    "objectLabel": "The Human Protocol Podcast Launch"
+  },
+  {
+    "subjectId": "0xb2263b4aee1184c24c559d5d67d69b975d3d82daa2bedfe0be63f0a334e09cab",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x2a6370bbf0cc6d9611783b264d0b178bd9a44eedd9ed7e7d741fc3a7a7ccbc22",
+    "subjectLabel": "IVa",
+    "objectLabel": "Decentralized Social Update: Embracing T"
+  },
+  {
+    "subjectId": "0x2a1a9db1b57c0f502403c6c5587c70ef1cfb88000df71ac83b98d01a529305b6",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x855b621f8591c5cec445357bedc6a9a84fe9871355276e2a62b69848d646cd82",
+    "subjectLabel": "Chase Manning",
+    "objectLabel": "Building Smart Contracts with TypeScript"
+  },
+  {
+    "subjectId": "0x7423ea0a4d7b6dacac146607f41be811f56b4ca63fcbfc0d66130ccc62645a23",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3c2f2be093c01728c11c0483bc4673b6cd3c2011a2696fb00498c6ae6388f1b0",
+    "subjectLabel": "Artem Sinyakin",
+    "objectLabel": "Why marketing isn't enough anymore"
+  },
+  {
+    "subjectId": "0x3c89b42fd54ee4ea4a900373eca1401123fd1614e5022d94662739f2b881e350",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xdf20987fce673b9f230ba79c35c15c5d668a2c4e743541aca019de8aa6506f06",
+    "subjectLabel": "Tomer Weller",
+    "objectLabel": "Privacy that doesn\u2019t break the chain"
+  },
+  {
+    "subjectId": "0x9a61b1574c16cda722f104587a86d5cfa560bf131b72f5910c2fa63c4718e24c",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc842e56a6a9d2b7336bbc3a5c3017ca9a7572bcf52aea3b417cdbaf3d528a885",
+    "subjectLabel": "Chunda McCain",
+    "objectLabel": "Building Markets Surrounding Tokenized A"
+  },
+  {
+    "subjectId": "0x1af6e59de42027fefbebaaf0ce4f12ee81188ee23630788d69095edf90390057",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xbb01ac495dbfe4211b96349127776c93de7f6bf4cc60e0c32a4528237fe15550",
+    "subjectLabel": "Oleg Lodygensky",
+    "objectLabel": "Crypto Agility Framework for Ethereum (C"
+  },
+  {
+    "subjectId": "0x0f29d0ea09515c2f8f1ac6e5ef26bd855c329c2fd20b460f60a3527e51795afb",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe22b9a0a2c98d38434c1f78c9b1d2868557e057968e1bec76d5a38c33dee02a5",
+    "subjectLabel": "Alejandro Ranchal-Pedrosa",
+    "objectLabel": "Rethinking Censorship Resistance: A Rate"
+  },
+  {
+    "subjectId": "0x3d28066b20c9adef7a68349a32bf3ef84812fc1720a837503d88051e52aa6319",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x55be8ccbbaea52c6a592614b3f00b782f3ab46c122b1a1c5f4bb6d98295b5d67",
+    "subjectLabel": "Ece Orsel",
+    "objectLabel": "An Offensive Security View to Cross Chai"
+  },
+  {
+    "subjectId": "0xf0203fb33b3654075b2aa52ff72330a64fad2d286a22efbdb711ee97ec2a6e13",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x6a4bdd6d0025bd81e9df3301c69d6e2463c386bab2a74407926adb1a0f7cc83d",
+    "subjectLabel": "albicodes",
+    "objectLabel": "The End of Extractive Apps: Designing fo"
+  },
+  {
+    "subjectId": "0x9a28fbeea85f2daa8656101e3245ca5fbca7ca168acdd5558a9a07835cd9a44e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb6c7338262f10fd19660b782bc294008447472c4f151a789619be7536b180d9e",
+    "subjectLabel": "Mike McCabe",
+    "objectLabel": "From product to adoption: how privacy be"
+  },
+  {
+    "subjectId": "0x9205116d3367d028e0f04aac32a7ebb6797629cd5917852f9456118c1e2cbdf1",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x101865ffa53ad47850350ecc3ce6e4f6348021ef24a621940d3ae809598fde19",
+    "subjectLabel": "Nahim Terrazas",
+    "objectLabel": "Beyond Bridges: How the Open Intents Fra"
+  },
+  {
+    "subjectId": "0x6037babc33679382925b2bc4db4ad13d14a9145d7dc39398e1809caeeead9a4e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x7e7f52a81216a9a9193f291ccea94e942a599b1b82ede2b7a1925d09c8435596",
+    "subjectLabel": "Xavier Lavayssi\u00e8re",
+    "objectLabel": "Money: Free speech?"
+  },
+  {
+    "subjectId": "0x459d5a183c9a27cff8c1b4503cc7f4d2d79fb6c0c3a3b5c8ba77c70beb4f563b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9faf9b51a4eb401f9bbd7160823e8d98ea0ee7fd83c22e5bfc281f394f419913",
+    "subjectLabel": "0xAlex",
+    "objectLabel": "Futarchy on Ethereum: Practical Learning"
+  },
+  {
+    "subjectId": "0x346f9b0a0585fd20c0189366bedffdcded0842b5e06a2bdae9ceb5ab629fa475",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc47462513380dd084401743b47da1253365a4350789ae15218427e5aeef1b11c",
+    "subjectLabel": "Redwan Meslem",
+    "objectLabel": "ERC-3643 Regulation"
+  },
+  {
+    "subjectId": "0xc9644e91a2b577f84395a8797ee922ebed2aa98ced2b5e41e68791c4487dfc6b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xefc514c82bfd0e8972ed77d22154e1ae211319df05667d66382715ddad354ed8",
+    "subjectLabel": "Pol Lanski",
+    "objectLabel": "Sovereign Agents are here: Local-First A"
+  },
+  {
+    "subjectId": "0x0c0c6d168a69f1626fe9f98880082ee6b7822cd19f148d2eb9f60202683b97de",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9d6fc1982ffd0ae2a47f43998cba9e122f7922d242663e9634e387bc19ee168f",
+    "subjectLabel": "Jan Gorzny",
+    "objectLabel": "Ethereum Layer Two Client Similarity: Ge"
+  },
+  {
+    "subjectId": "0x9894c5bb67a210ed44e31a4649d5f1c06969dd5ea9e4ed687208754217282efa",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xd58f8f83e54ec89c5b80333a1e1c8dc5ed7a5cbd4ac2c3ce5080640b7a2bb904",
+    "subjectLabel": "Ekleen Kaur",
+    "objectLabel": "Future of Stateles Ethereum- Core Protoc"
+  },
+  {
+    "subjectId": "0x6708794032407f9148eaf2fe1b27ff8925fab0fc6b4030ce167fca14f62495f9",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xd58f8f83e54ec89c5b80333a1e1c8dc5ed7a5cbd4ac2c3ce5080640b7a2bb904",
+    "subjectLabel": "Everton Fraga",
+    "objectLabel": "Future of Stateles Ethereum- Core Protoc"
+  },
+  {
+    "subjectId": "0xe9d10660390be3408e3bfdf1821a8b9485976a553be4a7b7f6ad61bec146056c",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0d07deb7e3bac778c7fd203e7f0d68868d9cf32f9e7140a155280bef33e578a7",
+    "subjectLabel": "Andrej Berlin",
+    "objectLabel": "Designing City Pilots"
+  },
+  {
+    "subjectId": "0xa864d13ffae1d2a22b594a802899da65e307c4bdc6d0a743a3eb3fc7fcc3f13c",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0d07deb7e3bac778c7fd203e7f0d68868d9cf32f9e7140a155280bef33e578a7",
+    "subjectLabel": "Justina \u0160vitrait\u0117",
+    "objectLabel": "Designing City Pilots"
+  },
+  {
+    "subjectId": "0x14511631dd3389bc9d4a86eeb7399cd10dd2ea70929bd693c077e329e7eedac0",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x23914ab376f8e24015f54f0d867874428a94333ed858e216445f70fe426482f2",
+    "subjectLabel": "Tomer Ganor",
+    "objectLabel": "Designing Defi Resilience: Inside Aave V"
+  },
+  {
+    "subjectId": "0x7e3f379f9d0aad306c4587516a80dc2856d611e4cc5edd2e416828872ceda3e3",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xec31944cb4198be6ca3d877c02ddf04734ed9b1bab6747de5b3781fb4c55c69b",
+    "subjectLabel": "Alina Tielnova",
+    "objectLabel": "The New Frontier of Finance: Institution"
+  },
+  {
+    "subjectId": "0x0a9ec1a0e280d3e3c80288a3e33bfe002aab4c1da84ec508fdd1fe07123635a4",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x6257eed45013de3259a21633d070d0d3679e725bb588e49027c3d7deba8ea568",
+    "subjectLabel": "Slobodan Lukovic",
+    "objectLabel": "CryptoCPU: A Solution for Ethereum\u2019s Cos"
+  },
+  {
+    "subjectId": "0x8230f16c989104ea1e325b9871b0362554867144d8af9d7eb4eb2e230ebc4879",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x941e7873d8aa08654497655850a39a8183076733c054b1015876420e51d30416",
+    "subjectLabel": "Petar Atanasovski",
+    "objectLabel": "ZK Is Not Enough: Privacy Requires Syste"
+  },
+  {
+    "subjectId": "0x736deeea73f80afb3d4e13bdc3b01459710ad41edf82639d36479c70fd6659f9",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x11c634ea8d70b8ceda7ced0cad5a96f736d5d549c84c9aa1038a05fbee9b9093",
+    "subjectLabel": "Toufic Batrice",
+    "objectLabel": "From Stars to Bits : Space Infrastructur"
+  },
+  {
+    "subjectId": "0xeeeb5674a4c6ff2fd539acd4e16f6e228ac4dd4cd0da73dfdd045e4b0762f31b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf3c075c7f4a666ac5b6dc7b5475fcb19fb6a44f823d3ac9b6c5c1a20faf6083d",
+    "subjectLabel": "Peter Us",
+    "objectLabel": "Attestations Alone Aren\u2019t Enough"
+  },
+  {
+    "subjectId": "0xbdff95a67f508207fd62a5552326c869054a671dd97cf996ba6e707e63330f9b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x91ca512de2bc6448c4a979d69a59d7da357b22bdfd29ef3a5ee8fc8543060206",
+    "subjectLabel": "Patricio Worthalter",
+    "objectLabel": "Nine years of POAP in EthCC. A founder's"
+  },
+  {
+    "subjectId": "0xbe2e683a0d4ce2ed3e361bca0b8dea085c46068831ebc80f185d671103547e2e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x57163d0f843e1098e68a7c1716c97f16d21b8ed984ac6188998cdc26d2071c52",
+    "subjectLabel": "Sterling Barnett",
+    "objectLabel": "Arc: Bringing the offchain onchain"
+  },
+  {
+    "subjectId": "0x99a43cc70e9373a3a7ebc8ceea6f1dd7fd694341aaa3a26919c11c4540579435",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0ca10f11ac30555da8d6b25104ef3e1bbbd198aee4da0d52046251e0e5ba99ca",
+    "subjectLabel": "Nicolas Assouad",
+    "objectLabel": "$$1B across 7 blockchains: deep dive int"
+  },
+  {
+    "subjectId": "0xae3cddcf40d927c6580d6f644ec93d1b3648aae94f08cd52746df3b7c724c084",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x676c17c150235109b3727f2512a3b3cf4e28f8103756409882ebe36948b31169",
+    "subjectLabel": "PBJ",
+    "objectLabel": "October 10th: The Day ADL Broke \u2014 What t"
+  },
+  {
+    "subjectId": "0x0c364b2b864ce44ba70f6aeccebfa1e6bc86667aa1b28457ce1283991cd2261a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x170e4c0a275768c99561350d25fad213631deacd69a51312b8a1e3d0c62c6503",
+    "subjectLabel": "Fredrik Haga",
+    "objectLabel": "The Rise of Composable RWAs"
+  },
+  {
+    "subjectId": "0x7eac972e7b5eee98cdc9f6e02fc22fa1ca0dc1cb47133d27d045f8902447b519",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3b5fe4d2d7360369cf87f38604f084f365f65c47bcb3e38928265ed8cbdba173",
+    "subjectLabel": "Yi Sun",
+    "objectLabel": "Proving Ethereum in Real-Time With OpenV"
+  },
+  {
+    "subjectId": "0x6f888dadc9aaff00216a85fbd67242f87ff4206e69016810e88294ba0a1282c4",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0199b14cb6a3a912f62b69070021b8bef1aa2f152d667855ee749041ec192d45",
+    "subjectLabel": "Lola Rigaut-Luczak",
+    "objectLabel": "Deep dive into Devp2p and how you can im"
+  },
+  {
+    "subjectId": "0x82040b32ac1a5601f1d3cde81e1a3e2e9543e686e6d2a8431985a51e178e8634",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x67c12469736147c293ff8e65e521f00be72fc4c627b98c0d12fb56f6229e2488",
+    "subjectLabel": "Pamina Georgiev",
+    "objectLabel": "Designing Solidity Contracts That Don\u2019t "
+  },
+  {
+    "subjectId": "0xd296d5c4cfb2f935070e717b59dfaf80f66ee3eff014645e98065a5cb76c5d8f",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1cf7f7caccd8ac54417112fa0fb8000c46767c1c22b360dfa901caf4e35f7d87",
+    "subjectLabel": "Yoichi Hirai",
+    "objectLabel": "Your guide to formal verification when m"
+  },
+  {
+    "subjectId": "0xf289783ae9fe73a1075f1cdca6b9d98c1a5c3676346d0fc16355ec2ef51c47f5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x75c32d10d69da9f685ac980b30d64bff61ad941eff69619f4796d678403d53f7",
+    "subjectLabel": "Romain Menetrier",
+    "objectLabel": "Most RWAs are not real assets \u2014 what \u2018re"
+  },
+  {
+    "subjectId": "0x93f6300c5a23dd8c64eb249a4ba12cb5b8acd835cb3e15d3dd6b3ed0a5c41742",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xbe839f8b883e062931722b302eee7275a043207b3b21242b0a9c43c26f8aa15a",
+    "subjectLabel": "Jordi Baylina",
+    "objectLabel": "Scaling Ethereum with zkVM"
+  },
+  {
+    "subjectId": "0xe15284a13c58475f7c3fd0418cc7e6c55e2b76b6edc242caebf334380d5e3e97",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xfcd9daf09f34ef1f37566bb8d08d31520d55734b539a39d2211876dc5c9e4557",
+    "subjectLabel": "Jordan Jefferson",
+    "objectLabel": "Building Stablecoin Products for Mass Ad"
+  },
+  {
+    "subjectId": "0x9ac8488715e77b53e371b1f778f3746e25c22465c16c7a5740847778ea4a9fbf",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xfcd9daf09f34ef1f37566bb8d08d31520d55734b539a39d2211876dc5c9e4557",
+    "subjectLabel": "Justin Kugel",
+    "objectLabel": "Building Stablecoin Products for Mass Ad"
+  },
+  {
+    "subjectId": "0x0d0ab6e6d646ef6c469ebdbb1cb79a88a34a5921475e540e1571f3b12798ca36",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf918ea0bffa57ea0f750401294d85cd621e64590e13728abec0e362e4c1fdd2a",
+    "subjectLabel": "David M\u00fchlbacher",
+    "objectLabel": "Meet Fusaka/PeerDAS + Runtime Metrics"
+  },
+  {
+    "subjectId": "0xa81dc557e623365c90d4519e8b7a8f1b2d354e68f77f138589c22c7ed629b666",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf918ea0bffa57ea0f750401294d85cd621e64590e13728abec0e362e4c1fdd2a",
+    "subjectLabel": "Stefan  Kobrc",
+    "objectLabel": "Meet Fusaka/PeerDAS + Runtime Metrics"
+  },
+  {
+    "subjectId": "0x64e8fe1cd2bbb5af0a3c01a258c1e72edd8fcc8d6ede4c1469d77c5d21951808",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcba1208390a104d56fdb246d5b28922a07986a62feac0680bb74f88ac5a31885",
+    "subjectLabel": "Kirk Baird",
+    "objectLabel": "Common Vulnerabilities In Networking Pro"
+  },
+  {
+    "subjectId": "0xe4abd6d7d11932359d843bdaa09a3adc3f02eb1e1850b565c4bbcaeccdaa4d67",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcbb12f7657c9b89769b5f42ebad76cbb2d49be0bca891e8a718d4972108e207d",
+    "subjectLabel": "Luca Jouglen",
+    "objectLabel": "Blockchain for good"
+  },
+  {
+    "subjectId": "0x35ad13325bb5128f530421fa4487e0856656466ecaa795261973498960fc820e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcbb12f7657c9b89769b5f42ebad76cbb2d49be0bca891e8a718d4972108e207d",
+    "subjectLabel": "Aouatef",
+    "objectLabel": "Blockchain for good"
+  },
+  {
+    "subjectId": "0xf49749edbe6b1a24c851f22bc8572f43bdcd8fb64860c4e6f8a8b819e984ef15",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcbb12f7657c9b89769b5f42ebad76cbb2d49be0bca891e8a718d4972108e207d",
+    "subjectLabel": "Emilie-Alice Fabrizi",
+    "objectLabel": "Blockchain for good"
+  },
+  {
+    "subjectId": "0xa26725211a7728b5ef27652c94c7b4ab04dcccbdd5c505bea982174bd1cacd31",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcbb12f7657c9b89769b5f42ebad76cbb2d49be0bca891e8a718d4972108e207d",
+    "subjectLabel": "Myl\u00e8ne",
+    "objectLabel": "Blockchain for good"
+  },
+  {
+    "subjectId": "0x55633df679049c25839725de34e9a1b88685f6ab3af968e46e1aa20e9eb21443",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcbb12f7657c9b89769b5f42ebad76cbb2d49be0bca891e8a718d4972108e207d",
+    "subjectLabel": "Sitara Jabeen",
+    "objectLabel": "Blockchain for good"
+  },
+  {
+    "subjectId": "0x9501e7d10918c20dfa1713a348780cb71a411071c9dd477c75a769eb16fc3af9",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xcbb12f7657c9b89769b5f42ebad76cbb2d49be0bca891e8a718d4972108e207d",
+    "subjectLabel": "Aur\u00e9lie Boss",
+    "objectLabel": "Blockchain for good"
+  },
+  {
+    "subjectId": "0xf0b6f98ca40688d54317ded275310b5cd89fa7ad3a87794bee38e71676be650d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xd424696fe6c890edc4859aeb51f430acc61f47446e7fe6622eb28d60621edff2",
+    "subjectLabel": "Fisher Yu",
+    "objectLabel": "Programmable Native Bitcoin for Everyday"
+  },
+  {
+    "subjectId": "0xa0fec0ea7255fec105ff501866069395195dcaf6ab51b3aa694d5a4aff65a051",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0b0dda63b44455beacb22fbbf3f0f7305419ef9c985cf368ca76cbd892ed07c0",
+    "subjectLabel": "Alec Novella",
+    "objectLabel": "The AI Detection Illusion: Why \u201cMore Fin"
+  },
+  {
+    "subjectId": "0xcf98a4f7431c7ed94be2e00f87aa594e591a71bf1134f4a6001504c5ca582da0",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x20d7bf1c17aa234f8c7b412e432abffcd18bfce29aa08dd70f9a562ac7156f0d",
+    "subjectLabel": "Gio",
+    "objectLabel": "Security Culture in Decentralized Teams"
+  },
+  {
+    "subjectId": "0xc2f5db5282bd9ba50704f6ff59e6b2520a7b773cb4d84b685b6d99fb9acc1c72",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x20d7bf1c17aa234f8c7b412e432abffcd18bfce29aa08dd70f9a562ac7156f0d",
+    "subjectLabel": "Michael Noble",
+    "objectLabel": "Security Culture in Decentralized Teams"
+  },
+  {
+    "subjectId": "0x72f275486d54b88af05f9f61ba2972ab82fe64d86ae42d07457e2b86896c8c01",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x6092ec2b6e81e7304f412ce7416ae7ca6efd817897ced8171cdbf58d9ca064bf",
+    "subjectLabel": "Luca Winter",
+    "objectLabel": "When Clients Disagree: Picking a Side Sa"
+  },
+  {
+    "subjectId": "0x0f309b4099d94cf93d80e520be5a8e45e3f442add155cc7417d8f8c3ea1b3025",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x651c46538c999e0d73badaafd1429ee61cd4b086bcddf8aaeb6e05d50b2e17e0",
+    "subjectLabel": "Ernesto Olmedo Pereira",
+    "objectLabel": "The On-Chain Euro: An Open Design Conver"
+  },
+  {
+    "subjectId": "0x2c51eec1418f053c7d0cc53c51b203691ee4b8104faf88b10cd9a982f0aaffcd",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x57545443a03e04b2fe97203b5e31c9364fe25568eb5d5be6a7271e47db2a6f79",
+    "subjectLabel": "Noid",
+    "objectLabel": "Cooking With GASS: A Developer-Friendly "
+  },
+  {
+    "subjectId": "0x3fda2b24e4c7ee2f4da3337c92dd53dd146cf130784029d0f80d011edb839aa4",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1a4ab4a170e359f8bb367909978c2ec5e098583178cc2ce44082348a05b2b6e4",
+    "subjectLabel": "Zuz",
+    "objectLabel": "From Builder to Leader Identity: The Met"
+  },
+  {
+    "subjectId": "0x6a87b9ca9aed3ea55e9c228921e16a07777982fdd57be4a21e8e24da295345d2",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x0ab37da991b25d2fbba4b6dfcb5197d01f433548c6aa9a9906455d4242d70a7c",
+    "subjectLabel": "Mooly Sagiv",
+    "objectLabel": "AI Composer - Safe Vibe Coding"
+  },
+  {
+    "subjectId": "0xa220753321f176ece2ac635f6d95ce2752704ea25a36b4aec88b86e5f62279ef",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xeaeabc25d5442652465eb9460980a4a6117aaee94b186897734c4064b50db5b5",
+    "subjectLabel": "Jack O'Holleran",
+    "objectLabel": " Eliminating MEV to Unlock the Next Phas"
+  },
+  {
+    "subjectId": "0x80440d05ceba568b7f0116515632d608260ada33f379cd6fb91dac6873e9e4ff",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x10d3709df1600d6f7a9882b970fe23a10cade47173d8d74b07238548b4d2ef94",
+    "subjectLabel": "Andy M. Lee",
+    "objectLabel": "AI Fuzzing: From Stochastic Chaos to Dir"
+  },
+  {
+    "subjectId": "0x1dcd4dc041fa5844e42daf577ece2cfe0e9a258800bd5079a4110ed94fd3126a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe247a559aede538e38925a44adcad9b65907b6e5194911daa77bf6b1bfa8af7b",
+    "subjectLabel": "Mona El Isa",
+    "objectLabel": "Designing Vault Stacks: The Stream Finan"
+  },
+  {
+    "subjectId": "0x139f57485331ac0482b896cdc6c72bc0a534f4577b538ec4ccb22344b13aeb24",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb9f620bb697e98e7345644c159d3d11d21232691d6a4f4e1f4c60379d5a4ac69",
+    "subjectLabel": "Nicolas  Consigny",
+    "objectLabel": "Privacy delusion"
+  },
+  {
+    "subjectId": "0x624779802c6fdfb6a334a05cf799d41b624e4fb7604d55ff8cea6dd1180ffeae",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb9f620bb697e98e7345644c159d3d11d21232691d6a4f4e1f4c60379d5a4ac69",
+    "subjectLabel": "Ameen",
+    "objectLabel": "Privacy delusion"
+  },
+  {
+    "subjectId": "0x1838db8dc2cbe86ac34d5d9beb9f24cba4a860ec4702265888f58970c1c894b5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xba8700f656a7651cec197841e1f433cce945775a85f01bf5b34ad57caef98769",
+    "subjectLabel": "Ottdogg",
+    "objectLabel": "How ZK Identity and Account Abstraction "
+  },
+  {
+    "subjectId": "0x5768c5cae96aa83eca4c80eb547ab09fff0a9683721c790a776ac1b8e26b1d3f",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x68644fa01a487fed61627176c58255ca7fd1a49e5618e361cd5b6c2ae298c0f6",
+    "subjectLabel": "Julio M Cruz",
+    "objectLabel": "Build micropayment x402 solutions for co"
+  },
+  {
+    "subjectId": "0xbb1be5c1e5e8df2046bb916360b4e26aeeecdb4ca22f4471d3c1d503a24e7073",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xca2f6b5f9223c1fdcee68c64cec876dcfa2be9e2135c9fe4d83c8b4c792ab008",
+    "subjectLabel": "Pranay Valson",
+    "objectLabel": "Data Coprocessors For Sub-Second Blockch"
+  },
+  {
+    "subjectId": "0x78ea62d1d9b7426db3980f991bd75fe789690194ce19bc9dad9262e0beb21237",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x8349340ab8da14e01dba75b7f1666d685b5e3ec302c787f3c6d47cdbbacc1a55",
+    "subjectLabel": "Victoria CALMON",
+    "objectLabel": "Gm gm is Not Internal Comms, Peeps. BUID"
+  },
+  {
+    "subjectId": "0x8cff9f7f9e15535ca3a277eded37836b1f2d2fc1d7a489fe9292042e9739e07b",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe55062575f364a6482a8c47edda3fab62c545b46fba1a7944d0b6efa61a3b070",
+    "subjectLabel": "E.G.",
+    "objectLabel": "DIN - The Reputation, Quality Guarantees"
+  },
+  {
+    "subjectId": "0x213c3ac09f62debf70f935d88b71fc50621d0c20b6b202a99054f70eb5d6e593",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x7ce182183ebab0018c2cd1e3e53ab55ab408c85746ccffb04c693f1c469c80ba",
+    "subjectLabel": "zk_evm",
+    "objectLabel": "The road less travelled: 4 years of dire"
+  },
+  {
+    "subjectId": "0x44f49d73fa7408ea4c76d8c990097a030d965fbe8b6fb68f1c6ceb80d52147bd",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x76c56e884e01105cb06627ba76fa9a6d9faf06c992919c20f1c05ea93c0a498f",
+    "subjectLabel": "wei3erHase",
+    "objectLabel": "Liquidated by My Own Code"
+  },
+  {
+    "subjectId": "0x4087b4445f64802014cc6aaabdeee1a800dcb8490df11eedbe0f5b716af7c055",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x8c4908105350f8478b2dd4c46c89be6e63294641571b488ffc2d07d9e7c9a284",
+    "subjectLabel": "Dan Ligocky",
+    "objectLabel": "Designing Coherence: Aligning Ethereum S"
+  },
+  {
+    "subjectId": "0x7dc3a89800036bb23d6e74f46a29465ef091ba91715f66e02c0b57143a1aa312",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe018a1946d2e676824de06545fba790d82e8741ae58d7773875d612022de6977",
+    "subjectLabel": "Charles Guillemet",
+    "objectLabel": "Post Quantum Cryptography And The Future"
+  },
+  {
+    "subjectId": "0xf0a6791ed41d41abf11714121ca51b9f5b9a95087d23b786120c276e134d5ef5",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xe4950b674011c7b19ba78e44ce4693722db174b3d1a5cffcbffd8d6884cd42aa",
+    "subjectLabel": "Luis Correia",
+    "objectLabel": "Optimising Block Building with Genetic A"
+  },
+  {
+    "subjectId": "0xd4c86cf821d27d97203f346ac10d777a6182177d2c3222517cbf2e1edeeb2628",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x46c80a901c3e8c76d0ab03ad6c9176eb2caf571fb1c1752678bb76e35f6742e2",
+    "subjectLabel": "Dima Gusakov",
+    "objectLabel": "0x02 is not for Home Stakers! Right?"
+  },
+  {
+    "subjectId": "0xcec8070355dd5f5ea7b377d7aeffc42f119fd217cb5b0d24a9080d1a6b1e4c2e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x92ae807bb1d4179275ed2c317e6af24e5506e593684583f9e43695aa1801eb7e",
+    "subjectLabel": "Paul Schoenfelder",
+    "objectLabel": "Compiling Rust for MidenVM"
+  },
+  {
+    "subjectId": "0x0793f0060b782365afca954dded7eebd76ee5f8eb541f579e15e0e4e30c30914",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xef46aeac945a23d27a54c50554cb4fb22a45f8c435f416183c4332d1a51714ff",
+    "subjectLabel": "Kevin Weaver",
+    "objectLabel": "Launching a rollup is the easy part"
+  },
+  {
+    "subjectId": "0x045d870cbd42e33c5cf51d935e1346ff23b501ea35f281ba49d40e15e6977b93",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1b920d1bee343084016f8707e8586e3ae2d5df0ec8a15b5874e87719cd3c2055",
+    "subjectLabel": "Qi Zhou",
+    "objectLabel": "Scaling Ethereum L1: Achieving 10 GigaGa"
+  },
+  {
+    "subjectId": "0x82c46538c511bbd41e202f79c00fb0823d10a7dd6edd50acc7a25c73547d7fdd",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x69a352690cbd8e9cb1c3b2fdcb92b04b17142fecf60e44ae5fa94ce8f5a1f3fe",
+    "subjectLabel": "Yorick Downe",
+    "objectLabel": "Home staking behind CGNAT, LATAM, Asia-P"
+  },
+  {
+    "subjectId": "0x945cf6bf317cc9317fb7654a77845cc58e07bf02f0a7df6f3682e7269fb22178",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x50bb6630e0f1f12ed7d016e245160a0cd8ebd453554fcda9a742485db2df1ecf",
+    "subjectLabel": "Ben Fisch",
+    "objectLabel": "Fast finality is essential for mass adop"
+  },
+  {
+    "subjectId": "0x37d831c23c64e30f166d66f7377b95a1e168d894379f3698e4c1bc831ecda9cf",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9a02b2e43f1a279313ebf480d82a46692c009d97b2fcab3341e16bfbeb4913dc",
+    "subjectLabel": "Victor Chiea",
+    "objectLabel": "The Hidden Costs of Running Ethereum on "
+  },
+  {
+    "subjectId": "0x45b1752c40f6db031c373987ffb2a8e5193167423cf3479e3d89c6bbc0f133f2",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x9f41921a0fae3dfed14f7ffff81aa03190d0017b784fb7c51293004d187e5897",
+    "subjectLabel": "Lamboshi",
+    "objectLabel": "Staking Quiz"
+  },
+  {
+    "subjectId": "0x08b5094d7e23fe22e2b4aa43fc99734282a14850e0dac0752d735d11923dd4ab",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x666f4e7e3aa485e4c1bb00709d8c130c7b2e4e572ef690af5b7ac77c840b9cbd",
+    "subjectLabel": "Alexander",
+    "objectLabel": "Comparing & Benchmarking Post Quantum Di"
+  },
+  {
+    "subjectId": "0x70a33427dd2bb1690a4b788f47e6f7a310b612e2a8a68162be629691d324f14e",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x666f4e7e3aa485e4c1bb00709d8c130c7b2e4e572ef690af5b7ac77c840b9cbd",
+    "subjectLabel": "Andrey Ivasko",
+    "objectLabel": "Comparing & Benchmarking Post Quantum Di"
+  },
+  {
+    "subjectId": "0x2db8bb9358e6370144059d198e4b1764c35c31c0c27ecb55662ff52f2a242792",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x30814e905846f70f90c7b21102e9616beabb479fe7ba7d0b8b021d25ddaae66a",
+    "subjectLabel": "Alberto Fernandez",
+    "objectLabel": "How Creators Finally Get Paid Instantly "
+  },
+  {
+    "subjectId": "0xf1dd65c8d0ea47a6a3abdd610fa1269a378706472a1968cf125295c31be1858a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xf8eedfd628eac623ad7f1fc42de097a0763034873df53c1dd1b0bea76d9ec95a",
+    "subjectLabel": "Meinhard Benn",
+    "objectLabel": "Freedom: A Browser for the Decentralized"
+  },
+  {
+    "subjectId": "0x299a364471b8f33c90cd0335ded9e9b53af291b3d4907cba56809847fbb03045",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x3114a7baac8fb7315bb6ceea58bdf31ba62b826e32ded9126c18be9df7b5b160",
+    "subjectLabel": "Sajida",
+    "objectLabel": "The Cost of Uncertainty: Tail Latency in"
+  },
+  {
+    "subjectId": "0x44f2d5dd9b0644f4f72ca6fca90ced0edd98ae269f36b22cd380a1d6a7965ba7",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x246573afeb137ffdd774da53dd8be75788b04d6f3fa78b66b047ef01a4f3785a",
+    "subjectLabel": "Stanislas de Maistre",
+    "objectLabel": "From Experiment to Infrastructure: How I"
+  },
+  {
+    "subjectId": "0xf974256c3d57cd5a7e3305248d24c647aef9e239fae80b4581ae7479539cc42d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x246573afeb137ffdd774da53dd8be75788b04d6f3fa78b66b047ef01a4f3785a",
+    "subjectLabel": "Nassim Alexandre",
+    "objectLabel": "From Experiment to Infrastructure: How I"
+  },
+  {
+    "subjectId": "0xb5b0e68aa793a0dcaf6c72dba8e02ecb604f3ae583ea6fb4d6aecad05d02341c",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xdd4ccf10e9ceea9980338c3cd7dddee999cdf51798628b90fe708c3b6d1f88aa",
+    "subjectLabel": "shealtielanz",
+    "objectLabel": "Security & Solutions: A Deep Dive into E"
+  },
+  {
+    "subjectId": "0x93c4c36b28da49b882816341b0a8dcc0f7e17e91be1c0a31da9b74abe9473a36",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x7d535b79182b709d06942b15dd2dddc2100987331f7befafd10b0e443b5d5d44",
+    "subjectLabel": "Otto Jacobsson",
+    "objectLabel": "In Ethereum we trust: the new Church of "
+  },
+  {
+    "subjectId": "0x527f26700b3095d2434b174b4a069832d01b0f0886e1227d736e5ab3afaf9694",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x1373886d8e1e773fb536a3f694ac59524f359a59323673d1cfffab610d1db220",
+    "subjectLabel": "Dana Condrea",
+    "objectLabel": "How We Solved Anonymous Credibility for "
+  },
+  {
+    "subjectId": "0x6edb7075ac8251f6d58e61ec1f8e299e0ce754ab426e2f2a0697653f85f6f67a",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xc505a2e5c8618856147e91d6ba3bb3a18a9350418f10601c0795508baa135b48",
+    "subjectLabel": "David Pearce",
+    "objectLabel": "An Assembly Language for building zkEVMs"
+  },
+  {
+    "subjectId": "0xfaeef7d84d8ea4a282e7bace5a71e276b69beec70eaed4c65740e61e489cc61f",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x77deff442f8113e300cd86124d00581bfb71e9c1d0a150783f9b8c2fafebb7e5",
+    "subjectLabel": "Simon  Polrot",
+    "objectLabel": "It Is Time for Ethereum in Europe: Launc"
+  },
+  {
+    "subjectId": "0x5d3b0b30e234bf2b3b2c760dfa1da787966a12276ffead6ebd8e97e27d58735d",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0xb359a580c355e291458e5504dd2a6fb4ac3cd541341c7a44da4ea12e7378f694",
+    "subjectLabel": "Ambroise Helaine",
+    "objectLabel": "MiCA Lookback: Regulation, Adoption, and"
+  },
+  {
+    "subjectId": "0xf80411a7df620614e7e020efdc7dce20c1269d1dd64b452e25c6dfce41e410d1",
+    "predicateId": "0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37",
+    "objectId": "0x2e7550de05eb37a2a16a804a5056002bab26688e9b0c084818d0c98026205fe8",
+    "subjectLabel": "Tom David",
+    "objectLabel": "TEE as a Primitive for RWA & DeFi on Eth"
+  }
+]

@@ -1,0 +1,94 @@
+.header {
+  flex-shrink: 0;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 20px 24px;
+}
+
+.trackGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.trackPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  height: 42px;
+  border-radius: var(--r-btn);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-family: var(--font);
+}
+
+.bottomBar {
+  flex-shrink: 0;
+  padding: 12px 24px 24px;
+  background: transparent;
+  border-top: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.btnRow {
+  display: flex;
+  gap: 12px;
+}
+
+.backBtn {
+  flex: 1;
+  height: 56px;
+  border-radius: var(--r-btn);
+  background: var(--surface-gray);
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.continueBtn {
+  flex: 2;
+  height: 56px;
+  border-radius: var(--r-btn);
+  background: var(--flat);
+  color: #0a0a0a;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.continueBtn:disabled {
+  opacity: 0.4;
+}

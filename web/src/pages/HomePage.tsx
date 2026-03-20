@@ -1,6 +1,8 @@
 import { useMemo, useState, useEffect, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glass, glassSurface, FONT, getTrackStyle } from "../config/theme";
+import { CartToggleButton } from "../components/shared";
+import { VibeCard } from "../components/home/VibeCard";
 import { sessions, dates } from "../data";
 import { Ic } from "../components/ui/Icons";
 // StatusBar removed - real OS handles it on mobile
@@ -126,19 +128,7 @@ const sectionTitle: CSSProperties = {
   color: C.white,
 };
 
-const vibeCardStyle: CSSProperties = {
-  ...glassSurface,
-  minWidth: 140,
-  maxWidth: 200,
-  padding: 14,
-  display: "flex",
-  flexDirection: "column",
-  gap: 8,
-  cursor: "pointer",
-  flexShrink: 0,
-  boxSizing: "border-box",
-  overflow: "hidden",
-};
+// vibeCardStyle removed — now using VibeCard component
 
 const sessionRow: CSSProperties = {
   ...glassSurface,
@@ -402,69 +392,7 @@ export default function HomePage() {
         }}
       >
         {onlineVibes.map((v, idx) => (
-          <div
-            key={idx}
-            style={vibeCardStyle}
-            onClick={() => navigate(`/vibe/${idx}`)}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 16,
-                  background: `linear-gradient(135deg, ${C.primary}, ${C.accent})`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#0a0a0a",
-                  flexShrink: 0,
-                }}
-              >
-                {v.name.slice(0, 2).toUpperCase()}
-              </div>
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: C.white, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                  {v.name}
-                </div>
-                <div style={{ fontSize: 11, color: C.textSecondary, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                  {v.dist} away
-                </div>
-              </div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <div
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: 3,
-                  background: C.success,
-                }}
-              />
-              <span style={{ fontSize: 11, color: C.success }}>Online</span>
-              <span style={{ fontSize: 11, color: C.textTertiary, marginLeft: "auto" }}>
-                {v.pct}% match
-              </span>
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-              {v.shared.slice(0, 2).map((s) => (
-                <span
-                  key={s}
-                  style={{
-                    fontSize: 10,
-                    padding: "2px 6px",
-                    borderRadius: 4,
-                    background: C.surfaceGray,
-                    color: C.textSecondary,
-                  }}
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
+          <VibeCard key={idx} vibe={v} onClick={() => navigate(`/vibe/${idx}`)} />
         ))}
       </div>
 
@@ -525,39 +453,10 @@ export default function HomePage() {
                   {s.startTime} &ndash; {s.endTime}
                 </div>
               </div>
-              {/* Cart toggle — same states as Agenda: +, In cart, Published */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (!isPublished) toggleCart(s.id);
-                }}
-                style={{
-                  ...(isPublished ? {
-                    width: 32, height: 32, borderRadius: 16, padding: 0,
-                  } : inCart ? {
-                    padding: "4px 10px", borderRadius: R.btn,
-                  } : {
-                    width: 32, height: 32, borderRadius: 16, padding: 0,
-                  }),
-                  border: "none",
-                  cursor: isPublished ? "default" : "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  background: isPublished ? C.successLight : inCart ? C.flatLight : "rgba(255,255,255,0.06)",
-                  fontSize: 11, fontWeight: 600, fontFamily: FONT,
-                  color: C.flat, whiteSpace: "nowrap",
-                }}
-              >
-                {isPublished ? (
-                  <Ic.Check s={14} c={C.success} />
-                ) : inCart ? (
-                  "In cart"
-                ) : (
-                  <Ic.Plus s={14} c={C.textSecondary} />
-                )}
-              </button>
+              <CartToggleButton
+                state={isPublished ? "published" : inCart ? "incart" : "default"}
+                onClick={() => { if (!isPublished) toggleCart(s.id); }}
+              />
             </div>
           );
         })}

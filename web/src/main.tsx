@@ -17,7 +17,6 @@ import ProfilePage from "./pages/ProfilePage";
 import SessionDetailPage from "./pages/SessionDetailPage";
 import { SpeakerPage } from "./pages/SpeakerPage";
 import SendPage from "./pages/SendPage";
-import BuyTrustPage from "./pages/BuyTrustPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import InvitePage from "./pages/InvitePage";
 import VibeProfilePage from "./pages/VibeProfilePage";
@@ -51,7 +50,6 @@ createRoot(document.getElementById("root")!).render(
             {/* Utility pages */}
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/send" element={<SendPage />} />
-            <Route path="/buy" element={<BuyTrustPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/invite" element={<InvitePage />} />
             <Route path="/vibes" element={<VibesListPage />} />

@@ -1,0 +1,32 @@
+.round {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 18px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.roundDefault { composes: round; background: var(--surface-gray); }
+.roundPublished { composes: round; background: var(--success-light); cursor: default; }
+
+.pill {
+  padding: 6px 14px;
+  border-radius: var(--r-btn);
+  border: none;
+  background: var(--flat-light);
+  color: var(--flat);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

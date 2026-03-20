@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Seed Speaking At</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<style>body{font-family:monospace;background:#111;color:#eee;padding:20px;} button{padding:10px 20px;margin:5px;cursor:pointer;border:none;border-radius:6px;font-size:14px;} .go{background:#34d399;color:#111;} .connect{background:#7c6bf0;color:#fff;} pre{background:#1a1a1a;padding:12px;border-radius:8px;overflow-y:auto;max-height:600px;font-size:12px;line-height:1.6;}</style>
+</head><body>
+<h2>Seed 190 missing "speaking at" triples</h2>
+<button class="connect" onclick="connect()">Connect MetaMask</button>
+<button class="go" onclick="run()" id="goBtn" disabled>Execute All (batches of 20)</button>
+<button onclick="stop=true" style="background:#f87171;color:#111;">Stop</button>
+<pre id="log">Ready. Connect wallet first.\n</pre>
+<script>
+const SOFIA='0x26F81d723Ad1648194FAA4b7E235105Fd1212c6c';
+const MV='0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e';
+const ABI=['function createTriples(address receiver,bytes32[] subjectIds,bytes32[] predicateIds,bytes32[] objectIds,uint256[] assets,uint256 curveId) payable returns(bytes32[])','function getTotalCreationCost(uint256 depositCount,uint256 totalDeposit,uint256 multiVaultCost) view returns(uint256)','function getTripleCost() view returns(uint256)'];
+const MVABI=['function approve(address sender,uint8 approvalType)'];
+let signer,proxy,tripleCost,addr,stop=false;
+const log=m=>{const el=document.getElementById('log');el.textContent+=m+'\n';el.scrollTop=el.scrollHeight;};
+
+async function connect(){
+  const p=new ethers.BrowserProvider(window.ethereum);
+  await p.send('eth_requestAccounts',[]);
+  try{await window.ethereum.request({method:'wallet_switchEthereumChain',params:[{chainId:'0x483'}]})}catch(e){if(e.code===4902)await window.ethereum.request({method:'wallet_addEthereumChain',params:[{chainId:'0x483',chainName:'Intuition',nativeCurrency:{name:'TRUST',symbol:'TRUST',decimals:18},rpcUrls:['https://rpc.intuition.systems/http']}]})}
+  const provider=new ethers.BrowserProvider(window.ethereum);
+  provider.pollingInterval=30000;
+  signer=await provider.getSigner();
+  addr=await signer.getAddress();
+  proxy=new ethers.Contract(SOFIA,ABI,signer);
+  const mv=new ethers.Contract(MV,MVABI,signer);
+  tripleCost=await proxy.getTripleCost();
+  log(`Connected: ${addr}`);
+  const bal=await provider.getBalance(addr);
+  log(`Balance: ${parseFloat(ethers.formatEther(bal)).toFixed(2)} TRUST`);
+  log(`Triple cost: ${ethers.formatEther(tripleCost)} TRUST`);
+  // Approve
+  try{const tx=await mv.approve(SOFIA,1);log('Approving proxy...');await tx.wait();log('Approved!')}catch(e){log('Approve skipped (already done)');}
+  document.getElementById('goBtn').disabled=false;
+}
+
+async function run(){
+  stop=false;
+  log('Loading missing triples...');
+  const resp=await fetch('../bdd/missing_speaking_at.json');
+  const triples=await resp.json();
+  log(`${triples.length} triples to create`);
+
+  const BATCH=20;
+  const DEPOSIT=100000000000000000n; // 0.1 TRUST
+  let created=0,skipped=0;
+
+  for(let i=0;i<triples.length;i+=BATCH){
+    if(stop){log('STOPPED');break;}
+    const batch=triples.slice(i,i+BATCH);
+    const batchNum=Math.floor(i/BATCH)+1;
+    const totalBatches=Math.ceil(triples.length/BATCH);
+
+    const n=BigInt(batch.length);
+    const subjectIds=batch.map(t=>t.subjectId);
+    const predicateIds=batch.map(t=>t.predicateId);
+    const objectIds=batch.map(t=>t.objectId);
+    const assets=batch.map(()=>DEPOSIT);
+    const totalDeposit=DEPOSIT*n;
+    const mvCost=(tripleCost*n)+totalDeposit;
+    const totalCost=await proxy.getTotalCreationCost(n,totalDeposit,mvCost);
+
+    log(`\nBatch ${batchNum}/${totalBatches}: ${batch.length} triples, ${ethers.formatEther(totalCost)} TRUST`);
+    for(const t of batch) log(`  ${t.subjectLabel} → speaking at → ${t.objectLabel}`);
+
+    try{
+      log('Waiting for MetaMask...');
+      const tx=await proxy.createTriples(addr,subjectIds,predicateIds,objectIds,assets,1,{value:totalCost});
+      log(`TX sent: ${tx.hash.slice(0,14)}...`);
+      // Poll for receipt
+      for(let j=0;j<120;j++){
+        await new Promise(r=>setTimeout(r,3000));
+        const receipt=await signer.provider.getTransactionReceipt(tx.hash);
+        if(receipt&&receipt.blockNumber){
+          if(receipt.status===0){log(`✗ REVERTED block ${receipt.blockNumber}`);}
+          else{log(`✓ CONFIRMED block ${receipt.blockNumber} — ${batch.length} created`);created+=batch.length;}
+          break;
+        }
+      }
+    }catch(e){
+      const msg=e.message||'';
+      if(msg.includes('TripleExists')||msg.includes('22319959')){
+        log(`⚠ Some triples already exist — trying one by one...`);
+        for(const t of batch){
+          if(stop)break;
+          try{
+            const cost1=await proxy.getTotalCreationCost(1n,DEPOSIT,(tripleCost+DEPOSIT));
+            const tx=await proxy.createTriples(addr,[t.subjectId],[t.predicateId],[t.objectId],[DEPOSIT],1,{value:cost1});
+            log(`  TX ${tx.hash.slice(0,10)}... ${t.subjectLabel}`);
+            for(let j=0;j<60;j++){await new Promise(r=>setTimeout(r,3000));const r=await signer.provider.getTransactionReceipt(tx.hash);if(r&&r.blockNumber){log(`  ✓ ${t.subjectLabel}`);created++;break;}}
+          }catch(e2){
+            if(e2.message?.includes('TripleExists')||e2.message?.includes('22319959')){log(`  ✓ ${t.subjectLabel} (already exists)`);skipped++;}
+            else{log(`  ✗ ${t.subjectLabel}: ${e2.message?.slice(0,80)}`);}
+          }
+        }
+      }else{
+        log(`✗ FAILED: ${msg.slice(0,150)}`);
+      }
+    }
+  }
+  log(`\n=== DONE: ${created} created, ${skipped} skipped ===`);
+}
+</script></body></html>

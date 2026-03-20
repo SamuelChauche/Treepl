@@ -1,0 +1,194 @@
+[
+  {
+    "subjectId": "0x5599530b692f8886db7cbefd6e4b26938adb03ade5c59c2e505a920cdec840f3",
+    "objectId": "0x82d8e626581a84e709b228fa286a28fa02e516e162b4d3adbff049b40b5bbd2c",
+    "speaker": "Andrew O'Neill",
+    "session": "Bringing traditional risk analysis to De"
+  },
+  {
+    "subjectId": "0x41d73331221c49a36b4ef8f7cec80063b01d1af7051948e1d9e745760863515d",
+    "objectId": "0x3a33cae82c2750e269018fbed542299eff091ff7bce4e9f518ec1336816cad9b",
+    "speaker": "Aurelie Dhellemmes",
+    "session": "Canton Network: sleeping giant?"
+  },
+  {
+    "subjectId": "0x871a7445823afca955b575f8d39fd4058235bc86cf2d77851440242a8e226234",
+    "objectId": "0x194957306ca1f429df0712351d0e86b980136e9f4d0cbfc44cd48b02846b0c0c",
+    "speaker": "Leo Fan",
+    "session": "Making Sub-12s ZKPs on Ethereum Possible"
+  },
+  {
+    "subjectId": "0x9c03e45d0a0bd2291edf45843a529c0a59d4cbab9053a0621a3248cd8f3e769b",
+    "objectId": "0x39b9b18c3767afd2e2808829006e78a9a4c390baaebcee9954420a4f711071ab",
+    "speaker": "Emilio Frangella",
+    "session": "Aave V4 and Beyond: Bringing Capital Mar"
+  },
+  {
+    "subjectId": "0x732c786e822e1208542ae9466185f1de452971a39afd33acf9b63430680c2eaa",
+    "objectId": "0xf63693f53890c4bb6493b440fb611f501f8aa134348d8c9633069dbf138fb599",
+    "speaker": "Arthur Breitman",
+    "session": "Preparing Blockchains for the Post-Quant"
+  },
+  {
+    "subjectId": "0xa70215047d8a4059ec4e42480368b3f7f035438c289275a21a43e19a1f3752ab",
+    "objectId": "0x1a622b7045cb503f5de03f6c0377e7d12909e94ca273ff67293a4ace2817bb54",
+    "speaker": "Raza Zaidi",
+    "session": "The Anatomy of the Perfect Stablecoin: T"
+  },
+  {
+    "subjectId": "0xa381bf8f27f644fe85e7a7e2646ac3369c3ecde1f3da7f2aafe7091de957ec79",
+    "objectId": "0x6db174a3a7b61f37d7ebce56c91062d5a949f6bc439fec779616aa7cc4fce075",
+    "speaker": "Johnnatan Messias",
+    "session": "Fairness in Token Delegation: Mitigating"
+  },
+  {
+    "subjectId": "0xcc0e2066369b9033890572cb321782212f3a259235323e32e2b26e199da87c77",
+    "objectId": "0x015ff7a134a5013348206209f011d31bf62f51094c864b6d3551097d8e474d35",
+    "speaker": "Jonathan Passerat-Palmbach",
+    "session": "Decrypting Encrypted Mempools: State of "
+  },
+  {
+    "subjectId": "0xbc9837a8695ff672b5033e87c5dad7ab5aa54550a487813564be714e5ab48821",
+    "objectId": "0x5cdc50208dd188f546c76d72edf708c6c407845b8dc120df63f51ae20f902616",
+    "speaker": "Kevin Jones",
+    "session": "Spritz"
+  },
+  {
+    "subjectId": "0x688ec1b997bff399badd6aaed598afdeca2cb6b1630c42029dcccb8c553e3edb",
+    "objectId": "0x7bda101c57c4561ce1a3b32b03f399648982f86c331a31136827cda097c58b19",
+    "speaker": "CPerezz",
+    "session": "VOPS / Partial Stateless nodes"
+  },
+  {
+    "subjectId": "0x184a5fe2f6a2c9a6d31964324bce308259e6f8fcae45d28c0e6fc6d68022d399",
+    "objectId": "0x75ecb8844ba91a1173664ff2d272bfe706a79229085f97eaf2c11dad806e7725",
+    "speaker": "Mohsen Ahmadvand",
+    "session": "Proving Less, Verifying More"
+  },
+  {
+    "subjectId": "0xe0952324388069b9f03b660e49ae7e4deb462c99369f8155086243fe92eaf423",
+    "objectId": "0x706d73d0a7d15fbe2574c93a9ac353aa7ff72b19df9070c880350b4a1544b731",
+    "speaker": "Pablo Veyrat",
+    "session": "Beyond Rewards: Incentives as Core Infra"
+  },
+  {
+    "subjectId": "0x74dc9380ae1bc1bc9a219b764390be6d6f219eb270dcfc0039dbe1238728d26a",
+    "objectId": "0x534159dc5484b15ebb34d6ef659b750e3df809cf23ffbccfa7827dd810fdfa3f",
+    "speaker": "Gauthier  Vila",
+    "session": "DeFi Agents You Can Actually Trust"
+  },
+  {
+    "subjectId": "0xccd162f00fe12a1f920a858d8a9d51ed8d3a23bf5f0b70c69940882db7b593d7",
+    "objectId": "0x74f5e787dd5448fc3341dbb06b990f8a967eb98df2023def2cdfc9ff578b17b5",
+    "speaker": "Krzysztof Paruch",
+    "session": "Token Engineering"
+  },
+  {
+    "subjectId": "0x2dd7d68dfe5d9c9f3a4981526a708f6d06d5fe6426c3df219b3c4a4266388033",
+    "objectId": "0x25e18b7adef859a2b20f1fd9295f6a89dedd2867ca7107abece97d6f357a6f3f",
+    "speaker": "Tomasz Stanczak",
+    "session": "Accelerating Ethereum"
+  },
+  {
+    "subjectId": "0x688ec1b997bff399badd6aaed598afdeca2cb6b1630c42029dcccb8c553e3edb",
+    "objectId": "0xa3f9c3685bd933d2b2fcafb2a1459ecc1f6aa57fc03ab8e0a3e2ed8158f400ec",
+    "speaker": "CPerezz",
+    "session": "The key takeaways of Scaling the L1"
+  },
+  {
+    "subjectId": "0xa7ca41221d23d99149a4970eae746adea403c655218052ca768c95e164bab416",
+    "objectId": "0xee2ea9faadae7a3554053b7620a14aa3ef81e317b11fee50f1bb5a59295d5b54",
+    "speaker": "Will Papper",
+    "session": "Why Does Programmable Block Construction"
+  },
+  {
+    "subjectId": "0xe719d33794760520d201562b81cc0cd6cbd639079ff056fafde19de53d47d590",
+    "objectId": "0xdc84d0aa24a073d91da6e51097c75322add311f7b7d7f9e093eb6f27f4690b15",
+    "speaker": "Joshua Foster",
+    "session": "Blockchain Archive"
+  },
+  {
+    "subjectId": "0xa3e075152673a8cfe547d133b34049e9344043d4d0892a77641eab2c2a6f4bf0",
+    "objectId": "0x2320a0038bd16ba0811a9dab48fada2e2345475327eac931e45e6247a533f3b3",
+    "speaker": "Kayden Moroz Liebl",
+    "session": "Making Ethereum Post Quantum"
+  },
+  {
+    "subjectId": "0xea549e6103fa0fb7cfdaf16ef32e700c58d5697e253071e02dcfede2159ef25b",
+    "objectId": "0x0cea46472cce3691a747c77ecac2de992f056d80ed4eabdad228c83329b3f706",
+    "speaker": "Flavien Defraire",
+    "session": "Gaming and playing on blockchain"
+  },
+  {
+    "subjectId": "0xcc946df96656d23369120ec1e30216888bbbd2b5d77ec6d2c985fc84a9928233",
+    "objectId": "0x0cea46472cce3691a747c77ecac2de992f056d80ed4eabdad228c83329b3f706",
+    "speaker": "Maude",
+    "session": "Gaming and playing on blockchain"
+  },
+  {
+    "subjectId": "0xb2b7cc6a1a02b4bf0b0d345f7508c6f5dadea532b696def2202891251732dc8a",
+    "objectId": "0x9853d256a73714fdb2109a7d4f7f7aa0b3ee73f25533db46c6774f1b468610ca",
+    "speaker": "Lera",
+    "session": "Stop Selling Blockchain"
+  },
+  {
+    "subjectId": "0x283bceacca9f2b44b024b39ae35317dc3b66c328d60392e110f9987eaee85ac9",
+    "objectId": "0x2c11780fca8f8938a347a67c54dc799b971562fdd7e9383912875d95d2368905",
+    "speaker": "Johann Eid",
+    "session": "Ethereum and Chainlink"
+  },
+  {
+    "subjectId": "0x07161c8a15c7c7eb5f8fd13dbeb104962095be5a904b6ee50345c669ae10e59c",
+    "objectId": "0x16da45fcdef99e2327124e20bfd8d5fcc3608953c7bba608f3055394a8bc82af",
+    "speaker": "Jake O",
+    "session": "The Metamorphosis of DeFi"
+  },
+  {
+    "subjectId": "0x00e24f7f67805f027cf341c16e61484fd82b06a38b0d2aeaa7e6d2ecd572179e",
+    "objectId": "0x347d87ae78b0d977989115fb7c5e696d619fc81eed5e02f3544e31cd40222831",
+    "speaker": "Laszlo Szabo",
+    "session": "From Idleness to Productivity"
+  },
+  {
+    "subjectId": "0x9d7e3d88396d422cb366134b107571c49990a2605e0f40b5f0c7f665aab9123c",
+    "objectId": "0x8b0505b7f1bdfc32ee2869aa12a9ce43856028ad0de45c0d81f50a7966265d40",
+    "speaker": "Liz Steininger",
+    "session": "Profiting from Privacy"
+  },
+  {
+    "subjectId": "0xdea1f3e69ce76363c32f6d6663c168f9cb2e8bcf6f85a6ceafb6d9eb764ec38b",
+    "objectId": "0x4432ac3d7b66c5c7c94ef6e48bcee6a5952061cc86b641e6599acf5e17bb8d49",
+    "speaker": "Josef Jelacic",
+    "session": "First Pure DeFi Mortgage"
+  },
+  {
+    "subjectId": "0x96bc90095b3aeb8243b0c1f4e6303f3d98e634aef6e8b88672d42a486d79e932",
+    "objectId": "0xc033fd9962682e62189b085eda26aec508dfe389e6b32db3692f4f85e4b93d3e",
+    "speaker": "Jonathan Han",
+    "session": "Solving The RWA Trilemma"
+  },
+  {
+    "subjectId": "0xdd7d2e66a30c74b44be5e0c2436ded6351de3afb5f1ad9ff4181cdfe7b64577e",
+    "objectId": "0xbba27085a995024e3fcf989e67a08b88479c96c981e63e7d91a33d04cca6077f",
+    "speaker": "James Wo",
+    "session": "DeFi 2.0: The Institutional Era"
+  },
+  {
+    "subjectId": "0xfe77fc2c7466bd1c38a9023599db61fa2356224fb6afe5770c09b0221439cb59",
+    "objectId": "0x94535a5c0be50e1e407bfa5760315a210477bef738515aa2e18598d6d0f5cff2",
+    "speaker": "Harry Horsfall",
+    "session": "Why crypto still can"
+  },
+  {
+    "subjectId": "0x43c779a0798745bf46c8a0ce2c12fb09a456b38ec4ba795e5db033f63e1afe15",
+    "objectId": "0x77deff442f8113e300cd86124d00581bfb71e9c1d0a150783f9b8c2fafebb7e5",
+    "speaker": "Florian  Glatz",
+    "session": "It Is Time for Ethereum in Europe"
+  },
+  {
+    "subjectId": "0xdea1f3e69ce76363c32f6d6663c168f9cb2e8bcf6f85a6ceafb6d9eb764ec38b",
+    "objectId": "0x77deff442f8113e300cd86124d00581bfb71e9c1d0a150783f9b8c2fafebb7e5",
+    "speaker": "Josef Jelacic",
+    "session": "It Is Time for Ethereum in Europe"
+  }
+]
