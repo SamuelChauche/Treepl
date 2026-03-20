@@ -19,8 +19,8 @@ const projectId = "ff5ceb7d2462ba8255524d56cf62ec64";
 const metadata = {
   name: "Sofia EthCC Manager",
   description: "EthCC[9] conference companion — browse agenda, vote on topics, publish on-chain",
-  url: "https://samuelchauche.github.io/Treepl/",
-  icons: ["https://samuelchauche.github.io/Treepl/images/icon-192.png"],
+  url: window.location.origin,
+  icons: [`${window.location.origin}/images/icon-192.png`],
 };
 
 createAppKit({

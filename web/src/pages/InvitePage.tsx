@@ -54,7 +54,7 @@ const sectionTitle: CSSProperties = {
 
 // ─── App URL ─────────────────────────────────────────
 
-const APP_URL = "https://samuelchauche.github.io/Treepl/";
+const APP_URL = window.location.origin + "/";
 
 
 // ─── Component ───────────────────────────────────────

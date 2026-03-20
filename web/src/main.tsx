@@ -28,7 +28,7 @@ import RateSessionPage from "./pages/RateSessionPage";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary>
-      <BrowserRouter basename="/Treepl">
+      <BrowserRouter>
         <Routes>
           <Route element={<App />}>
             {/* Onboarding */}

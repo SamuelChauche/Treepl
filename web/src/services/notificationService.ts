@@ -33,7 +33,7 @@ export function showNativeNotification(
 
   const notif = new Notification(title, {
     body: options?.body,
-    icon: options?.icon ?? "/Treepl/images/icon-192.png",
+    icon: options?.icon ?? "/images/icon-192.png",
     tag: options?.tag,
     silent: false,
   });
@@ -55,7 +55,7 @@ export function notifySessionEnd(sessionTitle: string, sessionId: string): void 
   showNativeNotification(`How was "${sessionTitle}"?`, {
     body: "Tap to rate this session",
     tag: `session-end-${sessionId}`,
-    url: `/Treepl/rate/${sessionId}`,
+    url: `/rate/${sessionId}`,
   });
 }
 
