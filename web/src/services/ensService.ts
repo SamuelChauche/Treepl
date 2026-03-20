@@ -103,22 +103,7 @@ export async function resolveEnsProfile(address: string): Promise<EnsProfile> {
   return profile;
 }
 
-/**
- * Batch resolve multiple addresses. Returns a map of address → EnsProfile.
- */
-export async function resolveEnsProfiles(
-  addresses: string[]
-): Promise<Map<string, EnsProfile>> {
-  const results = new Map<string, EnsProfile>();
-  // Process sequentially to avoid rate limiting the RPC
-  for (const addr of addresses) {
-    const profile = await resolveEnsProfile(addr);
-    results.set(addr.toLowerCase(), profile);
-    // Small delay between lookups
-    await new Promise((r) => setTimeout(r, 200));
-  }
-  return results;
-}
+// resolveEnsProfiles (batch) removed — unused
 
 /**
  * Build social links from an ENS profile.

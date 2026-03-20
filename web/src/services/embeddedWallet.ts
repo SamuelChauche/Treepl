@@ -135,13 +135,7 @@ export function isBackupDone(): boolean {
   return localStorage.getItem("ethcc-backup-done") === "1";
 }
 
-/** Check if the embedded wallet needs unlock (exists but no active session) */
-export function needsUnlock(): boolean {
-  if (!hasEmbeddedWallet()) return false;
-  const addr = getEmbeddedAddress();
-  const storedAddr = localStorage.getItem("ethcc-wallet-address");
-  return addr === storedAddr;
-}
+// needsUnlock removed — unused
 
 /** Delete the embedded wallet from storage */
 export function deleteEmbeddedWallet(): void {

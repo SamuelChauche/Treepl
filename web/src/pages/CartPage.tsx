@@ -120,7 +120,7 @@ export default function CartPage() {
 
   // Pending ratings (from RateSessionPage)
   const pendingRatings: Record<string, number> = JSON.parse(
-    localStorage.getItem(STORAGE_KEYS.RATINGS) ?? "{}"
+    localStorage.getItem(STORAGE_KEYS.RATINGS_PENDING) ?? "{}"
   );
   const cartRatings = useMemo(() => {
     const result: { session: typeof sessions[0]; rating: number }[] = [];
@@ -356,9 +356,9 @@ export default function CartPage() {
                   </div>
                   <button
                     onClick={() => {
-                      const p = JSON.parse(localStorage.getItem(STORAGE_KEYS.RATINGS) ?? "{}");
+                      const p = JSON.parse(localStorage.getItem(STORAGE_KEYS.RATINGS_PENDING) ?? "{}");
                       delete p[s.id];
-                      localStorage.setItem(STORAGE_KEYS.RATINGS, JSON.stringify(p));
+                      localStorage.setItem(STORAGE_KEYS.RATINGS_PENDING, JSON.stringify(p));
                       toggleCart(s.id);
                     }}
                     style={{
@@ -524,7 +524,7 @@ export default function CartPage() {
                   clearCart();
                   setTopics(new Set());
                   localStorage.removeItem("ethcc-votes");
-                  localStorage.removeItem(STORAGE_KEYS.RATINGS);
+                  localStorage.removeItem(STORAGE_KEYS.RATINGS_PENDING);
 
                   setPublishDone(true);
                   setPublishStatus("");

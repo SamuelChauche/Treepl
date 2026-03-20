@@ -69,14 +69,6 @@ const tabBtn = (active: boolean): CSSProperties => ({
 // QR Styles
 // qrBox removed — now using QrDisplay component
 
-const infoRow: CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "100%",
-  padding: "8px 0",
-  borderBottom: `1px solid ${C.border}`,
-};
-
 const infoLabel: CSSProperties = {
   fontSize: 12,
   color: C.textSecondary,

@@ -9,7 +9,7 @@ const TRACK_ATOM_IDS = graphData.trackAtomIds as Record<string, string>;
 const SESSION_ATOM_IDS = graphData.sessionIdToAtomId as Record<string, string>;
 
 // ─── Types ───────────────────────────────────────────────────────
-export interface IntuitionTriple {
+interface IntuitionTriple {
   subjectId: string;
   predicateId: string;
   objectId: string;
@@ -163,7 +163,7 @@ export async function approveProxy(
  * Calculate the deterministic atom ID for a wallet address.
  * Does NOT create the atom — it must already exist on-chain.
  */
-export async function getUserAtomId(
+async function getUserAtomId(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   multiVault: any,
   address: string,

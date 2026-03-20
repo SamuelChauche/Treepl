@@ -2,10 +2,19 @@
 export const STORAGE_KEYS = {
   CART: "ethcc-cart",
   TOPICS: "ethcc-topics",
-  RATINGS: "ethcc-ratings-pending",
+  RATINGS_PENDING: "ethcc-ratings-pending",
+  RATINGS: "ethcc-ratings",
   TRANSFERS: "ethcc-trust-transfers",
   PUBLISHED_SESSIONS: "ethcc-published-sessions",
   PUBLISHED_VOTES: "ethcc-published-votes",
+  VOTES: "ethcc-votes",
+  PENDING_TOPICS: "ethcc-pending-topics",
+  WALLET_ADDRESS: "ethcc-wallet-address",
+  ONBOARDED: "ethcc-onboarded",
+  WANT_REPLAY: "ethcc-want-replay",
+  SEEN_REPLAYS: "ethcc-seen-replays",
+  EMBEDDED_WALLET: "ethcc-embedded-wallet",
+  BACKUP_DONE: "ethcc-backup-done",
 } as const;
 
 // ─── Session Type Colors ────────────────────────────────────────

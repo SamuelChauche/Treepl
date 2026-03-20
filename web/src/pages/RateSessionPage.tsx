@@ -127,10 +127,10 @@ export default function RateSessionPage() {
 
       // Save rating to pending ratings (will be deposited at checkout)
       const pending: Record<string, number> = JSON.parse(
-        localStorage.getItem(STORAGE_KEYS.RATINGS) ?? "{}"
+        localStorage.getItem(STORAGE_KEYS.RATINGS_PENDING) ?? "{}"
       );
       pending[session.id] = rating;
-      localStorage.setItem(STORAGE_KEYS.RATINGS, JSON.stringify(pending));
+      localStorage.setItem(STORAGE_KEYS.RATINGS_PENDING, JSON.stringify(pending));
 
       // Also save to display ratings
       const ratings = JSON.parse(localStorage.getItem("ethcc-ratings") ?? "{}");
