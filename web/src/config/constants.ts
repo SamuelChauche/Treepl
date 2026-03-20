@@ -19,7 +19,7 @@ export const STORAGE_KEYS = {
 } as const;
 
 // ─── Session Type Colors ────────────────────────────────────────
-export type SessionType = "Talk" | "Workshop" | "Panel" | "Demo";
+export type SessionType = "Talk" | "Workshop" | "Panel" | "Demo" | "Side Event";
 
 export const TYPE_DATA_COLORS: Record<string, string> = {
   Talk: "orange",
