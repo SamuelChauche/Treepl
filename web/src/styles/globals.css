@@ -1,3 +1,57 @@
+/* ─── Design tokens (mirrored from config/theme.ts) ──────────── */
+:root {
+  /* Backgrounds */
+  --bg: #0a0a0a;
+  --surface: #161618;
+  --surface-gray: #1c1c20;
+  --dark: #0a0a0a;
+
+  /* Text */
+  --text-primary: #F2DED6;
+  --text-secondary: #a09088;
+  --text-tertiary: #6a5f5a;
+  --white: #FBF7F5;
+
+  /* Accent */
+  --flat: #ffc6b0;
+  --flat-light: rgba(255,198,176,0.15);
+  --primary: #cea2fd;
+  --primary-light: rgba(206,162,253,0.15);
+  --accent: #A6AF6B;
+
+  /* Semantic */
+  --success: #22c55e;
+  --success-light: rgba(34,197,94,0.15);
+  --error: #ef4444;
+  --error-light: rgba(239,68,68,0.15);
+  --trust: #00D4AA;
+  --gold: #FCD34D;
+  --warning: #f59e0b;
+
+  /* Border */
+  --border: rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.1);
+
+  /* Radius */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 20px;
+  --r-btn: 28px;
+
+  /* Font */
+  --font: 'Gotu','Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+
+  /* Glass */
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 4px 16px rgba(0,0,0,0.08);
+
+  /* Gradient */
+  --iridescence: linear-gradient(135deg, #D790C7 0%, #d37cbf 20%, #ffc6b0 50%, #ffa7b1 80%, #cea2fd 100%);
+}
+
 /* ─── Reset ──────────────────────────────────────────────────── */
 *,
 *::before,

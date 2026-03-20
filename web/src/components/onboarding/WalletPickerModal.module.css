@@ -1,0 +1,160 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 390px;
+  padding: 24px;
+  padding-bottom: 32px;
+  background: var(--bg);
+  border-radius: 20px 20px 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: var(--surface-gray);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option {
+  padding: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.optionIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.optionInfo {
+  flex: 1;
+}
+
+.optionTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.optionDesc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.passwordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.passwordLabel {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  background: var(--surface-gray);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: var(--font);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.actionBtn {
+  width: 100%;
+  height: 56px;
+  border-radius: var(--r-btn);
+  background: var(--flat);
+  color: #0a0a0a;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backBtn {
+  composes: actionBtn;
+  background: var(--surface-gray);
+  color: var(--text-secondary);
+}
+
+.backupCard {
+  padding: 12px;
+  text-align: center;
+}
+
+.backupWarning {
+  font-size: 12px;
+  color: var(--warning);
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.backupKey {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: monospace;
+  word-break: break-all;
+  margin: 0 0 8px;
+}
+
+.copyBtn {
+  width: 100%;
+  height: 36px;
+  border-radius: var(--r-btn);
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

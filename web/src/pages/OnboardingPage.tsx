@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { C, R, glassSurface, btnPill, FONT, getTrackStyle } from "../config/theme";
 import { sessions, trackNames } from "../data";
 import { Ic } from "../components/ui/Icons";
+import { SplashStep, SlideStep, InterestPicker, SessionPicker, WalletPickerModal } from "../components/onboarding";
 
 import { VIBES } from "../data/social";
 import { StorageService } from "../services/StorageService";
@@ -340,199 +341,36 @@ export default function OnboardingPage() {
 
   // ── Step 0: Splash ──────────────────────────────────────────
   if (step === 0) {
-    return (
-      <div style={page}>
-        <SplashBg>
-          <div style={center}>
-            <img
-              src={`${IMG}logo-splash.webp`}
-              alt="EthCC Sofia"
-              style={{ width: 320, height: 320, objectFit: "contain", maxWidth: "100%" }}
-            />
-            <h1 style={{ ...heading, fontSize: 44, marginTop: 20, letterSpacing: -1 }}>EthCC[9]</h1>
-            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.9)", fontWeight: 700, marginTop: 6 }}>
-              Sofia Manager
-            </p>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", marginTop: 6 }}>
-              Cannes &middot; Mar 30 &ndash; Apr 2, 2026
-            </p>
-          </div>
-          <button style={pillBtn} onClick={() => setStep(1)}>
-            Get Started
-          </button>
-        </SplashBg>
-      </div>
-    );
+    return <div style={page}><SplashStep onNext={() => setStep(1)} /></div>;
   }
 
   // ── Steps 1-3: Slides ───────────────────────────────────────
   if (step >= 1 && step <= 3) {
-    const slide = SLIDES[step - 1];
-    return (
-      <div style={page}>
-        <SplashBg>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", minHeight: 0 }}>
-            <img
-              src={slide.image}
-              alt={slide.title}
-              loading="eager"
-              style={{ width: slide.size, maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
-            />
-          </div>
-          <div style={{ flexShrink: 0, padding: "0 24px 40px", textAlign: "center" }}>
-            <Dots n={3} a={step - 1} />
-            <h2 style={{ ...heading, fontSize: 28, lineHeight: 1.2, margin: "28px 0 8px", whiteSpace: "pre-line" }}>
-              {slide.title}
-            </h2>
-            <p style={{ ...sub, margin: "0 auto 32px" }}>{slide.subtitle}</p>
-            <button style={{ ...btnPill, background: C.flat }} onClick={() => setStep(step + 1)}>
-              Next
-            </button>
-          </div>
-        </SplashBg>
-      </div>
-    );
+    return <div style={page}><SlideStep slideIndex={step} onNext={() => setStep(step + 1)} /></div>;
   }
 
   // ── Step 4: Interest picker ─────────────────────────────────
   if (step === 4) {
     return (
-      <div style={page}>
-        <div style={{ flexShrink: 0, padding: "0 20px" }}>
-          <div style={{ display: "flex", gap: 6, marginBottom: 20, marginTop: 16 }}>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <div key={i} style={{ flex: 1, height: 4, borderRadius: 2, background: i === 0 ? C.flat : C.surfaceGray }} />
-            ))}
-          </div>
-          <h2 style={{ fontSize: 24, fontWeight: 700, color: C.textPrimary, margin: "0 0 6px" }}>Choose your interests</h2>
-          <p style={{ fontSize: 14, color: C.textSecondary, margin: "0 0 16px" }}>
-            Published on Intuition Protocol as on-chain triples.
-          </p>
-        </div>
-        <div style={scrollArea}>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-            {trackNames.map((name) => {
-              const ts = getTrackStyle(name);
-              const active = selectedTracks.has(name);
-              return (
-                <button
-                  key={name}
-                  style={{
-                    ...trackPill,
-                    height: 42,
-                    background: active ? ts.color : C.surfaceGray,
-                    borderColor: active ? ts.color : "transparent",
-                    color: active ? "#fff" : C.textSecondary,
-                  }}
-                  onClick={() => toggleTrack(name)}
-                >
-                  <span>{ts.icon}</span>
-                  <span>{name}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-        <div style={bottomBar}>
-          <div style={{ display: "flex", gap: 12 }}>
-            <button
-              style={{ ...btnPill, flex: 1, background: C.surfaceGray, color: C.textPrimary }}
-              onClick={() => setStep(3)}
-            >
-              Back
-            </button>
-            <button
-              style={{ ...btnPill, background: C.flat, flex: 2, opacity: selectedTracks.size === 0 ? 0.4 : 1 }}
-              disabled={selectedTracks.size === 0}
-              onClick={() => setStep(5)}
-            >
-              Continue &middot; {selectedTracks.size} selected
-            </button>
-          </div>
-        </div>
-      </div>
+      <InterestPicker
+        selectedTracks={selectedTracks}
+        onToggleTrack={toggleTrack}
+        onBack={() => setStep(3)}
+        onNext={() => setStep(5)}
+      />
     );
   }
 
   // ── Step 5: Session picker ──────────────────────────────────
   if (step === 5) {
     return (
-      <div style={page}>
-        <div style={{ flexShrink: 0, padding: "0 24px" }}>
-          <div style={{ display: "flex", gap: 6, marginBottom: 20, marginTop: 16 }}>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <div key={i} style={{ flex: 1, height: 4, borderRadius: 2, background: i <= 1 ? C.flat : C.surfaceGray }} />
-            ))}
-          </div>
-          <h2 style={{ fontSize: 24, fontWeight: 700, color: C.textPrimary, margin: "0 0 6px" }}>Add sessions to cart</h2>
-          <p style={{ fontSize: 14, color: C.textSecondary, margin: "0 0 16px" }}>
-            Select sessions you want to attend.
-          </p>
-        </div>
-        <div style={scrollArea}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {matchingSessions.length === 0 && (
-              <p style={{ fontSize: 14, color: C.textTertiary, textAlign: "center", padding: 20 }}>
-                No sessions match your selected tracks.
-              </p>
-            )}
-            {matchingSessions.map((s) => {
-              const ts = getTrackStyle(s.track);
-              const checked = selectedSessions.has(s.id);
-              return (
-                <div
-                  key={s.id}
-                  onClick={() => toggleSession(s.id)}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 12, padding: 14,
-                    borderRadius: R.lg, cursor: "pointer",
-                    background: checked ? `${ts.color}15` : C.surfaceGray,
-                    border: `1.5px solid ${checked ? ts.color : C.border}`,
-                  }}
-                >
-                  {/* Color accent bar */}
-                  <div style={{ width: 4, alignSelf: "stretch", borderRadius: 2, background: ts.color, flexShrink: 0 }} />
-                  <div style={{ width: 42, height: 42, borderRadius: 14, background: `${ts.color}25`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>
-                    {ts.icon}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: C.textPrimary, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                      {s.title}
-                    </div>
-                    <div style={{ fontSize: 12, color: C.textSecondary, marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                      {s.speakers.length > 0 ? s.speakers[0].name : "TBA"} &middot; {s.startTime}
-                    </div>
-                    <span style={{ fontSize: 10, fontWeight: 600, color: ts.color, marginTop: 2, display: "inline-block" }}>
-                      {s.track}
-                    </span>
-                  </div>
-                  <div style={{
-                    width: 24, height: 24, borderRadius: 12,
-                    border: `2px solid ${checked ? ts.color : C.textTertiary}`,
-                    background: checked ? ts.color : "transparent",
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                  }}>
-                    {checked && <Ic.Check s={14} c={C.white} />}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div style={bottomBar}>
-          <div style={{ display: "flex", gap: 12 }}>
-            <button
-              style={{ ...btnPill, flex: 1, background: C.surfaceGray, color: C.textPrimary }}
-              onClick={() => setStep(4)}
-            >
-              Back
-            </button>
-            <button style={{ ...btnPill, background: C.flat, flex: 2 }} onClick={() => setStep(6)}>
-              {selectedSessions.size > 0 ? `Review \u00B7 ${selectedSessions.size}` : "Skip"}
-            </button>
-          </div>
-        </div>
-      </div>
+      <SessionPicker
+        selectedTracks={selectedTracks}
+        selectedSessions={selectedSessions}
+        onToggleSession={toggleSession}
+        onBack={() => setStep(4)}
+        onNext={() => setStep(6)}
+      />
     );
   }
 
@@ -767,109 +605,19 @@ export default function OnboardingPage() {
 
         {/* ── Wallet Picker Modal ──────────────────────────── */}
         {showWalletPicker && walletState === "idle" && (
-          <div
-            style={{
-              position: "absolute", inset: 0, zIndex: 100,
-              background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
-              display: "flex", alignItems: "flex-end", justifyContent: "center",
-            }}
-            onClick={() => { if (embeddedMode === "none") setShowWalletPicker(false); }}
-          >
-            <div
-              style={{
-                width: "100%", maxWidth: 390, padding: 24, paddingBottom: 32,
-                background: C.background, borderRadius: "20px 20px 0 0",
-                border: `1px solid ${C.border}`, borderBottom: "none",
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-                <h3 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>Connect Wallet</h3>
-                <button
-                  onClick={() => { setShowWalletPicker(false); setEmbeddedMode("none"); setEmbeddedPassword(""); }}
-                  style={{ width: 32, height: 32, borderRadius: 16, background: C.surfaceGray, border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
-                >
-                  <Ic.X s={16} c={C.textSecondary} />
-                </button>
-              </div>
-
-              {embeddedMode === "none" && (
-                <>
-                  {/* External wallet option */}
-                  <div
-                    style={{ ...glassSurface, padding: 16, marginBottom: 10, cursor: "pointer", display: "flex", alignItems: "center", gap: 14 }}
-                    onClick={() => { setShowWalletPicker(false); openWalletModal(); }}
-                  >
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Ic.Wallet s={22} c={C.flat} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 15, fontWeight: 600 }}>External Wallet</div>
-                      <div style={{ fontSize: 12, color: C.textSecondary, marginTop: 2 }}>MetaMask, WalletConnect, Coinbase...</div>
-                    </div>
-                    <Ic.Right s={16} c={C.textTertiary} />
-                  </div>
-
-                  {/* Embedded wallet option */}
-                  <div
-                    style={{ ...glassSurface, padding: 16, cursor: "pointer", display: "flex", alignItems: "center", gap: 14 }}
-                    onClick={() => setEmbeddedMode(hasEmbedded ? "unlock" : "create")}
-                  >
-                    <div style={{ width: 44, height: 44, borderRadius: 12, background: C.primaryLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Ic.Plus s={22} c={C.primary} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 15, fontWeight: 600 }}>{hasEmbedded ? "Unlock Embedded Wallet" : "Create Embedded Wallet"}</div>
-                      <div style={{ fontSize: 12, color: C.textSecondary, marginTop: 2 }}>
-                        {hasEmbedded ? "Enter your password to unlock" : "No wallet? We'll create one for you"}
-                      </div>
-                    </div>
-                    <Ic.Right s={16} c={C.textTertiary} />
-                  </div>
-                </>
-              )}
-
-              {(embeddedMode === "create" || embeddedMode === "unlock") && (
-                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>
-                    {embeddedMode === "create" ? "Create a password for your wallet" : "Enter your wallet password"}
-                  </div>
-                  <input
-                    type="password"
-                    value={embeddedPassword}
-                    onChange={(e) => setEmbeddedPassword(e.target.value)}
-                    placeholder="Password"
-                    autoFocus
-                    style={{
-                      width: "100%", padding: "14px 16px", borderRadius: R.lg,
-                      border: `1px solid ${C.border}`, background: C.surfaceGray,
-                      color: C.textPrimary, fontSize: 15, fontFamily: FONT,
-                      outline: "none", boxSizing: "border-box",
-                    }}
-                  />
-                  <button
-                    style={{ ...btnPill, background: C.flat }}
-                    onClick={async () => {
-                      if (embeddedMode === "create") {
-                        await handleCreateEmbedded();
-                      } else {
-                        await handleUnlockEmbedded();
-                        setShowWalletPicker(false);
-                      }
-                    }}
-                  >
-                    {embeddedMode === "create" ? "Create Wallet" : "Unlock"}
-                  </button>
-                  <button
-                    style={{ ...btnPill, background: C.surfaceGray, color: C.textSecondary }}
-                    onClick={() => { setEmbeddedMode("none"); setEmbeddedPassword(""); }}
-                  >
-                    Back
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
+          <WalletPickerModal
+            onClose={() => setShowWalletPicker(false)}
+            onExternalWallet={openWalletModal}
+            onCreateEmbedded={async (pw) => { setEmbeddedPassword(pw); await handleCreateEmbedded(); }}
+            onUnlockEmbedded={async (pw) => { setEmbeddedPassword(pw); await handleUnlockEmbedded(); }}
+            onBackupDone={handleBackupDone}
+            embeddedMode={embeddedMode}
+            setEmbeddedMode={setEmbeddedMode}
+            embeddedPrivateKey={embeddedPrivateKey}
+            embeddedKeyCopied={embeddedKeyCopied}
+            setEmbeddedKeyCopied={setEmbeddedKeyCopied}
+            txError={txError}
+          />
         )}
       </div>
     );
