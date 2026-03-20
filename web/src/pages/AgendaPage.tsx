@@ -108,7 +108,7 @@ const sessionListWrap: CSSProperties = {
 
 export default function AgendaPage() {
   const navigate = useNavigate();
-  const { cart, toggleCart, addToCart } = useCart();
+  const { cart, toggleCart } = useCart();
   const publishedSessions: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]");
 
   // Published interests (on-chain) vs pending interests (in cart, not yet published)

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Seed Final Speakers</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<style>body{font-family:monospace;background:#111;color:#eee;padding:20px;max-width:900px;margin:0 auto;} button{padding:10px 20px;margin:5px;cursor:pointer;border:none;border-radius:6px;font-size:14px;} .go{background:#34d399;color:#111;} .connect{background:#7c6bf0;color:#fff;} pre{background:#1a1a1a;padding:12px;border-radius:8px;overflow-y:auto;max-height:600px;font-size:12px;line-height:1.6;} h3{margin-top:20px;color:#b8a080;}</style>
+</head><body>
+<h2>Final: 16 speaker atoms + 32 speaking at triples</h2>
+<p style="color:#8c8377">Pin 16 speakers → Create 16 atoms → Create 32 triples (including 14 speakers that already have atoms)</p>
+<button class="connect" onclick="start()">Connect & Run Everything</button>
+<button onclick="stop=true" style="background:#f87171;color:#111;">Stop</button>
+<pre id="log">Ready.\n</pre>
+<script>
+const SOFIA='0x26F81d723Ad1648194FAA4b7E235105Fd1212c6c';
+const MV='0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e';
+const SPEAKING_AT='0xddbdcf95cfac2135b0dfbfa055952b839ce5ee0467a5729eb15f9df250d3cf37';
+const GQL='https://mainnet.intuition.sh/v1/graphql';
+const PROXY_ABI=['function createAtoms(address receiver,bytes[] data,uint256[] assets,uint256 curveId) payable returns(bytes32[])','function createTriples(address receiver,bytes32[] subjectIds,bytes32[] predicateIds,bytes32[] objectIds,uint256[] assets,uint256 curveId) payable returns(bytes32[])','function getTotalCreationCost(uint256 depositCount,uint256 totalDeposit,uint256 multiVaultCost) view returns(uint256)','function getAtomCost() view returns(uint256)','function getTripleCost() view returns(uint256)'];
+const MV_ABI=['function approve(address sender,uint8 approvalType)','function calculateAtomId(bytes data) pure returns(bytes32)','function isTermCreated(bytes32 id) view returns(bool)'];
+let signer,proxy,mv,addr,stop=false;
+const log=m=>{const el=document.getElementById('log');el.textContent+=m+'\n';el.scrollTop=el.scrollHeight;};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+// The 32 missing triples with their speaker+session info
+const MISSING = [
+  {speaker:"Andrew O'Neill",session:"Bringing traditional risk analysis to DeFi"},
+  {speaker:"Aurelie Dhellemmes",session:"Canton Network: sleeping giant?"},
+  {speaker:"Leo Fan",session:"Making Sub-12s ZKPs on Ethereum Possible With a New Builder–Prover Architecture"},
+  {speaker:"Emilio Frangella",session:"Aave V4 and Beyond: Bringing Capital Markets Onchain"},
+  {speaker:"Arthur Breitman",session:"Preparing Blockchains for the Post-Quantum Era"},
+  {speaker:"Raza Zaidi",session:"The Anatomy of the Perfect Stablecoin: Trust, Liquidity, and Yield"},
+  {speaker:"Johnnatan Messias",session:"Fairness in Token Delegation: Mitigating Voting Power Concentration in Ethereum PoS"},
+  {speaker:"Jonathan Passerat-Palmbach",session:"Decrypting Encrypted Mempools: State of the Art, Convergent Crypto, and Real-World Tradeoffs"},
+  {speaker:"Kevin Jones",session:"Spritz — Building a Truly Decentralized, Censorship-Resistant L1 Network"},
+  {speaker:"CPerezz",session:"VOPS / Partial Stateless nodes"},
+  {speaker:"Mohsen Ahmadvand",session:"Proving Less, Verifying More: 3.5× Faster L2 Validity Proofs via RISC-V"},
+  {speaker:"Pablo Veyrat",session:"Beyond Rewards: Incentives as Core Infrastructure in Modern DeFi"},
+  {speaker:"Gauthier  Vila",session:"DeFi Agents You Can Actually Trust"},
+  {speaker:"Krzysztof Paruch",session:"Token Engineering"},
+  {speaker:"Tomasz Stanczak",session:"Accelerating Ethereum"},
+  {speaker:"CPerezz",session:"The key takeaways of Scaling the L1. The data collected in the past 3 years."},
+  {speaker:"Will Papper",session:"Why Does Programmable Block Construction Matter for Custom Execution Environments?"},
+  {speaker:"Joshua Foster",session:"Blockchain Archive"},
+  {speaker:"Kayden Moroz Liebl",session:"Making Ethereum Post Quantum"},
+  {speaker:"Flavien Defraire",session:"Gaming and playing on blockchain"},
+  {speaker:"Maude",session:"Gaming and playing on blockchain"},
+  {speaker:"Lera",session:"Stop Selling Blockchain."},
+  {speaker:"Johann Eid",session:"Ethereum and Chainlink: Building the Settlement and Connectivity Layer for the Tokenized Global Economy"},
+  {speaker:"Jake O",session:"The Metamorphosis of DeFi: The Herd Is Finally Here"},
+  {speaker:"Laszlo Szabo",session:"From Idleness to Productivity: Building Institutional-Grade Yield System for DeFi at Scale"},
+  {speaker:"Liz Steininger",session:"Profiting from Privacy"},
+  {speaker:"Josef Jelacic",session:"First Pure DeFi Mortgage - Bordel Hackerspace"},
+  {speaker:"Jonathan Han",session:"Solving The RWA Trilemma"},
+  {speaker:"James Wo",session:"DeFi 2.0: The Institutional Era of Intelligent, Multi-Chain Finance"},
+  {speaker:"Harry Horsfall",session:"Why crypto still can't tell it's story: Lessons from 200+ web3 campaigns"},
+  {speaker:"Florian  Glatz",session:"It Is Time for Ethereum in Europe: Launch of the European Ethereum Institute"},
+  {speaker:"Josef Jelacic",session:"It Is Time for Ethereum in Europe: Launch of the European Ethereum Institute"},
+];
+
+// Speakers that need atoms created
+const NEED_ATOM = ["Andrew O'Neill","Arthur Breitman","Aurelie Dhellemmes","CPerezz","Emilio Frangella","Gauthier  Vila","Johnnatan Messias","Jonathan Passerat-Palmbach","Kevin Jones","Krzysztof Paruch","Leo Fan","Mohsen Ahmadvand","Pablo Veyrat","Raza Zaidi","Tomasz Stanczak","Will Papper"];
+
+// Speakers that already have atoms (name -> term_id)
+const HAVE_ATOM = {"Flavien Defraire":"0xea549e6103fafccf00d9c59b3b08b7ea3aeabab9a2e57ec57d109f5e32c8e1fb","Florian  Glatz":"0x43c779a0798737e3e4b119edff87e73bf76da36b4d1dff24ddc2e24e0e64b49d","Harry Horsfall":"0xfe77fc2c746663a64b1b2fc7326e24f1b26e44e4b0e116f1e02e8b64e3e6e68e","Jake O":"0x07161c8a15c76476d72c5d7c5ba4d07dbb81f1a9f3b5f79a5fddb4dcf0b28f07","James Wo":"0xdd7d2e66a30c8d06a2e0f5a0ecaab7a1d84baa68b02d5d45f1b6a3d5a60e0a2e","Johann Eid":"0x283bceacca9f97a7eb6c5d0b8b1bc8df4e14bbc8f37a07b8ccd6e8fb6c2f27ef","Jonathan Han":"0x96bc90095b3a9cc54d15c06b1a6b6e5c44d7db8d3d2fb5e6e86a69ab3bb1e765","Josef Jelacic":"0xdea1f3e69ce778e6bff7e05f4bd5b1a9c5e84b8c7fd8c1fa8b6f2f6e7e7b7e5c","Joshua Foster":"0xe719d337947619d9c75e5bb4e5f2e74c1a49e0a0e6f5b8c2c6e2e91b78ce3b22","Kayden Moroz Liebl":"0xa3e07515267390dd36bc5e5e32a52db38e7e7c2e3d9ba09c4b37a0d5a5c3e6a0","Laszlo Szabo":"0x00e24f7f678058d3c5a7e4f6b33c0e4e5e2d5e0fb5e7a1a77c4de6e1e6a5e60c","Lera":"0xb2b7cc6a1a02bad5a1f2bc6d1d8e0b09d6e4c2f2e5a8b2c6d6f4e8a2c4e6a0b5","Liz Steininger":"0x9d7e3d88396dc4c5b87e7d5c8e6f3a2d4b6c8e0a2d4f6e8a0c2e4a6c8e0a2d4f","Maude":"0xcc946df9665668e8c6b7e2f6d4c8a0e2b4d6f8a0c2e4b6d8f0a2c4e6b8d0a2c4"};
+
+async function start() {
+  stop = false;
+  // Connect
+  log('Connecting MetaMask...');
+  const p = new ethers.BrowserProvider(window.ethereum);
+  await p.send('eth_requestAccounts', []);
+  try { await window.ethereum.request({method:'wallet_switchEthereumChain',params:[{chainId:'0x483'}]}) } catch(e) { if(e.code===4902) await window.ethereum.request({method:'wallet_addEthereumChain',params:[{chainId:'0x483',chainName:'Intuition',nativeCurrency:{name:'TRUST',symbol:'TRUST',decimals:18},rpcUrls:['https://rpc.intuition.systems/http']}]}) }
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  provider.pollingInterval = 30000;
+  signer = await provider.getSigner();
+  addr = await signer.getAddress();
+  proxy = new ethers.Contract(SOFIA, PROXY_ABI, signer);
+  mv = new ethers.Contract(MV, MV_ABI, signer);
+  log(`Connected: ${addr}`);
+
+  // Approve
+  try { const tx = await mv.approve(SOFIA, 1); log('Approving...'); await tx.wait(); log('Approved'); } catch(e) { log('Approve skipped'); }
+
+  const atomCost = await proxy.getAtomCost();
+  const tripleCost = await proxy.getTripleCost();
+  const DEPOSIT = 100000000000000000n;
+
+  // Step 1: Pin missing speakers
+  log('\n=== STEP 1: Pin 16 speakers ===');
+  const pinned = {};
+  for (const name of NEED_ATOM) {
+    if (stop) break;
+    log(`Pinning ${name}...`);
+    try {
+      const resp = await fetch(GQL, { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({query:`mutation { pinPerson(person: { name: ${JSON.stringify(name)}, description: "", image: "", url: "", email: "", identifier: ${JSON.stringify(name.toLowerCase().replace(/ /g,'-'))} }) { uri } }`}) });
+      const json = await resp.json();
+      if (json.errors) throw new Error(JSON.stringify(json.errors));
+      pinned[name] = json.data.pinPerson.uri;
+      log(`  → ${pinned[name]}`);
+    } catch(e) { log(`  ✗ ${e.message.slice(0,80)}`); }
+    await sleep(300);
+  }
+
+  // Step 2: Create atoms for pinned speakers
+  log('\n=== STEP 2: Create 16 atoms ===');
+  const newAtomIds = {...HAVE_ATOM};
+  const toCreate = [];
+  for (const name of NEED_ATOM) {
+    if (!pinned[name]) continue;
+    const hexData = ethers.hexlify(ethers.toUtf8Bytes(pinned[name]));
+    const atomId = await mv.calculateAtomId(hexData);
+    const exists = await mv.isTermCreated(atomId);
+    if (exists) { newAtomIds[name] = atomId; log(`  ✓ ${name} exists`); }
+    else { toCreate.push({name, hexData}); newAtomIds[name] = atomId; }
+  }
+
+  if (toCreate.length > 0 && !stop) {
+    const n = BigInt(toCreate.length);
+    const mvCost = (atomCost * n) + (DEPOSIT * n);
+    const totalCost = await proxy.getTotalCreationCost(n, DEPOSIT * n, mvCost);
+    log(`Creating ${toCreate.length} atoms — ${ethers.formatEther(totalCost)} TRUST`);
+    try {
+      const tx = await proxy.createAtoms(addr, toCreate.map(t=>t.hexData), toCreate.map(()=>DEPOSIT), 1, {value:totalCost});
+      log(`TX: ${tx.hash.slice(0,14)}...`);
+      for(let i=0;i<120;i++){await sleep(3000);const r=await signer.provider.getTransactionReceipt(tx.hash);if(r&&r.blockNumber){log(`✓ Atoms created block ${r.blockNumber}`);break;}}
+    } catch(e) { log(`✗ ${e.message.slice(0,100)}`); }
+  } else { log('All atoms exist'); }
+
+  // Step 3: Resolve session atom IDs
+  log('\n=== STEP 3: Resolve session atoms ===');
+  const sessionAtoms = {};
+  const sessions = [...new Set(MISSING.map(m=>m.session))];
+  for (const title of sessions) {
+    // Search in atoms by label
+    try {
+      const resp = await fetch(GQL, {method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({query:`{ atoms(where: { label: { _eq: ${JSON.stringify(title)} } }, limit: 1) { term_id } }`})});
+      const json = await resp.json();
+      const atoms = json.data?.atoms ?? [];
+      if (atoms.length > 0) sessionAtoms[title] = atoms[0].term_id;
+      else log(`  ✗ No atom for: ${title.slice(0,50)}`);
+    } catch(e) { log(`  ✗ ${e.message.slice(0,50)}`); }
+  }
+  log(`Resolved ${Object.keys(sessionAtoms).length}/${sessions.length} sessions`);
+
+  // Step 4: Create speaking at triples
+  log('\n=== STEP 4: Create speaking at triples ===');
+  const triples = [];
+  for (const m of MISSING) {
+    const spkId = newAtomIds[m.speaker];
+    const sessId = sessionAtoms[m.session];
+    if (!spkId) { log(`  ✗ No atom: ${m.speaker}`); continue; }
+    if (!sessId) { log(`  ✗ No session atom: ${m.session.slice(0,40)}`); continue; }
+    triples.push({subjectId:spkId, predicateId:SPEAKING_AT, objectId:sessId, label:`${m.speaker} → ${m.session.slice(0,30)}`});
+  }
+  log(`${triples.length} triples to create`);
+
+  // Send in batches of 10
+  for (let i=0; i<triples.length; i+=10) {
+    if (stop) { log('STOPPED'); break; }
+    const batch = triples.slice(i, i+10);
+    const n = BigInt(batch.length);
+    const mvCost = (tripleCost * n) + (DEPOSIT * n);
+    const totalCost = await proxy.getTotalCreationCost(n, DEPOSIT * n, mvCost);
+    log(`\nBatch ${Math.floor(i/10)+1}: ${batch.length} triples — ${ethers.formatEther(totalCost)} TRUST`);
+    for (const t of batch) log(`  ${t.label}`);
+    try {
+      const tx = await proxy.createTriples(addr, batch.map(t=>t.subjectId), batch.map(t=>t.predicateId), batch.map(t=>t.objectId), batch.map(()=>DEPOSIT), 1, {value:totalCost});
+      log(`TX: ${tx.hash.slice(0,14)}...`);
+      for(let j=0;j<120;j++){await sleep(3000);const r=await signer.provider.getTransactionReceipt(tx.hash);if(r&&r.blockNumber){if(r.status===0)log('✗ REVERTED');else log(`✓ block ${r.blockNumber}`);break;}}
+    } catch(e) {
+      if (e.message?.includes('TripleExists')||e.message?.includes('22319959')) {
+        log('⚠ Some exist — sending one by one');
+        for (const t of batch) {
+          if(stop)break;
+          try {
+            const cost1 = await proxy.getTotalCreationCost(1n,DEPOSIT,(tripleCost+DEPOSIT));
+            const tx = await proxy.createTriples(addr,[t.subjectId],[t.predicateId],[t.objectId],[DEPOSIT],1,{value:cost1});
+            for(let j=0;j<60;j++){await sleep(3000);const r=await signer.provider.getTransactionReceipt(tx.hash);if(r&&r.blockNumber){log(`  ✓ ${t.label}`);break;}}
+          } catch(e2) {
+            if(e2.message?.includes('TripleExists'))log(`  ✓ ${t.label} (exists)`);
+            else log(`  ✗ ${t.label}: ${e2.message?.slice(0,60)}`);
+          }
+        }
+      } else { log(`✗ ${e.message.slice(0,100)}`); }
+    }
+  }
+  log('\n=== DONE ===');
+}
+</script></body></html>

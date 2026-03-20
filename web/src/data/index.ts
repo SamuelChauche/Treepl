@@ -4,10 +4,10 @@ import speakersJson from "../../../bdd/speakers.json";
 import ratingsGraphJson from "../../../bdd/session_ratings_graph.json";
 import type { Session, Track, Speaker } from "../types";
 
-export const sessions: Session[] = (sessionsJson as { sessions: Session[] }).sessions;
+export const sessions: Session[] = (sessionsJson as unknown as { sessions: Session[] }).sessions;
 export const tracks: Track[] = (tracksJson as { tracks: Track[] }).tracks;
-export const speakers: Speaker[] = (speakersJson as { speakers: Speaker[] }).speakers;
-export const event = (sessionsJson as { event: { name: string; location: string; dates: { start: string; end: string } } }).event;
+export const speakers: Speaker[] = (speakersJson as unknown as { speakers: Speaker[] }).speakers;
+export const event = { name: "EthCC[9]", location: "Cannes, France", dates: { start: "2026-03-30", end: "2026-04-02" } };
 
 export const speakersBySlug = new Map(speakers.map((s) => [s.slug, s]));
 

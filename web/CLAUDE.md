@@ -286,11 +286,25 @@ All icons accept `{ s?: number, c?: string, f?: boolean }`:
 - `createEmbeddedWallet(password)` — generates `ethers.Wallet.createRandom()`, encrypts private key with AES-GCM (PBKDF2-derived key), stores in localStorage
 - `connectEmbeddedWallet(password)` — decrypts and returns a `WalletConnection` compatible with all services
 - `hasEmbeddedWallet()` / `getEmbeddedAddress()` — check stored wallet
-- Private key is shown once during creation (backup screen), then only accessible via password
+- `markBackupDone()` / `isBackupDone()` — track if user saved their private key
+- `needsUnlock()` — check if embedded wallet exists but needs password
+- Private key is shown once during creation (backup screen). If user skips, HomePage shows a backup reminder banner.
 
-### `sessionNotifService.ts` — Session end toast scheduler
-- Schedules local toast notifications for when sessions end
-- No external dependencies (replaces Push Protocol)
+### `sessionNotifService.ts` — Session end notification scheduler
+- Schedules toast + native notifications for when sessions end
+- `createTestSession()` — generates a test session ending 3 minutes from now (for daily testing)
+- `startSessionNotifScheduler()` — sets up timers for all sessions ending in the next 24h, re-checks every 5 min
+
+### `notificationService.ts` — Native browser notifications (Notification API)
+- `requestNotificationPermission()` — requests permission on first load
+- `showNativeNotification()` — shows a browser notification (works when tab is not focused)
+- `notifySessionEnd()` / `notifyReplayAvailable()` — specific notification types with click-to-open
+
+### `replayService.ts` — Replay polling
+- Polls `public/replays.json` every hour for new YouTube replay links
+- `checkForNewReplays()` — detects new links, filters by user's "Want to watch" preferences
+- `startReplayPolling()` — starts periodic check, calls callback on new replays
+- `getReplayUrl()` — get replay URL for a specific session (used in SessionDetailPage)
 
 ### `leaderboardService.ts` — Blockscout API
 - Fetches transaction data from Blockscout for leaderboard ranking
@@ -313,6 +327,24 @@ All icons accept `{ s?: number, c?: string, f?: boolean }`:
 
 ### `StorageService.ts` — localStorage persistence
 - Cart (`ethcc-cart`), Topics (`ethcc-topics`), Votes (`ethcc-votes`)
+
+### localStorage keys reference
+| Key | Content |
+|-----|---------|
+| `ethcc-cart` | Set of session/topic IDs in cart |
+| `ethcc-topics` | Set of published track interests |
+| `ethcc-votes` | Set of voted topic IDs |
+| `ethcc-ratings-pending` | Map of sessionId → rating (1-5), pending checkout |
+| `ethcc-ratings` | Map of sessionId → { rating, timestamp }, display cache |
+| `ethcc-published-sessions` | Array of session IDs published on-chain (permanent) |
+| `ethcc-pending-topics` | Array of tracks added as interest but not yet published |
+| `ethcc-trust-transfers` | Array of { from, to, amount, hash, timestamp } for leaderboard |
+| `ethcc-wallet-address` | Last connected wallet address |
+| `ethcc-embedded-wallet` | Encrypted embedded wallet { address, encryptedKey, salt, iv } |
+| `ethcc-backup-done` | "1" if user acknowledged private key backup |
+| `ethcc-onboarded` | "1" if user completed onboarding |
+| `ethcc-want-replay` | Array of session IDs user wants replay for |
+| `ethcc-seen-replays` | Array of session IDs whose replay notification was shown |
 
 ---
 

@@ -314,7 +314,7 @@ const PROXY_ABI = [
 ];
 
 const ATOM_BATCH_SIZE = 100;
-const TRIPLE_BATCH_SIZE = 50;
+const TRIPLE_BATCH_SIZE = 20;
 const DEPOSIT_PER_ITEM = 100000000000000000n; // 0.1 TRUST — required by proxy
 const PIN_DELAY = 300;
 
@@ -945,11 +945,8 @@ function getAllTripleEntries(filtered = false) {
       triples.push({ subjectId: sessAtomId, predicateId: EXISTING_PREDICATES['presented at'], objectId: eventAtomId,
         subjectLabel: s.title.substring(0, 40), predicateLabel: 'presented at', objectLabel: 'EthCC[9]' });
     }
-    // has tag
-    if (trackAtomId) {
-      triples.push({ subjectId: sessAtomId, predicateId: EXISTING_PREDICATES['has tag'], objectId: trackAtomId,
-        subjectLabel: s.title.substring(0, 40), predicateLabel: 'has tag', objectLabel: track });
-    }
+    // has tag — SKIPPED (all 502+ already exist on-chain, confirmed by GraphQL audit)
+
     // speaking at
     for (const sp of (s.speakers || [])) {
       if (excludedAtoms.has(sp.name)) continue;
@@ -1050,31 +1047,54 @@ async function executeTripleBatch(idx) {
   let step = '';
 
   try {
-    // Step 1: Check existing (parallel, chunks of 20)
+    // Check existing via GraphQL — query by predicate label (not creator)
     step = 'checking';
-    logTriple(`Batch ${idx+1}: checking ${batch.length} triples in parallel...`);
     const toCreate = [];
     let skipped = 0;
-    const PARALLEL = 20;
-    for (let c = 0; c < batch.length; c += PARALLEL) {
-      if (stopRequested) { logTriple(`Batch ${idx+1}: STOPPED by user`); statusEl.innerHTML = `<span class="tag" style="background:var(--surface2);color:var(--text-muted)">Stopped</span>`; return; }
-      const chunk = batch.slice(c, c + PARALLEL);
-      statusEl.innerHTML = `<span class="tag running">Checking ${Math.min(c + PARALLEL, batch.length)}/${batch.length}</span>`;
-      const results = await Promise.all(chunk.map(async t => {
-        const tripleId = await multiVault.calculateTripleId(t.subjectId, t.predicateId, t.objectId);
-        const exists = await multiVault.isTermCreated(tripleId);
-        return { t, exists };
-      }));
-      for (const { t, exists } of results) {
-        if (exists) {
-          skipped++;
-        } else {
-          toCreate.push(t);
-          logTriple(`  [${idx+1}] + ${t.subjectLabel} → ${t.predicateLabel} → ${t.objectLabel}`);
+    statusEl.innerHTML = `<span class="tag running">Checking...</span>`;
+
+    if (!window._existingPresentedAt || !window._existingSpeakingAt) {
+      logTriple(`  Loading existing triples from GraphQL...`);
+      try {
+        // Paginate GraphQL (default limit is 100)
+        async function fetchAllTriples(query, extract) {
+          const all = [];
+          for (let offset = 0; ; offset += 100) {
+            const q = query.replace('OFFSET', String(offset));
+            const resp = await fetch('https://mainnet.intuition.sh/v1/graphql', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: q }) });
+            const json = await resp.json();
+            const items = json.data?.triples ?? [];
+            all.push(...items);
+            if (items.length < 100) break;
+          }
+          return all;
         }
+        const presTriples = await fetchAllTriples('{ triples(where: { predicate: { label: { _eq: "presented at" } }, object: { label: { _eq: "EthCC[9]" } } }, limit: 100, offset: OFFSET) { subject { term_id } } }');
+        const spkTriples = await fetchAllTriples('{ triples(where: { predicate: { label: { _eq: "speaking at" } } }, limit: 100, offset: OFFSET) { subject { term_id } object { term_id } } }');
+        window._existingPresentedAt = new Set(presTriples.map(t => t.subject.term_id));
+        window._existingSpeakingAt = new Set(spkTriples.map(t => `${t.subject.term_id}|${t.object.term_id}`));
+        logTriple(`  Loaded: ${window._existingPresentedAt.size} presented at, ${window._existingSpeakingAt.size} speaking at`);
+      } catch (e) {
+        logTriple(`  GraphQL failed: ${e.message} — sending all`);
+        window._existingPresentedAt = new Set();
+        window._existingSpeakingAt = new Set();
       }
     }
-    logTriple(`Batch ${idx+1}: check done — ${toCreate.length} new, ${skipped} exist`);
+
+    for (const t of batch) {
+      if (stopRequested) { statusEl.innerHTML = `<span class="tag" style="background:var(--surface2);color:var(--text-muted)">Stopped</span>`; return; }
+      let exists = false;
+      if (t.predicateLabel === 'presented at') {
+        exists = window._existingPresentedAt.has(t.subjectId);
+      } else if (t.predicateLabel === 'speaking at') {
+        exists = window._existingSpeakingAt.has(`${t.subjectId}|${t.objectId}`);
+      }
+      if (exists) { skipped++; } else {
+        toCreate.push(t);
+        logTriple(`  [${idx+1}] + ${t.subjectLabel} → ${t.predicateLabel} → ${t.objectLabel}`);
+      }
+    }
+    logTriple(`Batch ${idx+1}: ${toCreate.length} new, ${skipped} exist`);
 
     if (!toCreate.length) {
       saveStateLocal();
@@ -1092,8 +1112,9 @@ async function executeTripleBatch(idx) {
     // Check all unique IDs in parallel
     const idList = [...allIds];
     const existsMap = new Map();
-    for (let c = 0; c < idList.length; c += PARALLEL) {
-      const chunk = idList.slice(c, c + PARALLEL);
+    const PAR = 20;
+    for (let c = 0; c < idList.length; c += PAR) {
+      const chunk = idList.slice(c, c + PAR);
       const results = await Promise.all(chunk.map(async id => {
         const exists = await multiVault.isTermCreated(id);
         return { id, exists };
