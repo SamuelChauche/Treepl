@@ -48,7 +48,7 @@ export function WalletPickerModal({
             <div
               className={`${shared.glass} ${styles.option}`}
               style={{ background: "rgba(255,255,255,0.06)" }}
-              onClick={() => { onExternalWallet(); onClose(); }}
+              onClick={() => { onExternalWallet(); setTimeout(onClose, 300); }}
             >
               <div className={styles.optionIcon} style={{ background: "rgba(255,255,255,0.08)" }}>
                 <Ic.Wallet s={22} c={C.flat} />

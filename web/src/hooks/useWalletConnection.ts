@@ -17,9 +17,6 @@ const MULTIVAULT_ABI = [
   "function currentSharePrice(bytes32 id, uint256 curveId) view returns (uint256)",
 ];
 
-// Session-scoped guard to prevent chain-switch loops on mobile (page reloads)
-const CHAIN_SWITCH_KEY = "ethcc-chain-switch-done";
-
 /**
  * Hook that integrates AppKit (WalletConnect, MetaMask, Coinbase)
  * and produces a WalletConnection compatible with all existing services.
@@ -53,8 +50,8 @@ export function useWalletConnection() {
     buildingRef.current = true;
     setLoading(true);
 
-    // Close the AppKit modal immediately
-    try { modal?.close(); } catch { /* ignore */ }
+    // Close the AppKit modal after a short delay (let WalletConnect handshake settle on mobile)
+    setTimeout(() => { try { modal?.close(); } catch { /* ignore */ } }, 500);
 
     (async () => {
       try {
@@ -63,18 +60,13 @@ export function useWalletConnection() {
         provider.pollingInterval = 30000;
 
         // Ensure wallet is on Intuition chain (1155)
-        // Use sessionStorage guard to prevent chain-switch loops on mobile
         let needsChainSwitch = false;
         try {
           const network = await provider.getNetwork();
           needsChainSwitch = Number(network.chainId) !== CHAIN_CONFIG.CHAIN_ID;
         } catch { /* getNetwork failed — try chain switch anyway */ needsChainSwitch = true; }
 
-        const alreadySwitched = sessionStorage.getItem(CHAIN_SWITCH_KEY) === address;
-        if (needsChainSwitch && !alreadySwitched) {
-          // Mark chain switch attempted BEFORE sending the request
-          // (on mobile, MetaMask deep link may reload the page)
-          sessionStorage.setItem(CHAIN_SWITCH_KEY, address);
+        if (needsChainSwitch) {
           try {
             await provider.send("wallet_addEthereumChain", [
               {
