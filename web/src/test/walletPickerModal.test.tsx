@@ -18,7 +18,7 @@ vi.mock("../../services/embeddedWallet", () => ({
 // Mock Icons component
 vi.mock("../components/ui/Icons", () => ({
   Ic: new Proxy({}, {
-    get: () => ({ s, c }: { s?: number; c?: string }) => <span data-testid="icon" />,
+    get: () => (_props: { s?: number; c?: string }) => <span data-testid="icon" />,
   }),
 }));
 
