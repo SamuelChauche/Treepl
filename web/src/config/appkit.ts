@@ -14,7 +14,7 @@ const intuitionChain = {
   },
 } as const;
 
-const projectId = "ff5ceb7d2462ba8255524d56cf62ec64";
+const projectId = "81e3e331b4d13cd550760b1ec1034968";
 
 const metadata = {
   name: "Sofia EthCC Manager",
