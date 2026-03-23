@@ -166,14 +166,15 @@ export default function OnboardingPage() {
   );
 
   // ── Embedded wallet handlers ─────────────────────────────────
-  async function handleCreateEmbedded() {
-    if (!embeddedPassword || embeddedPassword.length < 4) {
+  async function handleCreateEmbedded(pw: string) {
+    if (!pw || pw.length < 4) {
       setTxError("Password must be at least 4 characters");
       return;
     }
+    setEmbeddedPassword(pw);
     setTxError("");
     try {
-      const { address, privateKey } = await createEmbeddedWallet(embeddedPassword);
+      const { address, privateKey } = await createEmbeddedWallet(pw);
       setEmbeddedAddress(address);
       setEmbeddedPrivateKey(privateKey);
       setEmbeddedMode("backup");
@@ -182,11 +183,12 @@ export default function OnboardingPage() {
     }
   }
 
-  async function handleUnlockEmbedded() {
-    if (!embeddedPassword) return;
+  async function handleUnlockEmbedded(pw: string) {
+    if (!pw) return;
+    setEmbeddedPassword(pw);
     setTxError("");
     try {
-      const conn = await connectEmbeddedWallet(embeddedPassword);
+      const conn = await connectEmbeddedWallet(pw);
       setEmbeddedWallet(conn);
       setEmbeddedAddress(conn.address);
       setEmbeddedMode("none");
@@ -571,8 +573,8 @@ export default function OnboardingPage() {
           <WalletPickerModal
             onClose={() => setShowWalletPicker(false)}
             onExternalWallet={openWalletModal}
-            onCreateEmbedded={async (pw) => { setEmbeddedPassword(pw); await handleCreateEmbedded(); }}
-            onUnlockEmbedded={async (pw) => { setEmbeddedPassword(pw); await handleUnlockEmbedded(); }}
+            onCreateEmbedded={handleCreateEmbedded}
+            onUnlockEmbedded={handleUnlockEmbedded}
             onBackupDone={handleBackupDone}
             embeddedMode={embeddedMode}
             setEmbeddedMode={setEmbeddedMode}
