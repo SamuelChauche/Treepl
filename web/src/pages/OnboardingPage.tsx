@@ -150,10 +150,9 @@ export default function OnboardingPage() {
     if (walletError) setTxError(walletError);
   }, [walletError]);
 
-  // Poll balance for embedded wallet (waiting for $TRUST)
+  // Poll balance for embedded wallet (always, every 5s)
   useEffect(() => {
-    if (!embeddedWallet || embeddedBalance === null) return;
-    if (parseFloat(embeddedBalance) > 0) return;
+    if (!embeddedWallet) return;
 
     let cancelled = false;
     const poll = async () => {
@@ -164,9 +163,10 @@ export default function OnboardingPage() {
         if (!cancelled) setEmbeddedBalance(ethers.formatEther(bal));
       } catch { /* ignore */ }
     };
+    poll(); // fetch immediately
     const interval = setInterval(poll, 5000);
     return () => { cancelled = true; clearInterval(interval); };
-  }, [embeddedWallet, embeddedBalance]);
+  }, [embeddedWallet]);
 
   // Notify when $TRUST is received (balance goes from 0 to > 0)
   const [trustNotified, setTrustNotified] = useState(false);

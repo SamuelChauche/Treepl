@@ -117,10 +117,9 @@ export function useWalletConnection() {
     })();
   }, [isConnected, address, walletProvider]);
 
-  // Poll balance every 5s when connected and balance is 0 (waiting for $TRUST)
+  // Poll balance every 5s when connected (always, to reflect sends/receives)
   useEffect(() => {
-    if (!wallet || balance === null) return;
-    if (parseFloat(balance) > 0) return;
+    if (!wallet) return;
 
     let cancelled = false;
     const poll = async () => {
@@ -128,16 +127,14 @@ export function useWalletConnection() {
         const { ethers } = await import("ethers");
         const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
         const bal = await rpcProvider.getBalance(wallet.address);
-        if (!cancelled) {
-          const formatted = ethers.formatEther(bal);
-          setBalance(formatted);
-        }
+        if (!cancelled) setBalance(ethers.formatEther(bal));
       } catch { /* ignore polling errors */ }
     };
 
+    poll();
     const interval = setInterval(poll, 5000);
     return () => { cancelled = true; clearInterval(interval); };
-  }, [wallet, balance]);
+  }, [wallet]);
 
   // Open the AppKit modal
   const connect = useCallback(() => {
