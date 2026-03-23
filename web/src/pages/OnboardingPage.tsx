@@ -110,7 +110,7 @@ export default function OnboardingPage() {
   const {
     wallet, address: walletAddress, isConnected: walletConnected,
     loading: walletLoading, error: walletError, balance: trustBalance,
-    connect: openWalletModal,
+    connect: openWalletModal, disconnect: disconnectWallet,
   } = useWalletConnection();
 
   const { canInstall, installed, promptInstall } = usePwaInstall();
@@ -425,6 +425,14 @@ export default function OnboardingPage() {
                       ? `${parseFloat(effectiveBalance).toFixed(4)} TRUST`
                       : "Waiting for $TRUST..."}
                   </p>
+                )}
+                {walletState === "connected" && walletConnected && (
+                  <button
+                    onClick={disconnectWallet}
+                    style={{ fontSize: 12, color: C.error, background: "none", border: "none", cursor: "pointer", fontFamily: FONT, padding: "4px 0" }}
+                  >
+                    Disconnect wallet
+                  </button>
                 )}
               </div>
             ) : (

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useAppKitAccount, useAppKitProvider, useAppKit } from "@reown/appkit/react";
+import { useAppKitAccount, useAppKitProvider, useAppKit, useDisconnect } from "@reown/appkit/react";
 import { CHAIN_CONFIG, STORAGE_KEYS } from "../config/constants";
 import { SofiaFeeProxyAbi } from "../config/SofiaFeeProxyABI";
 import type { WalletConnection } from "../services/intuition";
@@ -24,6 +24,7 @@ export function useWalletConnection() {
   const { address, isConnected } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider("eip155");
   const { open } = useAppKit();
+  const { disconnect: appKitDisconnect } = useDisconnect();
 
   const [wallet, setWallet] = useState<WalletConnection | null>(null);
   const [loading, setLoading] = useState(false);
@@ -145,12 +146,13 @@ export function useWalletConnection() {
   }, [open]);
 
   // Disconnect
-  const disconnect = useCallback(() => {
+  const disconnect = useCallback(async () => {
+    try { await appKitDisconnect(); } catch { /* ignore */ }
     setWallet(null);
     setBalance(null);
     builtForRef.current = null;
     localStorage.removeItem(STORAGE_KEYS.WALLET_ADDRESS);
-  }, []);
+  }, [appKitDisconnect]);
 
   return {
     wallet,
