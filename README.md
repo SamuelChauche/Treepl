@@ -31,18 +31,18 @@ A conference companion app for [EthCC\[9\]](https://ethcc.io) that lets attendee
 ## Quick start
 
 ```bash
-# Prerequisites: Node.js 18+, pnpm
+# Prerequisites: Node.js 18+, bun
 
 cd web
-pnpm install
-pnpm dev        # http://localhost:5173
+bun install
+bun dev         # http://localhost:5173
 ```
 
 Production build:
 
 ```bash
-pnpm build      # type-check + bundle
-pnpm preview    # serve the build locally
+bun run build   # type-check + bundle
+bun run preview # serve the build locally
 ```
 
 ---

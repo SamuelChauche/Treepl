@@ -19,6 +19,18 @@ export function SessionPicker({ selectedTracks, selectedSessions, onToggleSessio
     [selectedTracks],
   );
 
+  const allSelected = matchingSessions.length > 0 && matchingSessions.every((s) => selectedSessions.has(s.id));
+
+  const handleSelectAll = () => {
+    for (const s of matchingSessions) {
+      if (allSelected) {
+        if (selectedSessions.has(s.id)) onToggleSession(s.id);
+      } else {
+        if (!selectedSessions.has(s.id)) onToggleSession(s.id);
+      }
+    }
+  };
+
   return (
     <div className={shared.page}>
       <div className={styles.header}>
@@ -27,7 +39,14 @@ export function SessionPicker({ selectedTracks, selectedSessions, onToggleSessio
             <div key={i} className={i <= 1 ? shared.progressDotActive : shared.progressDot} />
           ))}
         </div>
-        <h2 className={styles.title}>Add sessions to cart</h2>
+        <div className={styles.titleRow}>
+          <h2 className={styles.title}>Add sessions to cart</h2>
+          {matchingSessions.length > 0 && (
+            <button className={styles.selectAllBtn} onClick={handleSelectAll}>
+              {allSelected ? "Deselect all" : "Select all"}
+            </button>
+          )}
+        </div>
         <p className={styles.subtitle}>Select sessions you want to attend.</p>
       </div>
 
