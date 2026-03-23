@@ -150,22 +150,27 @@ export default function OnboardingPage() {
     if (walletError) setTxError(walletError);
   }, [walletError]);
 
-  // Poll balance for embedded wallet (always, every 5s)
+  // Refresh embedded wallet balance
+  const [balanceRefreshing, setBalanceRefreshing] = useState(false);
+  const refreshEmbeddedBalance = async () => {
+    if (!embeddedWallet) return;
+    setBalanceRefreshing(true);
+    try {
+      const { ethers } = await import("ethers");
+      const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
+      const bal = await rpcProvider.getBalance(embeddedWallet.address);
+      setEmbeddedBalance(ethers.formatEther(bal));
+    } catch { /* ignore */ }
+    setBalanceRefreshing(false);
+  };
+
+  // Poll balance for embedded wallet (always, every 10s)
   useEffect(() => {
     if (!embeddedWallet) return;
 
-    let cancelled = false;
-    const poll = async () => {
-      try {
-        const { ethers } = await import("ethers");
-        const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL);
-        const bal = await rpcProvider.getBalance(embeddedWallet.address);
-        if (!cancelled) setEmbeddedBalance(ethers.formatEther(bal));
-      } catch { /* ignore */ }
-    };
-    poll(); // fetch immediately
-    const interval = setInterval(poll, 5000);
-    return () => { cancelled = true; clearInterval(interval); };
+    refreshEmbeddedBalance();
+    const interval = setInterval(refreshEmbeddedBalance, 10000);
+    return () => clearInterval(interval);
   }, [embeddedWallet]);
 
   // Notify when $TRUST is received (balance goes from 0 to > 0)
@@ -314,6 +319,7 @@ export default function OnboardingPage() {
     } catch (e: unknown) {
       setTxError(e instanceof Error ? e.message : String(e));
       setTxState("idle");
+      refreshEmbeddedBalance();
     }
   }
 
@@ -510,11 +516,27 @@ export default function OnboardingPage() {
                   {effectiveAddress && <Ic.Copy s={14} c={C.textTertiary} />}
                 </div>
                 {effectiveBalance !== null && (
-                  <p style={{ fontSize: 14, fontWeight: 600, color: parseFloat(effectiveBalance) > 0 ? C.success : C.warning, textAlign: "center" }}>
-                    {parseFloat(effectiveBalance) > 0
-                      ? `${parseFloat(effectiveBalance).toFixed(4)} TRUST`
-                      : "Waiting for $TRUST..."}
-                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <p style={{ fontSize: 14, fontWeight: 600, color: parseFloat(effectiveBalance) > 0 ? C.success : C.warning, textAlign: "center", margin: 0 }}>
+                      {parseFloat(effectiveBalance) > 0
+                        ? `${parseFloat(effectiveBalance).toFixed(4)} TRUST`
+                        : "Waiting for $TRUST..."}
+                    </p>
+                    {embeddedWallet && (
+                      <button
+                        onClick={refreshEmbeddedBalance}
+                        disabled={balanceRefreshing}
+                        style={{
+                          background: C.surfaceGray, border: "none", borderRadius: R.md,
+                          padding: "4px 10px", cursor: "pointer", fontSize: 11, fontWeight: 500,
+                          color: C.textSecondary, fontFamily: FONT,
+                          opacity: balanceRefreshing ? 0.5 : 1,
+                        }}
+                      >
+                        {balanceRefreshing ? "..." : "Refresh"}
+                      </button>
+                    )}
+                  </div>
                 )}
                 {walletState === "connected" && walletConnected && (
                   <button
