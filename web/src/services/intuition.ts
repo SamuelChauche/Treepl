@@ -200,12 +200,8 @@ export async function ensureUserAtom(
       ethersLib.toUtf8Bytes(address.toLowerCase())
     );
     const atomCost = await multiVault.getAtomCost();
-    // getTotalCreationCost(depositCount=1, totalDeposit=0, multiVaultCost=atomCost)
-    const totalCost = await proxy.getTotalCreationCost(
-      1n,
-      0n,
-      atomCost
-    );
+    // assets=[0n] → depositCount=0, totalDeposit=0 — proxy fee will be 0
+    const totalCost = await proxy.getTotalCreationCost(0n, 0n, atomCost);
 
     const tx = await proxy.createAtoms(
       address,
@@ -270,24 +266,18 @@ export async function createProfileTriples(
   depositPerTriple?: bigint
 ): Promise<{ hash: string; blockNumber: number }> {
   const tripleCost = await multiVault.getTripleCost();
-
   const deposit = depositPerTriple ?? BigInt(DEFAULT_DEPOSIT_PER_TRIPLE);
 
   const subjectIds = triples.map((t) => t.subjectId);
   const predicateIds = triples.map((t) => t.predicateId);
   const objectIds = triples.map((t) => t.objectId);
-  // assets[i] = deposit only — proxy adds tripleCost internally before forwarding to MultiVault
   const assets = triples.map(() => deposit);
 
-  // Calculate costs for getTotalCreationCost
   const n = BigInt(triples.length);
   const totalDeposit = deposit * n;
   const multiVaultCost = (tripleCost * n) + totalDeposit;
-  const totalCost = await proxy.getTotalCreationCost(
-    n,              // depositCount
-    totalDeposit,   // totalDeposit (just deposits, not including tripleCost)
-    multiVaultCost  // multiVaultCost (tripleCost * count + totalDeposit)
-  );
+  // n = depositCount (all deposits are non-zero since deposit > 0)
+  const totalCost = await proxy.getTotalCreationCost(n, totalDeposit, multiVaultCost);
 
   // Verify all atoms exist on-chain before calling createTriples
   const allIds = [...new Set([...subjectIds, ...predicateIds, ...objectIds])];
@@ -299,7 +289,7 @@ export async function createProfileTriples(
   }
 
   const tx = await proxy.createTriples(
-    address,       // receiver
+    address,
     subjectIds,
     predicateIds,
     objectIds,
@@ -337,9 +327,8 @@ export async function depositOnAtoms(
     await approveProxy(wallet.multiVault);
   } catch { /* already approved */ }
 
-  // Calculate fee: depositCount * fixedFee + percentageFee on totalDeposit
+  // Let the proxy calculate the fee
   const fee: bigint = await wallet.proxy.calculateDepositFee(n, totalDeposit);
-  const totalCost = totalDeposit + fee;
 
   onStep?.(`Depositing on ${atomIds.length} atom${atomIds.length > 1 ? "s" : ""}...`);
 
@@ -354,7 +343,7 @@ export async function depositOnAtoms(
     curveIds,
     assets,
     minShares,
-    { value: totalCost }
+    { value: totalDeposit + fee }
   );
 
   onStep?.("Waiting for confirmation...");
@@ -373,7 +362,7 @@ export interface FeeEstimate {
 
 /**
  * Estimate the total cost for creating N triples with deposit.
- * Useful for displaying cost breakdown in the UI before signing.
+ * Uses proxy's getTotalCreationCost for fee calculation.
  */
 export async function estimateFees(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -385,18 +374,11 @@ export async function estimateFees(
 ): Promise<FeeEstimate> {
   const tripleCost = await multiVault.getTripleCost();
   const deposit = depositPerTriple ?? BigInt(DEFAULT_DEPOSIT_PER_TRIPLE);
-  const perTripleValue = tripleCost + deposit;
   const n = BigInt(tripleCount);
   const totalDeposit = deposit * n;
-  const totalMultiVaultCost = perTripleValue * n;
-
-  const totalCost: bigint = await proxy.getTotalCreationCost(
-    n,
-    totalDeposit,
-    totalMultiVaultCost
-  );
-
-  const sofiaFee = totalCost - totalMultiVaultCost;
+  const multiVaultCost = (tripleCost * n) + totalDeposit;
+  const totalCost: bigint = await proxy.getTotalCreationCost(n, totalDeposit, multiVaultCost);
+  const sofiaFee = totalCost - multiVaultCost;
 
   return { tripleCost, depositPerTriple: deposit, sofiaFee, totalCost };
 }

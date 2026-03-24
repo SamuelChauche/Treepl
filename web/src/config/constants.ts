@@ -45,7 +45,7 @@ export const CHAIN_CONFIG = {
   CHAIN_ID_HEX: "0x483",
   MULTIVAULT: "0x6E35cF57A41fA15eA0EaE9C33e751b01A784Fe7e",
   SOFIA_PROXY: "0x26F81d723Ad1648194FAA4b7E235105Fd1212c6c",
-  RPC_URL: "https://rpc.intuition.systems/http",
+  RPC_URL: "https://vib.rpc.intuition.box/http/cbc169f1073b6faedeb4c49724be3e55",
   CHAIN_NAME: "Intuition",
   NATIVE_CURRENCY: { name: "TRUST", symbol: "TRUST", decimals: 18 },
   CURVE_ID: 1, // linear bonding curve
