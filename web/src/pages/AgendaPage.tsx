@@ -267,15 +267,18 @@ export default function AgendaPage() {
               {modalTopics.map((track) => {
                 const ts = getTrackStyle(track);
                 const sessionCount = sessions.filter((s) => s.track === track).length;
-                const isSelected = pendingTopics.has(track);
+                const isPublished = publishedTopics.has(track);
+                const inCart = pendingTopics.has(track);
+                const cartState = isPublished ? "published" : inCart ? "incart" : "default";
                 return (
                   <div
                     key={track}
-                    onClick={() => toggleInterest(track)}
+                    onClick={() => { if (!isPublished) toggleInterest(track); }}
                     style={{
-                      ...glassSurface, padding: 14, cursor: "pointer",
+                      ...glassSurface, padding: 14,
+                      cursor: isPublished ? "default" : "pointer",
                       display: "flex", alignItems: "center", gap: 12,
-                      border: isSelected ? `1px solid ${C.success}44` : undefined,
+                      border: inCart && !isPublished ? `1px solid ${C.flat}44` : isPublished ? `1px solid ${C.success}44` : undefined,
                     }}
                   >
                     <div style={{
@@ -287,15 +290,15 @@ export default function AgendaPage() {
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 14, fontWeight: 600, color: C.textPrimary }}>{track}</div>
-                      <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>{sessionCount} sessions</div>
+                      <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>
+                        {sessionCount} sessions
+                        {inCart && !isPublished && <span style={{ color: C.flat, marginLeft: 6 }}>· in cart</span>}
+                      </div>
                     </div>
-                    <div style={{
-                      width: 28, height: 28, borderRadius: 14, flexShrink: 0,
-                      background: isSelected ? C.successLight : C.surfaceGray,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      {isSelected ? <Ic.Check s={14} c={C.success} /> : <Ic.Plus s={14} c={C.textSecondary} />}
-                    </div>
+                    <CartToggleButton
+                      state={cartState}
+                      onClick={() => { if (!isPublished) toggleInterest(track); }}
+                    />
                   </div>
                 );
               })}
@@ -317,13 +320,19 @@ export default function AgendaPage() {
           const isPublished = publishedSessions.includes(s.id);
           const isTrackPublished = publishedTopics.has(s.track);
           const isTrackPending = pendingTopics.has(s.track);
-          const isLocked = isTrackPending && !isTrackPublished;
-          const inCart = isPublished || cart.has(s.id);
+          const hasTrackAccess = isTrackPublished || isTrackPending;
 
-          if (isLocked) {
+          // Sessions whose interest is pending (in cart, not yet on-chain) are locked
+          if (isTrackPending && !isTrackPublished) {
             return <SessionCard key={s.id} session={s} locked />;
           }
 
+          // Sessions whose interest hasn't been added at all are hidden
+          if (!hasTrackAccess && !isPublished) {
+            return null;
+          }
+
+          const inCart = isPublished || cart.has(s.id);
           const cartState = isPublished ? "published" : inCart ? "incart" : "default";
           return (
             <SessionCard
