@@ -14,7 +14,7 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@ethcc/graphql": "workspace:*",
+    "@ethcc/graphql": "file:../packages/graphql",
     "@reown/appkit": "^1.8.19",
     "@reown/appkit-adapter-ethers": "^1.8.19",
     "@types/three": "^0.183.1",
