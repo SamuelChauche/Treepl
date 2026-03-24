@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, type CSSProperties } from "react";
+import { useMemo, useState, useEffect, useCallback, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, R, glass, glassSurface, FONT, getTrackStyle, avatarColor } from "../config/theme";
 import { CartToggleButton } from "../components/shared";
@@ -16,6 +16,7 @@ import {
 } from "../services/embeddedWallet";
 import { STORAGE_KEYS } from "../config/constants";
 import { useEmbeddedWallet } from "../contexts/EmbeddedWalletContext";
+import { usePullToRefresh } from "../hooks/usePullToRefresh";
 
 // ─── Styles ─────────────────────────────────────────────────────
 const page: CSSProperties = {
@@ -153,6 +154,12 @@ export default function HomePage() {
   const embeddedCtx = useEmbeddedWallet();
   const trustBalance = embeddedCtx.balance ?? "0.000";
 
+  // Pull-to-refresh: reload page when pulling down from top
+  const handleRefresh = useCallback(() => {
+    window.location.reload();
+  }, []);
+  const scrollRef = usePullToRefresh(handleRefresh);
+
   // Re-check localStorage when page becomes visible (coming back from BuyTrust, etc.)
   useEffect(() => {
     const handleFocus = () => {
@@ -216,7 +223,7 @@ export default function HomePage() {
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, background: C.flat, borderRadius: `0 0 ${R.xl}px ${R.xl}px`, zIndex: 0 }} />
 
       {/* ── Scrollable content ─────────────────────────────── */}
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", position: "relative", zIndex: 1 }}>
+      <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", position: "relative", zIndex: 1 }}>
       {/* ── Hero / Balance ─────────────────────────────────── */}
       <div style={{ ...heroSection, background: "transparent" }}>
         <div style={{ ...headerRow, paddingTop: 16 }}>
