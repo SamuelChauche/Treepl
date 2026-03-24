@@ -15,9 +15,10 @@ interface Props {
   w: ReturnType<typeof useOnboardingWallet>;
   onBack: () => void;
   onPublish: () => void;
+  onSkip: () => void;
 }
 
-export function Step6ReviewPublish({ selectedTracks, selectedSessions, walletState, w, onBack, onPublish }: Props) {
+export function Step6ReviewPublish({ selectedTracks, selectedSessions, walletState, w, onBack, onPublish, onSkip }: Props) {
   const selectedSessionObjects = useMemo(
     () => sessions.filter((s) => selectedSessions.has(s.id)),
     [selectedSessions],
@@ -152,6 +153,12 @@ export function Step6ReviewPublish({ selectedTracks, selectedSessions, walletSta
         {w.txError && (
           <div className={`${shared.glass} ${styles.errorCard}`}>
             <p className={styles.errorText}>{w.txError}</p>
+            <button
+              onClick={onSkip}
+              style={{ background: "none", border: "none", color: C.textSecondary, fontSize: 13, cursor: "pointer", fontFamily: FONT, padding: "8px 0", marginTop: 8 }}
+            >
+              Skip and enter the app &rarr;
+            </button>
           </div>
         )}
       </div>
@@ -186,7 +193,15 @@ export function Step6ReviewPublish({ selectedTracks, selectedSessions, walletSta
             {walletState === "connected" && (
               parseFloat(w.effectiveBalance ?? "0") > 0
                 ? <button style={{ ...btnPill, flex: 2, background: C.flat }} onClick={onPublish}>Publish On-Chain</button>
-                : <button style={{ ...btnPill, flex: 2, background: C.flat, opacity: 0.5 }} disabled>Waiting for $TRUST...</button>
+                : <div style={{ flex: 2, display: "flex", flexDirection: "column", gap: 6 }}>
+                    <button style={{ ...btnPill, background: C.flat, opacity: 0.5 }} disabled>Waiting for $TRUST...</button>
+                    <button
+                      onClick={onSkip}
+                      style={{ background: "none", border: "none", color: C.textSecondary, fontSize: 13, cursor: "pointer", fontFamily: FONT, padding: "8px 0" }}
+                    >
+                      Skip for now &rarr;
+                    </button>
+                  </div>
             )}
             {walletState === "signing" && (
               <button style={{ ...btnPill, flex: 1, background: C.flat, opacity: 0.5 }} disabled>Signing... {w.txStatus}</button>

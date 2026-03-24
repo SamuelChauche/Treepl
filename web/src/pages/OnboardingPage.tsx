@@ -116,6 +116,12 @@ export default function OnboardingPage() {
           w={w}
           onBack={() => setStep(5)}
           onPublish={handlePublish}
+          onSkip={() => {
+            // Save interests even without full publish
+            StorageService.saveTopics(selectedTracks);
+            localStorage.setItem(STORAGE_KEYS.ONBOARDED, "1");
+            navigate("/home");
+          }}
         />
       </div>
     );
