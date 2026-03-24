@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import { C, FONT } from "../config/theme";
 import { SplashStep, SlideStep, InterestPicker, SessionPicker } from "../components/onboarding";
@@ -18,6 +18,14 @@ const page: CSSProperties = {
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
+
+  // Skip onboarding if already completed (PWA install, page refresh)
+  useEffect(() => {
+    const hasOnboarded = localStorage.getItem(STORAGE_KEYS.ONBOARDED) === "1"
+      || StorageService.loadTopics().size > 0;
+    if (hasOnboarded) navigate("/home", { replace: true });
+  }, [navigate]);
+
   const [step, setStep] = useState(0);
   const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [selectedSessions, setSelectedSessions] = useState<Set<string>>(new Set());
