@@ -9,6 +9,7 @@ import {
   buildProfileTriples,
   createProfileTriples,
 } from "../services/intuition";
+import { formatTxError } from "../utils/txErrors";
 import { StorageService } from "../services/StorageService";
 import { STORAGE_KEYS } from "../config/constants";
 import type { WalletConnection } from "../services/intuition";
@@ -81,7 +82,7 @@ export function useOnboardingPublish() {
       setTxState("done");
       setTimeout(onSuccess, 1000);
     } catch (e: unknown) {
-      setTxError(e instanceof Error ? e.message : String(e));
+      setTxError(formatTxError(e));
       setTxState("idle");
       refreshBalance();
     }

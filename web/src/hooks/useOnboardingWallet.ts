@@ -14,6 +14,7 @@ import {
   deleteEmbeddedWallet,
 } from "../services/embeddedWallet";
 import { CHAIN_CONFIG, STORAGE_KEYS } from "../config/constants";
+import { formatTxError } from "../utils/txErrors";
 import type { WalletConnection } from "../services/intuition";
 
 export function useOnboardingWallet() {
@@ -110,7 +111,7 @@ export function useOnboardingWallet() {
       setShowWalletPicker(false);
       setEmbeddedMode("backup");
     } catch (e: unknown) {
-      setTxError(e instanceof Error ? e.message : String(e));
+      setTxError(formatTxError(e));
     }
   }, [embeddedCtx]);
 
@@ -129,7 +130,7 @@ export function useOnboardingWallet() {
       } catch { /* non-critical */ }
       return true;
     } catch (e: unknown) {
-      setTxError(e instanceof Error ? e.message : "Wrong password");
+      setTxError(formatTxError(e));
       return false;
     }
   }, [embeddedCtx]);

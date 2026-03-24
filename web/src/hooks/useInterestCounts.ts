@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { GQL_URL } from "../config/constants";
+import { GraphQLClient } from "@ethcc/graphql";
 import { TRACK_ATOM_IDS } from "../services/intuition";
 
 /**
@@ -25,17 +26,13 @@ export function useInterestCounts(topics: Set<string>): Record<string, number> {
       `).join("")}
     }`;
 
-    fetch(GQL_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
-    })
-      .then((r) => r.json())
-      .then((res) => {
+    const client = new GraphQLClient({ endpoint: GQL_URL });
+    client.request<Record<string, { aggregate: { count: number } }>>(query)
+      .then((data) => {
         const counts: Record<string, number> = {};
         const topicList = [...topics];
         trackIds.forEach((id, i) => {
-          const c = res.data?.[`p${i}`]?.aggregate?.count ?? 0;
+          const c = data[`p${i}`]?.aggregate?.count ?? 0;
           const name = topicList.find((t) => TRACK_ATOM_IDS[t] === id);
           if (name) counts[name] = c;
         });

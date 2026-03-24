@@ -1,5 +1,6 @@
 import topicGraph from "../../../bdd/web3_topics_graph.json";
 import { DEFAULT_DEPOSIT_PER_TRIPLE, GQL_URL } from "../config/constants";
+import { GraphQLClient, GET_USER_VOTED_POSITIONS, type GetUserVotedPositionsQuery } from "@ethcc/graphql";
 import type { WalletConnection } from "./intuition";
 import { approveProxy, depositOnAtoms } from "./intuition";
 
@@ -45,30 +46,19 @@ export function resolveTopicAtomIds(topicIds: string[]): {
  * Returns a Set of topic IDs (app-level) that the user has voted on.
  */
 export async function fetchUserVotedTopics(address: string): Promise<Set<string>> {
-  const sanitized = address.toLowerCase();
+  const client = new GraphQLClient({ endpoint: GQL_URL });
   const allAtomIds = Object.values(TOPIC_ATOM_IDS);
   const voted = new Set<string>();
 
   // Batch query (50 at a time to avoid timeouts)
   for (let i = 0; i < allAtomIds.length; i += 50) {
     const batch = allAtomIds.slice(i, i + 50);
-    const idsStr = batch.map((id) => `"${id}"`).join(",");
-    const query = `{
-      positions(where: {
-        account_id: { _ilike: "${sanitized}" }
-        term_id: { _in: [${idsStr}] }
-        shares: { _gt: "0" }
-      }) { term_id }
-    }`;
-
     try {
-      const res = await fetch(GQL_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
-      });
-      const json = await res.json();
-      for (const pos of json.data?.positions ?? []) {
+      const data = await client.request<GetUserVotedPositionsQuery>(
+        GET_USER_VOTED_POSITIONS,
+        { address: address.toLowerCase(), termIds: batch }
+      );
+      for (const pos of data.positions ?? []) {
         const topicId = ATOM_TO_TOPIC.get(pos.term_id);
         if (topicId) voted.add(topicId);
       }

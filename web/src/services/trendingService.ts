@@ -1,5 +1,8 @@
 import { GQL_URL } from "../config/constants";
+import { GraphQLClient } from "@ethcc/graphql";
 import topicGraph from "../../../bdd/web3_topics_graph.json";
+
+const gqlClient = new GraphQLClient({ endpoint: GQL_URL });
 
 const TOPIC_ATOM_IDS = topicGraph.topicAtomIds as Record<string, string>;
 const SUPPORTS_PREDICATE = topicGraph.predicates.supports;
@@ -67,13 +70,8 @@ export async function fetchTrendingTopics(): Promise<TopicVaultData[]> {
     }
   }`;
 
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
-  const json = await res.json();
-  const triples = json.data?.triples ?? [];
+  const gqlResult = await gqlClient.request<any>(query);
+  const triples = gqlResult.triples ?? [];
 
   // Map atom IDs back to topic IDs
   const atomToTopic = new Map(
@@ -149,13 +147,8 @@ export async function fetchTopicVoters(
     }
   }`;
 
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
-  const json = await res.json();
-  const triples = json.data?.triples ?? [];
+  const gqlResult = await gqlClient.request<any>(query);
+  const triples = gqlResult.triples ?? [];
 
   const positions: TopicPosition[] = [];
   for (const t of triples) {
@@ -201,13 +194,8 @@ export async function fetchTopicEvents(
     }
   }`;
 
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
-  const json = await res.json();
-  const triples = json.data?.triples ?? [];
+  const gqlResult = await gqlClient.request<any>(query);
+  const triples = gqlResult.triples ?? [];
 
   const events: TopicEvent[] = [];
   for (const t of triples) {
@@ -272,13 +260,8 @@ export async function fetchAllTopicEvents(): Promise<Map<string, number[]>> {
     }
   }`;
 
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
-  const json = await res.json();
-  const triples = json.data?.triples ?? [];
+  const gqlResult = await gqlClient.request<any>(query);
+  const triples = gqlResult.triples ?? [];
 
   const atomToTopic = new Map(
     Object.entries(TOPIC_ATOM_IDS).map(([k, v]) => [v, k])
@@ -338,13 +321,8 @@ export async function fetchLikeMinded(
     }
   }`;
 
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-  });
-  const json = await res.json();
-  const userTopics = (json.data?.triples ?? []).map(
+  const gqlResult = await gqlClient.request<any>(query);
+  const userTopics = (gqlResult.triples ?? []).map(
     (t: { object: { term_id: string } }) => t.object.term_id
   );
 
@@ -368,13 +346,8 @@ export async function fetchLikeMinded(
     }
   }`;
 
-  const res2 = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: query2 }),
-  });
-  const json2 = await res2.json();
-  const otherVotes = json2.data?.triples ?? [];
+  const data2 = await gqlClient.request<{ triples: Array<{ subject: { label: string }; object: { term_id: string; label: string } }> }>(query2);
+  const otherVotes = data2.triples ?? [];
 
   // Aggregate by user
   const byUser = new Map<string, string[]>();

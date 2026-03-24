@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import { formatTxError } from "../utils/txErrors";
 import {
   hasEmbeddedWallet,
   getEmbeddedAddress,
@@ -63,7 +64,7 @@ export function EmbeddedWalletProvider({ children }: { children: ReactNode }) {
       setUnlocking(false);
       return true;
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Wrong password");
+      setError(formatTxError(e));
       setUnlocking(false);
       return false;
     }

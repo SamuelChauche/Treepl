@@ -11,7 +11,9 @@
 
 import graphData from "../../../bdd/intuition_graph.json";
 import topicGraph from "../../../bdd/web3_topics_graph.json";
-import { GQL_URL, STORAGE_KEYS } from "../config/constants";
+import { STORAGE_KEYS } from "../config/constants";
+import { GraphQLClient, GET_ACCOUNT_POSITIONS, type GetAccountPositionsQuery } from "@ethcc/graphql";
+import { GQL_URL } from "../config/constants";
 import { StorageService } from "./StorageService";
 
 const TRACK_ATOM_IDS = graphData.trackAtomIds as Record<string, string>;
@@ -45,33 +47,12 @@ interface SyncResult {
 export async function syncProfileFromChain(address: string): Promise<SyncResult> {
   if (!address) return { interests: [], sessions: [], votes: [] };
 
-  const query = `query($addr: String!) {
-    positions(
-      where: { account_id: { _ilike: $addr }, shares: { _gt: "0" } }
-      limit: 200
-      order_by: { shares: desc }
-    ) {
-      vault {
-        term_id
-        term {
-          atom { term_id }
-          triple {
-            subject { term_id }
-            predicate { term_id }
-            object { term_id }
-          }
-        }
-      }
-    }
-  }`;
-
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables: { addr: address.toLowerCase() } }),
-  });
-  const json = await res.json();
-  const positions = json.data?.positions ?? [];
+  const client = new GraphQLClient({ endpoint: GQL_URL });
+  const data = await client.request<GetAccountPositionsQuery>(
+    GET_ACCOUNT_POSITIONS,
+    { address: address.toLowerCase(), limit: 200 }
+  );
+  const positions = data.positions ?? [];
 
   const interests = new Set<string>();
   const sessionIds = new Set<string>();
@@ -99,7 +80,7 @@ export async function syncProfileFromChain(address: string): Promise<SyncResult>
     if (term.triple) {
       const { predicate, object } = term.triple;
       // "attending" triple → session
-      if (predicate.term_id === ATTENDING_PREDICATE) {
+      if (predicate?.term_id === ATTENDING_PREDICATE && object?.term_id) {
         const sessionId = ATOM_TO_SESSION.get(object.term_id);
         if (sessionId) {
           sessionIds.add(sessionId);

@@ -63,6 +63,19 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-ethers": ["ethers"],
+          "vendor-appkit": ["@reown/appkit", "@reown/appkit-adapter-ethers", "@reown/appkit/react"],
+          "vendor-three": ["three", "postprocessing"],
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-qr": ["qrcode.react", "html5-qrcode"],
+        },
+      },
+    },
+  },
   base: "/",
   server: {
     proxy: {

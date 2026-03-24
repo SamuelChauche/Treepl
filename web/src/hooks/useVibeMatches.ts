@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { GQL_URL } from "../config/constants";
+import { GraphQLClient } from "@ethcc/graphql";
 import { TRACK_ATOM_IDS, SESSION_ATOM_IDS, PREDICATES } from "../services/intuition";
 import topicGraph from "../../../bdd/web3_topics_graph.json";
 
@@ -84,14 +85,10 @@ export function useVibeMatches(
 
     const query = `{ ${trackAliases} ${voteAliases} ${sessionAliases} }`;
 
-    fetch(GQL_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
-    })
-      .then((r) => r.json())
-      .then((res) => {
-        const data = res.data ?? {};
+    const client = new GraphQLClient({ endpoint: GQL_URL });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    client.request<any>(query)
+      .then((data) => {
         const topicList = [...topics];
         const voteTopicList = votedTopicIds ?? [];
         const addr = walletAddress.toLowerCase();
