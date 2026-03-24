@@ -1,7 +1,10 @@
-import { useMemo, type CSSProperties } from "react";
+import { useMemo, useState, useEffect, type CSSProperties } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { C, R, glassSurface, FONT, getTrackStyle, avatarColor } from "../config/theme";
+import { GQL_URL } from "../config/constants";
+import { GraphQLClient } from "@ethcc/graphql";
 import { sessions } from "../data";
+import { SESSION_ATOM_IDS, PREDICATES } from "../services/intuition";
 import { Ic } from "../components/ui/Icons";
 import { useEnsProfile } from "../hooks/useEnsProfile";
 import { getSocialLinks } from "../services/ensService";
@@ -58,6 +61,34 @@ export default function VibeProfilePage() {
   // Find the match by index
   const idx = parseInt(index ?? "", 10);
   const match = matches[idx] ?? null;
+
+  // Fetch this user's attending sessions from chain
+  const ATOM_TO_SESSION = useMemo(() => new Map(
+    Object.entries(SESSION_ATOM_IDS).map(([k, v]) => [v, k])
+  ), []);
+
+  const [theirSessions, setTheirSessions] = useState<string[]>([]);
+  useEffect(() => {
+    if (!match) return;
+    const userLabel = match.label.toLowerCase();
+    const gql = new GraphQLClient({ endpoint: GQL_URL });
+    gql.request<{ triples: { object: { term_id: string } }[] }>(
+      `query($predId: String!, $userLabel: String!) {
+        triples(where: {
+          predicate: { term_id: { _eq: $predId } }
+          subject: { label: { _ilike: $userLabel } }
+        }, limit: 100) {
+          object { term_id }
+        }
+      }`,
+      { predId: PREDICATES["attending"], userLabel }
+    ).then((data) => {
+      const sessIds = data.triples
+        .map((t) => ATOM_TO_SESSION.get(t.object.term_id))
+        .filter((id): id is string => !!id);
+      setTheirSessions(sessIds);
+    }).catch(() => {});
+  }, [match, ATOM_TO_SESSION]);
 
   // ENS lookup for real addresses
   const addr = match?.label && /^0x[a-fA-F0-9]{40}$/.test(match.label) ? match.label : null;
@@ -139,15 +170,16 @@ export default function VibeProfilePage() {
           </>
         )}
 
-        {/* Shared Sessions */}
-        {match.sharedSessions.length > 0 && (
+        {/* Their Sessions (from on-chain attending triples) */}
+        {theirSessions.length > 0 && (
           <>
-            <div style={sectionTitle}>Shared Sessions ({match.sharedSessions.length})</div>
+            <div style={sectionTitle}>Sessions ({theirSessions.length})</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 6, padding: "0 16px" }}>
-              {match.sharedSessions.map((sessId) => {
+              {theirSessions.map((sessId) => {
                 const sess = sessions.find((s) => s.id === sessId);
                 if (!sess) return null;
                 const sts = getTrackStyle(sess.track);
+                const isShared = match.sharedSessions.includes(sessId);
                 return (
                   <div key={sessId} onClick={() => navigate(`/session/${sessId}`)} style={{ ...glassSurface, padding: 12, display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
                     <span style={{ fontSize: 16, flexShrink: 0 }}>{sts.icon}</span>
@@ -155,6 +187,7 @@ export default function VibeProfilePage() {
                       <div style={{ fontSize: 13, fontWeight: 600, color: C.textPrimary, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{sess.title}</div>
                       <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>{sess.startTime} · {sess.stage}</div>
                     </div>
+                    {isShared && <Ic.Check s={14} c={C.success} />}
                   </div>
                 );
               })}
