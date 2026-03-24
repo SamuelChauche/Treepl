@@ -24,9 +24,10 @@ export const Nav5: React.FC<Nav5Props> = ({ cartCount = 0 }) => {
 
   return (
     <div style={{
-      height: 88, display: "flex", alignItems: "flex-start", justifyContent: "space-around",
+      minHeight: 88, display: "flex", alignItems: "flex-start", justifyContent: "space-around",
       ...glassNav, flexShrink: 0, borderTopLeftRadius: 20, borderTopRightRadius: 20,
       boxShadow: "0 -4px 20px rgba(0,0,0,0.15)", position: "relative", zIndex: 10,
+      paddingBottom: "env(safe-area-inset-bottom, 0px)",
     } as CSSProperties}>
       {tabs.map(({ path, label, Icon, center }) => {
         const active = isActive(path);
