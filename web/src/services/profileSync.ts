@@ -95,9 +95,7 @@ export async function syncProfileFromChain(address: string): Promise<SyncResult>
   for (const t of interests) existingTopics.add(t);
   StorageService.saveTopics(existingTopics);
 
-  const existingCart = StorageService.loadCart();
-  for (const s of sessionIds) existingCart.add(s);
-  StorageService.saveCart(existingCart);
+  // Sessions from chain go to PUBLISHED_SESSIONS only, NOT cart
 
   // Published sessions
   const existingPublished: string[] = (() => {

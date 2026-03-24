@@ -161,15 +161,18 @@ export default function ProfilePage() {
     }
   };
 
-  // Real vibe matches from on-chain data (tracks + votes + sessions)
-  const cartSessionIds = useMemo(() => [...savedCart].map(String), [savedCart]);
-  const votedTopicIds = useMemo(() => {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]") as string[]; }
+  // Real vibe matches — on-chain published data only, not cart
+  const publishedSessionIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]"); }
+    catch { return []; }
+  }, []);
+  const votedTopicIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]"); }
     catch { return []; }
   }, []);
   const { matches: realMatches, loading: matchesLoading } = useVibeMatches(
     savedTopics,
-    cartSessionIds,
+    publishedSessionIds,
     walletAddress,
     votedTopicIds
   );
@@ -307,12 +310,16 @@ export default function ProfilePage() {
         </>
       )}
 
-      {/* My Sessions */}
-      {savedCart.size > 0 && (
+      {/* My Sessions (published + in cart) */}
+      {(() => {
+        const publishedIds: string[] = (() => { try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]"); } catch { return []; } })();
+        const allMySessionIds = new Set([...savedCart, ...publishedIds]);
+        if (allMySessionIds.size === 0) return null;
+        return (
         <>
           <div style={sectionTitle}>My Sessions</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6, padding: "0 16px" }}>
-            {sessions.filter((s) => savedCart.has(s.id)).map((s) => {
+            {sessions.filter((s) => allMySessionIds.has(s.id)).map((s) => {
               const ts = getTrackStyle(s.track);
               const isPublished = (() => { try { return (JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]") as string[]).includes(s.id); } catch { return false; } })();
               return (
@@ -335,7 +342,8 @@ export default function ProfilePage() {
             })}
           </div>
         </>
-      )}
+        );
+      })()}
 
       </div>
     </div>

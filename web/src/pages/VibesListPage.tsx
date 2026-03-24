@@ -93,19 +93,20 @@ export default function VibesListPage() {
 
   const walletAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS) ?? "";
   const savedTopics = useMemo(() => StorageService.loadTopics(), []);
-  const savedCart = useMemo(() => StorageService.loadCart(), []);
-  const cartSessionIds = useMemo(() => [...savedCart].map(String), [savedCart]);
-
-  const votedTopicIds = useMemo(() => {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]") as string[]; }
+  const publishedSessionIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]"); }
+    catch { return []; }
+  }, []);
+  const votedTopicIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]"); }
     catch { return []; }
   }, []);
   const [refreshKey, setRefreshKey] = useState(0);
   const { matches: realMatches, loading } = useVibeMatches(
-    savedTopics, cartSessionIds, walletAddress, votedTopicIds, refreshKey
+    savedTopics, publishedSessionIds, walletAddress, votedTopicIds, refreshKey
   );
 
-  const totalPossible = savedTopics.size + cartSessionIds.length + votedTopicIds.length;
+  const totalPossible = savedTopics.size + publishedSessionIds.length + votedTopicIds.length;
 
   return (
     <div style={page}>
@@ -140,7 +141,7 @@ export default function VibesListPage() {
           <div style={{ fontSize: 13, color: C.textSecondary, lineHeight: 1.5 }}>
             Connect with attendees who share your interests and sessions.
             {totalPossible > 0
-              ? ` You have ${savedTopics.size} interests and ${cartSessionIds.length} sessions selected.`
+              ? ` You have ${savedTopics.size} interests and ${publishedSessionIds.length} sessions published.`
               : " Select interests and sessions to discover matches."}
           </div>
         </div>

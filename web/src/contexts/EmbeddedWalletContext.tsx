@@ -9,6 +9,8 @@ import {
 import { CHAIN_CONFIG, STORAGE_KEYS } from "../config/constants";
 import type { WalletConnection } from "../services/intuition";
 
+const SESSION_PW_KEY = "__ethcc_pw";
+
 interface EmbeddedWalletState {
   wallet: WalletConnection | null;
   address: string;
@@ -19,8 +21,7 @@ interface EmbeddedWalletState {
   unlock: (password: string) => Promise<boolean>;
   disconnect: () => void;
   refreshBalance: () => Promise<void>;
-  /** Called after wallet creation in onboarding — sets wallet without re-unlock */
-  setWalletDirectly: (conn: WalletConnection, addr: string) => void;
+  setWalletDirectly: (conn: WalletConnection, addr: string, password?: string) => void;
 }
 
 const EmbeddedWalletContext = createContext<EmbeddedWalletState | null>(null);
@@ -61,6 +62,8 @@ export function EmbeddedWalletProvider({ children }: { children: ReactNode }) {
       setWallet(conn);
       setAddress(conn.address);
       localStorage.setItem(STORAGE_KEYS.WALLET_ADDRESS, conn.address);
+      // Store password in sessionStorage for auto-reconnect on reload
+      sessionStorage.setItem(SESSION_PW_KEY, password);
       setUnlocking(false);
       return true;
     } catch (e: unknown) {
@@ -77,18 +80,39 @@ export function EmbeddedWalletProvider({ children }: { children: ReactNode }) {
     setError("");
     deleteEmbeddedWallet();
     localStorage.removeItem(STORAGE_KEYS.WALLET_ADDRESS);
+    sessionStorage.removeItem(SESSION_PW_KEY);
   }, []);
 
-  const setWalletDirectly = useCallback((conn: WalletConnection, addr: string) => {
+  // Auto-reconnect on mount if password is in sessionStorage
+  useEffect(() => {
+    if (wallet) return; // already connected
+    if (!hasEmbeddedWallet()) return; // no wallet
+    const pw = sessionStorage.getItem(SESSION_PW_KEY);
+    if (!pw) return; // no stored password
+    // Auto-unlock silently
+    connectEmbeddedWallet(pw).then((conn) => {
+      setWallet(conn);
+      setAddress(conn.address);
+      localStorage.setItem(STORAGE_KEYS.WALLET_ADDRESS, conn.address);
+    }).catch(() => {
+      sessionStorage.removeItem(SESSION_PW_KEY); // invalid pw, clear
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Store password on successful wallet creation too
+  const setWalletDirectlyWithPw = useCallback((conn: WalletConnection, addr: string, password?: string) => {
     setWallet(conn);
     setAddress(addr);
     localStorage.setItem(STORAGE_KEYS.WALLET_ADDRESS, addr);
+    if (password) sessionStorage.setItem(SESSION_PW_KEY, password);
   }, []);
 
   return (
     <EmbeddedWalletContext.Provider value={{
       wallet, address, balance, needsUnlock, unlocking, error,
-      unlock, disconnect, refreshBalance, setWalletDirectly,
+      unlock, disconnect, refreshBalance,
+      setWalletDirectly: setWalletDirectlyWithPw,
     }}>
       {children}
     </EmbeddedWalletContext.Provider>

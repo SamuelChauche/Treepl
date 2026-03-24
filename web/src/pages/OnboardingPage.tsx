@@ -61,7 +61,7 @@ export default function OnboardingPage() {
 
   const handleComplete = () => {
     StorageService.saveTopics(selectedTracks);
-    StorageService.saveCart(selectedSessions);
+    // Sessions already in PUBLISHED_SESSIONS — don't add to cart
     localStorage.setItem(STORAGE_KEYS.ONBOARDED, "1");
     navigate("/home");
   };

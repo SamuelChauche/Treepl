@@ -1,6 +1,7 @@
 import { useMemo, type CSSProperties } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { C, R, glassSurface, FONT, getTrackStyle, avatarColor } from "../config/theme";
+import { sessions } from "../data";
 import { Ic } from "../components/ui/Icons";
 import { useEnsProfile } from "../hooks/useEnsProfile";
 import { getSocialLinks } from "../services/ensService";
@@ -44,12 +45,15 @@ export default function VibeProfilePage() {
   // Load real vibe matches
   const walletAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS) ?? "";
   const savedTopics = useMemo(() => StorageService.loadTopics(), []);
-  const savedCart = useMemo(() => StorageService.loadCart(), []);
-  const votedTopicIds = useMemo(() => {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]") as string[]; }
+  const publishedSessionIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]"); }
     catch { return []; }
   }, []);
-  const { matches } = useVibeMatches(savedTopics, [...savedCart], walletAddress, votedTopicIds);
+  const votedTopicIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]"); }
+    catch { return []; }
+  }, []);
+  const { matches } = useVibeMatches(savedTopics, publishedSessionIds, walletAddress, votedTopicIds);
 
   // Find the match by index
   const idx = parseInt(index ?? "", 10);
@@ -100,12 +104,16 @@ export default function VibeProfilePage() {
           )}
           <div style={{ display: "flex", justifyContent: "center", gap: 24, marginTop: 16 }}>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 22, fontWeight: 700, color: C.success }}>{match.matchScore}</div>
-              <div style={{ fontSize: 11, color: C.textSecondary }}>Shared</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: C.success }}>{match.matchScore}%</div>
+              <div style={{ fontSize: 11, color: C.textSecondary }}>Match</div>
             </div>
             <div style={{ textAlign: "center" }}>
               <div style={{ fontSize: 22, fontWeight: 700, color: C.white }}>{match.sharedTopics.length}</div>
               <div style={{ fontSize: 11, color: C.textSecondary }}>Topics</div>
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: 22, fontWeight: 700, color: C.white }}>{match.sharedSessions.length}</div>
+              <div style={{ fontSize: 11, color: C.textSecondary }}>Sessions</div>
             </div>
           </div>
         </div>
@@ -125,6 +133,29 @@ export default function VibeProfilePage() {
                   }}>
                     {ts.icon} {topic}
                   </span>
+                );
+              })}
+            </div>
+          </>
+        )}
+
+        {/* Shared Sessions */}
+        {match.sharedSessions.length > 0 && (
+          <>
+            <div style={sectionTitle}>Shared Sessions ({match.sharedSessions.length})</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, padding: "0 16px" }}>
+              {match.sharedSessions.map((sessId) => {
+                const sess = sessions.find((s) => s.id === sessId);
+                if (!sess) return null;
+                const sts = getTrackStyle(sess.track);
+                return (
+                  <div key={sessId} onClick={() => navigate(`/session/${sessId}`)} style={{ ...glassSurface, padding: 12, display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
+                    <span style={{ fontSize: 16, flexShrink: 0 }}>{sts.icon}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: C.textPrimary, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{sess.title}</div>
+                      <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>{sess.startTime} · {sess.stage}</div>
+                    </div>
+                  </div>
                 );
               })}
             </div>

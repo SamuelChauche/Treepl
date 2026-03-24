@@ -103,7 +103,7 @@ export function useOnboardingWallet() {
       setEmbeddedPrivateKey(privateKey);
       const conn = await connectEmbeddedWallet(pw);
       setEmbeddedWallet(conn);
-      embeddedCtx.setWalletDirectly(conn, address);
+      embeddedCtx.setWalletDirectly(conn, address, pw);
       try {
         const bal = await conn.provider.getBalance(address);
         setEmbeddedBalance(conn.ethers.formatEther(bal));
@@ -123,7 +123,7 @@ export function useOnboardingWallet() {
       setEmbeddedWallet(conn);
       setEmbeddedAddress(conn.address);
       setEmbeddedMode("none");
-      embeddedCtx.setWalletDirectly(conn, conn.address);
+      embeddedCtx.setWalletDirectly(conn, conn.address, pw);
       try {
         const bal = await conn.provider.getBalance(conn.address);
         setEmbeddedBalance(conn.ethers.formatEther(bal));

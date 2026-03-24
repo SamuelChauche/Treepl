@@ -172,11 +172,14 @@ export default function HomePage() {
     return sessions.filter((s) => s.date === firstDate).slice(0, 10);
   }, []);
 
-  // Real vibe matches from on-chain data
+  // Real vibe matches — use ONLY on-chain published data, not cart
   const savedTopics = useMemo(() => StorageService.loadTopics(), []);
-  const savedCart = useMemo(() => StorageService.loadCart(), []);
+  const publishedSessionIds = useMemo<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]"); }
+    catch { return []; }
+  }, []);
   const { matches: vibeMatches, loading: vibesLoading } = useVibeMatches(
-    savedTopics, [...savedCart], walletAddress,
+    savedTopics, publishedSessionIds, walletAddress,
   );
 
   // Embedded wallet state

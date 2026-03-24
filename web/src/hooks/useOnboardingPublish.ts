@@ -74,9 +74,8 @@ export function useOnboardingPublish() {
         return;
       }
 
-      // Persist to localStorage
+      // Persist topics — sessions are already in PUBLISHED_SESSIONS, NOT in cart
       StorageService.saveTopics(selectedTracks);
-      StorageService.saveCart(selectedSessions);
 
       setTxHash(lastHash);
       setTxState("done");
