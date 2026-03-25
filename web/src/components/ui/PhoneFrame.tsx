@@ -11,13 +11,13 @@ export const PhoneFrame: React.FC<{ children: React.ReactNode; nav?: React.React
     <style>{`
       .phone-frame {
         width: 100%;
-        min-height: 100dvh;
+        height: 100dvh;
         background: #0a0a0a;
+        overflow: hidden;
         position: relative;
         display: flex;
         flex-direction: column;
         font-family: ${FONT};
-        /* Safe area: dark bar behind status bar */
         padding-top: env(safe-area-inset-top, 0px);
         box-sizing: border-box;
       }
