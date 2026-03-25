@@ -19,7 +19,6 @@ export const PhoneFrame: React.FC<{ children: React.ReactNode }> = ({ children }
         font-family: ${FONT};
         /* Safe area: dark bar behind status bar */
         padding-top: env(safe-area-inset-top, 0px);
-        padding-bottom: env(safe-area-inset-bottom, 0px);
         box-sizing: border-box;
       }
       .phone-content {
