@@ -125,7 +125,7 @@ export default function VibeProfilePage() {
         <div style={{ fontSize: 18, fontWeight: 700 }}>Vibe Profile</div>
       </div>
 
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: 24 }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))" }}>
         {/* Avatar + Name */}
         <div style={{ textAlign: "center", padding: "20px 16px" }}>
           <div style={{ ...avatarStyle, background: avatarColor(match.label) }}>{initials}</div>

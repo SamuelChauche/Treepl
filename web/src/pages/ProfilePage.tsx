@@ -184,7 +184,7 @@ export default function ProfilePage() {
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, background: "#fff", borderRadius: `0 0 ${R.xl}px ${R.xl}px`, zIndex: 0 }} />
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: 24, position: "relative", zIndex: 1 }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))", position: "relative", zIndex: 1 }}>
       {/* Hero — same layout as VotePage */}
       <div style={{ background: "transparent", borderRadius: `0 0 ${R.xl}px ${R.xl}px`, padding: "0 0 24px", color: "#0a0a0a", overflow: "hidden", boxSizing: "border-box" }}>
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", padding: "12px 20px 0" }}>

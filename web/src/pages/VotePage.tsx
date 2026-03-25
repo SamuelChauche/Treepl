@@ -489,7 +489,7 @@ export default function VotePage() {
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, background: "#D790C7", borderRadius: `0 0 ${R.xl}px ${R.xl}px`, zIndex: 0 }} />
 
       {/* Scrollable content - hero + tabs + list */}
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: 24, position: "relative", zIndex: 1 }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))", position: "relative", zIndex: 1 }}>
       {/* Hero stats */}
       <div style={{ ...heroBox, background: "transparent" }}>
         <div style={{ padding: "12px 20px 0" }}>

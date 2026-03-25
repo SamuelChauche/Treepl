@@ -123,7 +123,7 @@ export default function TopicDetailPage() {
         <div style={title}>Topic</div>
       </div>
 
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: 24 }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))" }}>
         {/* Hero */}
         <div style={heroSection}>
           <div style={{

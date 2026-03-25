@@ -68,7 +68,6 @@ html, body {
   height: 100dvh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   overscroll-behavior: none;
   /* Same as PhoneFrame background — fills safe areas on iOS */
   background: #060a10;
@@ -83,7 +82,6 @@ html, body {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  overflow: hidden;
 }
 
 @media (min-width: 500px) {

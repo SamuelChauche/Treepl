@@ -217,7 +217,7 @@ export default function CartPage() {
     <div style={page}>
       <div style={{ height: 12, flexShrink: 0 }} />
 
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: 16 }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))" }}>
         {isEmpty && (
           <div style={emptyState}>
             <div style={{ fontSize: 40, marginBottom: 12 }}>🛒</div>

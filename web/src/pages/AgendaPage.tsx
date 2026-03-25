@@ -145,7 +145,7 @@ export default function AgendaPage() {
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, background: "#cea2fd", borderRadius: `0 0 ${20}px ${20}px`, zIndex: 0 }} />
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", position: "relative", zIndex: 1 }}>
+      <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", position: "relative", zIndex: 1, paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))" }}>
       {/* Header content */}
       <div style={{ padding: "16px 20px 0", color: "#0a0a0a" }}>
         <div style={{ fontSize: 60, fontWeight: 900, lineHeight: 1, marginBottom: 20 }}>Agenda</div>

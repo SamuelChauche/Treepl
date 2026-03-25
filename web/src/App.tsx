@@ -174,12 +174,7 @@ function AppContent() {
 
   return (
     <PhoneFrame>
-      <div style={{
-        flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 0,
-        paddingBottom: showNav ? "calc(88px + env(safe-area-inset-bottom, 0px))" : 0,
-      }}>
-        <Outlet />
-      </div>
+      <Outlet />
       {showNav && <Nav5 cartCount={cart.size} />}
 
       {/* Notification toast */}
