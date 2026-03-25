@@ -12,6 +12,7 @@ import { requestNotificationPermission, showNativeNotification, notifyReplayAvai
 import { startReplayPolling } from "./services/replayService";
 import { subscribeToPush } from "./services/pushService";
 import { C, FONT, glassSurface } from "./config/theme";
+import { DebugOverlay } from "./components/ui/DebugOverlay";
 import "./styles/globals.css";
 
 const isPWA =
@@ -175,6 +176,7 @@ function AppContent() {
 
   return (
     <PhoneFrame nav={showNav ? <Nav5 cartCount={cart.size} /> : undefined}>
+      <DebugOverlay />
       <Outlet />
 
       {/* Notification toast */}
