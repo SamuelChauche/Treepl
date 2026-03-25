@@ -12,7 +12,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["images/icon-192.png", "images/icon-512.png"],
+      includeAssets: ["images/sofia-splash.png", "images/icon-512.png"],
       manifest: {
         name: "Sofia EthCC Manager",
         short_name: "Sofia",
@@ -24,8 +24,8 @@ export default defineConfig({
         scope: "/",
         icons: [
           {
-            src: "images/icon-192.png",
-            sizes: "192x192",
+            src: "images/sofia-splash.png",
+            sizes: "512x512",
             type: "image/png",
           },
           {
