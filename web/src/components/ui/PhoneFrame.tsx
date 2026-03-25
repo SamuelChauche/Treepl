@@ -20,8 +20,6 @@ export const PhoneFrame: React.FC<{ children: React.ReactNode }> = ({ children }
         /* Safe area: dark bar behind status bar */
         padding-top: env(safe-area-inset-top, 0px);
         box-sizing: border-box;
-        /* Makes position:fixed children relative to this frame, not the viewport */
-        transform: translateZ(0);
       }
       .phone-content {
         position: relative;
@@ -41,6 +39,8 @@ export const PhoneFrame: React.FC<{ children: React.ReactNode }> = ({ children }
           padding-top: 0;
           padding-bottom: 0;
           box-shadow: 0 32px 64px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+          /* Desktop only: anchor fixed children to this frame, not the viewport */
+          transform: translateZ(0);
         }
       }
     `}</style>
