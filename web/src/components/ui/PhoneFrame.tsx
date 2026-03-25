@@ -20,6 +20,8 @@ export const PhoneFrame: React.FC<{ children: React.ReactNode }> = ({ children }
         /* Safe area: dark bar behind status bar */
         padding-top: env(safe-area-inset-top, 0px);
         box-sizing: border-box;
+        /* Makes position:fixed children relative to this frame, not the viewport */
+        transform: translateZ(0);
       }
       .phone-content {
         position: relative;
@@ -29,6 +31,8 @@ export const PhoneFrame: React.FC<{ children: React.ReactNode }> = ({ children }
         flex-direction: column;
         overflow: hidden;
         min-height: 0;
+        /* Reserve space for the fixed navbar */
+        padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
       }
       @media (min-width: 500px) {
         .phone-frame {
