@@ -62,7 +62,7 @@ export default function OnboardingPage() {
   const handlePublish = () => {
     if (!w.effectiveWallet) return;
     if (nickname.trim()) localStorage.setItem(STORAGE_KEYS.NICKNAME, nickname.trim());
-    publish(w.effectiveWallet, selectedTracks, selectedSessions, {
+    publish(w.effectiveWallet, selectedTracks, selectedSessions, nickname, {
       setTxError: w.setTxError,
       setTxStatus: w.setTxStatus,
       refreshBalance: w.refreshEmbeddedBalance,
@@ -102,6 +102,7 @@ export default function OnboardingPage() {
         selectedTracks={selectedTracks}
         selectedSessions={selectedSessions}
         onToggleSession={toggleSession}
+        onSetSessions={setSelectedSessions}
         onBack={() => setStep(4)}
         onNext={() => setStep(6)}
       />

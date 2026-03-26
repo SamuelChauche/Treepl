@@ -22,6 +22,7 @@ export function useOnboardingPublish() {
     effectiveWallet: WalletConnection,
     selectedTracks: Set<string>,
     selectedSessions: Set<string>,
+    nickname: string,
     callbacks: {
       setTxError: (e: string) => void;
       setTxStatus: (s: string) => void;
@@ -33,11 +34,12 @@ export function useOnboardingPublish() {
     setTxState("signing");
     setTxError("");
     try {
-      // Step 1: Ensure user atom exists
-      setTxStatus("Creating your atom...");
+      // Step 1: Ensure user atom exists (with nickname pinned to IPFS if provided)
+      setTxStatus(nickname.trim() ? "Pinning nickname to IPFS & creating atom..." : "Creating your atom...");
       const atomId = await ensureUserAtom(
         effectiveWallet.multiVault, effectiveWallet.proxy,
-        effectiveWallet.address, effectiveWallet.ethers
+        effectiveWallet.address, effectiveWallet.ethers,
+        nickname.trim() || undefined
       );
 
       let lastHash = "";
@@ -58,7 +60,7 @@ export function useOnboardingPublish() {
         setTxStatus(`Publishing ${sessionTriples.length} session triples...`);
         const tripleResult = await createProfileTriples(
           effectiveWallet.multiVault, effectiveWallet.proxy,
-          effectiveWallet.address, sessionTriples
+          effectiveWallet.address, sessionTriples, undefined, setTxStatus
         );
         lastHash = tripleResult.hash;
         const published: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_SESSIONS) ?? "[]");

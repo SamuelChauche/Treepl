@@ -4,7 +4,7 @@ import { C, R, glassSurface, FONT, getTrackStyle, avatarColor } from "../config/
 import { GQL_URL } from "../config/constants";
 import { GraphQLClient } from "@ethcc/graphql";
 import { sessions, tracks } from "../data";
-import { SESSION_ATOM_IDS, PREDICATES } from "../services/intuition";
+import { SESSION_ATOM_IDS, PREDICATES, fetchUserNickname } from "../services/intuition";
 import { Ic } from "../components/ui/Icons";
 import { useEnsProfile } from "../hooks/useEnsProfile";
 import { getSocialLinks } from "../services/ensService";
@@ -157,6 +157,13 @@ export default function VibeProfilePage() {
     }).catch(() => {});
   }, [match, ATOM_TO_SESSION]);
 
+  // Fetch on-chain nickname
+  const [theirNickname, setTheirNickname] = useState<string | null>(null);
+  useEffect(() => {
+    if (!match?.label) return;
+    fetchUserNickname(match.label).then(setTheirNickname).catch(() => {});
+  }, [match?.label]);
+
   // ENS lookup for real addresses
   const addr = match?.label && /^0x[a-fA-F0-9]{40}$/.test(match.label) ? match.label : null;
   const { profile: ensProfile } = useEnsProfile(addr);
@@ -194,7 +201,14 @@ export default function VibeProfilePage() {
         {/* Avatar + Name */}
         <div style={profileSection}>
           <div style={{ ...avatarLarge, background: avatarColor(match.label) }}>{initials}</div>
-          <div style={addrText}>{shortAddr}</div>
+          {theirNickname ? (
+            <>
+              <div style={{ fontSize: 24, fontWeight: 800, color: C.white }}>{theirNickname}</div>
+              <div style={{ fontSize: 12, color: C.textTertiary, fontFamily: "monospace", marginTop: 4 }}>{shortAddr}</div>
+            </>
+          ) : (
+            <div style={addrText}>{shortAddr}</div>
+          )}
           {ensProfile?.name && <div style={ensNameText}>{ensProfile.name}</div>}
 
           <div style={statsRow}>

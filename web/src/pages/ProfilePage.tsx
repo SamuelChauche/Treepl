@@ -10,6 +10,7 @@ import { useEnsProfile } from "../hooks/useEnsProfile";
 import { getSocialLinks } from "../services/ensService";
 import { hasEmbeddedWallet, getEmbeddedAddress } from "../services/embeddedWallet";
 import { syncProfileFromChain } from "../services/profileSync";
+import { fetchUserNickname } from "../services/intuition";
 import { useFollow } from "../hooks/useFollow";
 import {
   scrollContent, fluidContent, cardTitle, metaText, inCartBadge, glassInfoCard,
@@ -94,7 +95,7 @@ export default function ProfilePage() {
   const navigate = useNavigate();
 
   const walletAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS) ?? "";
-  const savedNickname = localStorage.getItem(STORAGE_KEYS.NICKNAME) ?? "";
+  const [nickname, setNickname] = useState(() => localStorage.getItem(STORAGE_KEYS.NICKNAME) ?? "");
   const { following } = useFollow();
   const [savedTopics, setSavedTopics] = useState(() => StorageService.loadTopics());
   const topicNames = useMemo(() => [...savedTopics], [savedTopics]);
@@ -120,7 +121,16 @@ export default function ProfilePage() {
         setVoteCount(v ? (JSON.parse(v) as unknown[]).length : 0);
       } catch { /* ignore */ }
     }).catch(() => {});
-  }, [walletAddress]);
+    // Sync nickname from chain if not in localStorage
+    if (!nickname) {
+      fetchUserNickname(walletAddress).then((n) => {
+        if (n) {
+          setNickname(n);
+          localStorage.setItem(STORAGE_KEYS.NICKNAME, n);
+        }
+      }).catch(() => {});
+    }
+  }, [walletAddress, nickname]);
 
   const isEmbeddedWallet = hasEmbeddedWallet() && getEmbeddedAddress()?.toLowerCase() === walletAddress.toLowerCase();
 
@@ -154,12 +164,14 @@ export default function ProfilePage() {
       <div style={scrollContent}>
       <div style={heroSection}>
         <div style={heroHeader}>
-          <div style={{ fontSize: savedNickname ? 42 : 60, fontWeight: 900, lineHeight: 1 }}>
-            {savedNickname || (walletAddress ? <>{walletAddress.slice(0, 6)}...<br/>{walletAddress.slice(-4)}</> : "Profile")}
+          <div>
+            <div style={{ fontSize: nickname ? 42 : 60, fontWeight: 900, lineHeight: 1 }}>
+              {nickname || (walletAddress ? <>{walletAddress.slice(0, 6)}...<br/>{walletAddress.slice(-4)}</> : "Profile")}
+            </div>
+            {nickname && walletAddress && (
+              <div style={heroSubAddr}>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</div>
+            )}
           </div>
-          {savedNickname && walletAddress && (
-            <div style={heroSubAddr}>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</div>
-          )}
           <button style={{ ...settingsBtn, background: "rgba(0,0,0,0.1)", flexShrink: 0, marginTop: 4 }} onClick={() => navigate("/settings")}>
             <Ic.Settings s={18} c="#0a0a0a" />
           </button>
@@ -259,7 +271,7 @@ export default function ProfilePage() {
         if (allMySessionIds.size === 0) return null;
         return (
         <>
-          <div style={sectionTitle}>My Sessions</div>
+          <div style={sectionTitle}>My Sessions ({allMySessionIds.size})</div>
           <div style={listColumn}>
             {sessions.filter((s) => allMySessionIds.has(s.id)).map((s) => {
               const ts = getTrackStyle(s.track);

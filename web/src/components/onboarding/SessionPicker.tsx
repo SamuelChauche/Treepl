@@ -9,25 +9,30 @@ interface Props {
   selectedTracks: Set<string>;
   selectedSessions: Set<string>;
   onToggleSession: (id: string) => void;
+  onSetSessions: (ids: Set<string>) => void;
   onBack: () => void;
   onNext: () => void;
 }
 
-export function SessionPicker({ selectedTracks, selectedSessions, onToggleSession, onBack, onNext }: Props) {
+export function SessionPicker({ selectedTracks, selectedSessions, onToggleSession, onSetSessions, onBack, onNext }: Props) {
   const matchingSessions = useMemo(
-    () => sessions.filter((s) => selectedTracks.has(s.track)).slice(0, 20),
+    () => sessions.filter((s) => selectedTracks.has(s.track)),
     [selectedTracks],
   );
 
   const allSelected = matchingSessions.length > 0 && matchingSessions.every((s) => selectedSessions.has(s.id));
 
   const handleSelectAll = () => {
-    for (const s of matchingSessions) {
-      if (allSelected) {
-        if (selectedSessions.has(s.id)) onToggleSession(s.id);
-      } else {
-        if (!selectedSessions.has(s.id)) onToggleSession(s.id);
-      }
+    if (allSelected) {
+      // Deselect all matching sessions in one update
+      const matchingIds = new Set(matchingSessions.map((s) => s.id));
+      const next = new Set([...selectedSessions].filter((id) => !matchingIds.has(id)));
+      onSetSessions(next);
+    } else {
+      // Select all matching sessions in one update
+      const next = new Set(selectedSessions);
+      for (const s of matchingSessions) next.add(s.id);
+      onSetSessions(next);
     }
   };
 
