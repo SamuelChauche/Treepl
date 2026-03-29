@@ -73,7 +73,7 @@ const notFoundCenter: CSSProperties = {
 
 export default function VibeProfilePage() {
   const navigate = useNavigate();
-  const { index } = useParams<{ index: string }>();
+  const { index, address } = useParams<{ index?: string; address?: string }>();
 
   // Load real vibe matches
   const walletAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS) ?? "";
@@ -103,9 +103,30 @@ export default function VibeProfilePage() {
   const { matches, loading: vibeLoading } = useVibeMatches(savedTopics, publishedSessionIds, walletAddress, votedTopicIds);
   const { follow: followUser, pendingFollows, publishedFollows } = useFollow();
 
-  // Find the match by index
-  const idx = parseInt(index ?? "", 10);
-  const match = matches[idx] ?? null;
+  // Find the match by index OR by address
+  let match = null;
+  if (index !== undefined) {
+    const idx = parseInt(index, 10);
+    match = matches[idx] ?? null;
+  } else if (address) {
+    // Find match by address (label)
+    const foundMatch = matches.find(m => m.label.toLowerCase() === address.toLowerCase());
+    if (foundMatch) {
+      match = foundMatch;
+    } else {
+      // Create a minimal match object for unknown users
+      match = {
+        subjectTermId: address,
+        label: address,
+        sharedTopics: [],
+        sharedSessions: [],
+        matchScore: 0,
+        trackScore: 0,
+        voteScore: 0,
+        sessionScore: 0,
+      };
+    }
+  }
 
   // Fetch this user's attending sessions from chain
   const ATOM_TO_SESSION = useMemo(() => new Map(

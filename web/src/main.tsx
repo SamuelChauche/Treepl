@@ -57,6 +57,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/invite" element={<InvitePage />} />
             <Route path="/vibes" element={<VibesListPage />} />
             <Route path="/vibe/:index" element={<VibeProfilePage />} />
+            <Route path="/vibe-profile/:address" element={<VibeProfilePage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
 
             {/* Fallback */}
