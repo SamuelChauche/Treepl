@@ -49,6 +49,26 @@
   gap: 8px;
 }
 
+.dayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px 6px;
+}
+
+.dayLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--flat);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dayCount {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
 .sessionCard {
   display: flex;
   align-items: center;
