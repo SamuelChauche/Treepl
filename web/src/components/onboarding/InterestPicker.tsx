@@ -11,16 +11,13 @@ interface Props {
   onNext: () => void;
 }
 
-const MAX_TRACKS = 3;
-
 export function InterestPicker({ selectedTracks, onToggleTrack, onBack, onNext }: Props) {
-  // Only show tracks that have at least 1 session (exclude empty side-event-only tracks)
   const visibleTracks = useMemo(
     () => trackNames.filter((t) => sessions.some((s) => s.track === t)),
     [],
   );
 
-  const atLimit = selectedTracks.size >= MAX_TRACKS;
+  const overHalf = selectedTracks.size > Math.floor(visibleTracks.length / 2);
 
   return (
     <div className={shared.page}>
@@ -32,16 +29,20 @@ export function InterestPicker({ selectedTracks, onToggleTrack, onBack, onNext }
         </div>
         <h2 className={styles.title}>Choose your interests</h2>
         <p className={styles.subtitle}>
-          Pick up to {MAX_TRACKS} tracks — published on Intuition Protocol.
+          Published on Intuition Protocol as on-chain triples.
         </p>
       </div>
 
       <div className={styles.scrollArea}>
+        {overHalf && (
+          <div className={styles.warningBanner}>
+            <strong>Heads up</strong> — you selected {selectedTracks.size} out of {visibleTracks.length} tracks. Each interest costs ~0.2 TRUST in fees. That adds up quickly!
+          </div>
+        )}
         <div className={styles.trackGrid}>
           {visibleTracks.map((name) => {
             const ts = getTrackStyle(name);
             const active = selectedTracks.has(name);
-            const disabled = !active && atLimit;
             return (
               <button
                 key={name}
@@ -50,8 +51,6 @@ export function InterestPicker({ selectedTracks, onToggleTrack, onBack, onNext }
                   background: active ? ts.color : C.surfaceGray,
                   borderColor: active ? ts.color : "transparent",
                   color: active ? "#fff" : C.textSecondary,
-                  opacity: disabled ? 0.35 : 1,
-                  pointerEvents: disabled ? "none" : "auto",
                 }}
                 onClick={() => onToggleTrack(name)}
               >
@@ -73,7 +72,7 @@ export function InterestPicker({ selectedTracks, onToggleTrack, onBack, onNext }
             disabled={selectedTracks.size === 0}
             onClick={onNext}
           >
-            Continue &middot; {selectedTracks.size}/{MAX_TRACKS}
+            Continue &middot; {selectedTracks.size} selected
           </button>
         </div>
       </div>
