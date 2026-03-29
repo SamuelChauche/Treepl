@@ -204,6 +204,22 @@ export default function VibeProfilePage() {
     );
   }
 
+  if (!match) {
+    return (
+      <div style={page}>
+        <div style={headerBar}>
+          <button style={backBtn} onClick={() => navigate(-1)}><Ic.Back c={C.textPrimary} /></button>
+          <div style={headerTitle}>Vibe Profile</div>
+        </div>
+        <div style={scrollContent}>
+          <div style={glassInfoCard}>
+            <div style={emptyStateText}>Profile not found.</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const shortAddr = truncateLabel(match.label);
   const initials = getInitials(match.label);
 
