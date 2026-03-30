@@ -580,9 +580,10 @@ export async function depositOnAtoms(
 
     try {
       // Step 3: Calculate cost for this batch
-      if (totalBatches > 1) {
-        onStep?.(`Calculating cost for batch ${batchNum}/${totalBatches}...`);
-      }
+      onStep?.(totalBatches > 1
+        ? `Calculating cost for batch ${batchNum}/${totalBatches}...`
+        : "Calculating cost..."
+      );
       const costBreakdown = await FeeCalculationService.calculateDepositBatchCost(
         wallet,
         batch.length,
@@ -590,9 +591,10 @@ export async function depositOnAtoms(
       );
 
       // Step 4: Check balance before batch
-      if (totalBatches > 1) {
-        onStep?.(`Checking balance for batch ${batchNum}/${totalBatches}...`);
-      }
+      onStep?.(totalBatches > 1
+        ? `Checking balance for batch ${batchNum}/${totalBatches}...`
+        : "Checking balance..."
+      );
       const balanceCheck = await SimulationService.checkBalance(wallet, costBreakdown.grandTotal);
 
       if (!balanceCheck.hasEnough) {
@@ -607,9 +609,10 @@ export async function depositOnAtoms(
       }
 
       // Step 5: Simulate transaction before sending
-      if (totalBatches > 1) {
-        onStep?.(`Simulating batch ${batchNum}/${totalBatches}...`);
-      }
+      onStep?.(totalBatches > 1
+        ? `Simulating batch ${batchNum}/${totalBatches}...`
+        : "Simulating transaction..."
+      );
       const simulation = await SimulationService.simulateDepositBatch(
         wallet,
         batch,
