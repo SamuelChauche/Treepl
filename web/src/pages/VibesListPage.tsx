@@ -5,6 +5,7 @@ import { C, R, glassSurface, FONT, getTrackStyle, avatarColor } from "../config/
 import { Ic } from "../components/ui/Icons";
 import { useVibeMatches } from "../hooks/useVibeMatches";
 import { SkeletonCircle, Skeleton } from "../components/ui/Skeleton";
+import { UserLabel } from "../components/ui/UserLabel";
 
 // ─── Styles ──────────────────────────────────────────
 
@@ -179,9 +180,6 @@ export default function VibesListPage() {
           <>
             <div style={sectionLabel}>On-Chain Connections ({realMatches.length})</div>
             {realMatches.map((m, idx) => {
-              const shortLabel = m.label.startsWith("0x")
-                ? `${m.label.slice(0, 6)}...${m.label.slice(-4)}`
-                : m.label;
               const pct = m.matchScore; // already 0-100
               return (
                 <div key={m.subjectTermId} style={{ ...userCard, cursor: "pointer" }} onClick={() => navigate(`/vibe/${idx}`)}>
@@ -190,7 +188,7 @@ export default function VibesListPage() {
                       {m.label.slice(2, 4).toUpperCase()}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={nameStyle}>{shortLabel}</div>
+                      <UserLabel address={m.label} style={nameStyle} />
                       <div style={{ fontSize: 11, color: C.textSecondary, marginTop: 2 }}>
                         {m.sharedTopics.length} shared interest{m.sharedTopics.length > 1 ? "s" : ""}
                       </div>

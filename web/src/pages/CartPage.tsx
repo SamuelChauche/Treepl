@@ -444,6 +444,7 @@ export default function CartPage() {
     let lastTxHash = "";
     try {
       // Get user atom ID (might already exist)
+      setPublishStatus("Preparing your profile...");
       const nickname = localStorage.getItem(STORAGE_KEYS.NICKNAME) ?? undefined;
       const atomId = await ensureUserAtom(wallet.multiVault, wallet.proxy, wallet.address, wallet.ethers, nickname);
       setUserAtomId(atomId);
@@ -452,7 +453,9 @@ export default function CartPage() {
       const trackAtomIds = topicList.map((t) => TRACK_ATOM_IDS[t]).filter(Boolean);
       if (trackAtomIds.length > 0) {
         setPublishStatus(`Depositing on ${trackAtomIds.length} interests...`);
-        const result = await depositOnAtoms(wallet, trackAtomIds);
+        const result = await depositOnAtoms(wallet, trackAtomIds, undefined, (step) => {
+          setPublishStatus(step);
+        });
         if (typeof result === 'string') {
           lastTxHash = result;
         } else if (result && 'hash' in result) {
@@ -465,7 +468,9 @@ export default function CartPage() {
         const { resolved } = resolveTopicAtomIds(cartTopics.map((t) => t.id));
         if (resolved.length > 0) {
           setPublishStatus(`Depositing on ${resolved.length} topics...`);
-          const result = await depositOnAtoms(wallet, resolved.map((r) => r.atomId));
+          const result = await depositOnAtoms(wallet, resolved.map((r) => r.atomId), undefined, (step) => {
+            setPublishStatus(step);
+          });
           if (typeof result === 'string') {
             lastTxHash = result;
           } else if (result && 'hash' in result) {
