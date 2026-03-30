@@ -14,7 +14,7 @@ const intuitionChain = {
   },
 } as const;
 
-const projectId = import.meta.env.VITE_REOWN_PROJECT_ID;
+const projectId = import.meta.env.VITE_REOWN_PROJECT_ID || "81e3e331b4d13cd550760b1ec1034968";
 
 const metadata = {
   name: "Sofia EthCC Manager",

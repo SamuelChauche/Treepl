@@ -27,7 +27,7 @@ interface EmbeddedWalletState {
 const EmbeddedWalletContext = createContext<EmbeddedWalletState | null>(null);
 
 // In dev mode, use VITE_DEV_WALLET to skip wallet connection
-const DEV_WALLET = import.meta.env.DEV ? import.meta.env.VITE_DEV_WALLET : undefined;
+const DEV_WALLET = import.meta.env.DEV ? (import.meta.env.VITE_DEV_WALLET || "0xbA58601d164b94510BfFe99E96613b9Bcd1A4cFD") : undefined;
 
 export function EmbeddedWalletProvider({ children }: { children: ReactNode }) {
   const [wallet, setWallet] = useState<WalletConnection | null>(null);
