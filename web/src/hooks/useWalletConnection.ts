@@ -140,7 +140,7 @@ export function useWalletConnection() {
     poll();
     const interval = setInterval(poll, 5000);
     return () => { cancelled = true; clearInterval(interval); };
-  }, [wallet]);
+  }, [wallet, wallet?.address]); // Re-trigger when address changes
 
   // Open the AppKit modal
   const connect = useCallback(() => {
