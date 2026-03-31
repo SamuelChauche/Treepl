@@ -53,7 +53,7 @@ export class SimulationService {
     try {
       // Use a dedicated RPC provider for simulation instead of wallet.provider
       // This prevents "JsonRpcProvider failed to detect network" errors on mobile/MetaMask
-      const { ethers } = wallet.ethers;
+      const ethers = wallet.ethers;
       const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL, {
         chainId: CHAIN_CONFIG.CHAIN_ID,
         name: CHAIN_CONFIG.CHAIN_NAME,
