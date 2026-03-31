@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import type { WalletConnection } from "../services/intuition";
 
 /**
  * Tests for useCartPublish hook approval flow
@@ -9,26 +8,9 @@ import type { WalletConnection } from "../services/intuition";
  */
 
 describe("useCartPublish - Proxy Approval Flow", () => {
-  let mockWallet: WalletConnection;
-  let approveProxySpy: any;
-  let depositOnAtomsSpy: any;
-
   beforeEach(() => {
     // Reset mocks
     vi.clearAllMocks();
-
-    // Mock wallet
-    mockWallet = {
-      address: "0x1234567890123456789012345678901234567890",
-      multiVault: {
-        approve: vi.fn().mockResolvedValue({
-          hash: "0xapprove",
-          wait: vi.fn().mockResolvedValue({ status: 1, blockNumber: 123 })
-        }),
-      },
-      proxy: {},
-      ethers: {},
-    } as any;
   });
 
   it("should call approveProxy exactly once when publishing interests and votes", async () => {
