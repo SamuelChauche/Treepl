@@ -51,8 +51,16 @@ export class SimulationService {
     value: bigint
   ): Promise<SimulationResult> {
     try {
+      // Use a dedicated RPC provider for simulation instead of wallet.provider
+      // This prevents "JsonRpcProvider failed to detect network" errors on mobile/MetaMask
+      const { ethers } = wallet.ethers;
+      const rpcProvider = new ethers.JsonRpcProvider(CHAIN_CONFIG.RPC_URL, {
+        chainId: CHAIN_CONFIG.CHAIN_ID,
+        name: CHAIN_CONFIG.CHAIN_NAME,
+      });
+
       // Step 1: Static call to verify tx would succeed
-      await wallet.provider.call({
+      await rpcProvider.call({
         to: contractAddress,
         data,
         value,
@@ -60,7 +68,7 @@ export class SimulationService {
       });
 
       // Step 2: If call succeeds, estimate gas cost
-      const gasEstimate = await wallet.provider.estimateGas({
+      const gasEstimate = await rpcProvider.estimateGas({
         to: contractAddress,
         data,
         value,
