@@ -54,23 +54,39 @@ export class FeeCalculationService {
     const deposit = depositPerTriple ?? BigInt(DEFAULT_DEPOSIT_PER_TRIPLE);
     const n = BigInt(tripleCount);
 
-    // Get base costs from MultiVault
-    const tripleCost = await wallet.multiVault.getTripleCost();
-    const atomCost = 0n; // No atoms created in triple creation
+    let tripleCost: bigint;
+    let depositAmount: bigint;
+    let multiVaultTotal: bigint;
+    let grandTotal: bigint;
 
-    // Calculate deposit totals
-    const depositAmount = deposit * n;
-    const multiVaultTotal = tripleCost * n + depositAmount;
+    try {
+      // Get base costs from MultiVault
+      tripleCost = await wallet.multiVault.getTripleCost();
+      // No atoms created in triple creation
 
-    // Get total cost from Sofia Fee Proxy (includes fees)
-    const assets = Array.from({ length: tripleCount }, () => deposit);
-    const depositCount = FeeCalculationService.countNonZero(assets);
-    const grandTotal = await wallet.proxy.getTotalCreationCost(
-      depositCount,
-      depositAmount,
-      multiVaultTotal
-    );
+      // Calculate deposit totals
+      depositAmount = deposit * n;
+      multiVaultTotal = tripleCost * n + depositAmount;
 
+      // Get total cost from Sofia Fee Proxy (includes fees)
+      const assets = Array.from({ length: tripleCount }, () => deposit);
+      const depositCount = FeeCalculationService.countNonZero(assets);
+      grandTotal = await wallet.proxy.getTotalCreationCost(
+        depositCount,
+        depositAmount,
+        multiVaultTotal
+      );
+    } catch (error) {
+      // Check if this is a network change error
+      const { NetworkGuard } = await import('./NetworkGuard');
+      if (NetworkGuard.isNetworkChangeError(error)) {
+        const friendlyMessage = NetworkGuard.formatNetworkError(error);
+        throw new Error(friendlyMessage);
+      }
+      throw error;
+    }
+
+    const atomCost = 0n;
     const sofiaFeeTotal = grandTotal - multiVaultTotal;
 
     // Try to get detailed fee breakdown (if proxy exposes these methods)
@@ -180,9 +196,22 @@ export class FeeCalculationService {
 
     const depositAmount = deposit * n;
 
-    // Calculate fee via proxy
-    const fee = await wallet.proxy.calculateDepositFee(n, depositAmount);
-    const grandTotal = depositAmount + fee;
+    let fee: bigint;
+    let grandTotal: bigint;
+
+    try {
+      // Calculate fee via proxy
+      fee = await wallet.proxy.calculateDepositFee(n, depositAmount);
+      grandTotal = depositAmount + fee;
+    } catch (error) {
+      // Check if this is a network change error
+      const { NetworkGuard } = await import('./NetworkGuard');
+      if (NetworkGuard.isNetworkChangeError(error)) {
+        const friendlyMessage = NetworkGuard.formatNetworkError(error);
+        throw new Error(friendlyMessage);
+      }
+      throw error;
+    }
 
     // Try to get detailed fee breakdown
     let sofiaFixedFee = 0n;

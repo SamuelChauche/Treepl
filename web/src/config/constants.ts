@@ -56,6 +56,15 @@ export const CHAIN_CONFIG = {
 // 0.001 TRUST per triple — users deposit into vaults on creation
 export const DEFAULT_DEPOSIT_PER_TRIPLE = "100000000000000000"; // 1e17 = 0.1 TRUST
 
+// ─── Error Messages ─────────────────────────────────────────────
+export const ERROR_MESSAGES = {
+  WRONG_NETWORK: `Your wallet is not connected to ${CHAIN_CONFIG.CHAIN_NAME}. Please switch to Chain ${CHAIN_CONFIG.CHAIN_ID} and try again.`,
+  NETWORK_CHANGED: `Your wallet switched networks during the transaction. Please switch back to ${CHAIN_CONFIG.CHAIN_NAME} (Chain ${CHAIN_CONFIG.CHAIN_ID}) and try again.`,
+  NETWORK_VERIFICATION_FAILED: `Could not verify network connection. Please ensure you're on ${CHAIN_CONFIG.CHAIN_NAME} (Chain ${CHAIN_CONFIG.CHAIN_ID}).`,
+  USER_REJECTED: 'Transaction was rejected. Please approve the transaction in your wallet to continue.',
+  INSUFFICIENT_FUNDS: 'Insufficient funds to complete this transaction.',
+} as const;
+
 // ─── API URLs ───────────────────────────────────────────────────
 // Use Vite proxy in dev to avoid CORS, direct URL in production
 export const GQL_URL = import.meta.env.DEV

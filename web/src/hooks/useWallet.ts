@@ -56,9 +56,18 @@ export function useWallet() {
       // Approve proxy on MultiVault (one-time)
       setTxStatus("Approving proxy on MultiVault... Please confirm in your wallet");
       try {
-        await approveProxy(connection.multiVault);
+        await approveProxy(connection.multiVault, connection);
       } catch (approvalErr: unknown) {
         const msg = approvalErr instanceof Error ? approvalErr.message : String(approvalErr);
+
+        // Check if network changed during approval
+        const { NetworkGuard } = await import('../services/NetworkGuard');
+        if (NetworkGuard.isNetworkChangeError(approvalErr)) {
+          setTxError(NetworkGuard.formatNetworkError(approvalErr));
+          setTxStatus("");
+          return;
+        }
+
         if (msg.includes("user rejected") || msg.includes("denied") || msg.includes("ACTION_REJECTED")) {
           setTxError("You must approve the proxy to create your profile.");
           setTxStatus("");

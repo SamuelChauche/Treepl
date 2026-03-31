@@ -9,7 +9,7 @@
 
 import { useState, useCallback } from "react";
 import { CHAIN_CONFIG, STORAGE_KEYS } from "../config/constants";
-import { depositOnAtoms, ensureUserAtom, buildProfileTriples, createProfileTriples, TRACK_ATOM_IDS } from "../services/intuition";
+import { depositOnAtoms, ensureUserAtom, buildProfileTriples, createProfileTriples, TRACK_ATOM_IDS, approveProxy } from "../services/intuition";
 import { resolveTopicAtomIds } from "../services/voteService";
 import { formatTxError } from "../utils/txErrors";
 import type { WalletConnection } from "../services/intuition";
@@ -38,19 +38,41 @@ export function useCartPublish() {
     setPublishing(true);
     setPublishError("");
     try {
-      // 1. Deposit on track atoms (interests)
+      // 0. Approve proxy ONCE for all operations (before any transactions)
+      setPublishStatus("Approving proxy...");
+      try {
+        await approveProxy(wallet.multiVault, wallet);
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+
+        // Check if network changed during approval
+        const { NetworkGuard } = await import('../services/NetworkGuard');
+        if (NetworkGuard.isNetworkChangeError(err)) {
+          // Network changed error - throw with clear message
+          throw err;
+        }
+
+        // Only re-throw if user explicitly rejected
+        if (msg.toLowerCase().includes('user rejected') || msg.toLowerCase().includes('user denied')) {
+          throw new Error('You must approve the proxy to continue. Please accept the approval request in your wallet.');
+        }
+        // Continue if already approved or other non-blocking errors
+        console.log('[useCartPublish] Proxy approval check completed (may already be approved)');
+      }
+
+      // 1. Deposit on track atoms (interests) - SKIP approval (already done above)
       const trackAtomIds = topicList.map((t) => TRACK_ATOM_IDS[t]).filter(Boolean);
       if (trackAtomIds.length > 0) {
         setPublishStatus(`Depositing on ${trackAtomIds.length} interests...`);
-        await depositOnAtoms(wallet, trackAtomIds);
+        await depositOnAtoms(wallet, trackAtomIds, undefined, undefined, true); // skipApproval=true
       }
 
-      // 2. Deposit on topic atoms (votes)
+      // 2. Deposit on topic atoms (votes) - SKIP approval (already done above)
       if (cartTopics.length > 0) {
         const { resolved } = resolveTopicAtomIds(cartTopics.map((t) => t.id));
         if (resolved.length > 0) {
           setPublishStatus(`Depositing on ${resolved.length} topics...`);
-          await depositOnAtoms(wallet, resolved.map((r) => r.atomId));
+          await depositOnAtoms(wallet, resolved.map((r) => r.atomId), undefined, undefined, true); // skipApproval=true
         }
         const pubVotes: string[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.PUBLISHED_VOTES) ?? "[]");
         for (const t of cartTopics) { if (!pubVotes.includes(t.id)) pubVotes.push(t.id); }

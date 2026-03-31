@@ -93,7 +93,7 @@ export async function submitVotes(
   // Step 1: Approve proxy
   onStep?.("Approving proxy contract...");
   try {
-    await approveProxy(wallet.multiVault);
+    await approveProxy(wallet.multiVault, wallet);
   } catch {
     // Already approved — ignore
   }

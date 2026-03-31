@@ -153,16 +153,52 @@ function countNonZero(assets: bigint[]): bigint {
 /**
  * Approve the proxy as a spender on MultiVault (one-time per wallet).
  * Must be called before any proxy write operation.
+ *
+ * Now includes network verification to prevent "network changed" errors during approval.
  */
 export async function approveProxy(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  multiVault: any
+  // eslint-disable-line @typescript-eslint/no-explicit-any
+  multiVault: any,
+  wallet?: WalletConnection
 ): Promise<void> {
-  const tx = await multiVault.approve(
-    CHAIN_CONFIG.SOFIA_PROXY,
-    CHAIN_CONFIG.APPROVAL_TYPE_DEPOSIT
-  );
-  await tx.wait();
+  console.log('[approveProxy] Starting approval for proxy:', CHAIN_CONFIG.SOFIA_PROXY);
+  console.log('[approveProxy] Approval type:', CHAIN_CONFIG.APPROVAL_TYPE_DEPOSIT);
+
+  try {
+    // Verify network before approval if wallet provided
+    if (wallet) {
+      const { NetworkGuard } = await import('./NetworkGuard');
+      await NetworkGuard.ensureCorrectNetwork(wallet);
+      console.log('[approveProxy] Network verified, proceeding with approval');
+    }
+
+    const tx = await multiVault.approve(
+      CHAIN_CONFIG.SOFIA_PROXY,
+      CHAIN_CONFIG.APPROVAL_TYPE_DEPOSIT
+    );
+    console.log('[approveProxy] Approval transaction sent:', tx.hash);
+
+    const receipt = await tx.wait();
+    console.log('[approveProxy] Approval confirmed in block:', receipt.blockNumber);
+    console.log('[approveProxy] Approval status:', receipt.status === 1 ? 'SUCCESS' : 'FAILED');
+
+    if (receipt.status !== 1) {
+      throw new Error(`Approval transaction failed with status ${receipt.status}`);
+    }
+  } catch (error) {
+    console.error('[approveProxy] Approval failed:', error);
+
+    // Check if this is a network change error and provide friendly message
+    if (wallet) {
+      const { NetworkGuard } = await import('./NetworkGuard');
+      if (NetworkGuard.isNetworkChangeError(error)) {
+        const friendlyMessage = NetworkGuard.formatNetworkError(error);
+        throw new Error(friendlyMessage);
+      }
+    }
+
+    throw error;
+  }
 }
 
 // ─── Pin Thing to IPFS via Intuition GraphQL ─────────────────────
@@ -529,7 +565,8 @@ export async function depositOnAtoms(
   wallet: WalletConnection,
   termIds: string[],
   depositPerAtom?: bigint,
-  onStep?: (step: string) => void
+  onStep?: (step: string) => void,
+  skipApproval = false // NEW: Skip approval if already done in the flow
 ): Promise<{ hash: string; blockNumber: number }> {
   if (termIds.length === 0) throw new Error("No terms to deposit on.");
 
@@ -551,25 +588,38 @@ export async function depositOnAtoms(
     );
   }
 
-  // Step 2: Approve proxy on MultiVault (required before any proxy operation)
-  onStep?.("Approving proxy...");
-  console.log('[depositOnAtoms] Starting proxy approval...');
-  try {
-    await approveProxy(wallet.multiVault);
-    console.log('[depositOnAtoms] Proxy approval successful');
-  } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.log('[depositOnAtoms] Proxy approval error:', msg);
-    // Only ignore if already approved - re-throw user rejections
-    if (msg.toLowerCase().includes('user rejected') || msg.toLowerCase().includes('user denied')) {
-      throw new Error('You must approve the proxy to continue. Please accept the approval request in your wallet.');
+  // Step 2: Approve proxy ONLY if not skipped (to avoid multiple approval requests)
+  if (!skipApproval) {
+    onStep?.("Approving proxy...");
+    console.log('[depositOnAtoms] Starting proxy approval...');
+    try {
+      // Pass wallet for network verification
+      await approveProxy(wallet.multiVault, wallet);
+      console.log('[depositOnAtoms] Proxy approval successful');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.log('[depositOnAtoms] Proxy approval error:', msg);
+
+      // Check if network changed during approval
+      const { NetworkGuard } = await import('./NetworkGuard');
+      if (NetworkGuard.isNetworkChangeError(err)) {
+        // Network changed error - throw with clear message
+        throw err;
+      }
+
+      // Only ignore if already approved - re-throw user rejections
+      if (msg.toLowerCase().includes('user rejected') || msg.toLowerCase().includes('user denied')) {
+        throw new Error('You must approve the proxy to continue. Please accept the approval request in your wallet.');
+      }
+      // Log other errors but continue (likely already approved)
+      if (!msg.toLowerCase().includes('already approved') && !msg.toLowerCase().includes('already set')) {
+        console.warn('[Intuition] Proxy approval warning:', msg);
+      }
     }
-    // Log other errors but continue (likely already approved)
-    if (!msg.toLowerCase().includes('already approved') && !msg.toLowerCase().includes('already set')) {
-      console.warn('[Intuition] Proxy approval warning:', msg);
-    }
+    console.log('[depositOnAtoms] Proceeding to batch processing...');
+  } else {
+    console.log('[depositOnAtoms] Skipping approval check (already approved in flow)');
   }
-  console.log('[depositOnAtoms] Proceeding to batch processing...');
 
   let lastHash = "";
   let lastBlockNumber = 0;
@@ -585,6 +635,11 @@ export async function depositOnAtoms(
     const assets = batch.map(() => deposit);
 
     try {
+      // Verify network before cost calculation (critical point where network changes break the flow)
+      const { NetworkGuard } = await import('./NetworkGuard');
+      await NetworkGuard.ensureCorrectNetwork(wallet);
+      console.log(`[depositOnAtoms] Batch ${batchNum}: Network verified`);
+
       // Step 3: Calculate cost for this batch
       console.log(`[depositOnAtoms] Batch ${batchNum}: Calculating cost...`);
       onStep?.(totalBatches > 1
@@ -766,9 +821,17 @@ export async function createFollowTriple(
 
   onStep?.("Approving proxy...");
   try {
-    await approveProxy(wallet.multiVault);
+    await approveProxy(wallet.multiVault, wallet);
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
+
+    // Check if network changed during approval
+    const { NetworkGuard } = await import('./NetworkGuard');
+    if (NetworkGuard.isNetworkChangeError(err)) {
+      // Network changed error - throw with clear message
+      throw err;
+    }
+
     // Only ignore if already approved - re-throw user rejections
     if (msg.toLowerCase().includes('user rejected') || msg.toLowerCase().includes('user denied')) {
       throw new Error('You must approve the proxy to continue. Please accept the approval request in your wallet.');

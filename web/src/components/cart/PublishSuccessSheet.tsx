@@ -99,9 +99,9 @@ export function PublishSuccessSheet({
         {/* Success Header */}
         <div className={styles.header}>
           <div className={styles.successIcon}>✓</div>
-          <h2 className={styles.title}>Publié avec succès !</h2>
+          <h2 className={styles.title}>Published successfully!</h2>
           <p className={styles.subtitle}>
-            Votre profil est maintenant sur la blockchain
+            Your profile is now on the blockchain
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export function PublishSuccessSheet({
                 </div>
                 <div className={styles.summaryCount}>{interestCount}</div>
                 <div className={styles.summaryLabel}>
-                  {interestCount === 1 ? "Intérêt" : "Intérêts"}
+                  {interestCount === 1 ? "Interest" : "Interests"}
                 </div>
               </div>
             )}
@@ -153,7 +153,7 @@ export function PublishSuccessSheet({
                 </div>
                 <div className={styles.summaryCount}>{ratingCount}</div>
                 <div className={styles.summaryLabel}>
-                  {ratingCount === 1 ? "Note" : "Notes"}
+                  {ratingCount === 1 ? "Rating" : "Ratings"}
                 </div>
               </div>
             )}
@@ -182,7 +182,7 @@ export function PublishSuccessSheet({
                 }}
               >
                 <span className={styles.detailsToggleLabel}>
-                  💰 Coût total : <strong>{totalCost}</strong>
+                  💰 Total cost: <strong>{totalCost}</strong>
                 </span>
                 <span className={styles.detailsToggleIcon}>
                   {showDetails ? "▼" : "▶"}
@@ -194,8 +194,8 @@ export function PublishSuccessSheet({
                   {depositsAmount && (
                     <div className={styles.costRow}>
                       <span className={styles.costLabel}>
-                        Vos dépôts
-                        <span className={styles.costHint}>(récupérables)</span>
+                        Your deposits
+                        <span className={styles.costHint}>(recoverable)</span>
                       </span>
                       <span className={styles.costValue} style={{ color: C.trust }}>
                         {depositsAmount}
@@ -204,13 +204,13 @@ export function PublishSuccessSheet({
                   )}
                   {multiVaultFees && (
                     <div className={styles.costRow}>
-                      <span className={styles.costLabel}>Frais MultiVault</span>
+                      <span className={styles.costLabel}>MultiVault fees</span>
                       <span className={styles.costValue}>{multiVaultFees}</span>
                     </div>
                   )}
                   {sofiaFees && (
                     <div className={styles.costRow}>
-                      <span className={styles.costLabel}>Frais Sofia</span>
+                      <span className={styles.costLabel}>Sofia fees</span>
                       <span className={styles.costValue}>{sofiaFees}</span>
                     </div>
                   )}
@@ -258,7 +258,7 @@ export function PublishSuccessSheet({
                   <div className={styles.loadingBox}>
                     <div className={styles.loadingSpinner}></div>
                     <div className={styles.loadingText}>
-                      Recherche de personnes avec tes vibes...
+                      Finding people with your vibes...
                     </div>
                   </div>
                 </div>
@@ -269,7 +269,7 @@ export function PublishSuccessSheet({
                   <div className={styles.sectionHeader}>
                     <span className={styles.sectionIcon}>👥</span>
                     <h3 className={styles.sectionTitle}>
-                      {matches.length} personne{matches.length > 1 ? "s" : ""} trouvée{matches.length > 1 ? "s" : ""} !
+                      {matches.length} {matches.length > 1 ? "people" : "person"} found!
                     </h3>
                   </div>
                   <div className={styles.vibeList}>
@@ -313,10 +313,10 @@ export function PublishSuccessSheet({
                 <div className={styles.section}>
                   <div className={styles.emptyBox}>
                     <div className={styles.emptyIcon}>⏳</div>
-                    <div className={styles.emptyTitle}>Indexation en cours...</div>
+                    <div className={styles.emptyTitle}>Indexing in progress...</div>
                     <div className={styles.emptyText}>
-                      Tes données viennent d'être publiées ! L'indexation peut prendre quelques secondes.
-                      Retourne sur la page d'accueil et clique sur "Nearby Vibes" dans 30 secondes.
+                      Your data has just been published! Indexing may take a few seconds.
+                      Return to the home page and click on "Nearby Vibes" in 30 seconds.
                     </div>
                   </div>
                 </div>
