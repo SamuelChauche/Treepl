@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { C, glassSurface, FONT } from "../config/theme";
 import { CHAIN_CONFIG, STORAGE_KEYS } from "../config/constants";
 import { Ic } from "../components/ui/Icons";
+import { useWalletConnection } from "../hooks/useWalletConnection";
+import { useEmbeddedWallet } from "../contexts/EmbeddedWalletContext";
 
 // ─── Styles ──────────────────────────────────────────
 
@@ -60,6 +62,8 @@ const dangerBtn: CSSProperties = {
 
 export default function SettingsPage() {
   const navigate = useNavigate();
+  const { disconnect: disconnectAppKit } = useWalletConnection();
+  const { disconnect: disconnectEmbedded } = useEmbeddedWallet();
 
   const walletAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS) ?? "";
   const shortAddr = walletAddress
@@ -83,9 +87,17 @@ export default function SettingsPage() {
     });
   }, [walletAddress]);
 
-  const handleDisconnect = () => {
+  const handleDisconnect = async () => {
+    // Disconnect both wallet types (one will be no-op)
+    await disconnectAppKit();
+    await disconnectEmbedded();
+
+    // Clear all wallet-related storage
     localStorage.removeItem(STORAGE_KEYS.WALLET_ADDRESS);
-    navigate("/");
+    localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
+
+    // Redirect to onboarding
+    navigate("/onboarding");
   };
 
   return (
